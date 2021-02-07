@@ -6,7 +6,7 @@ A mobile client to connect to Twitch.tv using OAuth implicit authentication.
 
 ### Ads
 
-* [ ] Start Commercial
+* [x] Start Commercial
 
 ### Analytics
 

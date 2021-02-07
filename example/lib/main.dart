@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:twitch_api/twitch_api.dart';
 
-const clientId = "n9dgfacl10ivdy8vlr493qjavykdkn";
-const clientSecret = "vo9d9t1r8ah3ey9i3w06758c37p8ad";
 const redirectUri = "http://localhost/";
 
 void main() {
@@ -43,7 +41,8 @@ class _MyHomePageState extends State<MyHomePage> {
     if (_twitchClient.accessToken == null) {
       WidgetsBinding.instance.scheduleFrameCallback((_) {
         _twitchClient.openConnectionPage(context, scopes: [
-          TwitchApiScope.channelEditCommercial
+          TwitchApiScope.channelEditCommercial,
+          TwitchApiScope.analyticsReadExtensions,
         ]).then((value) => setState(() {}));
       });
     }
@@ -68,9 +67,9 @@ class _MyHomePageState extends State<MyHomePage> {
             Text('Welcome user: ${_twitchClient?.accessToken?.userId}'),
             Text('Your Twitch token is: ${_twitchClient?.accessToken?.token}'),
             RaisedButton(
-              child: Text('Get your Channel info'),
+              child: Text('Start Commercial'),
               onPressed: () async =>
-                  print(await _twitchClient.getChannelInfo()),
+                  _twitchClient.startCommercial("41245072", 60),
             ),
           ],
         ),

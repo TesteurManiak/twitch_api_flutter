@@ -7,6 +7,7 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:twitch_api/src/exceptions/twitch_api_exception.dart';
 import 'package:twitch_api/src/models/twitch_api_scopes.dart';
 import 'package:twitch_api/src/models/twitch_channel_info.dart';
+import 'package:twitch_api/src/models/twitch_extension_analytic.dart';
 import 'package:twitch_api/src/models/twitch_start_commercial.dart';
 import 'package:twitch_api/src/models/twitch_token.dart';
 import 'package:twitch_api/src/pages/webview_page.dart';
@@ -173,24 +174,13 @@ class TwitchClient {
   }
 
   /// Starts a commercial on a specified channel.
-  /// The scope [TwitchApiScope.channelEditCommercial] is required to be able to
-  /// use this method.
   ///
-  /// [broadcasterId] is the ID of the channel requesting a commercial.
+  /// Required scope: `TwitchApiScope.channelEditCommercial`
   ///
-  /// [length] is the Desired length of the commercial in seconds. Valid options
-  /// are `30, 60, 90, 120, 150, 180`.
+  /// `broadcasterId`: ID of the channel requesting a commercial.
   ///
-  /// ```
-  /// Future<void> startCommercialExample() async {
-  ///   final client =
-  ///     TwitchClient(clientId: '<client_id>', redirectUri: '<redirect_uri>');
-  ///   await client.openConnectionPage(context, scopes: [
-  ///     TwitchApiScope.channelEditCommercial,
-  ///   ]);
-  ///   await client.startCommercial();
-  /// }
-  /// ```
+  /// `length`: Desired length of the commercial in seconds. Valid options are
+  /// `30, 60, 90, 120, 150, 180`.
   Future<List<TwitchStartCommercial>> startCommercial(
       String broadcasterId, int length) async {
     assert(length > 29 && length < 181 && length % 30 == 0);
@@ -198,6 +188,78 @@ class TwitchClient {
         {'broadcaster_id': broadcasterId, 'length': length});
     return (data['data'] as Iterable)
         .map((e) => TwitchStartCommercial.fromJson(e))
+        .toList();
+  }
+
+  /// Gets a URL that Extension developers can use to download analytics reports
+  /// (CSV files) for their Extensions. The URL is valid for 5 minutes.
+  ///
+  /// If you specify a future date, the response will be “Report Not Found For
+  /// Date Range.” If you leave both `startedAt` and `endedAt` blank, the API
+  /// returns the most recent date of data.
+  ///
+  /// Required scope: `TwitchApiScope.analyticsReadExtensions`
+  ///
+  /// `after`: Cursor for forward pagination: tells the server where to start
+  /// fetching the next set of results, in a multi-page response. This applies
+  /// only to queries without `extensionId`. If an `extensionId` is specified,
+  /// it supersedes any cursor/offset combinations. The cursor value specified
+  /// here is from the `pagination` response field of a prior query.
+  ///
+  /// `endedAt`: Ending date/time for returned reports, in RFC3339 format with
+  /// the hours, minutes, and seconds zeroed out and the UTC timezone:
+  /// `YYYY-MM-DDT00:00:00Z`. The report covers the entire ending date; e.g., if
+  /// `2018-05-01T00:00:00Z` is specified, the report covers up to
+  /// `2018-05-01T23:59:59Z`.
+  /// If this is provided, `startedAt` also must be specified. If `endedAt` is
+  /// later than the default end date, the default date is used. Default: 1-2
+  /// days before the request was issued (depending on report availability).
+  ///
+  /// `extensionId`: Client ID value assigned to the extension when it is
+  /// created. If this is specified, the returned URL points to an analytics
+  /// report for just the specified extension. If this is not specified, the
+  /// response includes multiple URLs (paginated), pointing to separate
+  /// analytics reports for each of the authenticated user’s Extensions.
+  ///
+  /// `first`: Maximum number of objects to return. Maximum: 100. Default: 20.
+  ///
+  /// `startedAt`: Starting date/time for returned reports, in RFC3339 format
+  /// with the hours, minutes, and seconds zeroed out and the UTC timezone:
+  /// `YYYY-MM-DDT00:00:00Z`. This must be on or after January 31, 2018.
+  /// If this is provided, `endedAt` also must be specified. If `startedAt` is
+  /// earlier than the default start date, the default date is used.
+  /// The file contains one row of data per day.
+  ///
+  /// `type`: Type of analytics report that is returned. Currently, this field
+  /// has no affect on the response as there is only one report type. If
+  /// additional types were added, using this field would return only the URL
+  /// for the specified report. Limit: 1. Valid values: `"overview_v2"`.
+  Future<List<TwitchExtentsionAnalytic>> getExtensionAnalytics({
+    String after,
+    String endedAt,
+    String extensionId,
+    int first = 20,
+    String startedAt,
+    String type,
+  }) async {
+    assert((endedAt == null && startedAt == null) ||
+        (endedAt != null && startedAt != null));
+    assert(first < 101);
+
+    Map<String, dynamic> queryParameters = {'first': first};
+    if (after != null) queryParameters['after'] = after;
+    if (endedAt != null && startedAt != null) {
+      queryParameters['ended_at'] = endedAt;
+      queryParameters['started_at'] = startedAt;
+    }
+    if (extensionId != null) queryParameters['extension_id'] = extensionId;
+    if (type != null) queryParameters['type'] = type;
+
+    final data = await getCall(['analytics', 'extensions'],
+        queryParameters: queryParameters);
+    return (data['data'] as Iterable)
+        .map<TwitchExtentsionAnalytic>(
+            (e) => TwitchExtentsionAnalytic.fromJson(e))
         .toList();
   }
 
