@@ -6,13 +6,6 @@ class TwitchChannelInfo {
   final String broadcasterLanguage;
   final String title;
 
-  static const broadcasterIdEntry = 'broadcaster_id';
-  static const broadcasterNameEntry = 'broadcaster_name';
-  static const gameNameEntry = 'game_name';
-  static const gameIdEntry = 'game_id';
-  static const broadcasterLanguageEntry = 'broadcaster_language';
-  static const titleEntry = 'title';
-
   TwitchChannelInfo({
     this.broadcasterId,
     this.broadcasterName,
@@ -24,11 +17,11 @@ class TwitchChannelInfo {
 
   factory TwitchChannelInfo.fromJson(Map<String, dynamic> json) =>
       TwitchChannelInfo(
-        broadcasterId: json[broadcasterIdEntry],
-        broadcasterName: json[broadcasterNameEntry],
-        gameName: json[gameNameEntry],
-        gameId: json[gameIdEntry],
-        broadcasterLanguage: json[broadcasterLanguageEntry],
-        title: json[titleEntry],
+        broadcasterId: json['broadcaster_id'],
+        broadcasterName: json['broadcaster_name'],
+        gameName: json['game_name'],
+        gameId: json['game_id'],
+        broadcasterLanguage: json['broadcaster_language'],
+        title: json['title'],
       );
 }

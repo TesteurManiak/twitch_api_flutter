@@ -21,7 +21,7 @@ A mobile client to connect to Twitch.tv using OAuth implicit authentication.
 
 ### Channels
 
-* [x] Get Channel Information
+* [ ] Get Channel Information
 * [ ] Modify Channel Information
 * [ ] Get Channel Editors
 
