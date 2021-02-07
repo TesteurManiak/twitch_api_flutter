@@ -125,8 +125,9 @@ class TwitchClient {
       } else {
         throw TwitchApiException('OAuth token is not valid');
       }
+    } on DioError catch (dioError) {
+      throw dioError.response.data['message'];
     } catch (e) {
-      print(e.response.data);
       throw e;
     }
   }
@@ -157,8 +158,9 @@ class TwitchClient {
       } else {
         throw TwitchApiException('OAuth token is not valid');
       }
+    } on DioError catch (dioError) {
+      throw dioError.response.data['message'];
     } catch (e) {
-      print(e.response.data);
       throw e;
     }
   }
@@ -183,12 +185,17 @@ class TwitchClient {
   /// `30, 60, 90, 120, 150, 180`.
   Future<List<TwitchStartCommercial>> startCommercial(
       String broadcasterId, int length) async {
+    assert(broadcasterId == _accessToken.userId);
     assert(length > 29 && length < 181 && length % 30 == 0);
-    final data = await postCall(['channels', 'commercial'],
-        {'broadcaster_id': broadcasterId, 'length': length});
-    return (data['data'] as Iterable)
-        .map((e) => TwitchStartCommercial.fromJson(e))
-        .toList();
+    try {
+      final data = await postCall(['channels', 'commercial'],
+          {'broadcaster_id': broadcasterId, 'length': length.toString()});
+      return (data['data'] as Iterable)
+          .map((e) => TwitchStartCommercial.fromJson(e))
+          .toList();
+    } catch (e) {
+      throw TwitchStartCommercialException(e.toString());
+    }
   }
 
   /// Gets a URL that Extension developers can use to download analytics reports
@@ -244,9 +251,9 @@ class TwitchClient {
   }) async {
     assert((endedAt == null && startedAt == null) ||
         (endedAt != null && startedAt != null));
-    assert(first < 101);
+    assert(first < 101 && first > 0 && first != null);
 
-    Map<String, dynamic> queryParameters = {'first': first};
+    Map<String, dynamic> queryParameters = {'first': first.toString()};
     if (after != null) queryParameters['after'] = after;
     if (endedAt != null && startedAt != null) {
       queryParameters['ended_at'] = endedAt;
@@ -255,12 +262,16 @@ class TwitchClient {
     if (extensionId != null) queryParameters['extension_id'] = extensionId;
     if (type != null) queryParameters['type'] = type;
 
-    final data = await getCall(['analytics', 'extensions'],
-        queryParameters: queryParameters);
-    return (data['data'] as Iterable)
-        .map<TwitchExtentsionAnalytic>(
-            (e) => TwitchExtentsionAnalytic.fromJson(e))
-        .toList();
+    try {
+      final data = await getCall(['analytics', 'extensions'],
+          queryParameters: queryParameters);
+      return (data['data'] as Iterable)
+          .map<TwitchExtentsionAnalytic>(
+              (e) => TwitchExtentsionAnalytic.fromJson(e))
+          .toList();
+    } catch (e) {
+      throw TwitchGetExtensionAnalyticsException(e.toString());
+    }
   }
 
   /// Fetch Channel info corresponding to [broadcasterId]. If parameters is

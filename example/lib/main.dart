@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:twitch_api/twitch_api.dart';
 
+const clientId = "n9dgfacl10ivdy8vlr493qjavykdkn";
+const clientSecret = "vo9d9t1r8ah3ey9i3w06758c37p8ad";
 const redirectUri = "http://localhost/";
 
 void main() {
@@ -64,12 +66,16 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('Welcome user: ${_twitchClient?.accessToken?.userId}'),
-            Text('Your Twitch token is: ${_twitchClient?.accessToken?.token}'),
+            Text('Welcome user: ${_twitchClient.accessToken?.userId}'),
+            Text('Your Twitch token is: ${_twitchClient.accessToken?.token}'),
             RaisedButton(
               child: Text('Start Commercial'),
-              onPressed: () async =>
-                  _twitchClient.startCommercial("41245072", 60),
+              onPressed: () => _twitchClient.startCommercial(
+                  _twitchClient.accessToken.userId, 60),
+            ),
+            RaisedButton(
+              onPressed: () => _twitchClient.getExtensionAnalytics(first: 1),
+              child: Text('Get Extension Analytics'),
             ),
           ],
         ),
