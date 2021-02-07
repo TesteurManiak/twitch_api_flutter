@@ -10,7 +10,7 @@ A mobile client to connect to Twitch.tv using OAuth implicit authentication.
 
 ### Analytics
 
-* [ ] Get Extension Analytics
+* [x] Get Extension Analytics
 * [ ] Get Game Analytics
 
 ### Bits
