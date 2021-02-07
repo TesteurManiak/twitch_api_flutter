@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:twitch_api/twitch_api.dart';
 
-const clientId = "n9dgfacl10ivdy8vlr493qjavykdkn";
-const clientSecret = "vo9d9t1r8ah3ey9i3w06758c37p8ad";
 const redirectUri = "http://localhost/";
 
 void main() {
