@@ -1,17 +1,17 @@
-enum _TwitchApiScope {
+enum TwitchApiScope {
   analyticsReadExtensions,
   analyticsReadGames,
-  viewingActivityRead,
+  bitsRead,
+  channelEditCommercial,
 }
 
 class TwitchApiScopes {
-  static const Map<_TwitchApiScope, String> _scopes = {
-    _TwitchApiScope.analyticsReadExtensions: 'analytics:read:extensions',
-    _TwitchApiScope.analyticsReadGames: 'analytics:read:games',
-    _TwitchApiScope.viewingActivityRead: 'viewing_activity_read',
+  static const Map<TwitchApiScope, String> _scopes = {
+    TwitchApiScope.analyticsReadExtensions: 'analytics:read:extensions',
+    TwitchApiScope.analyticsReadGames: 'analytics:read:games',
+    TwitchApiScope.bitsRead: 'bits:read',
+    TwitchApiScope.channelEditCommercial: 'channel:edit:commercial',
   };
 
-  static get analyticsReadExtensions =>
-      _scopes[_TwitchApiScope.analyticsReadExtensions];
-  static get analyticsReadGames => _scopes[_TwitchApiScope.analyticsReadGames];
+  static String getScopeString(TwitchApiScope scope) => _scopes[scope];
 }

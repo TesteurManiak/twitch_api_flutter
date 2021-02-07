@@ -1,5 +1,5 @@
 name: twitch_api
-description: A mobile client to connect to Twitch.tv using OAuth implicit authentication.
+description: A Flutter client to connect to Twitch.tv using OAuth implicit authentication.
 version: 0.0.1
 author: Guillaume Roux
 homepage: null

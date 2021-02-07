@@ -5,12 +5,14 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:twitch_api/src/exceptions/twitch_api_exception.dart';
+import 'package:twitch_api/src/models/twitch_api_scopes.dart';
 import 'package:twitch_api/src/models/twitch_channel_info.dart';
 import 'package:twitch_api/src/models/twitch_token.dart';
 import 'package:twitch_api/src/pages/webview_page.dart';
 
 class TwitchClient {
   static const _basePath = 'helix';
+  static const _oauthPath = 'oauth2';
 
   static final _baseUrl = Uri(scheme: 'https', host: 'api.twitch.tv');
   static final _oauth2Url = Uri(scheme: 'https', host: 'id.twitch.tv');
@@ -43,19 +45,31 @@ class TwitchClient {
   }
 
   Future<TwitchToken> openConnectionPage(BuildContext context,
-      {bool forceConnection = false}) {
+      {bool forceConnection = false, List<TwitchApiScope> scopes = const []}) {
     assert(forceConnection != null);
     if (!forceConnection && _accessToken != null)
       return Future<TwitchToken>.value(_accessToken);
     _flutterWebviewPlugin.onUrlChanged.listen(_urlListener);
     _flutterWebviewPlugin.onDestroy
         .listen((_) => Navigator.pop<TwitchToken>(context, accessToken));
+
+    final scopesSet = Set<String>()
+      ..add('viewing_activity_read')
+      ..addAll(scopes.map((e) => TwitchApiScopes.getScopeString(e)).toSet());
+
+    final url = _oauth2Url.replace(
+        pathSegments: <String>[_oauthPath]..addAll(['authorize']),
+        queryParameters: {
+          'response_type': 'token',
+          'client_id': clientId,
+          'redirect_uri': redirectUri,
+          'scope': scopesSet.join(' '),
+        });
+
     return Navigator.push<TwitchToken>(
       context,
       MaterialPageRoute(
-        builder: (context) => WebViewPage(
-          'https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=$clientId&redirect_uri=$redirectUri&scope=viewing_activity_read',
-        ),
+        builder: (context) => WebViewPage(url.toString()),
       ),
     ).then((_) => validateToken());
   }
@@ -69,7 +83,7 @@ class TwitchClient {
       );
       final response = await _dio.getUri(
         _oauth2Url.replace(
-            pathSegments: <String>['oauth2']..addAll(['validate'])),
+            pathSegments: <String>[_oauthPath]..addAll(['validate'])),
         options: options,
       );
       _accessToken = TwitchToken.fromValidation(_accessToken, response.data);
@@ -129,7 +143,7 @@ class TwitchClient {
   Future<List<TwitchChannelInfo>> getChannelInfo({String broadcasterId}) async {
     final data = await call(
       ['channels'],
-      queryParameters: {'broadcaster_id': broadcasterId},
+      queryParameters: {'broadcaster_id': broadcasterId ?? _accessToken.userId},
     );
     return (data['data'] as Iterable)
         .map<TwitchChannelInfo>((e) => TwitchChannelInfo.fromJson(e))

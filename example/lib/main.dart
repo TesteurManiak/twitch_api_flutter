@@ -42,9 +42,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if (_twitchClient.accessToken == null) {
       WidgetsBinding.instance.scheduleFrameCallback((_) {
-        _twitchClient
-            .openConnectionPage(context)
-            .then((value) => setState(() {}));
+        _twitchClient.openConnectionPage(context, scopes: [
+          TwitchApiScope.channelEditCommercial
+        ]).then((value) => setState(() {}));
       });
     }
   }
