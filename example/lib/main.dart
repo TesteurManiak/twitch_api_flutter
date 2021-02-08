@@ -1,6 +1,10 @@
+import 'package:example/webview_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:twitch_api/twitch_api.dart';
 
+const clientId = "n9dgfacl10ivdy8vlr493qjavykdkn";
+const clientSecret = "vo9d9t1r8ah3ey9i3w06758c37p8ad";
 const redirectUri = "http://localhost/";
 
 void main() {
@@ -33,6 +37,30 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   final _twitchClient =
       TwitchClient(clientId: clientId, redirectUri: redirectUri);
+  final _flutterWebviewPlugin = FlutterWebviewPlugin();
+
+  void _urlListener(String url) {
+    if (url.startsWith(redirectUri)) {
+      _twitchClient.initializeToken(TwitchToken.fromUrl(url));
+      _flutterWebviewPlugin.close();
+    }
+  }
+
+  Future<TwitchToken> _openConnectionPage(
+      {List<TwitchApiScope> scopes = const []}) {
+    _flutterWebviewPlugin.onUrlChanged.listen(_urlListener);
+    _flutterWebviewPlugin.onDestroy.listen((_) => Navigator.pop(context));
+
+    // Get authorization URL for the connection throught webview.
+    final url = _twitchClient.authorizeUri(scopes);
+
+    return Navigator.push<TwitchToken>(
+      context,
+      MaterialPageRoute(
+        builder: (context) => WebViewPage(url.toString()),
+      ),
+    ).then((_) => _twitchClient.validateToken());
+  }
 
   @override
   void initState() {
@@ -40,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if (_twitchClient.accessToken == null) {
       WidgetsBinding.instance.scheduleFrameCallback((_) {
-        _twitchClient.openConnectionPage(context, scopes: [
+        _openConnectionPage(scopes: [
           TwitchApiScope.channelEditCommercial,
           TwitchApiScope.analyticsReadExtensions,
         ]).then((value) => setState(() {}));
