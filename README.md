@@ -4,13 +4,15 @@ A wrapper in pure Dart to connect to Twitch.tv using OAuth implicit authenticati
 
 ## Getting started
 
+**NOTE: This package is in its early stage, please be patient until more methods are implemented or do not hesitate to open a merge request if you added support for an endpoint.**
+
 To use this package you will need to register an application on the [Twitch developer console](https://dev.twitch.tv/console/apps) to get a **client ID**.
 
 * [Get Started with the Twitch API](https://dev.twitch.tv/docs/api/)
 
-After registering your application you will need to instantiate the `TwitchClient` class from the package with your `clientId` and your `redirectUri`.
+After registering your application you will need to instantiate the `TwitchClient` class from the package with your `clientId` and your `redirectUri` .
 
-```dart
+``` dart
 import 'package:twitch_api/twitch_api.dart';
 
 final _twitchClient = TwitchClient(clientId: clientId, redirectUri: redirectUri);
@@ -18,7 +20,7 @@ final _twitchClient = TwitchClient(clientId: clientId, redirectUri: redirectUri)
 
 Now that you have initialized the client the last step before using the method will be to manage the first connection with your twitch account. You can find a complete example of an implementation using the package [flutter_webview_plugin]().
 
-```dart
+``` dart
 const clientId = "<YOUR_CLIENT_ID>";
 const redirectUri = "<YOUR_REDIRECT_URL>"; // ex: "http://localhost/"
 
@@ -49,8 +51,6 @@ Future<TwitchToken> _openConnectionPage({List<TwitchApiScope> scopes = const []}
 Now you are ready to use the methods implemented in [Supported Features](#supported-features) section.
 
 ## Supported Features
-
-**NOTE: This package is in its early stage, please be patient until more methods are implemented**
 
 ### Ads
 
