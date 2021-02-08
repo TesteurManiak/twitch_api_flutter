@@ -2,6 +2,52 @@
 
 A mobile client to connect to Twitch.tv using OAuth implicit authentication.
 
+## Getting started
+
+To use this package you will need to register an application on the [Twitch developer console](https://dev.twitch.tv/console/apps) to get a **client ID**.
+
+* [Get Started with the Twitch API](https://dev.twitch.tv/docs/api/)
+
+After registering your application you will need to instantiate the `TwitchClient` class from the package with your `clientId` and your `redirectUri`.
+
+```dart
+import 'package:twitch_api/twitch_api.dart';
+
+final _twitchClient = TwitchClient(clientId: clientId, redirectUri: redirectUri);
+```
+
+Now that you have initialized the client the last step before using the method will be to manage the first connection with your twitch account. You can find a complete example of an implementation using the package [flutter_webview_plugin]().
+
+```dart
+const clientId = "<YOUR_CLIENT_ID>";
+const redirectUri = "<YOUR_REDIRECT_URL>"; // ex: "http://localhost/"
+
+void _urlListener(String url) {
+    if (url.startsWith(redirectUri)) {
+        _twitchClient.initializeToken(TwitchToken.fromUrl(url));
+        _flutterWebviewPlugin.close();
+    }
+}
+
+// First authentication through a webview
+Future<TwitchToken> _openConnectionPage({List<TwitchApiScope> scopes = const []}) {
+    _flutterWebviewPlugin.onUrlChanged.listen(_urlListener);
+    _flutterWebviewPlugin.onDestroy.listen((_) => Navigator.pop(context));
+
+    // Get authorization URL for the connection with the webview.
+    final url = _twitchClient.authorizeUri(scopes);
+
+    return Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => WebViewPage(url.toString()),
+      ),
+    ).then((_) => _twitchClient.validateToken());
+}
+```
+
+Now you are ready to use the methods implemented in [Supported Features](#supported-features) section.
+
 ## Supported Features
 
 **NOTE: This package is in its early stage, please be patient until more methods are implemented**

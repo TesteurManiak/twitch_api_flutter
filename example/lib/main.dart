@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:twitch_api/twitch_api.dart';
 
-const clientId = "n9dgfacl10ivdy8vlr493qjavykdkn";
-const clientSecret = "vo9d9t1r8ah3ey9i3w06758c37p8ad";
+const clientId = "<YOUR_CLIENT_ID>";
 const redirectUri = "http://localhost/";
 
 void main() {
@@ -46,15 +45,16 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  // First authentication through a webview
   Future<TwitchToken> _openConnectionPage(
       {List<TwitchApiScope> scopes = const []}) {
     _flutterWebviewPlugin.onUrlChanged.listen(_urlListener);
     _flutterWebviewPlugin.onDestroy.listen((_) => Navigator.pop(context));
 
-    // Get authorization URL for the connection throught webview.
+    // Get authorization URL for the connection with the webview.
     final url = _twitchClient.authorizeUri(scopes);
 
-    return Navigator.push<TwitchToken>(
+    return Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => WebViewPage(url.toString()),

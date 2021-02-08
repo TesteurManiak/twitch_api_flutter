@@ -248,6 +248,14 @@ class TwitchClient {
     }
   }
 
+  /// Gets a URL that game developers can use to download analytics reports
+  /// (CSV files) for their games. The URL is valid for 5 minutes.
+  ///
+  /// The response has a JSON payload with a data field containing an array of
+  /// games information elements and can contain a pagination field containing
+  /// information required to query for more streams.
+  Future<List> getGameAnalytics() async {}
+
   /// Fetch Channel info corresponding to [broadcasterId]. If parameters is
   /// empty it will fetch info from the current [accessToken.userId]'s channel.
   Future<List<TwitchChannelInfo>> getChannelInfo({String broadcasterId}) async {
