@@ -1,6 +1,6 @@
 # twitch_api
 
-A mobile client to connect to Twitch.tv using OAuth implicit authentication.
+A wrapper in pure Dart to connect to Twitch.tv using OAuth implicit authentication.
 
 ## Getting started
 
@@ -59,7 +59,7 @@ Now you are ready to use the methods implemented in [Supported Features](#suppor
 ### Analytics
 
 * [x] Get Extension Analytics
-* [ ] Get Game Analytics
+* [x] Get Game Analytics (Documentation in progress)
 
 ### Bits
 

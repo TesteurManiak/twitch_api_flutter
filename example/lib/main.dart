@@ -71,6 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
         _openConnectionPage(scopes: [
           TwitchApiScope.channelEditCommercial,
           TwitchApiScope.analyticsReadExtensions,
+          TwitchApiScope.analyticsReadGames,
         ]).then((value) => setState(() {}));
       });
     }
@@ -102,6 +103,10 @@ class _MyHomePageState extends State<MyHomePage> {
             RaisedButton(
               onPressed: () => _twitchClient.getExtensionAnalytics(first: 1),
               child: Text('Get Extension Analytics'),
+            ),
+            RaisedButton(
+              onPressed: () => _twitchClient.getGameAnalytics(gameId: '493057'),
+              child: Text('Get Games Analytics'),
             ),
           ],
         ),

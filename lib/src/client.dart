@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:twitch_api/src/exceptions/twitch_api_exception.dart';
 import 'package:twitch_api/src/models/twitch_channel_info.dart';
 import 'package:twitch_api/src/models/twitch_extension_analytic.dart';
+import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/models/twitch_start_commercial.dart';
 import 'package:twitch_api/src/models/twitch_token.dart';
 import 'package:meta/meta.dart';
@@ -147,6 +148,7 @@ class TwitchClient {
 
   void dispose() {
     close();
+    _accessToken = null;
   }
 
   /// Starts a commercial on a specified channel.
@@ -251,10 +253,40 @@ class TwitchClient {
   /// Gets a URL that game developers can use to download analytics reports
   /// (CSV files) for their games. The URL is valid for 5 minutes.
   ///
-  /// The response has a JSON payload with a data field containing an array of
-  /// games information elements and can contain a pagination field containing
-  /// information required to query for more streams.
-  Future<List> getGameAnalytics() async {}
+  /// Required scope: `TwitchApiScope.analyticsReadGames`
+  ///
+  /// `after`: Cursor for forward pagination: tells the server where to start
+  /// fetching the next set of results, in a multi-page response. This applies
+  /// only to queries without `gameId`. If a `gameId` is specified, it supersedes
+  /// any cursor/offset combinations. The cursor value specified here is from
+  /// the `pagination` response field of a prior query.
+  Future<List<TwitchGameAnalytic>> getGameAnalytics({
+    String after,
+    String endedAt,
+    int first = 20,
+    String gameId,
+    String startedAt,
+    String type,
+  }) async {
+    assert((endedAt == null && startedAt == null) ||
+        (endedAt != null && startedAt != null));
+    assert(first < 101 && first > 0 && first != null);
+
+    Map<String, dynamic> queryParameters = {'first': first.toString()};
+    if (after != null && gameId == null) queryParameters['after'] = after;
+    if (endedAt != null && startedAt != null) {
+      queryParameters['ended_at'] = endedAt;
+      queryParameters['started_at'] = startedAt;
+    }
+    if (gameId != null) queryParameters['game_id'] = gameId;
+    if (type != null) queryParameters['type'] = type;
+
+    final data =
+        await getCall(['analytics', 'games'], queryParameters: queryParameters);
+    return (data['data'] as Iterable)
+        .map<TwitchGameAnalytic>((e) => TwitchGameAnalytic.fromJson(e))
+        .toList();
+  }
 
   /// Fetch Channel info corresponding to [broadcasterId]. If parameters is
   /// empty it will fetch info from the current [accessToken.userId]'s channel.
