@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:twitch_api/src/exceptions/twitch_api_exception.dart';
@@ -60,9 +59,7 @@ class TwitchClient {
   Future<TwitchToken> validateToken() async {
     try {
       final options = Options(
-        headers: {
-          HttpHeaders.authorizationHeader: 'OAuth ${accessToken.token}'
-        },
+        headers: {'Authorization': 'OAuth ${accessToken.token}'},
       );
       final response = await _dio.getUri(
         oauth2Url.replace(
@@ -93,7 +90,7 @@ class TwitchClient {
       if (_accessToken.isValid) {
         final options = Options(headers: {
           'Client-Id': clientId,
-          HttpHeaders.authorizationHeader: 'Bearer ${accessToken.token}',
+          'Authorization': 'Bearer ${accessToken.token}',
         });
         final response = await _dio.getUri(
           baseUrl.replace(
@@ -124,7 +121,7 @@ class TwitchClient {
       if (_accessToken.isValid) {
         final options = Options(headers: {
           'Client-Id': clientId,
-          HttpHeaders.authorizationHeader: 'Bearer ${accessToken.token}',
+          'Authorization': 'Bearer ${accessToken.token}',
           'Content-Type': 'application/json',
         });
         final response = await _dio.postUri(
