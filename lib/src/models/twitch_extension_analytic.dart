@@ -1,19 +1,10 @@
+import 'package:twitch_api/src/models/twitch_date_range.dart';
+
 class TwitchExtentsionAnalytic {
-  /// Report end date/time.
-  final String endedAt;
+  final TwitchDateRange dateRange;
 
   /// ID of the extension whose analytics data is being provided.
   final String extensionId;
-
-  /// A cursor value, to be used in a subsequent request to specify the starting
-  /// point of the next set of results. This is returned only if `extensionId`
-  /// is not specified in the request.
-  final Map<String, dynamic> pagination;
-
-  /// Report start date/time. Note this may differ from (be later than) the
-  /// `startedAt` value in the request; the response value is the date when data
-  /// for the extension is available.
-  final String startedAt;
 
   /// Type of report.
   final String type;
@@ -23,14 +14,17 @@ class TwitchExtentsionAnalytic {
   final String url;
 
   TwitchExtentsionAnalytic({
-    this.endedAt,
+    this.dateRange,
     this.extensionId,
-    this.pagination,
-    this.startedAt,
     this.type,
     this.url,
   });
 
   factory TwitchExtentsionAnalytic.fromJson(Map<String, dynamic> json) =>
-      TwitchExtentsionAnalytic();
+      TwitchExtentsionAnalytic(
+        dateRange: TwitchDateRange.fromJson(json['date_range']),
+        extensionId: json['extension_id'],
+        type: json['type'],
+        url: json['URL'],
+      );
 }

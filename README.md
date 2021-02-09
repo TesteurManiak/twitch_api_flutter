@@ -118,3 +118,46 @@ Now you are ready to use the methods implemented in [Supported Features](#suppor
 * [ ] Get Moderator Events
 
 ### Search
+
+* [ ] Search Categories
+* [ ] Search Channels
+
+### Streams
+
+* [ ] Get Stream Key
+* [ ] Get Streams
+* [ ] Create Stream Marker
+* [ ] Get Stream Markers
+
+### Subscriptions
+
+* [ ] Get Broadcaster Subscriptions
+
+### Tags
+
+* [ ] Get All Stream Tags
+* [ ] Get Stream Tags
+* [ ] Replace Stream Tags
+
+### Users
+
+* [ ] Get Users
+* [ ] Update User
+* [x] Get Users Follows
+* [ ] Create User Follows
+* [ ] Delete User Follows
+* [ ] Get User Block List
+* [ ] Block User
+* [ ] Unblock User
+* [ ] Get User Extensions
+* [ ] Get User Active Extensions
+* [ ] Update User Extensions
+
+### Videos
+
+* [ ] Get Videos
+* [ ] Delete Videos
+
+### Webhooks
+
+* [ ] Get Webhook Subscriptions

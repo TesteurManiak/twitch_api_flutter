@@ -77,6 +77,18 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+  void _displayDataAlert(String method, String data) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(method),
+          content: Text(data),
+        );
+      },
+    );
+  }
+
   @override
   void dispose() {
     _twitchClient.dispose();
@@ -107,6 +119,13 @@ class _MyHomePageState extends State<MyHomePage> {
             RaisedButton(
               onPressed: () => _twitchClient.getGameAnalytics(gameId: '493057'),
               child: Text('Get Games Analytics'),
+            ),
+            RaisedButton(
+              onPressed: () => _twitchClient
+                  .getUsersFollows(toId: '23161357')
+                  .then((value) => _displayDataAlert(
+                      'getUsersFollows', 'Total followers: ${value.total}')),
+              child: Text('Get Users Follows'),
             ),
           ],
         ),

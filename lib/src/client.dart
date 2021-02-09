@@ -4,11 +4,12 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:twitch_api/src/exceptions/twitch_api_exception.dart';
 import 'package:twitch_api/src/models/twitch_channel_info.dart';
-import 'package:twitch_api/src/models/twitch_extension_analytic.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/models/twitch_start_commercial.dart';
 import 'package:twitch_api/src/models/twitch_token.dart';
 import 'package:meta/meta.dart';
+import 'package:twitch_api/src/models/twitch_users_follows.dart';
+import 'package:twitch_api/twitch_api.dart';
 
 import 'models/twitch_api_scopes.dart';
 
@@ -217,7 +218,7 @@ class TwitchClient {
   /// has no affect on the response as there is only one report type. If
   /// additional types were added, using this field would return only the URL
   /// for the specified report. Limit: 1. Valid values: `"overview_v2"`.
-  Future<List<TwitchExtentsionAnalytic>> getExtensionAnalytics({
+  Future<TwitchExtensionAnalytics> getExtensionAnalytics({
     String after,
     String endedAt,
     String extensionId,
@@ -241,10 +242,7 @@ class TwitchClient {
     try {
       final data = await getCall(['analytics', 'extensions'],
           queryParameters: queryParameters);
-      return (data['data'] as Iterable)
-          .map<TwitchExtentsionAnalytic>(
-              (e) => TwitchExtentsionAnalytic.fromJson(e))
-          .toList();
+      return TwitchExtensionAnalytics.fromJson(data);
     } catch (e) {
       throw TwitchGetExtensionAnalyticsException(e.toString());
     }
@@ -286,6 +284,31 @@ class TwitchClient {
     return (data['data'] as Iterable)
         .map<TwitchGameAnalytic>((e) => TwitchGameAnalytic.fromJson(e))
         .toList();
+  }
+
+  /// Gets information on follow relationships between two Twitch users. This
+  /// can return information like “who is qotrok following,” “who is following
+  /// qotrok,” or “is user X following user Y.” Information returned is sorted
+  /// in order, most recent follow first.
+  ///
+  /// At minimum, `fromId` or `toId` must be provided for a query to be valid.
+  Future<TwitchUsersFollows> getUsersFollows({
+    String after,
+    int first = 20,
+    String fromId,
+    String toId,
+  }) async {
+    assert(first < 101 && first > 0 && first != null);
+    assert(fromId != null || toId != null);
+
+    Map<String, dynamic> queryParameters = {'first': first.toString()};
+    if (after != null) queryParameters['after'] = after;
+    if (fromId != null) queryParameters['from_id'] = fromId;
+    if (toId != null) queryParameters['to_id'] = toId;
+
+    final data =
+        await getCall(['users', 'follows'], queryParameters: queryParameters);
+    return TwitchUsersFollows.fromJson(data);
   }
 
   /// Fetch Channel info corresponding to [broadcasterId]. If parameters is
