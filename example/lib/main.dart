@@ -109,15 +109,26 @@ class _MyHomePageState extends State<MyHomePage> {
             Text('Your Twitch token is: ${_twitchClient.accessToken?.token}'),
             RaisedButton(
               child: Text('Start Commercial'),
-              onPressed: () => _twitchClient.startCommercial(
-                  _twitchClient.accessToken.userId, 60),
+              onPressed: () => _twitchClient
+                  .startCommercial(_twitchClient.accessToken.userId, 60)
+                  .catchError((error) {
+                _displayDataAlert('startCommercial', error.toString());
+              }),
             ),
             RaisedButton(
-              onPressed: () => _twitchClient.getExtensionAnalytics(first: 1),
+              onPressed: () => _twitchClient
+                  .getExtensionAnalytics(first: 1)
+                  .catchError((error) {
+                _displayDataAlert('getExtensionAnalytics', error.toString());
+              }),
               child: Text('Get Extension Analytics'),
             ),
             RaisedButton(
-              onPressed: () => _twitchClient.getGameAnalytics(gameId: '493057'),
+              onPressed: () => _twitchClient
+                  .getGameAnalytics(gameId: '493057')
+                  .catchError((error) {
+                _displayDataAlert('getGameAnalytics', error.toString());
+              }),
               child: Text('Get Games Analytics'),
             ),
             RaisedButton(
