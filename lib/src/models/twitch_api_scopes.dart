@@ -3,6 +3,7 @@ enum TwitchApiScope {
   analyticsReadGames,
   bitsRead,
   channelEditCommercial,
+  userReadEmail,
 }
 
 class TwitchApiScopes {
@@ -11,6 +12,7 @@ class TwitchApiScopes {
     TwitchApiScope.analyticsReadGames: 'analytics:read:games',
     TwitchApiScope.bitsRead: 'bits:read',
     TwitchApiScope.channelEditCommercial: 'channel:edit:commercial',
+    TwitchApiScope.userReadEmail: 'user:read:email',
   };
 
   static String getScopeString(TwitchApiScope scope) => _scopes[scope];

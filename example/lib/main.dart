@@ -72,6 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
           TwitchApiScope.channelEditCommercial,
           TwitchApiScope.analyticsReadExtensions,
           TwitchApiScope.analyticsReadGames,
+          TwitchApiScope.userReadEmail,
         ]).then((value) => setState(() {}));
       });
     }
@@ -136,7 +137,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   .getUsersFollows(toId: '23161357')
                   .then((value) => _displayDataAlert(
                       'getUsersFollows', 'Total followers: ${value.total}')),
-              child: Text('Get Users Follows'),
+              child: Text('Get User Follows from id 23161357'),
+            ),
+            RaisedButton(
+              onPressed: () => _twitchClient.getUsers(ids: ['44322889']).then(
+                  (value) => _displayDataAlert(
+                      value.first.displayName, value.first.description)),
+              child: Text('Get User from id 44322889'),
             ),
           ],
         ),

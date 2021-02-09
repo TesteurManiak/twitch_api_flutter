@@ -18,7 +18,7 @@ import 'package:twitch_api/twitch_api.dart';
 final _twitchClient = TwitchClient(clientId: clientId, redirectUri: redirectUri);
 ```
 
-Now that you have initialized the client the last step before using the method will be to manage the first connection with your twitch account. You can find a complete example of an implementation using the package [flutter_webview_plugin]().
+Now that you have initialized the client the last step before using the method will be to manage the first connection with your twitch account and initialize the token you will receive. You can find a complete example of an implementation using the package [flutter_webview_plugin]().
 
 ``` dart
 const clientId = "<YOUR_CLIENT_ID>";
@@ -26,6 +26,7 @@ const redirectUri = "<YOUR_REDIRECT_URL>"; // ex: "http://localhost/"
 
 void _urlListener(String url) {
     if (url.startsWith(redirectUri)) {
+        // After you got to your redirectUri you can initialize the token.
         _twitchClient.initializeToken(TwitchToken.fromUrl(url));
         _flutterWebviewPlugin.close();
     }
@@ -141,7 +142,7 @@ Now you are ready to use the methods implemented in [Supported Features](#suppor
 
 ### Users
 
-* [ ] Get Users
+* [x] Get Users
 * [ ] Update User
 * [x] Get Users Follows
 * [ ] Create User Follows

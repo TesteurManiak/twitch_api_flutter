@@ -8,6 +8,7 @@ import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/models/twitch_start_commercial.dart';
 import 'package:twitch_api/src/models/twitch_token.dart';
 import 'package:meta/meta.dart';
+import 'package:twitch_api/src/models/twitch_user.dart';
 import 'package:twitch_api/src/models/twitch_users_follows.dart';
 import 'package:twitch_api/twitch_api.dart';
 
@@ -283,6 +284,36 @@ class TwitchClient {
         await getCall(['analytics', 'games'], queryParameters: queryParameters);
     return (data['data'] as Iterable)
         .map<TwitchGameAnalytic>((e) => TwitchGameAnalytic.fromJson(e))
+        .toList();
+  }
+
+  /// Gets information about one or more specified Twitch users. Users are
+  /// identified by optional user IDs and/or login name. If neither a user ID
+  /// nor a login name is specified, the user is looked up by Bearer token.
+  ///
+  /// Required scrope: `TwitchApiScope.userReadEmail`
+  ///
+  /// `ids`: User ID. Multiple user IDs can be specified. Limit: 100.
+  ///
+  /// `logins`: User login name. Multiple login names can be specified. Limit:
+  /// 100.
+  ///
+  /// Note: The limit of 100 IDs and login names is the total limit. You can
+  /// request, for example, 50 of each or 100 of one of them. You cannot request
+  /// 100 of both.
+  Future<List<TwitchUser>> getUsers(
+      {List<String> ids = const [], List<String> logins = const []}) async {
+    assert(ids != null && ids.length < 101);
+    assert(logins != null && logins.length < 101);
+    assert(ids.length + logins.length < 101);
+
+    Map<String, dynamic> queryParameters = {};
+    if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
+    if (logins.isNotEmpty) queryParameters['login'] = logins.join(',');
+
+    final data = await getCall(['users'], queryParameters: queryParameters);
+    return (data['data'] as Iterable)
+        .map((e) => TwitchUser.fromJson(e))
         .toList();
   }
 
