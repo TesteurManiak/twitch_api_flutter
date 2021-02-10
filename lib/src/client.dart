@@ -383,13 +383,14 @@ class TwitchClient {
         .toList();
   }
 
-  /// Fetch Channel info corresponding to [broadcasterId]. If parameters is
-  /// empty it will fetch info from the current [accessToken.userId]'s channel.
-  Future<List<TwitchChannelInfo>> getChannelInfo({String broadcasterId}) async {
-    final data = await getCall(
-      ['channels'],
-      queryParameters: {'broadcaster_id': broadcasterId ?? _accessToken.userId},
-    );
+  /// Gets channel information for users.
+  ///
+  /// `broadcasterId`: ID of the channel to be updated.
+  Future<List<TwitchChannelInfo>> getChannelInformations(
+      String broadcasterId) async {
+    assert(broadcasterId != null);
+    final data = await getCall(['channels'],
+        queryParameters: {'broadcaster_id': broadcasterId});
     return (data['data'] as Iterable)
         .map<TwitchChannelInfo>((e) => TwitchChannelInfo.fromJson(e))
         .toList();

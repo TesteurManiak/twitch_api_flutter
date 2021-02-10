@@ -70,7 +70,7 @@ Now you are ready to use the methods implemented in [Supported Features](#suppor
 
 ### Channels
 
-* [ ] Get Channel Information
+* [x] Get Channel Information
 * [ ] Modify Channel Information
 * [ ] Get Channel Editors
 
@@ -104,7 +104,7 @@ Now you are ready to use the methods implemented in [Supported Features](#suppor
 ### Games
 
 * [x] Get Top Games
-* [ ] Get Games
+* [x] Get Games
 
 ### Hype Train
 

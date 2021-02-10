@@ -79,13 +79,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _displayDataAlert(String method, String data, {bool isImg = false}) {
-    print(data);
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           title: Text(method),
-          content: isImg ? Text(data) : Image.network(data),
+          content: !isImg ? Text(data) : Image.network(data),
         );
       },
     );
@@ -155,8 +154,16 @@ class _MyHomePageState extends State<MyHomePage> {
           RaisedButton(
             onPressed: () => _twitchClient.getGames(names: ['Fortnite']).then(
                 (value) => _displayDataAlert(
-                    value.first.name, value.first.getBoxArtUrl())),
+                    value.first.name, value.first.getBoxArtUrl(),
+                    isImg: true)),
             child: Text('Get Fortnite'),
+          ),
+          RaisedButton(
+            onPressed: () => _twitchClient
+                .getChannelInformations('44445592')
+                .then((value) => _displayDataAlert(
+                    value.first.broadcasterName, value.first.title)),
+            child: Text('Get Pokimane Channel Info'),
           ),
         ],
       ),
