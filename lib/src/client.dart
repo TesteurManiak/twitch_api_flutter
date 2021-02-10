@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:twitch_api/src/exceptions/twitch_api_exception.dart';
 import 'package:twitch_api/src/models/twitch_channel_info.dart';
+import 'package:twitch_api/src/models/twitch_game.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/models/twitch_start_commercial.dart';
 import 'package:twitch_api/src/models/twitch_token.dart';
@@ -356,10 +357,30 @@ class TwitchClient {
   }
 
   /// Gets game information by game ID or name.
-  Future getGames(
+  ///
+  /// For a query to be valid, `names` and/or `ids` must be specified.
+  ///
+  /// `ids`: Game IDs. At most 100 id values can be specified.
+  ///
+  /// `names`: Game names. The name must be an exact match. For example,
+  /// “Pokemon” will not return a list of Pokemon games; instead, query any
+  /// specific Pokemon games in which you are interested. At most 100 name
+  /// values can be specified.
+  Future<List<TwitchGame>> getGames(
       {List<String> ids = const [], List<String> names = const []}) async {
     assert(
         (ids != null && ids.isNotEmpty) || (names != null && names.isNotEmpty));
+    assert(ids.length < 101);
+    assert(names.length < 101);
+
+    final Map<String, dynamic> queryParameters = {};
+    if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
+    if (names.isNotEmpty) queryParameters['name'] = names.join(',');
+
+    final data = await getCall(['games'], queryParameters: queryParameters);
+    return (data['data'] as Iterable)
+        .map((e) => TwitchGame.fromJson(e))
+        .toList();
   }
 
   /// Fetch Channel info corresponding to [broadcasterId]. If parameters is

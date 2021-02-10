@@ -6,7 +6,7 @@ class TwitchTopGame {
   TwitchTopGame({this.boxArtUrl, this.id, this.name});
 
   factory TwitchTopGame.fromJson(Map<String, dynamic> json) => TwitchTopGame(
-        boxArtUrl: json['box_art_url'],
+        boxArtUrl: json['box_art_url'].toString(),
         id: json['id'],
         name: json['name'],
       );

@@ -78,13 +78,14 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  void _displayDataAlert(String method, String data) {
+  void _displayDataAlert(String method, String data, {bool isImg = false}) {
+    print(data);
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           title: Text(method),
-          content: Text(data),
+          content: isImg ? Text(data) : Image.network(data),
         );
       },
     );
@@ -102,62 +103,62 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text('Welcome user: ${_twitchClient.accessToken?.userId}'),
-            Text('Your Twitch token is: ${_twitchClient.accessToken?.token}'),
-            RaisedButton(
-              child: Text('Start Commercial'),
-              onPressed: () => _twitchClient
-                  .startCommercial(_twitchClient.accessToken.userId, 60)
-                  .catchError((error) {
-                _displayDataAlert('startCommercial', error.toString());
-              }),
-            ),
-            RaisedButton(
-              onPressed: () => _twitchClient
-                  .getExtensionAnalytics(first: 1)
-                  .catchError((error) {
-                _displayDataAlert('getExtensionAnalytics', error.toString());
-              }),
-              child: Text('Get Extension Analytics'),
-            ),
-            RaisedButton(
-              onPressed: () => _twitchClient
-                  .getGameAnalytics(gameId: '493057')
-                  .catchError((error) {
-                _displayDataAlert('getGameAnalytics', error.toString());
-              }),
-              child: Text('Get Games Analytics'),
-            ),
-            RaisedButton(
-              onPressed: () => _twitchClient
-                  .getUsersFollows(toId: '23161357')
-                  .then((value) => _displayDataAlert(
-                      'getUsersFollows', 'Total followers: ${value.total}')),
-              child: Text('Get User Follows from id 23161357'),
-            ),
-            RaisedButton(
-              onPressed: () => _twitchClient.getUsers(ids: ['44322889']).then(
-                  (value) => _displayDataAlert(
-                      value.first.displayName, value.first.description)),
-              child: Text('Get User Dallas from id'),
-            ),
-            RaisedButton(
-              onPressed: () =>
-                  _twitchClient.getTopGames().then((value) => _displayDataAlert(
-                        'Top Games',
-                        value.data
-                            .map<String>((e) => e.name)
-                            .toList()
-                            .join('\n'),
-                      )),
-              child: Text('Get Top Games'),
-            ),
-          ],
-        ),
+      body: ListView(
+        children: <Widget>[
+          Text('Welcome user: ${_twitchClient.accessToken?.userId}'),
+          Text('Your Twitch token is: ${_twitchClient.accessToken?.token}'),
+          RaisedButton(
+            child: Text('Start Commercial'),
+            onPressed: () => _twitchClient
+                .startCommercial(_twitchClient.accessToken.userId, 60)
+                .catchError((error) {
+              _displayDataAlert('startCommercial', error.toString());
+            }),
+          ),
+          RaisedButton(
+            onPressed: () => _twitchClient
+                .getExtensionAnalytics(first: 1)
+                .catchError((error) {
+              _displayDataAlert('getExtensionAnalytics', error.toString());
+            }),
+            child: Text('Get Extension Analytics'),
+          ),
+          RaisedButton(
+            onPressed: () => _twitchClient
+                .getGameAnalytics(gameId: '493057')
+                .catchError((error) {
+              _displayDataAlert('getGameAnalytics', error.toString());
+            }),
+            child: Text('Get Games Analytics'),
+          ),
+          RaisedButton(
+            onPressed: () => _twitchClient
+                .getUsersFollows(toId: '23161357')
+                .then((value) => _displayDataAlert(
+                    'getUsersFollows', 'Total followers: ${value.total}')),
+            child: Text('Get User Follows from id 23161357'),
+          ),
+          RaisedButton(
+            onPressed: () => _twitchClient.getUsers(ids: ['44322889']).then(
+                (value) => _displayDataAlert(
+                    value.first.displayName, value.first.description)),
+            child: Text('Get User Dallas from id'),
+          ),
+          RaisedButton(
+            onPressed: () =>
+                _twitchClient.getTopGames().then((value) => _displayDataAlert(
+                      'Top Games',
+                      value.data.map<String>((e) => e.name).toList().join('\n'),
+                    )),
+            child: Text('Get Top Games'),
+          ),
+          RaisedButton(
+            onPressed: () => _twitchClient.getGames(names: ['Fortnite']).then(
+                (value) => _displayDataAlert(
+                    value.first.name, value.first.getBoxArtUrl())),
+            child: Text('Get Fortnite'),
+          ),
+        ],
       ),
     );
   }
