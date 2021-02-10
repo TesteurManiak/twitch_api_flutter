@@ -143,7 +143,18 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () => _twitchClient.getUsers(ids: ['44322889']).then(
                   (value) => _displayDataAlert(
                       value.first.displayName, value.first.description)),
-              child: Text('Get User from id 44322889'),
+              child: Text('Get User Dallas from id'),
+            ),
+            RaisedButton(
+              onPressed: () =>
+                  _twitchClient.getTopGames().then((value) => _displayDataAlert(
+                        'Top Games',
+                        value.data
+                            .map<String>((e) => e.name)
+                            .toList()
+                            .join('\n'),
+                      )),
+              child: Text('Get Top Games'),
             ),
           ],
         ),

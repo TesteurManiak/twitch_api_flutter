@@ -7,6 +7,7 @@ import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/models/twitch_start_commercial.dart';
 import 'package:twitch_api/src/models/twitch_token.dart';
 import 'package:meta/meta.dart';
+import 'package:twitch_api/src/models/twitch_top_games.dart';
 import 'package:twitch_api/src/models/twitch_user.dart';
 import 'package:twitch_api/src/models/twitch_users_follows.dart';
 import 'package:twitch_api/twitch_api.dart';
@@ -337,6 +338,28 @@ class TwitchClient {
     final data =
         await getCall(['users', 'follows'], queryParameters: queryParameters);
     return TwitchUsersFollows.fromJson(data);
+  }
+
+  /// Gets games sorted by number of current viewers on Twitch, most popular
+  /// first.
+  Future<TwitchTopGames> getTopGames(
+      {String after, String before, int first = 20}) async {
+    assert(first < 101 && first > 0 && first != null);
+
+    final Map<String, dynamic> queryParameters = {'first': first.toString()};
+    if (after != null) queryParameters['after'];
+    if (before != null) queryParameters['before'];
+
+    final data =
+        await getCall(['games', 'top'], queryParameters: queryParameters);
+    return TwitchTopGames.fromJson(data);
+  }
+
+  /// Gets game information by game ID or name.
+  Future getGames(
+      {List<String> ids = const [], List<String> names = const []}) async {
+    assert(
+        (ids != null && ids.isNotEmpty) || (names != null && names.isNotEmpty));
   }
 
   /// Fetch Channel info corresponding to [broadcasterId]. If parameters is

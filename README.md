@@ -103,7 +103,7 @@ Now you are ready to use the methods implemented in [Supported Features](#suppor
 
 ### Games
 
-* [ ] Get Top Games
+* [x] Get Top Games
 * [ ] Get Games
 
 ### Hype Train
