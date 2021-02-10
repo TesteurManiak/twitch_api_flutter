@@ -1,3 +1,7 @@
+## [0.0.3] - 10/02/2021.
+
+* Added methods: `getUsersFollows`, `getTopGames`, `getGames`, `getChannelInformations`
+
 ## [0.0.2+1] - 09/02/2021.
 
 * Removed `dart:io` import.
