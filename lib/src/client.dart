@@ -397,6 +397,43 @@ class TwitchClient {
         .toList();
   }
 
+  /// Returns a list of channels (users who have streamed within the past 6
+  /// months) that match the query via channel name or description either
+  /// entirely or partially. Results include both live and offline channels.
+  /// Online channels will have additional metadata (e.g. `started_at`,
+  /// `tag_ids`).
+  ///
+  /// `query`: URl encoded search query
+  ///
+  /// `first`: Maximum number of objects to return. Maximum: 100 Default: 20
+  ///
+  /// `after`: Tells the server where to start fetching the next set of results,
+  /// in a multi-page response. The cursor value specified here is from the
+  /// `pagination` response field of a prior query.
+  ///
+  /// `liveOnly`: Filter results for live streams only. Default: `false`
+  Future<TwitchSearchChannels> searchChannels({
+    @required String query,
+    int first = 20,
+    String after,
+    bool liveOnly = false,
+  }) async {
+    assert(query != null && query.isNotEmpty);
+    assert(first > 0 && first < 101);
+    assert(liveOnly != null);
+
+    final Map<String, dynamic> queryParameters = {
+      'query': query,
+      'first': first.toString(),
+      'live_only': liveOnly.toString(),
+    };
+    if (after != null && after.isNotEmpty) queryParameters['after'] = after;
+
+    final data =
+        await getCall(['search', 'channels'], queryParameters: queryParameters);
+    return TwitchSearchChannels.fromJson(data);
+  }
+
   /// Gets information about active streams. Streams are returned sorted by
   /// number of current viewers, in descending order. Across multiple pages of
   /// results, there may be duplicate or missing streams, as viewers join and

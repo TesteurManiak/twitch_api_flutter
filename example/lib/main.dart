@@ -193,6 +193,15 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             child: Text('Get auronplay Stream Info'),
           ),
+          ElevatedButton(
+            onPressed: () =>
+                _twitchClient.searchChannels(query: 'loserfruit').then(
+                      (value) => _displayDataAlert(value.data.first.displayName,
+                          value.data.first.thumbnailUrl,
+                          isImg: true, isOnline: value.data.first.isLive),
+                    ),
+            child: Text('Search loserfruit Channel'),
+          ),
         ],
       ),
     );
