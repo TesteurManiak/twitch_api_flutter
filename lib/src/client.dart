@@ -6,6 +6,7 @@ import 'package:twitch_api/src/models/twitch_channel_info.dart';
 import 'package:twitch_api/src/models/twitch_game.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/models/twitch_start_commercial.dart';
+import 'package:twitch_api/src/models/twitch_streams_info.dart';
 import 'package:twitch_api/src/models/twitch_token.dart';
 import 'package:meta/meta.dart';
 import 'package:twitch_api/src/models/twitch_top_games.dart';
@@ -394,5 +395,52 @@ class TwitchClient {
     return (data['data'] as Iterable)
         .map<TwitchChannelInfo>((e) => TwitchChannelInfo.fromJson(e))
         .toList();
+  }
+
+  /// Gets information about active streams. Streams are returned sorted by
+  /// number of current viewers, in descending order. Across multiple pages of
+  /// results, there may be duplicate or missing streams, as viewers join and
+  /// leave streams.
+  ///
+  /// `after`: Tells the server where to start fetching the next set of results,
+  /// in a multi-page response. The cursor value specified here is from the
+  /// `pagination` response field of a prior query.
+  ///
+  /// `before`: Tells the server where to start fetching the next set of
+  /// results, in a multi-page response. The cursor value specified here is from
+  /// the `pagination` response field of a prior query.
+  ///
+  /// `first`: Maximum number of objects to return. Maximum: 100. Default: 20.
+  ///
+  /// `gameIds`: Returns streams broadcasting specified game IDs. You can
+  /// specify up to 100 IDs.
+  ///
+  /// `languages`: Stream language. You can specify up to 100 languages. A
+  /// language value must be either the [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+  /// two-letter code for a [supported stream language](https://help.twitch.tv/s/article/languages-on-twitch?language=en_US#streamlang)
+  /// or “other”.
+  ///
+  /// `userIds`: Returns streams broadcast by one or more specified user IDs.
+  /// You can specify up to 100 IDs.
+  ///
+  /// `userLogins`: Returns streams broadcast by one or more specified user
+  /// login names. You can specify up to 100 names.
+  Future<TwitchStreamsInfo> getStreams({
+    String after,
+    String before,
+    int first = 20,
+    List<String> gameIds = const [],
+    List<String> languages = const [],
+    List<String> userIds = const [],
+    List<String> userLogins = const [],
+  }) async {
+    assert(first > 0 && first < 101);
+    assert(gameIds.length < 101);
+    assert(languages.length < 101);
+    assert(userIds.length < 101);
+    assert(userLogins.length < 101);
+
+    final data = await getCall(['streams']);
+    return TwitchStreamsInfo.fromJson(data);
   }
 }
