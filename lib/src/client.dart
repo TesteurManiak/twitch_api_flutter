@@ -397,6 +397,18 @@ class TwitchClient {
         .toList();
   }
 
+  /// Returns a list of channels (users who have streamed within the past 6
+  /// months) that match the query via channel name or description either
+  /// entirely or partially. Results include both live and offline channels.
+  /// Online channels will have additional metadata (e.g. `started_at`,
+  /// `tag_ids`).
+  Future searchChannels() async {
+    final Map<String, dynamic> queryParameters = {};
+
+    final data =
+        await getCall(['search', 'channels'], queryParameters: queryParameters);
+  }
+
   /// Gets information about active streams. Streams are returned sorted by
   /// number of current viewers, in descending order. Across multiple pages of
   /// results, there may be duplicate or missing streams, as viewers join and
