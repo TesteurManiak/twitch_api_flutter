@@ -13,3 +13,4 @@ export 'src/models/twitch_user.dart';
 export 'src/models/twitch_top_game.dart';
 export 'src/models/twitch_top_games.dart';
 export 'src/models/twitch_game.dart';
+export 'src/models/twitch_stream_info.dart';
