@@ -126,7 +126,7 @@ Now you are ready to use the methods implemented in [Supported Features](#suppor
 ### Streams
 
 * [ ] Get Stream Key
-* [ ] Get Streams
+* [x] Get Streams
 * [ ] Create Stream Marker
 * [ ] Get Stream Markers
 
