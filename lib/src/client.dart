@@ -425,7 +425,7 @@ class TwitchClient {
     final Map<String, dynamic> queryParameters = {
       'query': query,
       'first': first.toString(),
-      'live_only': liveOnly,
+      'live_only': liveOnly.toString(),
     };
     if (after != null && after.isNotEmpty) queryParameters['after'] = after;
 
