@@ -440,7 +440,17 @@ class TwitchClient {
     assert(userIds.length < 101);
     assert(userLogins.length < 101);
 
-    final data = await getCall(['streams']);
+    final Map<String, dynamic> queryParameters = {'first': first.toString()};
+    if (after != null && after.isNotEmpty) queryParameters['after'] = after;
+    if (before != null && before.isNotEmpty) queryParameters['before'] = before;
+    if (gameIds.isNotEmpty) queryParameters['game_id'] = gameIds.join(',');
+    if (languages.isNotEmpty)
+      queryParameters['languages'] = languages.join(',');
+    if (userIds.isNotEmpty) queryParameters['user_id'] = userIds.join(',');
+    if (userLogins.isNotEmpty)
+      queryParameters['user_login'] = userLogins.join(',');
+
+    final data = await getCall(['streams'], queryParameters: queryParameters);
     return TwitchStreamsInfo.fromJson(data);
   }
 }

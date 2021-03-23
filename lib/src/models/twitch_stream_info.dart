@@ -1,6 +1,6 @@
 import '../extensions/string_extensions.dart';
 
-enum TwitchStreamType { live, offline }
+enum TwitchStreamType { live, error }
 
 class TwitchStreamInfo {
   /// Stream ID.
@@ -21,7 +21,7 @@ class TwitchStreamInfo {
   /// Name of the game being played.
   final String gameName;
 
-  /// Stream type: `TwitchStreamType.live` or `TwitchStreamType.offline`
+  /// Stream type: `TwitchStreamType.live` or `TwitchStreamType.error`
   /// (in case of error).
   final TwitchStreamType type;
 

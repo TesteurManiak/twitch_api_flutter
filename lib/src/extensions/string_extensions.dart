@@ -6,7 +6,7 @@ extension StringModifier on String {
       case 'live':
         return TwitchStreamType.live;
       default:
-        return TwitchStreamType.offline;
+        return TwitchStreamType.error;
     }
   }
 }

@@ -78,13 +78,32 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  void _displayDataAlert(String method, String data, {bool isImg = false}) {
+  void _displayDataAlert(
+    String method,
+    String data, {
+    bool isImg = false,
+    bool isOnline,
+  }) {
     showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
           title: Text(method),
-          content: !isImg ? Text(data) : Image.network(data),
+          content: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (isOnline != null)
+                Text(
+                  isOnline ? 'Online' : 'Offline',
+                  style: TextStyle(
+                    color: isOnline ? Colors.green : Colors.red,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              !isImg ? Text(data) : Image.network(data),
+            ],
+          ),
         );
       },
     );
@@ -164,6 +183,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 .then((value) => _displayDataAlert(
                     value.first.broadcasterName, value.first.title)),
             child: Text('Get Pokimane Channel Info'),
+          ),
+          ElevatedButton(
+            onPressed: () =>
+                _twitchClient.getStreams(userLogins: ['auronplay']).then(
+              (value) => _displayDataAlert(value.data.first.userLogin,
+                  'Viewers: ${value.data.first.viewerCount}',
+                  isOnline: value.data.first.type == TwitchStreamType.live),
+            ),
+            child: Text('Get auronplay Stream Info'),
           ),
         ],
       ),
