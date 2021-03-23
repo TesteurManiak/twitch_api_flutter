@@ -1,3 +1,7 @@
+## [0.0.4] - 23/03/2021.
+
+* Added methods: `getStreams`, `searchChannels`
+
 ## [0.0.3] - 10/02/2021.
 
 * Added methods: `getUsersFollows`, `getTopGames`, `getGames`, `getChannelInformations`
