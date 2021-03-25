@@ -2,6 +2,7 @@ import 'package:twitch_api/src/models/twitch_extension_analytic.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/models/twitch_search_channel.dart';
 import 'package:twitch_api/src/models/twitch_stream_info.dart';
+import 'package:twitch_api/src/models/twitch_top_game.dart';
 
 /// Generic class for Twitch's API response using pagination.
 class TwitchResponse<T> {
@@ -46,6 +47,14 @@ class TwitchResponse<T> {
       TwitchResponse(
         data: (json['data'] as Iterable)
             .map<T>((e) => TwitchStreamInfo.fromJson(e) as T)
+            .toList(),
+        pagination: json['pagination'],
+      );
+
+  /// Constructor for request containing [TwitchTopGame].
+  factory TwitchResponse.topGames(Map<String, dynamic> json) => TwitchResponse(
+        data: (json['data'] as Iterable)
+            .map<T>((e) => TwitchTopGame.fromJson(e) as T)
             .toList(),
         pagination: json['pagination'],
       );

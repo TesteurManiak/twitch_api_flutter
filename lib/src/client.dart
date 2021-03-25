@@ -9,7 +9,6 @@ import 'package:twitch_api/src/models/twitch_response.dart';
 import 'package:twitch_api/src/models/twitch_start_commercial.dart';
 import 'package:twitch_api/src/models/twitch_token.dart';
 import 'package:meta/meta.dart';
-import 'package:twitch_api/src/models/twitch_top_games.dart';
 import 'package:twitch_api/src/models/twitch_user.dart';
 import 'package:twitch_api/src/models/twitch_users_follows.dart';
 import 'package:twitch_api/twitch_api.dart';
@@ -342,7 +341,7 @@ class TwitchClient {
 
   /// Gets games sorted by number of current viewers on Twitch, most popular
   /// first.
-  Future<TwitchTopGames> getTopGames(
+  Future<TwitchResponse<TwitchTopGame>> getTopGames(
       {String after, String before, int first = 20}) async {
     assert(first < 101 && first > 0 && first != null);
 
@@ -352,7 +351,7 @@ class TwitchClient {
 
     final data =
         await getCall(['games', 'top'], queryParameters: queryParameters);
-    return TwitchTopGames.fromJson(data);
+    return TwitchResponse<TwitchTopGame>.topGames(data);
   }
 
   /// Gets game information by game ID or name.
