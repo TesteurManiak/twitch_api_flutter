@@ -1,10 +1,23 @@
 class TwitchUserFollow {
+  /// Date and time when the [fromId] user followed the [toId] user.
   final String followedAt;
+
+  /// ID of the user following the [toId] user.
   final String fromId;
+
+  /// Login of the user following the [toId] user.
   final String fromLogin;
+
+  /// Display name corresponding to [fromId].
   final String fromName;
+
+  /// ID of the user being followed by the [fromId] user.
   final String toId;
+
+  /// Login of the user being followed by the [fromId] user.
   final String toLogin;
+
+  /// Display name corresponding to [toId].
   final String toName;
 
   TwitchUserFollow({
