@@ -5,8 +5,8 @@ import 'package:twitch_api/src/exceptions/twitch_api_exception.dart';
 import 'package:twitch_api/src/models/twitch_channel_info.dart';
 import 'package:twitch_api/src/models/twitch_game.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
+import 'package:twitch_api/src/models/twitch_response.dart';
 import 'package:twitch_api/src/models/twitch_start_commercial.dart';
-import 'package:twitch_api/src/models/twitch_streams_info.dart';
 import 'package:twitch_api/src/models/twitch_token.dart';
 import 'package:meta/meta.dart';
 import 'package:twitch_api/src/models/twitch_top_games.dart';
@@ -219,7 +219,7 @@ class TwitchClient {
   /// has no affect on the response as there is only one report type. If
   /// additional types were added, using this field would return only the URL
   /// for the specified report. Limit: 1. Valid values: `"overview_v2"`.
-  Future<TwitchExtensionAnalytics> getExtensionAnalytics({
+  Future<TwitchResponse<TwitchExtentsionAnalytic>> getExtensionAnalytics({
     String after,
     String endedAt,
     String extensionId,
@@ -243,7 +243,7 @@ class TwitchClient {
     try {
       final data = await getCall(['analytics', 'extensions'],
           queryParameters: queryParameters);
-      return TwitchExtensionAnalytics.fromJson(data);
+      return TwitchResponse<TwitchExtentsionAnalytic>.extentionAnalytics(data);
     } catch (e) {
       throw TwitchGetExtensionAnalyticsException(e.toString());
     }
@@ -259,7 +259,7 @@ class TwitchClient {
   /// only to queries without `gameId`. If a `gameId` is specified, it supersedes
   /// any cursor/offset combinations. The cursor value specified here is from
   /// the `pagination` response field of a prior query.
-  Future<List<TwitchGameAnalytic>> getGameAnalytics({
+  Future<TwitchResponse<TwitchGameAnalytic>> getGameAnalytics({
     String after,
     String endedAt,
     int first = 20,
@@ -282,9 +282,7 @@ class TwitchClient {
 
     final data =
         await getCall(['analytics', 'games'], queryParameters: queryParameters);
-    return (data['data'] as Iterable)
-        .map<TwitchGameAnalytic>((e) => TwitchGameAnalytic.fromJson(e))
-        .toList();
+    return TwitchResponse<TwitchGameAnalytic>.gameAnalytics(data);
   }
 
   /// Gets information about one or more specified Twitch users. Users are
@@ -412,7 +410,7 @@ class TwitchClient {
   /// `pagination` response field of a prior query.
   ///
   /// `liveOnly`: Filter results for live streams only. Default: `false`
-  Future<TwitchSearchChannels> searchChannels({
+  Future<TwitchResponse<TwitchSearchChannel>> searchChannels({
     @required String query,
     int first = 20,
     String after,
@@ -431,7 +429,7 @@ class TwitchClient {
 
     final data =
         await getCall(['search', 'channels'], queryParameters: queryParameters);
-    return TwitchSearchChannels.fromJson(data);
+    return TwitchResponse<TwitchSearchChannel>.searchChannels(data);
   }
 
   /// Gets information about active streams. Streams are returned sorted by
@@ -462,7 +460,7 @@ class TwitchClient {
   ///
   /// `userLogins`: Returns streams broadcast by one or more specified user
   /// login names. You can specify up to 100 names.
-  Future<TwitchStreamsInfo> getStreams({
+  Future<TwitchResponse<TwitchStreamInfo>> getStreams({
     String after,
     String before,
     int first = 20,
@@ -488,6 +486,6 @@ class TwitchClient {
       queryParameters['user_login'] = userLogins.join(',');
 
     final data = await getCall(['streams'], queryParameters: queryParameters);
-    return TwitchStreamsInfo.fromJson(data);
+    return TwitchResponse.streamsInfo(data);
   }
 }
