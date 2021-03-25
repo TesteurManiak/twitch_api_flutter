@@ -55,7 +55,7 @@ class TwitchClient {
 
   /// Method to initialize the token the first time after connection.
   ///
-  /// `twitchToken`: Token obtained with the first connection.
+  /// [twitchToken]: Token obtained with the first connection.
   void initializeToken(TwitchToken twitchToken) => _accessToken ??= twitchToken;
 
   Future<TwitchToken> validateToken() async {
@@ -156,9 +156,9 @@ class TwitchClient {
   ///
   /// Required scope: `TwitchApiScope.channelEditCommercial`
   ///
-  /// `broadcasterId`: ID of the channel requesting a commercial.
+  /// [broadcasterId]: ID of the channel requesting a commercial.
   ///
-  /// `length`: Desired length of the commercial in seconds. Valid options are
+  /// [length]: Desired length of the commercial in seconds. Valid options are
   /// `30, 60, 90, 120, 150, 180`.
   Future<List<TwitchStartCommercial>> startCommercial(
       String broadcasterId, int length) async {
@@ -179,42 +179,42 @@ class TwitchClient {
   /// (CSV files) for their Extensions. The URL is valid for 5 minutes.
   ///
   /// If you specify a future date, the response will be “Report Not Found For
-  /// Date Range.” If you leave both `startedAt` and `endedAt` blank, the API
+  /// Date Range.” If you leave both [startedAt] and [endedAt] blank, the API
   /// returns the most recent date of data.
   ///
   /// Required scope: `TwitchApiScope.analyticsReadExtensions`
   ///
-  /// `after`: Cursor for forward pagination: tells the server where to start
+  /// [after]: Cursor for forward pagination: tells the server where to start
   /// fetching the next set of results, in a multi-page response. This applies
-  /// only to queries without `extensionId`. If an `extensionId` is specified,
+  /// only to queries without [extensionId]. If an [extensionId] is specified,
   /// it supersedes any cursor/offset combinations. The cursor value specified
   /// here is from the `pagination` response field of a prior query.
   ///
-  /// `endedAt`: Ending date/time for returned reports, in RFC3339 format with
+  /// [endedAt]: Ending date/time for returned reports, in RFC3339 format with
   /// the hours, minutes, and seconds zeroed out and the UTC timezone:
   /// `YYYY-MM-DDT00:00:00Z`. The report covers the entire ending date; e.g., if
   /// `2018-05-01T00:00:00Z` is specified, the report covers up to
   /// `2018-05-01T23:59:59Z`.
-  /// If this is provided, `startedAt` also must be specified. If `endedAt` is
+  /// If this is provided, [startedAt] also must be specified. If [endedAt] is
   /// later than the default end date, the default date is used. Default: 1-2
   /// days before the request was issued (depending on report availability).
   ///
-  /// `extensionId`: Client ID value assigned to the extension when it is
+  /// [extensionId]: Client ID value assigned to the extension when it is
   /// created. If this is specified, the returned URL points to an analytics
   /// report for just the specified extension. If this is not specified, the
   /// response includes multiple URLs (paginated), pointing to separate
   /// analytics reports for each of the authenticated user’s Extensions.
   ///
-  /// `first`: Maximum number of objects to return. Maximum: 100. Default: 20.
+  /// [first]: Maximum number of objects to return. Maximum: 100. Default: 20.
   ///
-  /// `startedAt`: Starting date/time for returned reports, in RFC3339 format
+  /// [startedAt]: Starting date/time for returned reports, in RFC3339 format
   /// with the hours, minutes, and seconds zeroed out and the UTC timezone:
   /// `YYYY-MM-DDT00:00:00Z`. This must be on or after January 31, 2018.
-  /// If this is provided, `endedAt` also must be specified. If `startedAt` is
+  /// If this is provided, [endedAt] also must be specified. If [startedAt] is
   /// earlier than the default start date, the default date is used.
   /// The file contains one row of data per day.
   ///
-  /// `type`: Type of analytics report that is returned. Currently, this field
+  /// [type]: Type of analytics report that is returned. Currently, this field
   /// has no affect on the response as there is only one report type. If
   /// additional types were added, using this field would return only the URL
   /// for the specified report. Limit: 1. Valid values: `"overview_v2"`.

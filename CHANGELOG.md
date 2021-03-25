@@ -1,3 +1,8 @@
+## [0.1.0] - 23/03/2021.
+
+* **Breaking Changes:** `getExtensionAnalytics`, `getGameAnalytics`, `getTopGames`, `searchChannels`, `getStreams` now returns an object of type `TwitchResponse`
+* Added and improved some comments for a better documentation
+
 ## [0.0.4] - 23/03/2021.
 
 * Added methods: `getStreams`, `searchChannels`
@@ -12,11 +17,11 @@
 
 ## [0.0.2] - 09/02/2021.
 
-* Added methods: `getUsers`,  `getGameAnalytics`
+* Added methods: `getUsers`, `getGameAnalytics`
 * Fixed issues with `getExtensionAnalytics` and `getGameAnalytics`
 * Improved comments and example file
 
 ## [0.0.1] - 08/02/2021.
 
-* First releas.
-* Added methods: `startCommercial`,   `getExtensionAnalytics`,  `getGameAnalytics`
+* First release
+* Added methods: `startCommercial`, `getExtensionAnalytics`, `getGameAnalytics`
