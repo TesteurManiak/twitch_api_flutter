@@ -356,11 +356,11 @@ class TwitchClient {
 
   /// Gets game information by game ID or name.
   ///
-  /// For a query to be valid, `names` and/or `ids` must be specified.
+  /// For a query to be valid, [names] and/or [ids] must be specified.
   ///
-  /// `ids`: Game IDs. At most 100 id values can be specified.
+  /// [ids]: Game IDs. At most 100 id values can be specified.
   ///
-  /// `names`: Game names. The name must be an exact match. For example,
+  /// [names]: Game names. The name must be an exact match. For example,
   /// “Pokemon” will not return a list of Pokemon games; instead, query any
   /// specific Pokemon games in which you are interested. At most 100 name
   /// values can be specified.
@@ -383,7 +383,7 @@ class TwitchClient {
 
   /// Gets channel information for users.
   ///
-  /// `broadcasterId`: ID of the channel to be updated.
+  /// [broadcasterId]: ID of the channel to be updated.
   Future<List<TwitchChannelInfo>> getChannelInformations(
       String broadcasterId) async {
     assert(broadcasterId != null);
