@@ -202,6 +202,14 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
             child: Text('Search loserfruit Channel'),
           ),
+          ElevatedButton(
+            onPressed: () => _twitchClient.searchCategories(query: 'fort').then(
+                  (value) => _displayDataAlert(
+                      value.data.first.name, value.data.first.boxArtUrl,
+                      isImg: true),
+                ),
+            child: Text('Search "fort" Category'),
+          ),
         ],
       ),
     );
