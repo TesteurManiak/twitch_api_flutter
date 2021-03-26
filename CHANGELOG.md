@@ -1,3 +1,7 @@
+## [0.1.1] - 26/03/2021.
+
+* Added methods `searchCategories`, `getBroadcasterSubscriptions`
+
 ## [0.1.0] - 23/03/2021.
 
 * **Breaking Changes:** `getExtensionAnalytics`, `getGameAnalytics`, `getTopGames`, `searchChannels`, `getStreams` now returns an object of type `TwitchResponse`
