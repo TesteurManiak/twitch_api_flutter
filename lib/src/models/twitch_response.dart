@@ -1,3 +1,4 @@
+import 'package:twitch_api/src/models/twitch_broadcaster_subscription.dart';
 import 'package:twitch_api/src/models/twitch_extension_analytic.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/models/twitch_search_category.dart';
@@ -65,6 +66,15 @@ class TwitchResponse<T> {
       TwitchResponse(
         data: (json['data'] as Iterable)
             .map<T>((e) => TwitchSearchCategory.fromJson(e) as T)
+            .toList(),
+        pagination: json['pagination'],
+      );
+
+  /// Constructor for request containing [TwitchBroadcasterSubscription].
+  factory TwitchResponse.broadcasterSubscriptions(Map<String, dynamic> json) =>
+      TwitchResponse(
+        data: (json['data'] as Iterable)
+            .map<T>((e) => TwitchBroadcasterSubscription.fromJson(e) as T)
             .toList(),
         pagination: json['pagination'],
       );

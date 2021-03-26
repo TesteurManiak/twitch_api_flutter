@@ -73,6 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
           TwitchApiScope.analyticsReadExtensions,
           TwitchApiScope.analyticsReadGames,
           TwitchApiScope.userReadEmail,
+          TwitchApiScope.channelReadSubscriptions,
         ]).then((value) => setState(() {}));
       });
     }
@@ -209,6 +210,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       isImg: true),
                 ),
             child: Text('Search "fort" Category'),
+          ),
+          ElevatedButton(
+            onPressed: () => _twitchClient.getBroadcasterSubscriptions().then(
+                  (value) => _displayDataAlert(
+                      value.data.first.userName, value.data.first.tier),
+                ),
+            child: Text('Get Broadcaster Subscriptions'),
           ),
         ],
       ),

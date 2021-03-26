@@ -3,6 +3,7 @@ enum TwitchApiScope {
   analyticsReadGames,
   bitsRead,
   channelEditCommercial,
+  channelReadSubscriptions,
   userReadEmail,
 }
 
@@ -12,6 +13,7 @@ class TwitchApiScopes {
     TwitchApiScope.analyticsReadGames: 'analytics:read:games',
     TwitchApiScope.bitsRead: 'bits:read',
     TwitchApiScope.channelEditCommercial: 'channel:edit:commercial',
+    TwitchApiScope.channelReadSubscriptions: 'channel:read:subscriptions',
     TwitchApiScope.userReadEmail: 'user:read:email',
   };
 

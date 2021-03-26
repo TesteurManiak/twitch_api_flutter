@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:twitch_api/src/exceptions/twitch_api_exception.dart';
+import 'package:twitch_api/src/models/twitch_broadcaster_subscription.dart';
 import 'package:twitch_api/src/models/twitch_channel_info.dart';
 import 'package:twitch_api/src/models/twitch_game.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
@@ -290,7 +291,7 @@ class TwitchClient {
   /// identified by optional user IDs and/or login name. If neither a user ID
   /// nor a login name is specified, the user is looked up by Bearer token.
   ///
-  /// Required scrope: `TwitchApiScope.userReadEmail`
+  /// Required scrope: [TwitchApiScope.userReadEmail]
   ///
   /// `ids`: User ID. Multiple user IDs can be specified. Limit: 100.
   ///
@@ -517,5 +518,41 @@ class TwitchClient {
 
     final data = await getCall(['streams'], queryParameters: queryParameters);
     return TwitchResponse.streamsInfo(data);
+  }
+
+  /// Get all of a broadcaster’s subscriptions.
+  ///
+  /// Required scope: [TwitchApiScope.channelReadSubscriptions]
+  ///
+  /// [userIds]: Filters results to only include potential subscriptions made by
+  /// the provided user IDs. Accepts up to 100 values.
+  ///
+  /// [after]: tells the server where to start fetching the next set of results
+  /// in a multi-page response. This applies only to queries without [userIds].
+  /// If a [userIds] is specified, it supersedes any cursor/offset combinations.
+  /// The cursor value specified here is from the `pagination` response field of
+  /// a prior query.
+  ///
+  /// [first]: Maximum number of objects to return. Maximum: 100. Default: 20.
+  Future<TwitchResponse<TwitchBroadcasterSubscription>>
+      getBroadcasterSubscriptions({
+    List<String> userIds = const [],
+    String after,
+    int first = 20,
+  }) async {
+    assert(first > 0 && first < 101);
+    assert(userIds.length < 101);
+
+    final Map<String, dynamic> queryParameters = {
+      'broadcaster_id': accessToken.userId,
+      'first': first.toString(),
+    };
+    if (userIds.isNotEmpty) queryParameters['user_id'] = userIds.join(',');
+    if (after != null) queryParameters['after'] = after;
+
+    final data =
+        await getCall(['subscriptions'], queryParameters: queryParameters);
+    return TwitchResponse<
+        TwitchBroadcasterSubscription>.broadcasterSubscriptions(data);
   }
 }
