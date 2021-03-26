@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:twitch_api/twitch_api.dart';
 
-const clientId = "n9dgfacl10ivdy8vlr493qjavykdkn";
+const clientId = "YOUR CLIENT ID";
 const redirectUri = "http://localhost:8080/static.html";
 
 void main() {
@@ -73,6 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
           TwitchApiScope.analyticsReadExtensions,
           TwitchApiScope.analyticsReadGames,
           TwitchApiScope.userReadEmail,
+          TwitchApiScope.channelReadSubscriptions,
         ]).then((value) => setState(() {}));
       });
     }
@@ -209,6 +210,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       isImg: true),
                 ),
             child: Text('Search "fort" Category'),
+          ),
+          ElevatedButton(
+            onPressed: () => _twitchClient.getBroadcasterSubscriptions().then(
+                  (value) => _displayDataAlert(
+                      value.data.first.userName, value.data.first.tier),
+                ),
+            child: Text('Get Broadcaster Subscriptions'),
           ),
         ],
       ),

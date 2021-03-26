@@ -2,9 +2,11 @@
 
 A wrapper in pure Dart to connect to Twitch.tv using OAuth implicit authentication.
 
+All the endpoints are implemented as defined in the [Twitch API Reference](https://dev.twitch.tv/docs/api/reference)
+
 ## Getting started
 
-**NOTE: This package is in its early stage, please be patient until more methods are implemented or do not hesitate to open a merge request if you added support for an endpoint.**
+**NOTE: This package is in its early stage, please be patient until more methods are implemented or do not hesitate to open a merge request if you added support for an endpoint. Currently I do not have a roadmap of the endpoint I am going to add in priority so do not hesitate to make suggestions depending of your needs.**
 
 To use this package you will need to register an application on the [Twitch developer console](https://dev.twitch.tv/console/apps) to get a **client ID**.
 
@@ -132,7 +134,7 @@ Now you are ready to use the methods implemented in [Supported Features](#suppor
 
 ### Subscriptions
 
-* [ ] Get Broadcaster Subscriptions
+* [x] Get Broadcaster Subscriptions
 
 ### Tags
 
