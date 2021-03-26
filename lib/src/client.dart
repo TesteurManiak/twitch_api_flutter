@@ -6,6 +6,7 @@ import 'package:twitch_api/src/models/twitch_channel_info.dart';
 import 'package:twitch_api/src/models/twitch_game.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/models/twitch_response.dart';
+import 'package:twitch_api/src/models/twitch_search_category.dart';
 import 'package:twitch_api/src/models/twitch_start_commercial.dart';
 import 'package:twitch_api/src/models/twitch_token.dart';
 import 'package:meta/meta.dart';
@@ -73,12 +74,13 @@ class TwitchClient {
       if (_accessToken == null ||
           _accessToken.token == null ||
           _accessToken.token.isEmpty ||
-          !_accessToken.isValid)
+          !_accessToken.isValid) {
         throw TwitchNotConnectedException(
             'You are not connected to your Twitch account.');
+      }
       return _accessToken;
     } catch (e) {
-      throw e;
+      throw TwitchApiException('Error with tokenValidation: $e');
     }
   }
 
@@ -394,6 +396,35 @@ class TwitchClient {
         .toList();
   }
 
+  /// Returns a list of games or categories that match the query via name either
+  /// entirely or partially.
+  ///
+  /// [query]: URl encoded search query
+  ///
+  /// [first]: Maximum number of objects to return. Maximum: 100. Default: 200.
+  ///
+  /// [after]: Cursor for forward pagination: tells the server where to start
+  /// fetching the next set of results, in a multi-page response. The cursor
+  /// value specified here is from the `pagination` response field of a prior
+  /// query.
+  Future<TwitchResponse<TwitchSearchCategory>> searchCategories({
+    @required String query,
+    int first = 20,
+    String after,
+  }) async {
+    assert(query != null);
+    assert(first > 0 && first < 101);
+
+    final Map<String, dynamic> queryParameters = {
+      'query': query,
+      'first': first.toString(),
+    };
+    if (after != null) queryParameters['after'] = after;
+    final data = await getCall(['search', 'categories'],
+        queryParameters: queryParameters);
+    return TwitchResponse<TwitchSearchCategory>.searchCategories(data);
+  }
+
   /// Returns a list of channels (users who have streamed within the past 6
   /// months) that match the query via channel name or description either
   /// entirely or partially. Results include both live and offline channels.
@@ -415,7 +446,7 @@ class TwitchClient {
     String after,
     bool liveOnly = false,
   }) async {
-    assert(query != null && query.isNotEmpty);
+    assert(query != null);
     assert(first > 0 && first < 101);
     assert(liveOnly != null);
 

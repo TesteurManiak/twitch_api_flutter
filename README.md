@@ -120,7 +120,7 @@ Now you are ready to use the methods implemented in [Supported Features](#suppor
 
 ### Search
 
-* [ ] Search Categories
+* [x] Search Categories
 * [x] Search Channels
 
 ### Streams
