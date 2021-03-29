@@ -3,12 +3,19 @@ const int _defaultImgWidth = 285;
 
 class TwitchGame {
   final String _boxArtUrl;
+
+  /// Game ID.
   final String id;
+
+  /// Game name.
   final String name;
 
   TwitchGame({String boxArtUrl, this.id, this.name})
       : this._boxArtUrl = boxArtUrl;
 
+  /// Template URL for the game’s box art.
+  ///
+  /// By default size is `285x380`.
   String getBoxArtUrl({
     int height = _defaultImgHeight,
     int width = _defaultImgWidth,

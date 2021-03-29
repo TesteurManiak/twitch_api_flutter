@@ -175,7 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () => _twitchClient.getGames(names: ['Fortnite']).then(
                 (value) => _displayDataAlert(
-                    value.first.name, value.first.getBoxArtUrl(),
+                    value.data.first.name, value.data.first.getBoxArtUrl(),
                     isImg: true)),
             child: Text('Get Fortnite'),
           ),

@@ -406,7 +406,7 @@ class TwitchClient {
   /// “Pokemon” will not return a list of Pokemon games; instead, query any
   /// specific Pokemon games in which you are interested. At most 100 name
   /// values can be specified.
-  Future<List<TwitchGame>> getGames(
+  Future<TwitchResponse<TwitchGame>> getGames(
       {List<String> ids = const [], List<String> names = const []}) async {
     assert(
         (ids != null && ids.isNotEmpty) || (names != null && names.isNotEmpty));
@@ -418,9 +418,7 @@ class TwitchClient {
     if (names.isNotEmpty) queryParameters['name'] = names.join(',');
 
     final data = await getCall(['games'], queryParameters: queryParameters);
-    return (data['data'] as Iterable)
-        .map((e) => TwitchGame.fromJson(e))
-        .toList();
+    return TwitchResponse.games(data);
   }
 
   /// Gets channel information for users.
