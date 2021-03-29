@@ -1,5 +1,6 @@
 import 'package:twitch_api/src/models/twitch_bits_leaderboard.dart';
 import 'package:twitch_api/src/models/twitch_broadcaster_subscription.dart';
+import 'package:twitch_api/src/models/twitch_channel_info.dart';
 import 'package:twitch_api/src/models/twitch_date_range.dart';
 import 'package:twitch_api/src/models/twitch_extension_analytic.dart';
 import 'package:twitch_api/src/models/twitch_game.dart';
@@ -131,10 +132,19 @@ class TwitchResponse<T> {
         total: json['total'],
       );
 
+  /// Constructor for request containing [TwitchGame].
   factory TwitchResponse.games(Map<String, dynamic> json) => TwitchResponse(
         data: (json['data'] as Iterable)
             .map<T>((e) => TwitchGame.fromJson(e) as T)
             .toList(),
         pagination: json['pagination'],
+      );
+
+  /// Constructor for request containing [TwitchChannelInfo].
+  factory TwitchResponse.channelInformations(Map<String, dynamic> json) =>
+      TwitchResponse(
+        data: (json['data'] as Iterable)
+            .map<T>((e) => TwitchChannelInfo.fromJson(e) as T)
+            .toList(),
       );
 }

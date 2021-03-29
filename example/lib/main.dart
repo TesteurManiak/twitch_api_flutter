@@ -183,7 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () => _twitchClient
                 .getChannelInformations('44445592')
                 .then((value) => _displayDataAlert(
-                    value.first.broadcasterName, value.first.title)),
+                    value.data.first.broadcasterName, value.data.first.title)),
             child: Text('Get Pokimane Channel Info'),
           ),
           ElevatedButton(

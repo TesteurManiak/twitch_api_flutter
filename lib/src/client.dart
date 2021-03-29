@@ -424,14 +424,12 @@ class TwitchClient {
   /// Gets channel information for users.
   ///
   /// [broadcasterId]: ID of the channel to be updated.
-  Future<List<TwitchChannelInfo>> getChannelInformations(
+  Future<TwitchResponse<TwitchChannelInfo>> getChannelInformations(
       String broadcasterId) async {
     assert(broadcasterId != null);
     final data = await getCall(['channels'],
         queryParameters: {'broadcaster_id': broadcasterId});
-    return (data['data'] as Iterable)
-        .map<TwitchChannelInfo>((e) => TwitchChannelInfo.fromJson(e))
-        .toList();
+    return TwitchResponse.channelInformations(data);
   }
 
   /// Returns a list of games or categories that match the query via name either
