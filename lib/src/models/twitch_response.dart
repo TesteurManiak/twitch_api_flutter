@@ -5,8 +5,10 @@ import 'package:twitch_api/src/models/twitch_extension_analytic.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/models/twitch_search_category.dart';
 import 'package:twitch_api/src/models/twitch_search_channel.dart';
+import 'package:twitch_api/src/models/twitch_start_commercial.dart';
 import 'package:twitch_api/src/models/twitch_stream_info.dart';
 import 'package:twitch_api/src/models/twitch_top_game.dart';
+import 'package:twitch_api/src/models/twitch_user.dart';
 
 /// Generic class for Twitch's API response using pagination.
 class TwitchResponse<T> {
@@ -92,6 +94,7 @@ class TwitchResponse<T> {
         pagination: json['pagination'],
       );
 
+  /// Constructor for request containing [TwitchBitsLeaderboard].
   factory TwitchResponse.bitsLeaderboard(Map<String, dynamic> json) =>
       TwitchResponse(
         data: (json['data'] as Iterable)
@@ -99,5 +102,20 @@ class TwitchResponse<T> {
             .toList(),
         dateRange: TwitchDateRange.fromJson(json['date_range']),
         total: json['total'],
+      );
+
+  /// Constructor for request containing [TwitchStartCommercial].
+  factory TwitchResponse.startCommercial(Map<String, dynamic> json) =>
+      TwitchResponse(
+        data: (json['data'] as Iterable)
+            .map<T>((e) => TwitchStartCommercial.fromJson(e) as T)
+            .toList(),
+      );
+
+  /// Constructor for request containing [TwitchUser].
+  factory TwitchResponse.users(Map<String, dynamic> json) => TwitchResponse(
+        data: (json['data'] as Iterable)
+            .map<T>((e) => TwitchUser.fromJson(e) as T)
+            .toList(),
       );
 }

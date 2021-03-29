@@ -166,16 +166,14 @@ class TwitchClient {
   ///
   /// [length]: Desired length of the commercial in seconds. Valid options are
   /// `30, 60, 90, 120, 150, 180`.
-  Future<List<TwitchStartCommercial>> startCommercial(
+  Future<TwitchResponse<TwitchStartCommercial>> startCommercial(
       String broadcasterId, int length) async {
     assert(broadcasterId == _accessToken.userId);
     assert(length > 29 && length < 181 && length % 30 == 0);
     try {
       final data = await postCall(['channels', 'commercial'],
           {'broadcaster_id': broadcasterId, 'length': length.toString()});
-      return (data['data'] as Iterable)
-          .map((e) => TwitchStartCommercial.fromJson(e))
-          .toList();
+      return TwitchResponse.startCommercial(data);
     } catch (e) {
       throw TwitchStartCommercialException(e.toString());
     }
@@ -345,7 +343,7 @@ class TwitchClient {
   /// Note: The limit of 100 IDs and login names is the total limit. You can
   /// request, for example, 50 of each or 100 of one of them. You cannot request
   /// 100 of both.
-  Future<List<TwitchUser>> getUsers(
+  Future<TwitchResponse<TwitchUser>> getUsers(
       {List<String> ids = const [], List<String> logins = const []}) async {
     assert(ids != null && ids.length < 101);
     assert(logins != null && logins.length < 101);
@@ -356,9 +354,7 @@ class TwitchClient {
     if (logins.isNotEmpty) queryParameters['login'] = logins.join(',');
 
     final data = await getCall(['users'], queryParameters: queryParameters);
-    return (data['data'] as Iterable)
-        .map((e) => TwitchUser.fromJson(e))
-        .toList();
+    return TwitchResponse.users(data);
   }
 
   /// Gets information on follow relationships between two Twitch users. This

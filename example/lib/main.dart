@@ -160,8 +160,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           ElevatedButton(
             onPressed: () => _twitchClient.getUsers(ids: ['44322889']).then(
-                (value) => _displayDataAlert(
-                    value.first.displayName, value.first.description)),
+                (value) => _displayDataAlert(value.data.first.displayName,
+                    value.data.first.description)),
             child: Text('Get User Dallas from id'),
           ),
           ElevatedButton(
