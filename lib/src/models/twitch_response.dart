@@ -9,6 +9,7 @@ import 'package:twitch_api/src/models/twitch_start_commercial.dart';
 import 'package:twitch_api/src/models/twitch_stream_info.dart';
 import 'package:twitch_api/src/models/twitch_top_game.dart';
 import 'package:twitch_api/src/models/twitch_user.dart';
+import 'package:twitch_api/src/models/twitch_user_follow.dart';
 
 /// Generic class for Twitch's API response using pagination.
 class TwitchResponse<T> {
@@ -117,5 +118,14 @@ class TwitchResponse<T> {
         data: (json['data'] as Iterable)
             .map<T>((e) => TwitchUser.fromJson(e) as T)
             .toList(),
+      );
+
+  factory TwitchResponse.usersFollows(Map<String, dynamic> json) =>
+      TwitchResponse(
+        data: (json['data'] as Iterable)
+            .map<T>((e) => TwitchUserFollow.fromJson(e) as T)
+            .toList(),
+        pagination: json['pagination'],
+        total: json['total'],
       );
 }

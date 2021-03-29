@@ -14,7 +14,6 @@ import 'package:twitch_api/src/models/twitch_time_period.dart';
 import 'package:twitch_api/src/models/twitch_token.dart';
 import 'package:meta/meta.dart';
 import 'package:twitch_api/src/models/twitch_user.dart';
-import 'package:twitch_api/src/models/twitch_users_follows.dart';
 import 'package:twitch_api/twitch_api.dart';
 import 'extensions/enum_extensions.dart' show TwitchTimePeriodModifier;
 
@@ -363,7 +362,7 @@ class TwitchClient {
   /// in order, most recent follow first.
   ///
   /// At minimum, `fromId` or `toId` must be provided for a query to be valid.
-  Future<TwitchUsersFollows> getUsersFollows({
+  Future<TwitchResponse<TwitchUserFollow>> getUsersFollows({
     String after,
     int first = 20,
     String fromId,
@@ -379,7 +378,7 @@ class TwitchClient {
 
     final data =
         await getCall(['users', 'follows'], queryParameters: queryParameters);
-    return TwitchUsersFollows.fromJson(data);
+    return TwitchResponse.usersFollows(data);
   }
 
   /// Gets games sorted by number of current viewers on Twitch, most popular
