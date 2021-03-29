@@ -5,6 +5,7 @@ import 'package:twitch_api/src/exceptions/twitch_api_exception.dart';
 import 'package:twitch_api/src/models/twitch_bits_leaderboard.dart';
 import 'package:twitch_api/src/models/twitch_broadcaster_subscription.dart';
 import 'package:twitch_api/src/models/twitch_channel_info.dart';
+import 'package:twitch_api/src/models/twitch_cheermote.dart';
 import 'package:twitch_api/src/models/twitch_game.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/models/twitch_response.dart';
@@ -589,5 +590,21 @@ class TwitchClient {
         await getCall(['subscriptions'], queryParameters: queryParameters);
     return TwitchResponse<
         TwitchBroadcasterSubscription>.broadcasterSubscriptions(data);
+  }
+
+  /// Retrieves the list of available Cheermotes, animated emotes to which
+  /// viewers can assign Bits, to cheer in chat. Cheermotes returned are
+  /// available throughout Twitch, in all Bits-enabled channels.
+  ///
+  /// `broadcasterId`: ID for the broadcaster who might own specialized
+  /// Cheermotes.
+  Future<TwitchResponse<TwitchCheermote>> getCheermotes(
+      {String broadcasterId}) async {
+    Map<String, dynamic> queryParameters = {};
+    if (broadcasterId != null)
+      queryParameters['broadcaster_id'] = broadcasterId;
+    final data =
+        await getCall(['bits', 'cheermotes'], queryParameters: queryParameters);
+    return TwitchResponse.cheermotes(data);
   }
 }

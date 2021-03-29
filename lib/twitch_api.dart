@@ -17,3 +17,6 @@ export 'src/models/twitch_broadcaster_subscription.dart';
 export 'src/models/twitch_search_category.dart';
 export 'src/models/twitch_time_period.dart';
 export 'src/models/twitch_bits_leaderboard.dart';
+export 'src/models/twitch_cheermote.dart';
+export 'src/models/twitch_cheermote_type.dart';
+export 'src/models/twitch_cheermote_tier.dart';

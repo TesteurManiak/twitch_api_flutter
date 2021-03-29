@@ -12,6 +12,7 @@ import 'package:twitch_api/src/models/twitch_stream_info.dart';
 import 'package:twitch_api/src/models/twitch_top_game.dart';
 import 'package:twitch_api/src/models/twitch_user.dart';
 import 'package:twitch_api/src/models/twitch_user_follow.dart';
+import 'package:twitch_api/twitch_api.dart';
 
 /// Generic class for Twitch's API response using pagination.
 class TwitchResponse<T> {
@@ -145,6 +146,14 @@ class TwitchResponse<T> {
       TwitchResponse(
         data: (json['data'] as Iterable)
             .map<T>((e) => TwitchChannelInfo.fromJson(e) as T)
+            .toList(),
+      );
+
+  /// Constructor for request containing [TwitchCheermote].
+  factory TwitchResponse.cheermotes(Map<String, dynamic> json) =>
+      TwitchResponse(
+        data: (json as Iterable)
+            .map<T>((e) => TwitchCheermote.fromJson(e) as T)
             .toList(),
       );
 }
