@@ -1,4 +1,6 @@
+import 'package:twitch_api/src/models/twitch_bits_leaderboard.dart';
 import 'package:twitch_api/src/models/twitch_broadcaster_subscription.dart';
+import 'package:twitch_api/src/models/twitch_date_range.dart';
 import 'package:twitch_api/src/models/twitch_extension_analytic.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/models/twitch_search_category.dart';
@@ -15,7 +17,18 @@ class TwitchResponse<T> {
   /// point of the next set of results.
   final Map<String, dynamic> pagination;
 
-  TwitchResponse({this.data, this.pagination});
+  /// Total number of results returned.
+  final int total;
+
+  /// Date range of the returned data.
+  final TwitchDateRange dateRange;
+
+  TwitchResponse({
+    this.data,
+    this.pagination,
+    this.total,
+    this.dateRange,
+  });
 
   /// Constructor for request containing [TwitchSearchChannel].
   factory TwitchResponse.searchChannels(Map<String, dynamic> json) =>
@@ -77,5 +90,14 @@ class TwitchResponse<T> {
             .map<T>((e) => TwitchBroadcasterSubscription.fromJson(e) as T)
             .toList(),
         pagination: json['pagination'],
+      );
+
+  factory TwitchResponse.bitsLeaderboard(Map<String, dynamic> json) =>
+      TwitchResponse(
+        data: (json['data'] as Iterable)
+            .map<T>((e) => TwitchBitsLeaderboard.fromJson(e) as T)
+            .toList(),
+        dateRange: TwitchDateRange.fromJson(json['date_range']),
+        total: json['total'],
       );
 }

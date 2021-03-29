@@ -16,3 +16,5 @@ export 'src/models/twitch_search_channel.dart';
 export 'src/models/twitch_response.dart';
 export 'src/models/twitch_broadcaster_subscription.dart';
 export 'src/models/twitch_search_category.dart';
+export 'src/models/twitch_time_period.dart';
+export 'src/models/twitch_bits_leaderboard.dart';

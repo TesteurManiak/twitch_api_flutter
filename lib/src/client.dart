@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:twitch_api/src/exceptions/twitch_api_exception.dart';
+import 'package:twitch_api/src/models/twitch_bits_leaderboard.dart';
 import 'package:twitch_api/src/models/twitch_broadcaster_subscription.dart';
 import 'package:twitch_api/src/models/twitch_channel_info.dart';
 import 'package:twitch_api/src/models/twitch_game.dart';
@@ -9,11 +10,13 @@ import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/models/twitch_response.dart';
 import 'package:twitch_api/src/models/twitch_search_category.dart';
 import 'package:twitch_api/src/models/twitch_start_commercial.dart';
+import 'package:twitch_api/src/models/twitch_time_period.dart';
 import 'package:twitch_api/src/models/twitch_token.dart';
 import 'package:meta/meta.dart';
 import 'package:twitch_api/src/models/twitch_user.dart';
 import 'package:twitch_api/src/models/twitch_users_follows.dart';
 import 'package:twitch_api/twitch_api.dart';
+import 'extensions/enum_extensions.dart' show TwitchTimePeriodModifier;
 
 import 'models/twitch_api_scopes.dart';
 
@@ -254,7 +257,7 @@ class TwitchClient {
   /// Gets a URL that game developers can use to download analytics reports
   /// (CSV files) for their games. The URL is valid for 5 minutes.
   ///
-  /// Required scope: `TwitchApiScope.analyticsReadGames`
+  /// Required scope: [TwitchApiScope.analyticsReadGames]
   ///
   /// `after`: Cursor for forward pagination: tells the server where to start
   /// fetching the next set of results, in a multi-page response. This applies
@@ -285,6 +288,47 @@ class TwitchClient {
     final data =
         await getCall(['analytics', 'games'], queryParameters: queryParameters);
     return TwitchResponse<TwitchGameAnalytic>.gameAnalytics(data);
+  }
+
+  /// Gets a ranked list of Bits leaderboard information for an authorized
+  /// broadcaster.
+  ///
+  /// Required scope: [TwitchApiScop.bitsRead]
+  ///
+  /// `count`: Number of results to be returned. Maximum: 100. Default: 10.
+  ///
+  /// `period`: Time period over which data is aggregated (PST time zone).
+  /// Default: [TwitchTimePeriod.all].
+  ///
+  /// `startedAt`: Timestamp for the period over which the returned data is
+  /// aggregated. Must be in RFC 3339 format. If this is not provided, data is
+  /// aggregated over the current period; e.g., the current day/week/month/year.
+  /// This value is ignored if `period` is [TwitchTimePeriod.all].
+  ///
+  /// `userId`: ID of the user whose results are returned; i.e., the person who
+  /// paid for the Bits. As long as `count` is greater than 1, the returned data
+  /// includes additional users, with Bits amounts above and below the user
+  /// specified by `userId`. If `userId` is not provided, the endpoint returns
+  /// the Bits leaderboard data across top users (subject to the value of
+  /// `count`).
+  Future<TwitchResponse<TwitchBitsLeaderboard>> getBitsLeaderboard({
+    int count = 10,
+    TwitchTimePeriod period = TwitchTimePeriod.all,
+    String startedAt,
+    String userId,
+  }) async {
+    assert(count > 0 && count < 101);
+
+    Map<String, dynamic> queryParameters = {
+      'count': count.toString(),
+      'period': period.string,
+    };
+    if (startedAt != null) queryParameters['started_at'] = startedAt;
+    if (userId != null) queryParameters['user_id'] = userId;
+
+    final data = await getCall(['bits', 'leaderboard'],
+        queryParameters: queryParameters);
+    return TwitchResponse.bitsLeaderboard(data);
   }
 
   /// Gets information about one or more specified Twitch users. Users are

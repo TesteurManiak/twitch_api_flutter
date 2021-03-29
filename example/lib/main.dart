@@ -74,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
           TwitchApiScope.analyticsReadGames,
           TwitchApiScope.userReadEmail,
           TwitchApiScope.channelReadSubscriptions,
+          TwitchApiScope.bitsRead,
         ]).then((value) => setState(() {}));
       });
     }
@@ -217,6 +218,13 @@ class _MyHomePageState extends State<MyHomePage> {
                       value.data.first.userName, value.data.first.tier),
                 ),
             child: Text('Get Broadcaster Subscriptions'),
+          ),
+          ElevatedButton(
+            onPressed: () => _twitchClient.getBitsLeaderboard().then(
+                  (value) => _displayDataAlert(value.data.first.userName,
+                      value.data.first.score.toString()),
+                ),
+            child: Text('Get Bits Leaderboard'),
           ),
         ],
       ),
