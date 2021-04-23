@@ -1,6 +1,6 @@
 import 'package:twitch_api/src/models/twitch_date_range.dart';
 
-class TwitchExtentsionAnalytic {
+class TwitchExtensionAnalytic {
   final TwitchDateRange dateRange;
 
   /// ID of the extension whose analytics data is being provided.
@@ -13,15 +13,15 @@ class TwitchExtentsionAnalytic {
   /// minutes.
   final String url;
 
-  TwitchExtentsionAnalytic({
+  TwitchExtensionAnalytic({
     this.dateRange,
     this.extensionId,
     this.type,
     this.url,
   });
 
-  factory TwitchExtentsionAnalytic.fromJson(Map<String, dynamic> json) =>
-      TwitchExtentsionAnalytic(
+  factory TwitchExtensionAnalytic.fromJson(Map<String, dynamic> json) =>
+      TwitchExtensionAnalytic(
         dateRange: TwitchDateRange.fromJson(json['date_range']),
         extensionId: json['extension_id'],
         type: json['type'],

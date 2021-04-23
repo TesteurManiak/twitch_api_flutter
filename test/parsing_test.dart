@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:test/test.dart';
+import 'package:twitch_api/src/models/twitch_extension_transaction.dart';
 import 'package:twitch_api/src/models/twitch_response.dart';
 import 'package:twitch_api/twitch_api.dart';
 
@@ -43,6 +44,15 @@ void main() {
       expect(darkStatic.containsKey('1'), true);
       expect(darkStatic['1'],
           'https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/static/1/1.png');
+    });
+
+    test('Get Extension Transactions', () {
+      final json =
+          jsonDecode(readFileString('get_extension_transactions.json'));
+      final obj =
+          TwitchResponse<TwitchExtensionTransaction>.extensionTransaction(json);
+
+      expect(obj.data.length, 2);
     });
   });
 }

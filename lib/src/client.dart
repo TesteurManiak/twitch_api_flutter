@@ -6,6 +6,7 @@ import 'package:twitch_api/src/models/twitch_bits_leaderboard.dart';
 import 'package:twitch_api/src/models/twitch_broadcaster_subscription.dart';
 import 'package:twitch_api/src/models/twitch_channel_info.dart';
 import 'package:twitch_api/src/models/twitch_cheermote.dart';
+import 'package:twitch_api/src/models/twitch_extension_transaction.dart';
 import 'package:twitch_api/src/models/twitch_game.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/models/twitch_response.dart';
@@ -221,7 +222,7 @@ class TwitchClient {
   /// has no affect on the response as there is only one report type. If
   /// additional types were added, using this field would return only the URL
   /// for the specified report. Limit: 1. Valid values: `"overview_v2"`.
-  Future<TwitchResponse<TwitchExtentsionAnalytic>> getExtensionAnalytics({
+  Future<TwitchResponse<TwitchExtensionAnalytic>> getExtensionAnalytics({
     String after,
     String endedAt,
     String extensionId,
@@ -245,7 +246,7 @@ class TwitchClient {
     try {
       final data = await getCall(['analytics', 'extensions'],
           queryParameters: queryParameters);
-      return TwitchResponse<TwitchExtentsionAnalytic>.extentionAnalytics(data);
+      return TwitchResponse<TwitchExtensionAnalytic>.extensionAnalytics(data);
     } catch (e) {
       throw TwitchGetExtensionAnalyticsException(e.toString());
     }
@@ -609,4 +610,27 @@ class TwitchClient {
         await getCall(['bits', 'cheermotes'], queryParameters: queryParameters);
     return TwitchResponse.cheermotes(data);
   }
+
+  /// Allows extension back end servers to fetch a list of transactions that
+  /// have occurred for their extension across all of Twitch. A transaction is a
+  /// record of a user exchanging Bits for an in-Extension digital good.
+  ///
+  /// `extensionId`: ID of the extension to list transactions for. Maximum: 1
+  ///
+  /// `id`: Transaction IDs to look up. Can include multiple to fetch multiple
+  /// transactions in a single request.
+  /// ```
+  /// /helix/extensions/transactions?extension_id=1234&id=1&id=2&id=3
+  /// ```
+  ///
+  /// `after`: The cursor used to fetch the next page of data. This only applies
+  /// to queries without ID. If an ID is specified, it supersedes the cursor.
+  ///
+  /// `first`: Maximum number of objects to return. Maximum: 100. Default: 20
+  Future<TwitchResponse<TwitchExtensionTransaction>> getExtensionTransaction({
+    @required String extensionId,
+    String id,
+    String after,
+    int first = 20,
+  }) async {}
 }

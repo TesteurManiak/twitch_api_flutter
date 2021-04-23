@@ -1,4 +1,5 @@
 import 'package:twitch_api/src/exceptions/twitch_api_exception.dart';
+import 'package:twitch_api/src/models/twitch_extension_transaction.dart';
 
 import '../../twitch_api.dart';
 
@@ -26,6 +27,16 @@ extension StringModifier on String {
         return TwitchCheermoteType.sponsored;
       default:
         throw TwitchApiException('Unknown TwitchCheermoteType: $this');
+    }
+  }
+
+  TwitchExtensionTransactionProductType toTransactionProductType() {
+    switch (toUpperCase()) {
+      case 'BITS_IN_EXTENSION':
+        return TwitchExtensionTransactionProductType.bitsInExtension;
+      default:
+        throw TwitchApiException(
+            'Unknown TwitchExtensionTransactionProductType: $this');
     }
   }
 }

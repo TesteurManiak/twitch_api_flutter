@@ -3,6 +3,7 @@ import 'package:twitch_api/src/models/twitch_broadcaster_subscription.dart';
 import 'package:twitch_api/src/models/twitch_channel_info.dart';
 import 'package:twitch_api/src/models/twitch_date_range.dart';
 import 'package:twitch_api/src/models/twitch_extension_analytic.dart';
+import 'package:twitch_api/src/models/twitch_extension_transaction.dart';
 import 'package:twitch_api/src/models/twitch_game.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/models/twitch_search_category.dart';
@@ -46,10 +47,10 @@ class TwitchResponse<T> {
       );
 
   /// Constructor for request containing [TwitchExtentsionAnalytic].
-  factory TwitchResponse.extentionAnalytics(Map<String, dynamic> json) =>
+  factory TwitchResponse.extensionAnalytics(Map<String, dynamic> json) =>
       TwitchResponse(
         data: (json['data'] as Iterable)
-            .map<T>((e) => TwitchExtentsionAnalytic.fromJson(e) as T)
+            .map<T>((e) => TwitchExtensionAnalytic.fromJson(e) as T)
             .toList(),
         pagination: json['pagination'],
       );
@@ -154,6 +155,14 @@ class TwitchResponse<T> {
       TwitchResponse(
         data: (json['data'] as Iterable)
             .map<T>((e) => TwitchCheermote.fromJson(e) as T)
+            .toList(),
+      );
+
+  /// Constructor for request containing [TwitchExtensionTransaction].
+  factory TwitchResponse.extensionTransaction(Map<String, dynamic> json) =>
+      TwitchResponse(
+        data: (json['data'] as Iterable)
+            .map<T>((e) => TwitchExtensionTransaction.fromJson(e) as T)
             .toList(),
       );
 }
