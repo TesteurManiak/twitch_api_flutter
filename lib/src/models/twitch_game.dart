@@ -10,8 +10,7 @@ class TwitchGame {
   /// Game name.
   final String name;
 
-  TwitchGame({String boxArtUrl, this.id, this.name})
-      : this._boxArtUrl = boxArtUrl;
+  TwitchGame({String boxArtUrl, this.id, this.name}) : _boxArtUrl = boxArtUrl;
 
   /// Template URL for the game’s box art.
   ///

@@ -4,7 +4,7 @@ import '../../twitch_api.dart';
 
 extension StringModifier on String {
   TwitchStreamType toStreamType() {
-    switch (this.toLowerCase()) {
+    switch (toLowerCase()) {
       case 'live':
         return TwitchStreamType.live;
       default:
@@ -13,7 +13,7 @@ extension StringModifier on String {
   }
 
   TwitchCheermoteType toCheermoteType() {
-    switch (this.toLowerCase()) {
+    switch (toLowerCase()) {
       case 'global_first_party':
         return TwitchCheermoteType.globalFirstParty;
       case 'global_third_party':

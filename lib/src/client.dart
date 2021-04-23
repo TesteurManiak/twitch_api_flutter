@@ -36,11 +36,11 @@ class TwitchClient {
   TwitchToken get accessToken => _accessToken;
 
   Uri authorizeUri(List<TwitchApiScope> scopes) {
-    final scopesSet = Set<String>()
+    final scopesSet = <String>{}
       ..add('viewing_activity_read')
       ..addAll(scopes.map((e) => TwitchApiScopes.getScopeString(e)).toSet());
     return oauth2Url.replace(
-      pathSegments: <String>[oauthPath]..addAll([authPath]),
+      pathSegments: <String>[oauthPath, authPath],
       queryParameters: {
         'response_type': 'token',
         'client_id': clientId,
@@ -54,7 +54,7 @@ class TwitchClient {
     @required this.clientId,
     @required this.redirectUri,
     TwitchToken token,
-  })  : this._accessToken = token,
+  })  : _accessToken = token,
         assert(clientId != null),
         assert(redirectUri != null);
 
@@ -69,8 +69,7 @@ class TwitchClient {
         headers: {'Authorization': 'OAuth ${accessToken.token}'},
       );
       final response = await _dio.getUri(
-        oauth2Url.replace(
-            pathSegments: <String>[oauthPath]..addAll(['validate'])),
+        oauth2Url.replace(pathSegments: <String>[oauthPath, 'validate']),
         options: options,
       );
       _accessToken = TwitchToken.fromValidation(_accessToken, response.data);
@@ -102,7 +101,7 @@ class TwitchClient {
         });
         final response = await _dio.getUri(
           baseUrl.replace(
-            pathSegments: <String>[basePath]..addAll(pathSegments),
+            pathSegments: <String>[basePath, ...pathSegments],
             queryParameters: queryParameters,
           ),
           options: options,
@@ -114,7 +113,7 @@ class TwitchClient {
     } on DioError catch (dioError) {
       throw dioError.response.data['message'];
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 
@@ -134,7 +133,7 @@ class TwitchClient {
         });
         final response = await _dio.postUri(
           baseUrl.replace(
-            pathSegments: <String>[basePath]..addAll(pathSegments),
+            pathSegments: <String>[basePath, ...pathSegments],
             queryParameters: queryParameters,
           ),
           options: options,
@@ -147,7 +146,7 @@ class TwitchClient {
     } on DioError catch (dioError) {
       throw dioError.response.data['message'];
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 
@@ -234,7 +233,7 @@ class TwitchClient {
         (endedAt != null && startedAt != null));
     assert(first < 101 && first > 0 && first != null);
 
-    Map<String, dynamic> queryParameters = {'first': first.toString()};
+    var queryParameters = <String, dynamic>{'first': first.toString()};
     if (after != null) queryParameters['after'] = after;
     if (endedAt != null && startedAt != null) {
       queryParameters['ended_at'] = endedAt;
@@ -274,7 +273,7 @@ class TwitchClient {
         (endedAt != null && startedAt != null));
     assert(first < 101 && first > 0 && first != null);
 
-    Map<String, dynamic> queryParameters = {'first': first.toString()};
+    var queryParameters = <String, dynamic>{'first': first.toString()};
     if (after != null && gameId == null) queryParameters['after'] = after;
     if (endedAt != null && startedAt != null) {
       queryParameters['ended_at'] = endedAt;
@@ -317,7 +316,7 @@ class TwitchClient {
   }) async {
     assert(count > 0 && count < 101);
 
-    Map<String, dynamic> queryParameters = {
+    var queryParameters = <String, dynamic>{
       'count': count.toString(),
       'period': period.string,
     };
@@ -349,7 +348,7 @@ class TwitchClient {
     assert(logins != null && logins.length < 101);
     assert(ids.length + logins.length < 101);
 
-    Map<String, dynamic> queryParameters = {};
+    var queryParameters = <String, dynamic>{};
     if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
     if (logins.isNotEmpty) queryParameters['login'] = logins.join(',');
 
@@ -372,7 +371,7 @@ class TwitchClient {
     assert(first < 101 && first > 0 && first != null);
     assert(fromId != null || toId != null);
 
-    Map<String, dynamic> queryParameters = {'first': first.toString()};
+    var queryParameters = <String, dynamic>{'first': first.toString()};
     if (after != null) queryParameters['after'] = after;
     if (fromId != null) queryParameters['from_id'] = fromId;
     if (toId != null) queryParameters['to_id'] = toId;
@@ -388,7 +387,7 @@ class TwitchClient {
       {String after, String before, int first = 20}) async {
     assert(first < 101 && first > 0 && first != null);
 
-    final Map<String, dynamic> queryParameters = {'first': first.toString()};
+    final queryParameters = <String, dynamic>{'first': first.toString()};
     if (after != null) queryParameters['after'];
     if (before != null) queryParameters['before'];
 
@@ -414,7 +413,7 @@ class TwitchClient {
     assert(ids.length < 101);
     assert(names.length < 101);
 
-    final Map<String, dynamic> queryParameters = {};
+    final queryParameters = <String, dynamic>{};
     if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
     if (names.isNotEmpty) queryParameters['name'] = names.join(',');
 
@@ -452,7 +451,7 @@ class TwitchClient {
     assert(query != null);
     assert(first > 0 && first < 101);
 
-    final Map<String, dynamic> queryParameters = {
+    final queryParameters = <String, dynamic>{
       'query': query,
       'first': first.toString(),
     };
@@ -487,7 +486,7 @@ class TwitchClient {
     assert(first > 0 && first < 101);
     assert(liveOnly != null);
 
-    final Map<String, dynamic> queryParameters = {
+    final queryParameters = <String, dynamic>{
       'query': query,
       'first': first.toString(),
       'live_only': liveOnly.toString(),
@@ -542,15 +541,17 @@ class TwitchClient {
     assert(userIds.length < 101);
     assert(userLogins.length < 101);
 
-    final Map<String, dynamic> queryParameters = {'first': first.toString()};
+    final queryParameters = <String, dynamic>{'first': first.toString()};
     if (after != null && after.isNotEmpty) queryParameters['after'] = after;
     if (before != null && before.isNotEmpty) queryParameters['before'] = before;
     if (gameIds.isNotEmpty) queryParameters['game_id'] = gameIds.join(',');
-    if (languages.isNotEmpty)
+    if (languages.isNotEmpty) {
       queryParameters['languages'] = languages.join(',');
+    }
     if (userIds.isNotEmpty) queryParameters['user_id'] = userIds.join(',');
-    if (userLogins.isNotEmpty)
+    if (userLogins.isNotEmpty) {
       queryParameters['user_login'] = userLogins.join(',');
+    }
 
     final data = await getCall(['streams'], queryParameters: queryParameters);
     return TwitchResponse.streamsInfo(data);
@@ -579,7 +580,7 @@ class TwitchClient {
     assert(first > 0 && first < 101);
     assert(userIds.length < 101);
 
-    final Map<String, dynamic> queryParameters = {
+    final queryParameters = <String, dynamic>{
       'broadcaster_id': accessToken.userId,
       'first': first.toString(),
     };
@@ -600,9 +601,10 @@ class TwitchClient {
   /// Cheermotes.
   Future<TwitchResponse<TwitchCheermote>> getCheermotes(
       {String broadcasterId}) async {
-    Map<String, dynamic> queryParameters = {};
-    if (broadcasterId != null)
+    var queryParameters = <String, dynamic>{};
+    if (broadcasterId != null) {
       queryParameters['broadcaster_id'] = broadcasterId;
+    }
     final data =
         await getCall(['bits', 'cheermotes'], queryParameters: queryParameters);
     return TwitchResponse.cheermotes(data);

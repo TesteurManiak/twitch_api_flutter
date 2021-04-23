@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:twitch_api/twitch_api.dart';
 
-const clientId = "YOUR CLIENT ID";
+const clientId = "n9dgfacl10ivdy8vlr493qjavykdkn";
 const redirectUri = "http://localhost:8080/static.html";
 
 void main() {
@@ -198,10 +198,13 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () =>
                 _twitchClient.searchChannels(query: 'loserfruit').then(
-                      (value) => _displayDataAlert(value.data.first.displayName,
-                          value.data.first.thumbnailUrl,
-                          isImg: true, isOnline: value.data.first.isLive),
-                    ),
+              (value) {
+                print(value.data.map((e) => e.broadcasterLogin).toList());
+                _displayDataAlert(
+                    value.data.first.displayName, value.data.first.thumbnailUrl,
+                    isImg: true, isOnline: value.data.first.isLive);
+              },
+            ),
             child: Text('Search loserfruit Channel'),
           ),
           ElevatedButton(
