@@ -1,3 +1,8 @@
+## [0.2.0] - 23/04/2021
+
+* Added methods `getBitsLeaderboard`, `getCheermotes`, `getExtensionTransaction`
+* **Breaking Changes:** `startCommercial`, `getUsers`, `getUsersFollows`, `getGames`, `getChannelInformations` now returns an object of type `TwitchResponse`
+
 ## [0.1.1] - 26/03/2021.
 
 * Added methods `searchCategories`, `getBroadcasterSubscriptions`
