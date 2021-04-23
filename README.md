@@ -1,5 +1,7 @@
 # twitch_api
 
+[![Dart](https://github.com/TesteurManiak/twitch_api_flutter/actions/workflows/dart.yml/badge.svg)](https://github.com/TesteurManiak/twitch_api_flutter/actions/workflows/dart.yml)
+
 A wrapper in pure Dart to connect to Twitch.tv using OAuth implicit authentication.
 
 All the endpoints are implemented as defined in the [Twitch API Reference](https://dev.twitch.tv/docs/api/reference)
