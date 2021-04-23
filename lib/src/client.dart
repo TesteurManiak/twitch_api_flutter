@@ -642,7 +642,8 @@ class TwitchClient {
     if (id != null) queryParameters['id'] = id;
     if (after != null) queryParameters['after'] = after;
 
-    final data = await getCall(['extensions', 'transactions']);
+    final data = await getCall(['extensions', 'transactions'],
+        queryParameters: queryParameters);
     return TwitchResponse.extensionTransaction(data);
   }
 }
