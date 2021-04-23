@@ -152,7 +152,7 @@ class TwitchResponse<T> {
   /// Constructor for request containing [TwitchCheermote].
   factory TwitchResponse.cheermotes(Map<String, dynamic> json) =>
       TwitchResponse(
-        data: (json as Iterable)
+        data: (json['data'] as Iterable)
             .map<T>((e) => TwitchCheermote.fromJson(e) as T)
             .toList(),
       );

@@ -1,13 +1,13 @@
 class _CheermoteImageSet {
   final Map<String, String> animated;
-  final Map<String, String> static;
+  final Map<String, String> staticImgs;
 
-  _CheermoteImageSet({this.animated, this.static});
+  _CheermoteImageSet({this.animated, this.staticImgs});
 
   factory _CheermoteImageSet.fromJson(Map<String, dynamic> json) =>
       _CheermoteImageSet(
-        animated: json['animated'],
-        static: json['static'],
+        animated: Map<String, String>.from(json['animated']),
+        staticImgs: Map<String, String>.from(json['static']),
       );
 }
 
