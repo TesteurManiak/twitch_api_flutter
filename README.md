@@ -66,9 +66,9 @@ Now you are ready to use the methods implemented in [Supported Features](#suppor
 
 ### Bits
 
-* [ ] Get Bits Leaderboard
-* [ ] Get Cheermotes
-* [ ] Get Extension Transactions
+* [x] Get Bits Leaderboard
+* [x] Get Cheermotes
+* [x] Get Extension Transactions
 
 ### Channels
 

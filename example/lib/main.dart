@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:twitch_api/twitch_api.dart';
 
-const clientId = "YOUR CLIENT ID";
-const redirectUri = "http://localhost:8080/static.html";
+const clientId = "YOUR_CLIENT_ID";
+const redirectUri = 'http://localhost:8080/static.html';
 
 void main() {
   runApp(MyApp());
@@ -74,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
           TwitchApiScope.analyticsReadGames,
           TwitchApiScope.userReadEmail,
           TwitchApiScope.channelReadSubscriptions,
+          TwitchApiScope.bitsRead,
         ]).then((value) => setState(() {}));
       });
     }
@@ -127,12 +128,12 @@ class _MyHomePageState extends State<MyHomePage> {
           Text('Welcome user: ${_twitchClient.accessToken?.userId}'),
           Text('Your Twitch token is: ${_twitchClient.accessToken?.token}'),
           ElevatedButton(
-            child: Text('Start Commercial'),
             onPressed: () => _twitchClient
                 .startCommercial(_twitchClient.accessToken.userId, 60)
                 .catchError((error) {
               _displayDataAlert('startCommercial', error.toString());
             }),
+            child: Text('Start Commercial'),
           ),
           ElevatedButton(
             onPressed: () => _twitchClient
@@ -159,8 +160,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           ElevatedButton(
             onPressed: () => _twitchClient.getUsers(ids: ['44322889']).then(
-                (value) => _displayDataAlert(
-                    value.first.displayName, value.first.description)),
+                (value) => _displayDataAlert(value.data.first.displayName,
+                    value.data.first.description)),
             child: Text('Get User Dallas from id'),
           ),
           ElevatedButton(
@@ -174,7 +175,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () => _twitchClient.getGames(names: ['Fortnite']).then(
                 (value) => _displayDataAlert(
-                    value.first.name, value.first.getBoxArtUrl(),
+                    value.data.first.name, value.data.first.getBoxArtUrl(),
                     isImg: true)),
             child: Text('Get Fortnite'),
           ),
@@ -182,7 +183,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () => _twitchClient
                 .getChannelInformations('44445592')
                 .then((value) => _displayDataAlert(
-                    value.first.broadcasterName, value.first.title)),
+                    value.data.first.broadcasterName, value.data.first.title)),
             child: Text('Get Pokimane Channel Info'),
           ),
           ElevatedButton(
@@ -197,10 +198,13 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () =>
                 _twitchClient.searchChannels(query: 'loserfruit').then(
-                      (value) => _displayDataAlert(value.data.first.displayName,
-                          value.data.first.thumbnailUrl,
-                          isImg: true, isOnline: value.data.first.isLive),
-                    ),
+              (value) {
+                print(value.data.map((e) => e.broadcasterLogin).toList());
+                _displayDataAlert(
+                    value.data.first.displayName, value.data.first.thumbnailUrl,
+                    isImg: true, isOnline: value.data.first.isLive);
+              },
+            ),
             child: Text('Search loserfruit Channel'),
           ),
           ElevatedButton(
@@ -217,6 +221,22 @@ class _MyHomePageState extends State<MyHomePage> {
                       value.data.first.userName, value.data.first.tier),
                 ),
             child: Text('Get Broadcaster Subscriptions'),
+          ),
+          ElevatedButton(
+            onPressed: () => _twitchClient.getBitsLeaderboard().then(
+                  (value) => _displayDataAlert(value.data.first.userName,
+                      value.data.first.score.toString()),
+                ),
+            child: Text('Get Bits Leaderboard'),
+          ),
+          ElevatedButton(
+            onPressed: () => _twitchClient.getCheermotes().then(
+                  (value) => _displayDataAlert(
+                    value.data.first.prefix,
+                    value.data.first.tiers.map((e) => e.id).toList().toString(),
+                  ),
+                ),
+            child: Text('Get Cheermotes'),
           ),
         ],
       ),
