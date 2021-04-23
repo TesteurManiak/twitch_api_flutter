@@ -53,6 +53,25 @@ void main() {
           TwitchResponse<TwitchExtensionTransaction>.extensionTransaction(json);
 
       expect(obj.data.length, 2);
+
+      final extensionTransaction = obj.data.first;
+      expect(extensionTransaction.id, '74c52265-e214-48a6-91b9-23b6014e8041');
+      expect(extensionTransaction.timestamp.year, 2019);
+      expect(extensionTransaction.timestamp.month, 1);
+      expect(extensionTransaction.timestamp.day, 28);
+      expect(extensionTransaction.broadcasterId, '439964613');
+      expect(extensionTransaction.broadcasterLogin, 'chikuseuma');
+      expect(extensionTransaction.broadcasterName, 'chikuseuma');
+      expect(extensionTransaction.userId, '424596340');
+      expect(extensionTransaction.userLogin, 'quotrok');
+      expect(extensionTransaction.userName, 'quotrok');
+      expect(extensionTransaction.productType,
+          TwitchExtensionTransactionProductType.bitsInExtension);
+      expect(extensionTransaction.productData.sku, 'testSku100');
+      expect(extensionTransaction.productData.cost.amount, 100);
+      expect(extensionTransaction.productData.cost.type, 'bits');
+      expect(extensionTransaction.productData.displayName, 'Test Sku');
+      expect(extensionTransaction.productData.inDevelopment, false);
     });
   });
 }

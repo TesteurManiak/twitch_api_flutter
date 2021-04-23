@@ -632,5 +632,17 @@ class TwitchClient {
     String id,
     String after,
     int first = 20,
-  }) async {}
+  }) async {
+    assert(first > 0 && first < 101);
+
+    var queryParameters = <String, dynamic>{
+      'extension_id': extensionId,
+      'first': first.toString(),
+    };
+    if (id != null) queryParameters['id'] = id;
+    if (after != null) queryParameters['after'] = after;
+
+    final data = await getCall(['extensions', 'transactions']);
+    return TwitchResponse.extensionTransaction(data);
+  }
 }
