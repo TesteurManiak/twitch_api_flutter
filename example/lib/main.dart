@@ -4,7 +4,7 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:twitch_api/twitch_api.dart';
 
 const clientId = "YOUR_CLIENT_ID";
-const redirectUri = "http://localhost:8080/static.html";
+const redirectUri = 'http://localhost:8080/static.html';
 
 void main() {
   runApp(MyApp());
@@ -128,12 +128,12 @@ class _MyHomePageState extends State<MyHomePage> {
           Text('Welcome user: ${_twitchClient.accessToken?.userId}'),
           Text('Your Twitch token is: ${_twitchClient.accessToken?.token}'),
           ElevatedButton(
-            child: Text('Start Commercial'),
             onPressed: () => _twitchClient
                 .startCommercial(_twitchClient.accessToken.userId, 60)
                 .catchError((error) {
               _displayDataAlert('startCommercial', error.toString());
             }),
+            child: Text('Start Commercial'),
           ),
           ElevatedButton(
             onPressed: () => _twitchClient
@@ -228,6 +228,15 @@ class _MyHomePageState extends State<MyHomePage> {
                       value.data.first.score.toString()),
                 ),
             child: Text('Get Bits Leaderboard'),
+          ),
+          ElevatedButton(
+            onPressed: () => _twitchClient.getCheermotes().then(
+                  (value) => _displayDataAlert(
+                    value.data.first.prefix,
+                    value.data.first.tiers.map((e) => e.id).toList().toString(),
+                  ),
+                ),
+            child: Text('Get Cheermotes'),
           ),
         ],
       ),
