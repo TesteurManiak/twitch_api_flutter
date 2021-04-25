@@ -1,6 +1,7 @@
 # twitch_api
 
 [![Dart](https://github.com/TesteurManiak/twitch_api_flutter/actions/workflows/dart.yml/badge.svg)](https://github.com/TesteurManiak/twitch_api_flutter/actions/workflows/dart.yml)
+[![Pub](https://img.shields.io/pub/v/twitch_api?color=blue&logo=dart)](https://pub.dev/packages/twitch_api)
 
 A wrapper in pure Dart to connect to Twitch.tv using OAuth implicit authentication.
 
