@@ -1,10 +1,10 @@
 import 'package:twitch_api/twitch_api.dart';
 
 class TwitchGameAnalytic {
-  final TwitchDateRange dateRange;
-  final String gameId;
-  final String type;
-  final String url;
+  final TwitchDateRange? dateRange;
+  final String? gameId;
+  final String? type;
+  final String? url;
 
   TwitchGameAnalytic({
     this.gameId,

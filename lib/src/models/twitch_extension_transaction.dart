@@ -4,10 +4,10 @@ enum TwitchExtensionTransactionProductType { bitsInExtension }
 
 class _Cost {
   /// Number of Bits required to acquire the product.
-  final int amount;
+  final int? amount;
 
   /// Always the string “Bits”.
-  final String type;
+  final String? type;
 
   _Cost({this.amount, this.type});
 
@@ -19,16 +19,16 @@ class _Cost {
 
 class _ProductData {
   /// Unique identifier for the product across the extension.
-  final String sku;
+  final String? sku;
 
   /// Object representing the cost to acquire the product.
-  final _Cost cost;
+  final _Cost? cost;
 
   /// Display Name of the product.
-  final String displayName;
+  final String? displayName;
 
   /// Flag used to indicate if the product is in development.
-  final bool inDevelopment;
+  final bool? inDevelopment;
 
   _ProductData({this.sku, this.cost, this.displayName, this.inDevelopment});
 
@@ -42,46 +42,46 @@ class _ProductData {
 
 class TwitchExtensionTransaction {
   /// Unique identifier of the Bits in Extensions Transaction.
-  final String id;
+  final String? id;
 
   /// UTC timestamp when this transaction occurred.
-  final DateTime timestamp;
+  final DateTime? timestamp;
 
   /// Twitch User ID of the channel the transaction occurred on.
-  final String broadcasterId;
+  final String? broadcasterId;
 
   /// Login name of the broadcaster.
-  final String broadcasterLogin;
+  final String? broadcasterLogin;
 
   /// Twitch Display Name of the broadcaster.
-  final String broadcasterName;
+  final String? broadcasterName;
 
   /// Twitch User ID of the user who generated the transaction.
-  final String userId;
+  final String? userId;
 
   /// Login name of the user who generated the transaction.
-  final String userLogin;
+  final String? userLogin;
 
   /// Twitch Display Name of the user who generated the transaction.
-  final String userName;
+  final String? userName;
 
   /// Enum of the product type. Currently only
   /// `TwitchExtensionTransactionProductType.bitsInExtension`.
-  final TwitchExtensionTransactionProductType productType;
+  final TwitchExtensionTransactionProductType? productType;
 
   /// Object representing the product acquired, as it looked at the time of the
   /// transaction.
-  final _ProductData productData;
+  final _ProductData? productData;
 
   /// Set this field to twitch.ext + your extension ID.
-  final String domain;
+  final String? domain;
 
   /// Flag that denotes whether or not the data was sent over the extension
   /// pubsub to all instances of the extension.
-  final bool broadcast;
+  final bool? broadcast;
 
   /// Always empty since only unexpired products can be purchased.
-  final String expiration;
+  final String? expiration;
 
   TwitchExtensionTransaction({
     this.id,

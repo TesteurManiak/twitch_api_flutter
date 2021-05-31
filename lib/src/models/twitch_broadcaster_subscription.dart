@@ -1,43 +1,43 @@
 class TwitchBroadcasterSubscription {
   /// User ID of the broadcaster.
-  final String broadcasterId;
+  final String? broadcasterId;
 
   /// Login of the broadcaster.
-  final String broadcasterLogin;
+  final String? broadcasterLogin;
 
   /// Display name of the broadcaster.
-  final String broadcasterName;
+  final String? broadcasterName;
 
   /// If the subscription was gifted, this is the user ID of the gifter. Empty
   /// string otherwise.
-  final String gifterId;
+  final String? gifterId;
 
   /// If the subscription was gifted, this is the login of the gifter. Empty
   /// string otherwise.
-  final String gifterLogin;
+  final String? gifterLogin;
 
   /// If the subscription was gifted, this is the display name of the gifter.
   /// Empty string otherwise.
-  final String gifterName;
+  final String? gifterName;
 
   /// `true` if the subscription is a gift subscription.
-  final bool isGift;
+  final bool? isGift;
 
   /// Name of the subscription.
-  final String planName;
+  final String? planName;
 
   /// Type of subscription (Tier 1, Tier 2, Tier 3). 1000 = Tier 1, 2000 = Tier
   /// 2, 3000 = Tier 3 subscriptions.
-  final String tier;
+  final String? tier;
 
   /// ID of the subscribed user.
-  final String userId;
+  final String? userId;
 
   /// Display name of the subscribed user.
-  final String userName;
+  final String? userName;
 
   /// Login of the subscribed user.
-  final String userLogin;
+  final String? userLogin;
 
   TwitchBroadcasterSubscription({
     this.broadcasterId,

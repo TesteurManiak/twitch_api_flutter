@@ -17,5 +17,5 @@ class TwitchApiScopes {
     TwitchApiScope.userReadEmail: 'user:read:email',
   };
 
-  static String getScopeString(TwitchApiScope scope) => _scopes[scope];
+  static String? getScopeString(TwitchApiScope scope) => _scopes[scope];
 }

@@ -2,15 +2,15 @@ const int _defaultImgHeight = 380;
 const int _defaultImgWidth = 285;
 
 class TwitchGame {
-  final String _boxArtUrl;
+  final String? _boxArtUrl;
 
   /// Game ID.
-  final String id;
+  final String? id;
 
   /// Game name.
-  final String name;
+  final String? name;
 
-  TwitchGame({String boxArtUrl, this.id, this.name}) : _boxArtUrl = boxArtUrl;
+  TwitchGame({String? boxArtUrl, this.id, this.name}) : _boxArtUrl = boxArtUrl;
 
   /// Template URL for the game’s box art.
   ///
@@ -19,7 +19,7 @@ class TwitchGame {
     int height = _defaultImgHeight,
     int width = _defaultImgWidth,
   }) =>
-      _boxArtUrl
+      _boxArtUrl!
           .replaceFirst('{width}', '$width')
           .replaceFirst('{height}', '$height');
 

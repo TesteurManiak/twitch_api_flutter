@@ -1,15 +1,15 @@
 class TwitchUser {
-  final String broadcasterType;
-  final String description;
-  final String displayName;
-  final String email;
-  final String id;
-  final String login;
-  final String offlineImageUrl;
-  final String profileImageUrl;
-  final String type;
-  final int viewCount;
-  final String createdAt;
+  final String? broadcasterType;
+  final String? description;
+  final String? displayName;
+  final String? email;
+  final String? id;
+  final String? login;
+  final String? offlineImageUrl;
+  final String? profileImageUrl;
+  final String? type;
+  final int? viewCount;
+  final String? createdAt;
 
   TwitchUser({
     this.broadcasterType,

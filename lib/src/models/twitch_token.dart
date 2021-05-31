@@ -1,12 +1,12 @@
 class TwitchToken {
-  final String token;
-  final String scope;
-  final String tokenType;
-  final String clientId;
-  final String login;
-  final List<String> scopes;
-  final String userId;
-  final int expiresIn;
+  final String? token;
+  final String? scope;
+  final String? tokenType;
+  final String? clientId;
+  final String? login;
+  final List<String>? scopes;
+  final String? userId;
+  final int? expiresIn;
 
   static const _accessTokenKey = 'access_token=';
   static const _scopeKey = 'scope=';
@@ -28,7 +28,7 @@ class TwitchToken {
     this.expiresIn,
   });
 
-  bool get isValid => expiresIn != null && expiresIn > 0;
+  bool get isValid => expiresIn != null && expiresIn! > 0;
 
   factory TwitchToken.fromUrl(String url) {
     final content = url.split('#').last;
@@ -57,14 +57,14 @@ class TwitchToken {
       );
 
   TwitchToken copyWith({
-    String token,
-    String scope,
-    String tokenType,
-    String clientId,
-    String login,
-    List<String> scopes,
-    String userId,
-    int expiresIn,
+    String? token,
+    String? scope,
+    String? tokenType,
+    String? clientId,
+    String? login,
+    List<String>? scopes,
+    String? userId,
+    int? expiresIn,
   }) =>
       TwitchToken(
         token: token ?? this.token,

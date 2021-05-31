@@ -1,10 +1,10 @@
 class TwitchChannelInfo {
-  final String broadcasterId;
-  final String broadcasterName;
-  final String gameName;
-  final String gameId;
-  final String broadcasterLanguage;
-  final String title;
+  final String? broadcasterId;
+  final String? broadcasterName;
+  final String? gameName;
+  final String? gameId;
+  final String? broadcasterLanguage;
+  final String? title;
 
   TwitchChannelInfo({
     this.broadcasterId,

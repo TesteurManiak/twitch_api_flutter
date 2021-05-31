@@ -1,18 +1,18 @@
 class TwitchBitsLeaderboard {
   /// ID of the user (viewer) in the leaderboard entry.
-  final String userId;
+  final String? userId;
 
   /// User login name.
-  final String userLogin;
+  final String? userLogin;
 
   /// Display name corresponding to `userId`.
-  final String userName;
+  final String? userName;
 
   /// Leaderboard rank of the user.
-  final int rank;
+  final int? rank;
 
   /// Leaderboard score (number of Bits) of the user.
-  final int score;
+  final int? score;
 
   TwitchBitsLeaderboard({
     this.userId,

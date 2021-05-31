@@ -4,48 +4,48 @@ enum TwitchStreamType { live, error }
 
 class TwitchStreamInfo {
   /// Stream ID.
-  final String id;
+  final String? id;
 
   /// ID of the user who is streaming.
-  final String userId;
+  final String? userId;
 
   /// Login of the user who is streaming.
-  final String userLogin;
+  final String? userLogin;
 
   /// Display name corresponding to `userId`.
-  final String userName;
+  final String? userName;
 
   /// ID of the game being played on the stream.
-  final String gameId;
+  final String? gameId;
 
   /// Name of the game being played.
-  final String gameName;
+  final String? gameName;
 
   /// Stream type: `TwitchStreamType.live` or `TwitchStreamType.error`
   /// (in case of error).
-  final TwitchStreamType type;
+  final TwitchStreamType? type;
 
   /// Stream title.
-  final String title;
+  final String? title;
 
   /// Number of viewers watching the stream at the time of the query.
-  final int viewerCount;
+  final int? viewerCount;
 
   /// UTC timestamp.
-  final DateTime startedAt;
+  final DateTime? startedAt;
 
   /// Stream language. A language value is either the [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
   /// two-letter code for a [supported stream language](https://help.twitch.tv/s/article/languages-on-twitch?language=en_US#streamlang)
   /// or “other”.
-  final String language;
+  final String? language;
 
   /// Thumbnail URL of the stream. All image URLs have variable width and
   /// height. You can replace `{width}` and `{height}` with any values to get
   /// that size image
-  final String thumbnailUrl;
+  final String? thumbnailUrl;
 
   /// Shows tag IDs that apply to the stream.
-  final List<String> tagIds;
+  final List<String>? tagIds;
 
   TwitchStreamInfo({
     this.id,

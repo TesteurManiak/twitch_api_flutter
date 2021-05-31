@@ -1,6 +1,6 @@
 class _CheermoteImageSet {
-  final Map<String, String> animated;
-  final Map<String, String> staticImgs;
+  final Map<String, String>? animated;
+  final Map<String, String>? staticImgs;
 
   _CheermoteImageSet({this.animated, this.staticImgs});
 
@@ -12,8 +12,8 @@ class _CheermoteImageSet {
 }
 
 class _CheermoteImage {
-  final _CheermoteImageSet light;
-  final _CheermoteImageSet dark;
+  final _CheermoteImageSet? light;
+  final _CheermoteImageSet? dark;
 
   _CheermoteImage({this.light, this.dark});
 
@@ -26,25 +26,25 @@ class _CheermoteImage {
 
 class TwitchCheermoteTier {
   /// Minimum number of bits needed to be used to hit the given tier of emote.
-  final int minBits;
+  final int? minBits;
 
   /// ID of the emote tier. Possible tiers are: 1,100,500,1000,5000, 10k, or
   /// 100k.
-  final String id;
+  final String? id;
 
   /// Hex code for the color associated with the bits of that tier. Grey,
   /// Purple, Teal, Blue, or Red color to match the base bit type.
-  final String color;
+  final String? color;
 
   /// Structure containing both animated and static image sets, sorted by light
   /// and dark.
-  final _CheermoteImage images;
+  final _CheermoteImage? images;
 
   /// Indicates whether or not emote information is accessible to users.
-  final bool canCheer;
+  final bool? canCheer;
 
   /// Indicates whether or not we hide the emote from the bits card.
-  final bool showInBitsCard;
+  final bool? showInBitsCard;
 
   TwitchCheermoteTier({
     this.minBits,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:twitch_api/twitch_api.dart';
 
-const clientId = "YOUR_CLIENT_ID";
+const clientId = 'n9dgfacl10ivdy8vlr493qjavykdkn';
 const redirectUri = 'http://localhost:8080/static.html';
 
 void main() {

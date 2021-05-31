@@ -18,17 +18,17 @@ import 'package:twitch_api/twitch_api.dart';
 /// Generic class for Twitch's API response using pagination.
 class TwitchResponse<T> {
   /// List of data from the response parsed into an object.
-  final List<T> data;
+  final List<T>? data;
 
   /// A cursor value, to be used in a subsequent request to specify the starting
   /// point of the next set of results.
-  final Map<String, dynamic> pagination;
+  final Map<String, dynamic>? pagination;
 
   /// Total number of results returned.
-  final int total;
+  final int? total;
 
   /// Date range of the returned data.
-  final TwitchDateRange dateRange;
+  final TwitchDateRange? dateRange;
 
   TwitchResponse({
     this.data,

@@ -1,17 +1,17 @@
 import 'package:twitch_api/src/models/twitch_date_range.dart';
 
 class TwitchExtensionAnalytic {
-  final TwitchDateRange dateRange;
+  final TwitchDateRange? dateRange;
 
   /// ID of the extension whose analytics data is being provided.
-  final String extensionId;
+  final String? extensionId;
 
   /// Type of report.
-  final String type;
+  final String? type;
 
   /// URL to the downloadable CSV file containing analytics data. Valid for 5
   /// minutes.
-  final String url;
+  final String? url;
 
   TwitchExtensionAnalytic({
     this.dateRange,

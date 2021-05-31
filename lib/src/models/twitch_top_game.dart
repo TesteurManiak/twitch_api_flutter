@@ -1,7 +1,7 @@
 class TwitchTopGame {
-  final String boxArtUrl;
-  final String id;
-  final String name;
+  final String? boxArtUrl;
+  final String? id;
+  final String? name;
 
   TwitchTopGame({this.boxArtUrl, this.id, this.name});
 
