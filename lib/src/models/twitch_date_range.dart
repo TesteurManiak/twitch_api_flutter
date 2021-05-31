@@ -7,8 +7,11 @@ class TwitchDateRange {
   /// Report end date/time.
   final String endedAt;
 
-  TwitchDateRange({this.endedAt, this.startedAt});
+  TwitchDateRange({required this.endedAt, required this.startedAt});
 
   factory TwitchDateRange.fromJson(Map<String, dynamic> json) =>
-      TwitchDateRange(endedAt: json['ended_at'], startedAt: json['started_at']);
+      TwitchDateRange(
+        endedAt: json['ended_at'] as String,
+        startedAt: json['started_at'] as String,
+      );
 }

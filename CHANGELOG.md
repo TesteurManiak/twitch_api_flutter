@@ -1,3 +1,10 @@
+## [0.3.0] - 31/05/2021
+
+* **Breaking change:** migration to null-safety
+* Added boolean field `isMature` to `TwitchStreamInfo`
+* Added code linting
+* Added unit test for `TwitchStreamInfo` parsing
+
 ## [0.2.0] - 23/04/2021
 
 * Added methods `getBitsLeaderboard`, `getCheermotes`, `getExtensionTransaction`

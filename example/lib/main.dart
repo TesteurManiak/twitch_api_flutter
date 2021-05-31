@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:twitch_api/twitch_api.dart';
 
-const clientId = "YOUR_CLIENT_ID";
+const clientId = 'n9dgfacl10ivdy8vlr493qjavykdkn';
 const redirectUri = 'http://localhost:8080/static.html';
 
 void main() {
@@ -189,9 +189,9 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () =>
                 _twitchClient.getStreams(userLogins: ['auronplay']).then(
-              (value) => _displayDataAlert(value.data.first.userLogin,
-                  'Viewers: ${value.data.first.viewerCount}',
-                  isOnline: value.data.first.type == TwitchStreamType.live),
+              (value) => _displayDataAlert(value.data?.first?.userLogin,
+                  'Viewers: ${value.data?.first?.viewerCount}',
+                  isOnline: value.data?.first?.type == TwitchStreamType.live),
             ),
             child: Text('Get auronplay Stream Info'),
           ),
@@ -199,7 +199,6 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () =>
                 _twitchClient.searchChannels(query: 'loserfruit').then(
               (value) {
-                print(value.data.map((e) => e.broadcasterLogin).toList());
                 _displayDataAlert(
                     value.data.first.displayName, value.data.first.thumbnailUrl,
                     isImg: true, isOnline: value.data.first.isLive);

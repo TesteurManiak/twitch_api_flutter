@@ -14,17 +14,18 @@ class TwitchExtensionAnalytic {
   final String url;
 
   TwitchExtensionAnalytic({
-    this.dateRange,
-    this.extensionId,
-    this.type,
-    this.url,
+    required this.dateRange,
+    required this.extensionId,
+    required this.type,
+    required this.url,
   });
 
   factory TwitchExtensionAnalytic.fromJson(Map<String, dynamic> json) =>
       TwitchExtensionAnalytic(
-        dateRange: TwitchDateRange.fromJson(json['date_range']),
-        extensionId: json['extension_id'],
-        type: json['type'],
-        url: json['URL'],
+        dateRange: TwitchDateRange.fromJson(
+            json['date_range'] as Map<String, dynamic>),
+        extensionId: json['extension_id'] as String,
+        type: json['type'] as String,
+        url: json['URL'] as String,
       );
 }

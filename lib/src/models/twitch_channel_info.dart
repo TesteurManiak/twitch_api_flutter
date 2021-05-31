@@ -7,21 +7,21 @@ class TwitchChannelInfo {
   final String title;
 
   TwitchChannelInfo({
-    this.broadcasterId,
-    this.broadcasterName,
-    this.gameName,
-    this.gameId,
-    this.broadcasterLanguage,
-    this.title,
+    required this.broadcasterId,
+    required this.broadcasterName,
+    required this.gameName,
+    required this.gameId,
+    required this.broadcasterLanguage,
+    required this.title,
   });
 
   factory TwitchChannelInfo.fromJson(Map<String, dynamic> json) =>
       TwitchChannelInfo(
-        broadcasterId: json['broadcaster_id'],
-        broadcasterName: json['broadcaster_name'],
-        gameName: json['game_name'],
-        gameId: json['game_id'],
-        broadcasterLanguage: json['broadcaster_language'],
-        title: json['title'],
+        broadcasterId: json['broadcaster_id'] as String,
+        broadcasterName: json['broadcaster_name'] as String,
+        gameName: json['game_name'] as String,
+        gameId: json['game_id'] as String,
+        broadcasterLanguage: json['broadcaster_language'] as String,
+        title: json['title'] as String,
       );
 }

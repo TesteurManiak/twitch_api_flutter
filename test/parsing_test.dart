@@ -13,11 +13,12 @@ void main() {
   group('Parsing test', () {
     test('Get Cheermotes', () {
       final json = jsonDecode(readFileString('get_cheermotes.json'));
-      final obj = TwitchResponse<TwitchCheermote>.cheermotes(json);
+      final obj = TwitchResponse<TwitchCheermote>.cheermotes(
+          json as Map<String, dynamic>);
 
-      expect(obj.data.length, 1);
+      expect(obj.data!.length, 1);
 
-      final cheermote = obj.data.first;
+      final cheermote = obj.data!.first;
       expect(cheermote.prefix, 'Cheer');
       expect(cheermote.type, TwitchCheermoteType.globalFirstParty);
       expect(cheermote.lastUpdated.year, 2018);
@@ -50,11 +51,12 @@ void main() {
       final json =
           jsonDecode(readFileString('get_extension_transactions.json'));
       final obj =
-          TwitchResponse<TwitchExtensionTransaction>.extensionTransaction(json);
+          TwitchResponse<TwitchExtensionTransaction>.extensionTransaction(
+              json as Map<String, dynamic>);
 
-      expect(obj.data.length, 2);
+      expect(obj.data!.length, 2);
 
-      final extensionTransaction = obj.data.first;
+      final extensionTransaction = obj.data!.first;
       expect(extensionTransaction.id, '74c52265-e214-48a6-91b9-23b6014e8041');
       expect(extensionTransaction.timestamp.year, 2019);
       expect(extensionTransaction.timestamp.month, 1);
@@ -72,6 +74,33 @@ void main() {
       expect(extensionTransaction.productData.cost.type, 'bits');
       expect(extensionTransaction.productData.displayName, 'Test Sku');
       expect(extensionTransaction.productData.inDevelopment, false);
+    });
+
+    group('Get Streams', () {
+      test('1', () {
+        final json = jsonDecode(readFileString('get_streams_1.json'));
+        final obj = TwitchResponse<TwitchStreamInfo>.streamsInfo(
+            json as Map<String, dynamic>);
+
+        expect(obj.data!.length, 1);
+
+        final twitchStreamInfo = obj.data!.first;
+        expect(twitchStreamInfo.id, '41375541868');
+        expect(twitchStreamInfo.userId, '459331509');
+        expect(twitchStreamInfo.userLogin, 'auronplay');
+        expect(twitchStreamInfo.userName, 'auronplay');
+        expect(twitchStreamInfo.gameId, '494131');
+        expect(twitchStreamInfo.gameName, 'Little Nightmares');
+        expect(twitchStreamInfo.type, TwitchStreamType.live);
+        expect(twitchStreamInfo.title,
+            'hablamos y le damos a Little Nightmares 1');
+        expect(twitchStreamInfo.viewerCount, 78365);
+        expect(twitchStreamInfo.language, 'es');
+        expect(twitchStreamInfo.thumbnailUrl,
+            'https://static-cdn.jtvnw.net/previews-ttv/live_user_auronplay-{width}x{height}.jpg');
+        expect(twitchStreamInfo.tagIds.length, 1);
+        expect(twitchStreamInfo.isMature, false);
+      });
     });
   });
 }

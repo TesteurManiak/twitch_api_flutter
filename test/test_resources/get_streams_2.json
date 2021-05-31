@@ -1,0 +1,25 @@
+{
+    "data": [
+      {
+        "id": "40944942733",
+        "user_id": "67931625",
+        "user_login": "amar",
+        "user_name": "Amar",
+        "game_id": "33214",
+        "game_name": "Fortnite",
+        "type": "live",
+        "title": "27h Stream Pringles Deathrun Map + 12k MK Turnier | !sub !JustLegends !Pc !yfood",
+        "viewer_count": 14944,
+        "started_at": "2021-03-09T16:59:39Z",
+        "language": "de",
+        "thumbnail_url": "https://static-cdn.jtvnw.net/previews-ttv/live_user_amar-{width}x{height}.jpg",
+        "tag_ids": [
+          "9166ad14-41f1-4b04-a3b8-c8eb838c6be6"
+        ],
+        "is_mature": false
+      }
+    ],
+    "pagination": {
+      "cursor": "eyJiIjp7IkN1cnNvciI6ImV5SnpJam94TkRrME5DNDFOekV5TXpBMU1UWTVNRElzSW1RaU9tWmhiSE5sTENKMElqcDBjblZsZlE9PSJ9LCJhIjp7IkN1cnNvciI6ImV5SnpJam81TlRFMkxqVTNOREF6TmpNNU9UTXpNaXdpWkNJNlptRnNjMlVzSW5RaU9uUnlkV1Y5In19"
+    }
+  }

@@ -28,7 +28,7 @@ class TwitchSearchChannel {
   final bool isLive;
 
   /// UTC timestamp. (live only)
-  final DateTime startedAt;
+  final DateTime? startedAt;
 
   /// Shows tag IDs that apply to the stream (live only).See
   /// https://www.twitch.tv/directory/all/tags for tag types Note: Category Tags
@@ -36,31 +36,31 @@ class TwitchSearchChannel {
   final List<String> tagIds;
 
   TwitchSearchChannel({
-    this.gameId,
-    this.id,
-    this.broadcasterLogin,
-    this.displayName,
-    this.broadcasterLanguage,
-    this.title,
-    this.thumbnailUrl,
-    this.isLive,
+    required this.gameId,
+    required this.id,
+    required this.broadcasterLogin,
+    required this.displayName,
+    required this.broadcasterLanguage,
+    required this.title,
+    required this.thumbnailUrl,
+    required this.isLive,
     this.startedAt,
-    this.tagIds,
+    required this.tagIds,
   });
 
   factory TwitchSearchChannel.fromJson(Map<String, dynamic> json) =>
       TwitchSearchChannel(
-        gameId: json['game_id'],
-        id: json['id'],
-        broadcasterLogin: json['broadcaster_login'],
-        displayName: json['display_name'],
-        broadcasterLanguage: json['broadcaster_language'],
-        title: json['title'],
-        thumbnailUrl: json['thumbnail_url'],
-        isLive: json['is_live'],
+        gameId: json['game_id'] as String,
+        id: json['id'] as String,
+        broadcasterLogin: json['broadcaster_login'] as String,
+        displayName: json['display_name'] as String,
+        broadcasterLanguage: json['broadcaster_language'] as String,
+        title: json['title'] as String,
+        thumbnailUrl: json['thumbnail_url'] as String,
+        isLive: json['is_live'] as bool,
         startedAt: (json['is_live'] as bool)
-            ? DateTime.parse(json['started_at'])
+            ? DateTime.parse(json['started_at'] as String)
             : null,
-        tagIds: List<String>.from(json['tag_ids']),
+        tagIds: List<String>.from(json['tag_ids'] as Iterable),
       );
 }

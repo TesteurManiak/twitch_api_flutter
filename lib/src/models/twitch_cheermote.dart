@@ -25,23 +25,24 @@ class TwitchCheermote {
   final bool isCharitable;
 
   TwitchCheermote({
-    this.prefix,
-    this.tiers,
-    this.type,
-    this.order,
-    this.lastUpdated,
-    this.isCharitable,
+    required this.prefix,
+    required this.tiers,
+    required this.type,
+    required this.order,
+    required this.lastUpdated,
+    required this.isCharitable,
   });
 
   factory TwitchCheermote.fromJson(Map<String, dynamic> json) =>
       TwitchCheermote(
-        prefix: json['prefix'],
+        prefix: json['prefix'] as String,
         tiers: (json['tiers'] as Iterable)
-            .map<TwitchCheermoteTier>((e) => TwitchCheermoteTier.fromJson(e))
+            .map<TwitchCheermoteTier>(
+                (e) => TwitchCheermoteTier.fromJson(e as Map<String, dynamic>))
             .toList(),
         type: json['type'].toString().toCheermoteType(),
-        order: json['order'],
-        lastUpdated: DateTime.parse(json['last_updated']),
-        isCharitable: json['is_charitable'],
+        order: json['order'] as int,
+        lastUpdated: DateTime.parse(json['last_updated'] as String),
+        isCharitable: json['is_charitable'] as bool,
       );
 }

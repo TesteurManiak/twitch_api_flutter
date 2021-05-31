@@ -2,11 +2,11 @@ class TwitchToken {
   final String token;
   final String scope;
   final String tokenType;
-  final String clientId;
-  final String login;
-  final List<String> scopes;
-  final String userId;
-  final int expiresIn;
+  final String? clientId;
+  final String? login;
+  final List<String>? scopes;
+  final String? userId;
+  final int? expiresIn;
 
   static const _accessTokenKey = 'access_token=';
   static const _scopeKey = 'scope=';
@@ -18,9 +18,9 @@ class TwitchToken {
   static const expiresInEntry = 'expires_in';
 
   TwitchToken({
-    this.token,
-    this.scope,
-    this.tokenType,
+    required this.token,
+    required this.scope,
+    required this.tokenType,
     this.clientId,
     this.login,
     this.scopes,
@@ -28,7 +28,7 @@ class TwitchToken {
     this.expiresIn,
   });
 
-  bool get isValid => expiresIn != null && expiresIn > 0;
+  bool get isValid => expiresIn != null && expiresIn! > 0;
 
   factory TwitchToken.fromUrl(String url) {
     final content = url.split('#').last;
@@ -47,24 +47,26 @@ class TwitchToken {
   }
 
   factory TwitchToken.fromValidation(
-          TwitchToken incompleteToken, Map<String, dynamic> json) =>
+    TwitchToken incompleteToken,
+    Map<String, dynamic> json,
+  ) =>
       incompleteToken.copyWith(
-        clientId: json[clientIdEntry],
-        login: json[loginEntry],
-        scopes: List<String>.from(json[scopesEntry]),
-        userId: json[userIdEntry],
-        expiresIn: json[expiresInEntry],
+        clientId: json[clientIdEntry] as String,
+        login: json[loginEntry] as String,
+        scopes: List<String>.from(json[scopesEntry] as Iterable),
+        userId: json[userIdEntry] as String,
+        expiresIn: json[expiresInEntry] as int,
       );
 
   TwitchToken copyWith({
-    String token,
-    String scope,
-    String tokenType,
-    String clientId,
-    String login,
-    List<String> scopes,
-    String userId,
-    int expiresIn,
+    String? token,
+    String? scope,
+    String? tokenType,
+    String? clientId,
+    String? login,
+    List<String>? scopes,
+    String? userId,
+    int? expiresIn,
   }) =>
       TwitchToken(
         token: token ?? this.token,

@@ -10,7 +10,11 @@ class TwitchGame {
   /// Game name.
   final String name;
 
-  TwitchGame({String boxArtUrl, this.id, this.name}) : _boxArtUrl = boxArtUrl;
+  TwitchGame({
+    required String boxArtUrl,
+    required this.id,
+    required this.name,
+  }) : _boxArtUrl = boxArtUrl;
 
   /// Template URL for the game’s box art.
   ///
@@ -25,7 +29,7 @@ class TwitchGame {
 
   factory TwitchGame.fromJson(Map<String, dynamic> json) => TwitchGame(
         boxArtUrl: json['box_art_url'].toString(),
-        id: json['id'],
-        name: json['name'],
+        id: json['id'] as String,
+        name: json['name'] as String,
       );
 }

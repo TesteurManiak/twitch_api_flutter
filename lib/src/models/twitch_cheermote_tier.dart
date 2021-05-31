@@ -2,12 +2,12 @@ class _CheermoteImageSet {
   final Map<String, String> animated;
   final Map<String, String> staticImgs;
 
-  _CheermoteImageSet({this.animated, this.staticImgs});
+  _CheermoteImageSet({required this.animated, required this.staticImgs});
 
   factory _CheermoteImageSet.fromJson(Map<String, dynamic> json) =>
       _CheermoteImageSet(
-        animated: Map<String, String>.from(json['animated']),
-        staticImgs: Map<String, String>.from(json['static']),
+        animated: Map<String, String>.from(json['animated'] as Map),
+        staticImgs: Map<String, String>.from(json['static'] as Map),
       );
 }
 
@@ -15,12 +15,13 @@ class _CheermoteImage {
   final _CheermoteImageSet light;
   final _CheermoteImageSet dark;
 
-  _CheermoteImage({this.light, this.dark});
+  _CheermoteImage({required this.light, required this.dark});
 
   factory _CheermoteImage.fromJson(Map<String, dynamic> json) =>
       _CheermoteImage(
-        light: _CheermoteImageSet.fromJson(json['light']),
-        dark: _CheermoteImageSet.fromJson(json['dark']),
+        light:
+            _CheermoteImageSet.fromJson(json['light'] as Map<String, dynamic>),
+        dark: _CheermoteImageSet.fromJson(json['dark'] as Map<String, dynamic>),
       );
 }
 
@@ -47,21 +48,22 @@ class TwitchCheermoteTier {
   final bool showInBitsCard;
 
   TwitchCheermoteTier({
-    this.minBits,
-    this.id,
-    this.color,
-    this.images,
-    this.canCheer,
-    this.showInBitsCard,
+    required this.minBits,
+    required this.id,
+    required this.color,
+    required this.images,
+    required this.canCheer,
+    required this.showInBitsCard,
   });
 
   factory TwitchCheermoteTier.fromJson(Map<String, dynamic> json) =>
       TwitchCheermoteTier(
-        minBits: json['min_bits'],
-        id: json['id'],
-        color: json['color'],
-        images: _CheermoteImage.fromJson(json['images']),
-        canCheer: json['can_cheer'],
-        showInBitsCard: json['show_in_bits_card'],
+        minBits: json['min_bits'] as int,
+        id: json['id'] as String,
+        color: json['color'] as String,
+        images:
+            _CheermoteImage.fromJson(json['images'] as Map<String, dynamic>),
+        canCheer: json['can_cheer'] as bool,
+        showInBitsCard: json['show_in_bits_card'] as bool,
       );
 }
