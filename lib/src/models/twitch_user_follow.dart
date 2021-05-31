@@ -1,43 +1,43 @@
 class TwitchUserFollow {
   /// Date and time when the [fromId] user followed the [toId] user.
-  final String? followedAt;
+  final String followedAt;
 
   /// ID of the user following the [toId] user.
-  final String? fromId;
+  final String fromId;
 
   /// Login of the user following the [toId] user.
-  final String? fromLogin;
+  final String fromLogin;
 
   /// Display name corresponding to [fromId].
-  final String? fromName;
+  final String fromName;
 
   /// ID of the user being followed by the [fromId] user.
-  final String? toId;
+  final String toId;
 
   /// Login of the user being followed by the [fromId] user.
-  final String? toLogin;
+  final String toLogin;
 
   /// Display name corresponding to [toId].
-  final String? toName;
+  final String toName;
 
   TwitchUserFollow({
-    this.followedAt,
-    this.fromId,
-    this.fromLogin,
-    this.fromName,
-    this.toId,
-    this.toLogin,
-    this.toName,
+    required this.followedAt,
+    required this.fromId,
+    required this.fromLogin,
+    required this.fromName,
+    required this.toId,
+    required this.toLogin,
+    required this.toName,
   });
 
   factory TwitchUserFollow.fromJson(Map<String, dynamic> json) =>
       TwitchUserFollow(
-        followedAt: json['followed_at'],
-        fromId: json['from_id'],
-        fromLogin: json['from_login'],
-        fromName: json['from_name'],
-        toId: json['to_id'],
-        toLogin: json['to_login'],
-        toName: json['to_name'],
+        followedAt: json['followed_at'] as String,
+        fromId: json['from_id'] as String,
+        fromLogin: json['from_login'] as String,
+        fromName: json['from_name'] as String,
+        toId: json['to_id'] as String,
+        toLogin: json['to_login'] as String,
+        toName: json['to_name'] as String,
       );
 }

@@ -70,13 +70,13 @@ class TwitchClient {
         oauth2Url.replace(pathSegments: <String>[oauthPath, 'validate']),
         options: options,
       );
-      _accessToken = TwitchToken.fromValidation(_accessToken!, response.data);
+      _accessToken = TwitchToken.fromValidation(
+          _accessToken!, response.data as Map<String, dynamic>);
 
       if (_accessToken == null ||
-          _accessToken!.token == null ||
-          _accessToken!.token!.isEmpty ||
+          _accessToken!.token.isEmpty ||
           !_accessToken!.isValid) {
-        throw TwitchNotConnectedException(
+        throw const TwitchNotConnectedException(
             'You are not connected to your Twitch account.');
       }
       return _accessToken;
@@ -106,10 +106,10 @@ class TwitchClient {
         );
         return response.data;
       } else {
-        throw TwitchApiException('OAuth token is not valid');
+        throw const TwitchApiException('OAuth token is not valid');
       }
     } on DioError catch (dioError) {
-      throw dioError.response!.data['message'];
+      throw dioError.response!.data['message'] as String;
     } catch (e) {
       rethrow;
     }
@@ -139,10 +139,10 @@ class TwitchClient {
         );
         return response.data;
       } else {
-        throw TwitchApiException('OAuth token is not valid');
+        throw const TwitchApiException('OAuth token is not valid');
       }
     } on DioError catch (dioError) {
-      throw dioError.response!.data['message'];
+      throw dioError.response!.data['message'] as String;
     } catch (e) {
       rethrow;
     }
@@ -170,7 +170,7 @@ class TwitchClient {
     try {
       final data = await postCall(['channels', 'commercial'],
           {'broadcaster_id': broadcasterId, 'length': length.toString()});
-      return TwitchResponse.startCommercial(data);
+      return TwitchResponse.startCommercial(data as Map<String, dynamic>);
     } catch (e) {
       throw TwitchStartCommercialException(e.toString());
     }
@@ -231,7 +231,7 @@ class TwitchClient {
         (endedAt != null && startedAt != null));
     assert(first < 101 && first > 0);
 
-    var queryParameters = <String, dynamic>{'first': first.toString()};
+    final queryParameters = <String, dynamic>{'first': first.toString()};
     if (after != null) queryParameters['after'] = after;
     if (endedAt != null && startedAt != null) {
       queryParameters['ended_at'] = endedAt;
@@ -243,7 +243,8 @@ class TwitchClient {
     try {
       final data = await getCall(['analytics', 'extensions'],
           queryParameters: queryParameters);
-      return TwitchResponse<TwitchExtensionAnalytic>.extensionAnalytics(data);
+      return TwitchResponse<TwitchExtensionAnalytic>.extensionAnalytics(
+          data as Map<String, dynamic>);
     } catch (e) {
       throw TwitchGetExtensionAnalyticsException(e.toString());
     }
@@ -271,7 +272,7 @@ class TwitchClient {
         (endedAt != null && startedAt != null));
     assert(first < 101 && first > 0);
 
-    var queryParameters = <String, dynamic>{'first': first.toString()};
+    final queryParameters = <String, dynamic>{'first': first.toString()};
     if (after != null && gameId == null) queryParameters['after'] = after;
     if (endedAt != null && startedAt != null) {
       queryParameters['ended_at'] = endedAt;
@@ -282,7 +283,8 @@ class TwitchClient {
 
     final data =
         await getCall(['analytics', 'games'], queryParameters: queryParameters);
-    return TwitchResponse<TwitchGameAnalytic>.gameAnalytics(data);
+    return TwitchResponse<TwitchGameAnalytic>.gameAnalytics(
+        data as Map<String, dynamic>);
   }
 
   /// Gets a ranked list of Bits leaderboard information for an authorized
@@ -314,7 +316,7 @@ class TwitchClient {
   }) async {
     assert(count > 0 && count < 101);
 
-    var queryParameters = <String, dynamic>{
+    final queryParameters = <String, dynamic>{
       'count': count.toString(),
       'period': period.string,
     };
@@ -323,7 +325,7 @@ class TwitchClient {
 
     final data = await getCall(['bits', 'leaderboard'],
         queryParameters: queryParameters);
-    return TwitchResponse.bitsLeaderboard(data);
+    return TwitchResponse.bitsLeaderboard(data as Map<String, dynamic>);
   }
 
   /// Gets information about one or more specified Twitch users. Users are
@@ -346,12 +348,12 @@ class TwitchClient {
     assert(logins.length < 101);
     assert(ids.length + logins.length < 101);
 
-    var queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
     if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
     if (logins.isNotEmpty) queryParameters['login'] = logins.join(',');
 
     final data = await getCall(['users'], queryParameters: queryParameters);
-    return TwitchResponse.users(data);
+    return TwitchResponse.users(data as Map<String, dynamic>);
   }
 
   /// Gets information on follow relationships between two Twitch users. This
@@ -369,14 +371,14 @@ class TwitchClient {
     assert(first < 101 && first > 0);
     assert(fromId != null || toId != null);
 
-    var queryParameters = <String, dynamic>{'first': first.toString()};
+    final queryParameters = <String, dynamic>{'first': first.toString()};
     if (after != null) queryParameters['after'] = after;
     if (fromId != null) queryParameters['from_id'] = fromId;
     if (toId != null) queryParameters['to_id'] = toId;
 
     final data =
         await getCall(['users', 'follows'], queryParameters: queryParameters);
-    return TwitchResponse.usersFollows(data);
+    return TwitchResponse.usersFollows(data as Map<String, dynamic>);
   }
 
   /// Gets games sorted by number of current viewers on Twitch, most popular
@@ -386,12 +388,12 @@ class TwitchClient {
     assert(first < 101 && first > 0);
 
     final queryParameters = <String, dynamic>{'first': first.toString()};
-    if (after != null) queryParameters['after'];
-    if (before != null) queryParameters['before'];
+    if (after != null) queryParameters['after'] = after;
+    if (before != null) queryParameters['before'] = before;
 
     final data =
         await getCall(['games', 'top'], queryParameters: queryParameters);
-    return TwitchResponse<TwitchTopGame>.topGames(data);
+    return TwitchResponse<TwitchTopGame>.topGames(data as Map<String, dynamic>);
   }
 
   /// Gets game information by game ID or name.
@@ -415,7 +417,7 @@ class TwitchClient {
     if (names.isNotEmpty) queryParameters['name'] = names.join(',');
 
     final data = await getCall(['games'], queryParameters: queryParameters);
-    return TwitchResponse.games(data);
+    return TwitchResponse.games(data as Map<String, dynamic>);
   }
 
   /// Gets channel information for users.
@@ -425,7 +427,7 @@ class TwitchClient {
       String broadcasterId) async {
     final data = await getCall(['channels'],
         queryParameters: {'broadcaster_id': broadcasterId});
-    return TwitchResponse.channelInformations(data);
+    return TwitchResponse.channelInformations(data as Map<String, dynamic>);
   }
 
   /// Returns a list of games or categories that match the query via name either
@@ -453,7 +455,8 @@ class TwitchClient {
     if (after != null) queryParameters['after'] = after;
     final data = await getCall(['search', 'categories'],
         queryParameters: queryParameters);
-    return TwitchResponse<TwitchSearchCategory>.searchCategories(data);
+    return TwitchResponse<TwitchSearchCategory>.searchCategories(
+        data as Map<String, dynamic>);
   }
 
   /// Returns a list of channels (users who have streamed within the past 6
@@ -488,7 +491,8 @@ class TwitchClient {
 
     final data =
         await getCall(['search', 'channels'], queryParameters: queryParameters);
-    return TwitchResponse<TwitchSearchChannel>.searchChannels(data);
+    return TwitchResponse<TwitchSearchChannel>.searchChannels(
+        data as Map<String, dynamic>);
   }
 
   /// Gets information about active streams. Streams are returned sorted by
@@ -547,7 +551,7 @@ class TwitchClient {
     }
 
     final data = await getCall(['streams'], queryParameters: queryParameters);
-    return TwitchResponse.streamsInfo(data);
+    return TwitchResponse.streamsInfo(data as Map<String, dynamic>);
   }
 
   /// Get all of a broadcaster’s subscriptions.
@@ -583,7 +587,8 @@ class TwitchClient {
     final data =
         await getCall(['subscriptions'], queryParameters: queryParameters);
     return TwitchResponse<
-        TwitchBroadcasterSubscription>.broadcasterSubscriptions(data);
+            TwitchBroadcasterSubscription>.broadcasterSubscriptions(
+        data as Map<String, dynamic>);
   }
 
   /// Retrieves the list of available Cheermotes, animated emotes to which
@@ -594,13 +599,13 @@ class TwitchClient {
   /// Cheermotes.
   Future<TwitchResponse<TwitchCheermote>> getCheermotes(
       {String? broadcasterId}) async {
-    var queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
     if (broadcasterId != null) {
       queryParameters['broadcaster_id'] = broadcasterId;
     }
     final data =
         await getCall(['bits', 'cheermotes'], queryParameters: queryParameters);
-    return TwitchResponse.cheermotes(data);
+    return TwitchResponse.cheermotes(data as Map<String, dynamic>);
   }
 
   /// Allows extension back end servers to fetch a list of transactions that
@@ -627,7 +632,7 @@ class TwitchClient {
   }) async {
     assert(first > 0 && first < 101);
 
-    var queryParameters = <String, dynamic>{
+    final queryParameters = <String, dynamic>{
       'extension_id': extensionId,
       'first': first.toString(),
     };
@@ -636,6 +641,6 @@ class TwitchClient {
 
     final data = await getCall(['extensions', 'transactions'],
         queryParameters: queryParameters);
-    return TwitchResponse.extensionTransaction(data);
+    return TwitchResponse.extensionTransaction(data as Map<String, dynamic>);
   }
 }
