@@ -1,7 +1,7 @@
 name: twitch_api
 description: A wrapper in pure Dart to connect to Twitch.tv using OAuth implicit
   authentication.
-version: 0.2.0
+version: 0.3.0
 homepage: https://github.com/TesteurManiak/twitch_api_flutter
 repository: https://github.com/TesteurManiak/twitch_api_flutter
 
@@ -13,5 +13,4 @@ dependencies:
 
 dev_dependencies:
   lint: ^1.5.3
-  pedantic: ^1.11.0
   test: ^1.17.5

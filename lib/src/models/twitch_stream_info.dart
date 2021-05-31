@@ -47,6 +47,8 @@ class TwitchStreamInfo {
   /// Shows tag IDs that apply to the stream.
   final List<String> tagIds;
 
+  final bool isMature;
+
   TwitchStreamInfo({
     required this.id,
     required this.userId,
@@ -61,6 +63,7 @@ class TwitchStreamInfo {
     required this.language,
     required this.thumbnailUrl,
     required this.tagIds,
+    required this.isMature,
   });
 
   factory TwitchStreamInfo.fromJson(Map<String, dynamic> json) =>
@@ -78,5 +81,6 @@ class TwitchStreamInfo {
         language: json['language'] as String,
         thumbnailUrl: json['thumbnail_url'] as String,
         tagIds: List<String>.from(json['tag_ids'] as Iterable),
+        isMature: json['is_mature'] as bool,
       );
 }
