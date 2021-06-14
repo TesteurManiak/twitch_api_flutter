@@ -21,12 +21,12 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  cupertino_icons: ^1.0.0
   flutter:
     sdk: flutter
+  flutter_webview_plugin: ^0.3.11
   twitch_api:
     path: ../
-  cupertino_icons: ^1.0.0
-  flutter_webview_plugin: ^0.3.11
 
 dev_dependencies:
   flutter_test:

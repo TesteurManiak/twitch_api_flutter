@@ -19,13 +19,13 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  const MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -103,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-              !isImg ? Text(data) : Image.network(data),
+              if (!isImg) Text(data) else Image.network(data),
             ],
           ),
         );
@@ -133,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 .catchError((error) {
               _displayDataAlert('startCommercial', error.toString());
             }),
-            child: Text('Start Commercial'),
+            child: const Text('Start Commercial'),
           ),
           ElevatedButton(
             onPressed: () => _twitchClient
@@ -141,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 .catchError((error) {
               _displayDataAlert('getExtensionAnalytics', error.toString());
             }),
-            child: Text('Get Extension Analytics'),
+            child: const Text('Get Extension Analytics'),
           ),
           ElevatedButton(
             onPressed: () => _twitchClient
@@ -149,20 +149,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 .catchError((error) {
               _displayDataAlert('getGameAnalytics', error.toString());
             }),
-            child: Text('Get Games Analytics'),
+            child: const Text('Get Games Analytics'),
           ),
           ElevatedButton(
             onPressed: () => _twitchClient
                 .getUsersFollows(toId: '23161357')
                 .then((value) => _displayDataAlert(
                     'getUsersFollows', 'Total followers: ${value.total}')),
-            child: Text('Get User Follows from id 23161357'),
+            child: const Text('Get User Follows from id 23161357'),
           ),
           ElevatedButton(
             onPressed: () => _twitchClient.getUsers(ids: ['44322889']).then(
                 (value) => _displayDataAlert(value.data.first.displayName,
                     value.data.first.description)),
-            child: Text('Get User Dallas from id'),
+            child: const Text('Get User Dallas from id'),
           ),
           ElevatedButton(
             onPressed: () =>
@@ -170,21 +170,21 @@ class _MyHomePageState extends State<MyHomePage> {
                       'Top Games',
                       value.data.map<String>((e) => e.name).toList().join('\n'),
                     )),
-            child: Text('Get Top Games'),
+            child: const Text('Get Top Games'),
           ),
           ElevatedButton(
             onPressed: () => _twitchClient.getGames(names: ['Fortnite']).then(
                 (value) => _displayDataAlert(
                     value.data.first.name, value.data.first.getBoxArtUrl(),
                     isImg: true)),
-            child: Text('Get Fortnite'),
+            child: const Text('Get Fortnite'),
           ),
           ElevatedButton(
             onPressed: () => _twitchClient
                 .getChannelInformations('44445592')
                 .then((value) => _displayDataAlert(
                     value.data.first.broadcasterName, value.data.first.title)),
-            child: Text('Get Pokimane Channel Info'),
+            child: const Text('Get Pokimane Channel Info'),
           ),
           ElevatedButton(
             onPressed: () =>
@@ -193,7 +193,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   'Viewers: ${value.data?.first?.viewerCount}',
                   isOnline: value.data?.first?.type == TwitchStreamType.live),
             ),
-            child: Text('Get auronplay Stream Info'),
+            child: const Text('Get auronplay Stream Info'),
           ),
           ElevatedButton(
             onPressed: () =>
@@ -204,7 +204,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     isImg: true, isOnline: value.data.first.isLive);
               },
             ),
-            child: Text('Search loserfruit Channel'),
+            child: const Text('Search loserfruit Channel'),
           ),
           ElevatedButton(
             onPressed: () => _twitchClient.searchCategories(query: 'fort').then(
@@ -212,21 +212,21 @@ class _MyHomePageState extends State<MyHomePage> {
                       value.data.first.name, value.data.first.boxArtUrl,
                       isImg: true),
                 ),
-            child: Text('Search "fort" Category'),
+            child: const Text('Search "fort" Category'),
           ),
           ElevatedButton(
             onPressed: () => _twitchClient.getBroadcasterSubscriptions().then(
                   (value) => _displayDataAlert(
                       value.data.first.userName, value.data.first.tier),
                 ),
-            child: Text('Get Broadcaster Subscriptions'),
+            child: const Text('Get Broadcaster Subscriptions'),
           ),
           ElevatedButton(
             onPressed: () => _twitchClient.getBitsLeaderboard().then(
                   (value) => _displayDataAlert(value.data.first.userName,
                       value.data.first.score.toString()),
                 ),
-            child: Text('Get Bits Leaderboard'),
+            child: const Text('Get Bits Leaderboard'),
           ),
           ElevatedButton(
             onPressed: () => _twitchClient.getCheermotes().then(
@@ -235,7 +235,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     value.data.first.tiers.map((e) => e.id).toList().toString(),
                   ),
                 ),
-            child: Text('Get Cheermotes'),
+            child: const Text('Get Cheermotes'),
           ),
         ],
       ),
