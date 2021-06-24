@@ -68,14 +68,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
     if (_twitchClient.accessToken == null) {
       WidgetsBinding.instance.scheduleFrameCallback((_) {
-        _openConnectionPage(scopes: [
-          TwitchApiScope.channelEditCommercial,
-          TwitchApiScope.analyticsReadExtensions,
-          TwitchApiScope.analyticsReadGames,
-          TwitchApiScope.userReadEmail,
-          TwitchApiScope.channelReadSubscriptions,
-          TwitchApiScope.bitsRead,
-        ]).then((value) => setState(() {}));
+        _openConnectionPage(scopes: TwitchApiScope.values)
+            .then((value) => setState(() {}));
       });
     }
   }
@@ -237,6 +231,26 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
             child: const Text('Get Cheermotes'),
           ),
+          ElevatedButton(
+            onPressed: () => _twitchClient.modifyChannelinformation(
+              broadcasterId: _twitchClient.accessToken.userId,
+              title: 'Test',
+            ),
+            child: const Text('Modify your channel title to: Test'),
+          ),
+          ElevatedButton(
+            onPressed: () => _twitchClient
+                .getChannelEditors(
+                  broadcasterId: _twitchClient.accessToken.userId,
+                )
+                .then(
+                  (value) => _displayDataAlert(
+                    'You have ${value.data.length} editors',
+                    value.data.map<String>((e) => e.userName).join(', '),
+                  ),
+                ),
+            child: const Text('Get your channel editors'),
+          )
         ],
       ),
     );

@@ -4,6 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:twitch_api/src/exceptions/twitch_api_exception.dart';
 import 'package:twitch_api/src/models/twitch_bits_leaderboard.dart';
 import 'package:twitch_api/src/models/twitch_broadcaster_subscription.dart';
+import 'package:twitch_api/src/models/twitch_channel_editor.dart';
 import 'package:twitch_api/src/models/twitch_channel_info.dart';
 import 'package:twitch_api/src/models/twitch_cheermote.dart';
 import 'package:twitch_api/src/models/twitch_extension_transaction.dart';
@@ -36,7 +37,7 @@ class TwitchClient {
   TwitchToken? get accessToken => _accessToken;
 
   Uri authorizeUri(List<TwitchApiScope> scopes) {
-    final scopesSet = <String?>{}
+    final scopesSet = <String>{}
       ..add('viewing_activity_read')
       ..addAll(scopes.map((e) => TwitchApiScopes.getScopeString(e)).toSet());
     return oauth2Url.replace(
@@ -130,6 +131,39 @@ class TwitchClient {
           'Content-Type': 'application/json',
         });
         final response = await _dio.postUri(
+          baseUrl.replace(
+            pathSegments: <String>[basePath, ...pathSegments],
+            queryParameters: queryParameters,
+          ),
+          options: options,
+          data: data,
+        );
+        return response.data;
+      } else {
+        throw const TwitchApiException('OAuth token is not valid');
+      }
+    } on DioError catch (dioError) {
+      throw dioError.response!.data['message'] as String;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  /// Generic method for authenticated POST calls.
+  Future<dynamic> patchCall(
+    Iterable<String> pathSegments,
+    dynamic data, {
+    Map<String, dynamic> queryParameters = const {},
+  }) async {
+    try {
+      await validateToken();
+      if (_accessToken!.isValid) {
+        final options = Options(headers: {
+          'Client-Id': clientId,
+          'Authorization': 'Bearer ${accessToken!.token}',
+          'Content-Type': 'application/json',
+        });
+        final response = await _dio.patchUri(
           baseUrl.replace(
             pathSegments: <String>[basePath, ...pathSegments],
             queryParameters: queryParameters,
@@ -639,8 +673,82 @@ class TwitchClient {
     if (id != null) queryParameters['id'] = id;
     if (after != null) queryParameters['after'] = after;
 
-    final data = await getCall(['extensions', 'transactions'],
-        queryParameters: queryParameters);
+    final data = await getCall(
+      ['extensions', 'transactions'],
+      queryParameters: queryParameters,
+    );
     return TwitchResponse.extensionTransaction(data as Map<String, dynamic>);
+  }
+
+  /// Modifies channel information for users.
+  ///
+  /// Required scope: [TwitchApiScope.channelManageBroadcast]
+  ///
+  /// `broadcasterId`: ID of the channel to be updated
+  ///
+  /// At least one of those parameter must be provided:
+  ///
+  /// `gameId`: The current game ID being played on the channel. Use `"0"` or
+  /// `""` (an empty string) to unset the game.
+  ///
+  /// `broadcasterLanguage`: The language of the channel. A language value must
+  /// be either the ISO 639-1 two-letter code for a supported stream language or
+  /// "other".
+  ///
+  /// `title`: The title of the stream. Value must not be an empty string.
+  ///
+  /// `delay`: Stream delay in seconds. Stream delay is a Twitch Partner
+  /// feature; trying to set this value for other account types will return a
+  /// 400 error.
+  Future<void> modifyChannelinformation({
+    required String broadcasterId,
+    String? gameId,
+    String? broadcasterLanguage,
+    String? title,
+    int? delay,
+  }) async {
+    assert(
+      gameId != null ||
+          broadcasterLanguage != null ||
+          title != null ||
+          delay != null,
+      'At least one optional parameter must be provided.',
+    );
+    if (broadcasterLanguage != null) {
+      assert(broadcasterLanguage == 'other' || broadcasterLanguage.length == 2);
+    }
+    if (title != null) {
+      assert(title.isNotEmpty, 'The title must not be an empty string.');
+    }
+    if (delay != null) assert(delay > 0);
+
+    final data = <String, dynamic>{};
+    if (gameId != null) data['game_id'] = gameId;
+    if (broadcasterLanguage != null) {
+      data['broadcaster_language'] = broadcasterLanguage;
+    }
+    if (title != null) data['title'] = title;
+    if (delay != null) data['delay'] = delay;
+
+    await patchCall(
+      ['channels'],
+      data,
+      queryParameters: {'broadcaster_id': broadcasterId},
+    );
+  }
+
+  /// Gets a list of users who have editor permissions for a specific channel.
+  ///
+  /// Required scope: [TwitchApiScope.channelReadEditors]
+  ///
+  /// `broadcasterId`: Broadcaster’s user ID associated with the channel.
+  Future<TwitchResponse<TwitchChannelEditor>> getChannelEditors({
+    required String broadcasterId,
+  }) async {
+    final data = await getCall(
+      ['channels', 'editors'],
+      queryParameters: {'broadcaster_id': broadcasterId},
+    );
+    return TwitchResponse.channelEditor(data as Map<String, dynamic>);
   }
 }
