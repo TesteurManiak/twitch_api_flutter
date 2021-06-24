@@ -56,7 +56,7 @@ Future<TwitchToken> _openConnectionPage({List<TwitchApiScope> scopes = const []}
 
 Now you are ready to use the methods implemented in [Supported Features](#supported-features) section.
 
-## Supported Features
+## Supported Endpoints (16/56)
 
 ### Ads
 
@@ -76,7 +76,7 @@ Now you are ready to use the methods implemented in [Supported Features](#suppor
 ### Channels
 
 * [x] Get Channel Information
-* [ ] Modify Channel Information
+* [x] Modify Channel Information
 * [ ] Get Channel Editors
 
 ### Channel Points

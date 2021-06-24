@@ -1,5 +1,6 @@
 import 'package:twitch_api/src/models/twitch_bits_leaderboard.dart';
 import 'package:twitch_api/src/models/twitch_broadcaster_subscription.dart';
+import 'package:twitch_api/src/models/twitch_channel_editor.dart';
 import 'package:twitch_api/src/models/twitch_channel_info.dart';
 import 'package:twitch_api/src/models/twitch_date_range.dart';
 import 'package:twitch_api/src/models/twitch_extension_analytic.dart';
@@ -179,6 +180,14 @@ class TwitchResponse<T> {
             .map<T>((e) =>
                 TwitchExtensionTransaction.fromJson(e as Map<String, dynamic>)
                     as T)
+            .toList(),
+      );
+
+  factory TwitchResponse.channelEditor(Map<String, dynamic> json) =>
+      TwitchResponse(
+        data: (json['data'] as Iterable)
+            .map<T>((e) =>
+                TwitchChannelEditor.fromJson(e as Map<String, dynamic>) as T)
             .toList(),
       );
 }

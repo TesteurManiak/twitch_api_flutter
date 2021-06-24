@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:test/test.dart';
+import 'package:twitch_api/src/models/twitch_channel_editor.dart';
 import 'package:twitch_api/src/models/twitch_extension_transaction.dart';
 import 'package:twitch_api/src/models/twitch_response.dart';
 import 'package:twitch_api/twitch_api.dart';
@@ -100,6 +101,19 @@ void main() {
             'https://static-cdn.jtvnw.net/previews-ttv/live_user_auronplay-{width}x{height}.jpg');
         expect(twitchStreamInfo.tagIds.length, 1);
         expect(twitchStreamInfo.isMature, false);
+      });
+    });
+
+    group('Get Channel Editors', () {
+      test('1', () {
+        final json = jsonDecode(readFileString('get_channel_editors.json'))
+            as Map<String, dynamic>;
+        final obj = TwitchResponse<TwitchChannelEditor>.channelEditor(json);
+        expect(obj.data!.length, 2);
+
+        final channelEditor = obj.data!.first;
+        expect(channelEditor.userId, '182891647');
+        expect(channelEditor.userName, 'mauerbac');
       });
     });
   });
