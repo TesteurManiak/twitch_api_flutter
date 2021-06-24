@@ -1,3 +1,7 @@
+## [0.3.1] - 24/06/2021
+
+* Added methods: `modifyChannelinformation` and `getChannelEditors`
+
 ## [0.3.0] - 31/05/2021
 
 * **Breaking change:** migration to null-safety
