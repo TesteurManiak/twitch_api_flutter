@@ -59,19 +59,16 @@ class _MyHomePageState extends State<MyHomePage> {
       MaterialPageRoute(
         builder: (context) => WebViewPage(url.toString()),
       ),
-    ).then((_) => _twitchClient.validateToken());
+    ).then((_) => _twitchClient.twitchHttpClient.validateToken());
   }
 
   @override
   void initState() {
     super.initState();
-
-    if (_twitchClient.accessToken == null) {
-      WidgetsBinding.instance.scheduleFrameCallback((_) {
-        _openConnectionPage(scopes: TwitchApiScope.values)
-            .then((value) => setState(() {}));
-      });
-    }
+    WidgetsBinding.instance.scheduleFrameCallback((_) {
+      _openConnectionPage(scopes: TwitchApiScope.values)
+          .then((value) => setState(() {}));
+    });
   }
 
   void _displayDataAlert(
@@ -119,11 +116,14 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ListView(
         children: <Widget>[
-          Text('Welcome user: ${_twitchClient.accessToken?.userId}'),
-          Text('Your Twitch token is: ${_twitchClient.accessToken?.token}'),
+          Text(
+              'Welcome user: ${_twitchClient.twitchHttpClient.twitchToken.userId}'),
+          Text(
+              'Your Twitch token is: ${_twitchClient.twitchHttpClient.twitchToken.token}'),
           ElevatedButton(
             onPressed: () => _twitchClient
-                .startCommercial(_twitchClient.accessToken.userId, 60)
+                .startCommercial(
+                    _twitchClient.twitchHttpClient.twitchToken.userId, 60)
                 .catchError((error) {
               _displayDataAlert('startCommercial', error.toString());
             }),
@@ -233,7 +233,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           ElevatedButton(
             onPressed: () => _twitchClient.modifyChannelinformation(
-              broadcasterId: _twitchClient.accessToken.userId,
+              broadcasterId: _twitchClient.twitchHttpClient.twitchToken.userId,
               title: 'Test',
             ),
             child: const Text('Modify your channel title to: Test'),
@@ -241,7 +241,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () => _twitchClient
                 .getChannelEditors(
-                  broadcasterId: _twitchClient.accessToken.userId,
+                  broadcasterId:
+                      _twitchClient.twitchHttpClient.twitchToken.userId,
                 )
                 .then(
                   (value) => _displayDataAlert(

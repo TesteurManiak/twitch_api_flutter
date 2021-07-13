@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:test/test.dart';
 import 'package:twitch_api/src/models/twitch_channel_editor.dart';
@@ -7,10 +6,9 @@ import 'package:twitch_api/src/models/twitch_extension_transaction.dart';
 import 'package:twitch_api/src/models/twitch_response.dart';
 import 'package:twitch_api/twitch_api.dart';
 
-void main() {
-  String readFileString(String name) =>
-      File('test/test_resources/$name').readAsStringSync();
+import 'test_utils.dart';
 
+void main() {
   group('Parsing test', () {
     test('Get Cheermotes', () {
       final json = jsonDecode(readFileString('get_cheermotes.json'));
