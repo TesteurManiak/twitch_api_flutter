@@ -22,7 +22,7 @@ class TwitchDioProvider extends TwitchHttpClient {
   }) async {
     try {
       final accessToken = await validateToken();
-      if (accessToken != null && accessToken.isValid) {
+      if (accessToken.isValid) {
         final options = Options(headers: {
           'Client-Id': clientId,
           'Authorization': 'Bearer ${accessToken.token}',
@@ -53,7 +53,7 @@ class TwitchDioProvider extends TwitchHttpClient {
   }) async {
     try {
       final accessToken = await validateToken();
-      if (accessToken != null && accessToken.isValid) {
+      if (accessToken.isValid) {
         final options = Options(headers: {
           'Client-Id': clientId,
           'Authorization': 'Bearer ${accessToken.token}',
@@ -86,7 +86,7 @@ class TwitchDioProvider extends TwitchHttpClient {
   }) async {
     try {
       final accessToken = await validateToken();
-      if (accessToken != null && accessToken.isValid) {
+      if (accessToken.isValid) {
         final options = Options(headers: {
           'Client-Id': clientId,
           'Authorization': 'Bearer ${accessToken.token}',
@@ -112,7 +112,7 @@ class TwitchDioProvider extends TwitchHttpClient {
   }
 
   @override
-  Future<TwitchToken?> validateToken() async {
+  Future<TwitchToken> validateToken() async {
     try {
       final options = Options(
         headers: {'Authorization': 'OAuth ${_twitchToken.token}'},
