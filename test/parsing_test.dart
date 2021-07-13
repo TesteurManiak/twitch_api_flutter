@@ -102,7 +102,7 @@ void main() {
       });
     });
 
-    group('Get Channel Editors', () {
+    group('Channel Editors', () {
       test('1', () {
         final json = jsonDecode(readFileStringSync('get_channel_editors.json'))
             as Map<String, dynamic>;
