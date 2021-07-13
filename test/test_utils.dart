@@ -22,7 +22,7 @@ class TwitchMockProvider extends TwitchHttpClient {
         return jsonDecode(
             await readFileStringAsync('get_channel_editors.json'));
       default:
-        throw 'Unknown endpoints';
+        throw 'Bad Request: Query Parameter missing or invalid';
     }
   }
 

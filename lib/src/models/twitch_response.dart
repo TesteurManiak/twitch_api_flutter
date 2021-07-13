@@ -190,4 +190,12 @@ class TwitchResponse<T> {
                 TwitchChannelEditor.fromJson(e as Map<String, dynamic>) as T)
             .toList(),
       );
+
+  factory TwitchResponse.customReward(Map<String, dynamic> json) =>
+      TwitchResponse(
+        data: (json['data'] as Iterable)
+            .map<T>((e) =>
+                TwitchCustomReward.fromJson(e as Map<String, dynamic>) as T)
+            .toList(),
+      );
 }
