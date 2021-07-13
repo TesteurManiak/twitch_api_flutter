@@ -9,9 +9,9 @@ import 'package:twitch_api/twitch_api.dart';
 import 'test_utils.dart';
 
 void main() {
-  group('Parsing test', () {
-    test('Get Cheermotes', () {
-      final json = jsonDecode(readFileString('get_cheermotes.json'));
+  group('Parsing', () {
+    test('Cheermotes', () {
+      final json = jsonDecode(readFileStringSync('get_cheermotes.json'));
       final obj = TwitchResponse<TwitchCheermote>.cheermotes(
           json as Map<String, dynamic>);
 
@@ -48,7 +48,7 @@ void main() {
 
     test('Get Extension Transactions', () {
       final json =
-          jsonDecode(readFileString('get_extension_transactions.json'));
+          jsonDecode(readFileStringSync('get_extension_transactions.json'));
       final obj =
           TwitchResponse<TwitchExtensionTransaction>.extensionTransaction(
               json as Map<String, dynamic>);
@@ -75,9 +75,9 @@ void main() {
       expect(extensionTransaction.productData.inDevelopment, false);
     });
 
-    group('Get Streams', () {
+    group('Streams', () {
       test('1', () {
-        final json = jsonDecode(readFileString('get_streams_1.json'));
+        final json = jsonDecode(readFileStringSync('get_streams_1.json'));
         final obj = TwitchResponse<TwitchStreamInfo>.streamsInfo(
             json as Map<String, dynamic>);
 
@@ -104,7 +104,7 @@ void main() {
 
     group('Get Channel Editors', () {
       test('1', () {
-        final json = jsonDecode(readFileString('get_channel_editors.json'))
+        final json = jsonDecode(readFileStringSync('get_channel_editors.json'))
             as Map<String, dynamic>;
         final obj = TwitchResponse<TwitchChannelEditor>.channelEditor(json);
         expect(obj.data!.length, 2);
