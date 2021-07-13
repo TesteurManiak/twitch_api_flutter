@@ -76,5 +76,47 @@ void main() {
         expect(channelEditor.userName, 'mauerbac');
       });
     });
+
+    group('POST', () {
+      test('Create Custom Rewards', () async {
+        final data = (await client.createCustomRewards(
+          broadcasterId: '274637212',
+          title: 'game analysis 1v1',
+          cost: 50000,
+        ))
+            .data;
+        expect(data!.length, 1);
+
+        final customReward = data.first;
+        expect(customReward.broadcasterName, 'torpedo09');
+        expect(customReward.broadcasterLogin, 'torpedo09');
+        expect(customReward.broadcasterId, '274637212');
+        expect(customReward.id, 'afaa7e34-6b17-49f0-a19a-d1e76eaaf673');
+        expect(customReward.image, isNull);
+        expect(customReward.backgroundColor, '#00E5CB');
+        expect(customReward.isEnabled, true);
+        expect(customReward.cost, 50000);
+        expect(customReward.title, 'game analysis 1v1');
+        expect(customReward.prompt, '');
+        expect(customReward.isUserInputRequired, false);
+        expect(customReward.maxPerStreamSetting.isEnabled, false);
+        expect(customReward.maxPerStreamSetting.maxPerStream, 0);
+        expect(customReward.maxPerUserPerStreamSetting.isEnabled, false);
+        expect(customReward.maxPerUserPerStreamSetting.maxPerUserPerStream, 0);
+        expect(customReward.globalCooldownSetting.isEnabled, false);
+        expect(customReward.globalCooldownSetting.globalCooldownSeconds, 0);
+        expect(customReward.isPaused, false);
+        expect(customReward.isInStock, true);
+        expect(customReward.defaultImage.url1x,
+            'https://static-cdn.jtvnw.net/custom-reward-images/default-1.png');
+        expect(customReward.defaultImage.url2x,
+            'https://static-cdn.jtvnw.net/custom-reward-images/default-2.png');
+        expect(customReward.defaultImage.url4x,
+            'https://static-cdn.jtvnw.net/custom-reward-images/default-4.png');
+        expect(customReward.shouldRedemptionsSkipRequestQueue, false);
+        expect(customReward.redemptionsRedeemedCurrentStream, isNull);
+        expect(customReward.cooldownExpiresAt, isNull);
+      });
+    });
   });
 }

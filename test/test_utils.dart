@@ -37,19 +37,20 @@ class TwitchMockProvider extends TwitchHttpClient {
   }
 
   @override
-  Future postCall(Iterable<String> pathSegments, data,
-      {Map<String, dynamic> queryParameters = const {}}) {
-    // TODO: implement postCall
-    throw UnimplementedError();
+  Future postCall(Iterable<String> pathSegments, _,
+      {Map<String, dynamic> queryParameters = const {}}) async {
+    switch (pathSegments.join('/')) {
+      case 'channel_points/custom_rewards':
+        return jsonDecode(
+            await readFileStringAsync('create_custom_rewards.json'));
+      default:
+        throw 'Bad Request: Query Parameter missing or invalid';
+    }
   }
 
   @override
-  // TODO: implement twitchToken
   TwitchToken get twitchToken => throw UnimplementedError();
 
   @override
-  Future<TwitchToken?> validateToken() {
-    // TODO: implement validateToken
-    throw UnimplementedError();
-  }
+  Future<TwitchToken?> validateToken() => throw UnimplementedError();
 }

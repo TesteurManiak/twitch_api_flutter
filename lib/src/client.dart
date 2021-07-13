@@ -62,13 +62,17 @@ class TwitchClient {
     }
   }
 
+  @Deprecated('Use [twitchHttpClient.twitchToken]')
+  TwitchToken? get accessToken => twitchHttpClient.twitchToken;
+
+  @Deprecated('Use [twitchHttpClient.validateToken()]')
+  Future<TwitchToken?> validateToken() => twitchHttpClient.validateToken();
+
   /// Method to initialize the token the first time after connection.
   ///
   /// [twitchToken]: Token obtained with the first connection.
   void initializeToken(TwitchToken twitchToken) =>
       twitchHttpClient.initializeToken(twitchToken);
-
-  void dispose() {}
 
   /// Starts a commercial on a specified channel.
   ///
@@ -634,5 +638,42 @@ class TwitchClient {
       queryParameters: {'broadcaster_id': broadcasterId},
     );
     return TwitchResponse.channelEditor(data as Map<String, dynamic>);
+  }
+
+  /// Creates a Custom Reward on a channel.
+  ///
+  /// `broadcasterId`: Provided `broadcasterId` must match the `userId` in the
+  /// user OAuth token.
+  Future<TwitchResponse<TwitchCustomReward>> createCustomRewards({
+    required String broadcasterId,
+    required String title,
+    required int cost,
+    String? prompt,
+    bool isEnabled = true,
+    String? backgroundColor,
+    bool isUserInputRequired = false,
+    bool isMaxPerStreamEnabled = false,
+    int? maxPerStream,
+    bool isMaxPerUserPerStreamEnabled = false,
+  }) async {
+    if (isMaxPerStreamEnabled) {
+      assert(maxPerStream != null,
+          'Required when any value of isMaxPerStreamEnabled is included.');
+    }
+    final body = <String, dynamic>{
+      'title': title,
+      'cost': cost,
+      'is_enabled': isEnabled,
+      'is_user_input_required': isUserInputRequired,
+      'is_max_per_stream_enabled': isMaxPerStreamEnabled,
+      'is_max_per_user_per_stream_enabled': isMaxPerUserPerStreamEnabled,
+    };
+    if (maxPerStream != null) body['max_per_stream'] = maxPerStream;
+    final data = await twitchHttpClient.postCall(
+      ['channel_points', 'custom_rewards'],
+      body,
+      queryParameters: {'broadcaster_id': broadcasterId},
+    );
+    return TwitchResponse.customReward(data as Map<String, dynamic>);
   }
 }
