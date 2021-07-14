@@ -135,7 +135,12 @@ void main() {
       });
 
       test('Broadcaster Subscriptions', () async {
-        // final data = (await client.getBroadcasterSubscriptions()).data;
+        final response = await client.getBroadcasterSubscriptions();
+        expect(response.data!.length, 1);
+        expect(response.total, 13);
+
+        final subscription = response.data!.first;
+        expect(subscription.broadcasterId, '141981764');
       });
     });
 

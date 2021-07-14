@@ -106,6 +106,7 @@ class TwitchResponse<T> {
                 e as Map<String, dynamic>) as T)
             .toList(),
         pagination: json['pagination'] as Map<String, dynamic>,
+        total: json['total'] as int,
       );
 
   /// Constructor for request containing [TwitchBitsLeaderboard].
