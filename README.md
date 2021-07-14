@@ -17,7 +17,7 @@ To use this package you will need to register an application on the [Twitch deve
 
 After registering your application you will need to instantiate the `TwitchClient` class from the package with your `clientId` and your `redirectUri` .
 
-``` dart
+```dart
 import 'package:twitch_api/twitch_api.dart';
 
 final _twitchClient = TwitchClient(clientId: clientId, redirectUri: redirectUri);
@@ -25,7 +25,7 @@ final _twitchClient = TwitchClient(clientId: clientId, redirectUri: redirectUri)
 
 Now that you have initialized the client the last step before using the method will be to manage the first connection with your twitch account and initialize the token you will receive. You can find a complete example of an implementation using the package [flutter_webview_plugin]().
 
-``` dart
+```dart
 const clientId = "<YOUR_CLIENT_ID>";
 const redirectUri = "<YOUR_REDIRECT_URL>"; // ex: "http://localhost/"
 
@@ -81,7 +81,7 @@ Now you are ready to use the methods implemented in [Supported Features](#suppor
 
 ### Channel Points
 
-* [ ] Create Custom Rewards
+* [x] Create Custom Rewards
 * [ ] Delete Custom Reward
 * [ ] Get Custom Reward
 * [ ] Get Custom Reward Redemption

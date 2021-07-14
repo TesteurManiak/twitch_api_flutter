@@ -711,4 +711,22 @@ class TwitchClient {
     );
     return TwitchResponse.customReward(data as Map<String, dynamic>);
   }
+
+  /// Deletes a Custom Reward on a channel.
+  ///
+  /// `broadcasterId`: Provided `broadcasterId` must match the `userId` in the
+  /// user OAuth token.
+  ///
+  /// `id`: ID of the Custom Reward to delete, must match a Custom Reward on
+  /// `broadcasterId`’s channel.
+  Future<String> deleteCustomReward({
+    required String broadcasterId,
+    required String id,
+  }) async {
+    final data = await twitchHttpClient.deleteCall(
+      ['channel_points', 'custom_rewards'],
+      queryParameters: {'broadcaster_id': broadcasterId, 'id': id},
+    );
+    return data as String;
+  }
 }

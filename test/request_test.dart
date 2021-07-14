@@ -118,5 +118,15 @@ void main() {
         expect(customReward.cooldownExpiresAt, isNull);
       });
     });
+
+    group('PATCH', () {
+      test('Delete Custom Reward', () async {
+        final data = await client.deleteCustomReward(
+          broadcasterId: '274637212',
+          id: 'b045196d-9ce7-4a27-a9b9-279ed341ab28',
+        );
+        expect(data, '204 No Content');
+      });
+    });
   });
 }

@@ -53,4 +53,15 @@ class TwitchMockProvider extends TwitchHttpClient {
 
   @override
   Future<TwitchToken?> validateToken() => throw UnimplementedError();
+
+  @override
+  Future deleteCall(Iterable<String> pathSegments,
+      {Map<String, dynamic> queryParameters = const {}}) async {
+    switch (pathSegments.join('/')) {
+      case 'channel_points/custom_rewards':
+        return '204 No Content';
+      default:
+        throw 'Bad Request: Query Parameter missing or invalid';
+    }
+  }
 }

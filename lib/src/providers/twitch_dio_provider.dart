@@ -16,7 +16,7 @@ class TwitchDioProvider extends TwitchHttpClient {
   TwitchDioProvider({required this.clientId});
 
   @override
-  Future<dynamic> getCall(
+  Future getCall(
     Iterable<String> pathSegments, {
     Map<String, dynamic> queryParameters = const {},
   }) async {
@@ -46,7 +46,7 @@ class TwitchDioProvider extends TwitchHttpClient {
   }
 
   @override
-  Future<dynamic> postCall(
+  Future postCall(
     Iterable<String> pathSegments,
     dynamic data, {
     Map<String, dynamic> queryParameters = const {},
@@ -79,7 +79,7 @@ class TwitchDioProvider extends TwitchHttpClient {
   }
 
   @override
-  Future<dynamic> patchCall(
+  Future patchCall(
     Iterable<String> pathSegments,
     dynamic data, {
     Map<String, dynamic> queryParameters = const {},
@@ -138,4 +138,30 @@ class TwitchDioProvider extends TwitchHttpClient {
 
   @override
   void initializeToken(TwitchToken twitchToken) => _twitchToken = twitchToken;
+
+  @override
+  Future deleteCall(
+    Iterable<String> pathSegments, {
+    Map<String, dynamic> queryParameters = const {},
+  }) async {
+    try {
+      final accessToken = await validateToken();
+      if (accessToken.isValid) {
+        final options = Options(headers: {
+          'Client-Id': clientId,
+          'Authorization': 'Bearer ${accessToken.token}',
+          'Content-Type': 'application/json',
+        });
+        final response = await _dio.deleteUri(
+          TwitchClient.baseUrl.replace(
+            pathSegments: <String>[TwitchClient.basePath, ...pathSegments],
+          ),
+          options: options,
+        );
+        return response.data;
+      }
+    } catch (e) {
+      rethrow;
+    }
+  }
 }
