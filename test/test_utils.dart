@@ -46,6 +46,10 @@ class TwitchMockProvider extends TwitchHttpClient {
             await readFileStringAsync('get_custom_reward_redemption_2.json'),
           );
         }
+      case 'bits/leaderboard':
+        return jsonDecode(
+          await readFileStringAsync('get_bits_leaderboard.json'),
+        );
       default:
         throw 'Bad Request: Query Parameter missing or invalid';
     }

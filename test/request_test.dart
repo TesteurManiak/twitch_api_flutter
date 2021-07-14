@@ -122,6 +122,22 @@ void main() {
           expect(data!.length, 1);
         });
       });
+
+      test('Bits Leaderboard', () async {
+        final data = (await client.getBitsLeaderboard(
+          count: 2,
+          period: TwitchTimePeriod.week,
+        ))
+            .data;
+        expect(data!.length, 2);
+
+        final leaderboard = data.first;
+        expect(leaderboard.userId, '158010205');
+        expect(leaderboard.userLogin, 'tundracowboy');
+        expect(leaderboard.userName, 'TundraCowboy');
+        expect(leaderboard.rank, 1);
+        expect(leaderboard.score, 12543);
+      });
     });
 
     group('POST', () {
