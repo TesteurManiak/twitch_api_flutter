@@ -111,6 +111,16 @@ void main() {
               .data;
           expect(data!.length, 1);
         });
+
+        test('2', () async {
+          final data = (await client.getCustomRewardRedemptions(
+            broadcasterId: '274637212',
+            rewardId: '92af127c-7326-4483-a52b-b0da0be61c01',
+            ids: ['17fa2df1-ad76-4804-bfa5-a40ef63efe63'],
+          ))
+              .data;
+          expect(data!.length, 1);
+        });
       });
     });
 

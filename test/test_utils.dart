@@ -37,7 +37,7 @@ class TwitchMockProvider extends TwitchHttpClient {
           );
         }
       case 'channel_points/custom_rewards/redemptions':
-        if (queryParameters['status'] as String == 'CANCELED') {
+        if (queryParameters['status'] == 'CANCELED') {
           return jsonDecode(
             await readFileStringAsync('get_custom_reward_redemption_1.json'),
           );

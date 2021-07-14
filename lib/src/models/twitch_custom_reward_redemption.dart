@@ -40,7 +40,7 @@ class TwitchCustomRewardRedemption {
   final String id;
 
   /// The login of the user who redeemed the reward.
-  final String userLogin;
+  final String? userLogin;
 
   /// The ID of the user that redeemed the reward.
   final String userId;
@@ -81,7 +81,7 @@ class TwitchCustomRewardRedemption {
         broadcasterLogin: json["broadcaster_login"] as String,
         broadcasterName: json["broadcaster_name"] as String,
         id: json["id"] as String,
-        userLogin: json["user_login"] as String,
+        userLogin: json["user_login"] as String?,
         userId: json["user_id"] as String,
         userName: json["user_name"] as String,
         reward: TwitchRedemptionRewardInfo.fromJson(
