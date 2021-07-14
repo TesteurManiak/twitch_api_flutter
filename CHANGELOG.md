@@ -1,3 +1,8 @@
+## [0.4.0] - 
+
+* Refacto to separate implementation of the HTTP provider, `TwitchClient.accessToken` and `TwitchClient.validateToken` are deprecated
+* Added method `createCustomRewards`, `deleteCustomReward`, `getCustomRewards`
+
 ## [0.3.1] - 24/06/2021
 
 * Added methods: `modifyChannelinformation` and `getChannelEditors`
@@ -12,7 +17,7 @@
 ## [0.2.0] - 23/04/2021
 
 * Added methods `getBitsLeaderboard`, `getCheermotes`, `getExtensionTransaction`
-* **Breaking Changes:** `startCommercial`, `getUsers`, `getUsersFollows`, `getGames`, `getChannelInformations` now returns an object of type `TwitchResponse`
+* **Breaking Changes:** `startCommercial`, `getUsers`, `getUsersFollows`, `getGames`,  `getChannelInformations` now returns an object of type `TwitchResponse`
 
 ## [0.1.1] - 26/03/2021.
 
@@ -20,7 +25,7 @@
 
 ## [0.1.0] - 23/03/2021.
 
-* **Breaking Changes:** `getExtensionAnalytics`, `getGameAnalytics`, `getTopGames`, `searchChannels`, `getStreams` now returns an object of type `TwitchResponse`
+* **Breaking Changes:** `getExtensionAnalytics`, `getGameAnalytics`, `getTopGames`, `searchChannels`,  `getStreams` now returns an object of type `TwitchResponse`
 * Added and improved some comments for a better documentation
 
 ## [0.0.4] - 23/03/2021.

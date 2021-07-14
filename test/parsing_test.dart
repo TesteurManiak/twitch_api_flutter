@@ -1,19 +1,18 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:test/test.dart';
 import 'package:twitch_api/src/models/twitch_channel_editor.dart';
+import 'package:twitch_api/src/models/twitch_custom_reward.dart';
 import 'package:twitch_api/src/models/twitch_extension_transaction.dart';
 import 'package:twitch_api/src/models/twitch_response.dart';
 import 'package:twitch_api/twitch_api.dart';
 
-void main() {
-  String readFileString(String name) =>
-      File('test/test_resources/$name').readAsStringSync();
+import 'test_utils.dart';
 
-  group('Parsing test', () {
-    test('Get Cheermotes', () {
-      final json = jsonDecode(readFileString('get_cheermotes.json'));
+void main() {
+  group('Parsing', () {
+    test('Cheermotes', () {
+      final json = jsonDecode(readFileStringSync('get_cheermotes.json'));
       final obj = TwitchResponse<TwitchCheermote>.cheermotes(
           json as Map<String, dynamic>);
 
@@ -50,7 +49,7 @@ void main() {
 
     test('Get Extension Transactions', () {
       final json =
-          jsonDecode(readFileString('get_extension_transactions.json'));
+          jsonDecode(readFileStringSync('get_extension_transactions.json'));
       final obj =
           TwitchResponse<TwitchExtensionTransaction>.extensionTransaction(
               json as Map<String, dynamic>);
@@ -77,9 +76,9 @@ void main() {
       expect(extensionTransaction.productData.inDevelopment, false);
     });
 
-    group('Get Streams', () {
+    group('Streams', () {
       test('1', () {
-        final json = jsonDecode(readFileString('get_streams_1.json'));
+        final json = jsonDecode(readFileStringSync('get_streams_1.json'));
         final obj = TwitchResponse<TwitchStreamInfo>.streamsInfo(
             json as Map<String, dynamic>);
 
@@ -104,9 +103,9 @@ void main() {
       });
     });
 
-    group('Get Channel Editors', () {
+    group('Channel Editors', () {
       test('1', () {
-        final json = jsonDecode(readFileString('get_channel_editors.json'))
+        final json = jsonDecode(readFileStringSync('get_channel_editors.json'))
             as Map<String, dynamic>;
         final obj = TwitchResponse<TwitchChannelEditor>.channelEditor(json);
         expect(obj.data!.length, 2);
@@ -114,6 +113,46 @@ void main() {
         final channelEditor = obj.data!.first;
         expect(channelEditor.userId, '182891647');
         expect(channelEditor.userName, 'mauerbac');
+      });
+    });
+
+    group('Create Custom Rewards', () {
+      test('1', () {
+        final json =
+            jsonDecode(readFileStringSync('create_custom_rewards.json'))
+                as Map<String, dynamic>;
+        final obj = TwitchResponse<TwitchCustomReward>.customReward(json);
+        expect(obj.data!.length, 1);
+
+        final customReward = obj.data!.first;
+        expect(customReward.broadcasterName, 'torpedo09');
+        expect(customReward.broadcasterLogin, 'torpedo09');
+        expect(customReward.broadcasterId, '274637212');
+        expect(customReward.id, 'afaa7e34-6b17-49f0-a19a-d1e76eaaf673');
+        expect(customReward.image, isNull);
+        expect(customReward.backgroundColor, '#00E5CB');
+        expect(customReward.isEnabled, true);
+        expect(customReward.cost, 50000);
+        expect(customReward.title, 'game analysis 1v1');
+        expect(customReward.prompt, '');
+        expect(customReward.isUserInputRequired, false);
+        expect(customReward.maxPerStreamSetting.isEnabled, false);
+        expect(customReward.maxPerStreamSetting.maxPerStream, 0);
+        expect(customReward.maxPerUserPerStreamSetting.isEnabled, false);
+        expect(customReward.maxPerUserPerStreamSetting.maxPerUserPerStream, 0);
+        expect(customReward.globalCooldownSetting.isEnabled, false);
+        expect(customReward.globalCooldownSetting.globalCooldownSeconds, 0);
+        expect(customReward.isPaused, false);
+        expect(customReward.isInStock, true);
+        expect(customReward.defaultImage.url1x,
+            'https://static-cdn.jtvnw.net/custom-reward-images/default-1.png');
+        expect(customReward.defaultImage.url2x,
+            'https://static-cdn.jtvnw.net/custom-reward-images/default-2.png');
+        expect(customReward.defaultImage.url4x,
+            'https://static-cdn.jtvnw.net/custom-reward-images/default-4.png');
+        expect(customReward.shouldRedemptionsSkipRequestQueue, false);
+        expect(customReward.redemptionsRedeemedCurrentStream, isNull);
+        expect(customReward.cooldownExpiresAt, isNull);
       });
     });
   });
