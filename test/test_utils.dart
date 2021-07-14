@@ -30,7 +30,7 @@ class TwitchMockProvider extends TwitchHttpClient {
   void initializeToken(_) {}
 
   @override
-  Future patchCall(Iterable<String> pathSegments, data,
+  Future patchCall(Iterable<String> pathSegments, _,
       {Map<String, dynamic> queryParameters = const {}}) {
     // TODO: implement patchCall
     throw UnimplementedError();

@@ -644,6 +644,31 @@ class TwitchClient {
   ///
   /// `broadcasterId`: Provided `broadcasterId` must match the `userId` in the
   /// user OAuth token.
+  ///
+  /// `title`: The title of the reward.
+  ///
+  /// `cost`: The cost of the reward.
+  ///
+  /// `prompt`: The prompt for the viewer when redeeming the reward.
+  ///
+  /// `isEnabled`: Is the reward currently enabled, if false the reward won’t
+  /// show up to viewers.
+  ///
+  /// `backgroundColor`: Custom background color for the reward. Format: Hex
+  /// with # prefix. Example: `#00E5CB`.
+  ///
+  /// `isUserInputRequired`: Does the user need to enter information when
+  /// redeeming the reward.
+  ///
+  /// `maxPerStream`: The maximum number per stream if enabled.
+  ///
+  /// `maxPerUserPerStream`: The maximum number per user per stream if enabled.
+  ///
+  /// `globalCooldownSeconds`: The cooldown in seconds if enabled.
+  ///
+  /// `shouldRedemptionsSkipQueue`: Should redemptions be set to FULFILLED
+  /// status immediately when redeemed and skip the request queue instead of the
+  /// normal UNFULFILLED status.
   Future<TwitchResponse<TwitchCustomReward>> createCustomRewards({
     required String broadcasterId,
     required String title,
@@ -652,14 +677,14 @@ class TwitchClient {
     bool isEnabled = true,
     String? backgroundColor,
     bool isUserInputRequired = false,
-    bool isMaxPerStreamEnabled = false,
     int? maxPerStream,
-    bool isMaxPerUserPerStreamEnabled = false,
+    int? maxPerUserPerStream,
+    int? globalCooldownSeconds,
+    bool shouldRedemptionsSkipQueue = false,
   }) async {
-    if (isMaxPerStreamEnabled) {
-      assert(maxPerStream != null,
-          'Required when any value of isMaxPerStreamEnabled is included.');
-    }
+    final isMaxPerStreamEnabled = maxPerStream != null;
+    final isMaxPerUserPerStreamEnabled = maxPerUserPerStream != null;
+    final isGlobalCooldownEnabled = globalCooldownSeconds != null;
     final body = <String, dynamic>{
       'title': title,
       'cost': cost,
@@ -667,8 +692,18 @@ class TwitchClient {
       'is_user_input_required': isUserInputRequired,
       'is_max_per_stream_enabled': isMaxPerStreamEnabled,
       'is_max_per_user_per_stream_enabled': isMaxPerUserPerStreamEnabled,
+      'is_global_cooldown_enabled': isGlobalCooldownEnabled,
+      'should_redemptions_skip_request_queue': shouldRedemptionsSkipQueue,
     };
+    if (prompt != null) body['prompt'] = prompt;
+    if (backgroundColor != null) body['background_color'] = backgroundColor;
     if (maxPerStream != null) body['max_per_stream'] = maxPerStream;
+    if (maxPerUserPerStream != null) {
+      body['max_per_user_per_stream'] = maxPerUserPerStream;
+    }
+    if (globalCooldownSeconds != null) {
+      body['global_cooldown_seconds'] = globalCooldownSeconds;
+    }
     final data = await twitchHttpClient.postCall(
       ['channel_points', 'custom_rewards'],
       body,
