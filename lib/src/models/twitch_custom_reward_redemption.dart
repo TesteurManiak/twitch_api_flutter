@@ -1,4 +1,6 @@
-enum TwitchRewardRedemptionStatus { unfulfilled, fulfilled, cancelled }
+import 'package:twitch_api/src/extensions/string_extensions.dart';
+
+enum TwitchRewardRedemptionStatus { unfulfilled, fulfilled, canceled }
 
 enum TwitchRedemptionSort { oldest, newest }
 
@@ -14,6 +16,14 @@ class TwitchRedemptionRewardInfo {
     required this.prompt,
     required this.cost,
   });
+
+  factory TwitchRedemptionRewardInfo.fromJson(Map<String, dynamic> json) =>
+      TwitchRedemptionRewardInfo(
+        id: json['id'] as String,
+        title: json['title'] as String,
+        prompt: json['prompt'] as String,
+        cost: json['cost'] as int,
+      );
 }
 
 class TwitchCustomRewardRedemption {
@@ -43,13 +53,13 @@ class TwitchCustomRewardRedemption {
   final TwitchRedemptionRewardInfo reward;
 
   /// The user input provided. Empty string if not provided.
-  final String input;
+  final String userInput;
 
   /// One of UNFULFILLED, FULFILLED or CANCELED.
   final TwitchRewardRedemptionStatus status;
 
   /// RFC3339 timestamp of when the reward was redeemed.
-  final DateTime timestamp;
+  final DateTime redeemedAt;
 
   TwitchCustomRewardRedemption({
     required this.broadcasterId,
@@ -60,8 +70,25 @@ class TwitchCustomRewardRedemption {
     required this.userId,
     required this.userName,
     required this.reward,
-    required this.input,
+    required this.userInput,
     required this.status,
-    required this.timestamp,
+    required this.redeemedAt,
   });
+
+  factory TwitchCustomRewardRedemption.fromJson(Map<String, dynamic> json) =>
+      TwitchCustomRewardRedemption(
+        broadcasterId: json["broadcaster_id"] as String,
+        broadcasterLogin: json["broadcaster_login"] as String,
+        broadcasterName: json["broadcaster_name"] as String,
+        id: json["id"] as String,
+        userLogin: json["user_login"] as String,
+        userId: json["user_id"] as String,
+        userName: json["user_name"] as String,
+        reward: TwitchRedemptionRewardInfo.fromJson(
+          json["reward"] as Map<String, dynamic>,
+        ),
+        userInput: json["user_input"] as String,
+        status: (json["status"] as String).toRewardRedemptionStatus(),
+        redeemedAt: DateTime.parse(json["redeemed_at"] as String),
+      );
 }

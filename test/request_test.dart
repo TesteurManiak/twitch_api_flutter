@@ -106,7 +106,7 @@ void main() {
           final data = (await client.getCustomRewardRedemptions(
             broadcasterId: '274637212',
             rewardId: '92af127c-7326-4483-a52b-b0da0be61c01',
-            status: TwitchRewardRedemptionStatus.cancelled,
+            status: TwitchRewardRedemptionStatus.canceled,
           ))
               .data;
           expect(data!.length, 1);

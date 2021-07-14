@@ -19,7 +19,7 @@ import 'package:twitch_api/src/models/twitch_user.dart';
 import 'package:twitch_api/src/providers/twitch_dio_provider.dart';
 import 'package:twitch_api/src/providers/twitch_http_client.dart';
 import 'package:twitch_api/twitch_api.dart';
-import 'extensions/enum_extensions.dart' show TwitchTimePeriodModifier;
+import 'extensions/enum_extensions.dart';
 
 import 'models/twitch_api_scopes.dart';
 
@@ -806,5 +806,25 @@ class TwitchClient {
     TwitchRedemptionSort sort = TwitchRedemptionSort.oldest,
     String? after,
     int first = 20,
-  }) async {}
+  }) async {
+    assert(ids.length <= 50, 'ids.length cannot exceed 50');
+    assert(ids.isNotEmpty || status != null);
+    assert(first <= 50 && first >= 0, 'first cannot exceed 50');
+
+    final queryParameters = <String, dynamic>{
+      'broadcaster_id': broadcasterId,
+      'reward_id': rewardId,
+      'sort': sort.string,
+      'first': first.toString(),
+    };
+    if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
+    if (status != null) queryParameters['status'] = status.string;
+    if (after != null) queryParameters['after'] = after;
+
+    final data = await twitchHttpClient.getCall(
+      ['channel_points', 'custom_rewards', 'redemptions'],
+      queryParameters: queryParameters,
+    );
+    return TwitchResponse.customRewardRedemption(data as Map<String, dynamic>);
+  }
 }

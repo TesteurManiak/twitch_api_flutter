@@ -198,4 +198,13 @@ class TwitchResponse<T> {
                 TwitchCustomReward.fromJson(e as Map<String, dynamic>) as T)
             .toList(),
       );
+
+  factory TwitchResponse.customRewardRedemption(Map<String, dynamic> json) =>
+      TwitchResponse(
+        data: (json['data'] as Iterable)
+            .map<T>((e) =>
+                TwitchCustomRewardRedemption.fromJson(e as Map<String, dynamic>)
+                    as T)
+            .toList(),
+      );
 }

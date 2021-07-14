@@ -39,4 +39,17 @@ extension StringModifier on String {
             'Unknown TwitchExtensionTransactionProductType: $this');
     }
   }
+
+  TwitchRewardRedemptionStatus toRewardRedemptionStatus() {
+    switch (toUpperCase()) {
+      case 'UNFULFILLED':
+        return TwitchRewardRedemptionStatus.unfulfilled;
+      case 'FULFILLED':
+        return TwitchRewardRedemptionStatus.fulfilled;
+      case 'CANCELED':
+        return TwitchRewardRedemptionStatus.canceled;
+      default:
+        throw TwitchApiException('Unknown TwitchRewardRedemptionStatus: $this');
+    }
+  }
 }
