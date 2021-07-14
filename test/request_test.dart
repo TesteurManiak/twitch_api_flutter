@@ -78,22 +78,19 @@ void main() {
 
       group('Custom Rewards', () {
         test('1', () async {
-          final data =
-              (await client.getCustomRewards(broadcasterId: '274637212')).data;
+          final data = (await client.getCustomRewards()).data;
 
           expect(data!.length, 1);
         });
 
         test('2', () async {
-          final data = (await client.getCustomRewards(
-                  broadcasterId: '274637212', onlyManageableRewards: true))
-              .data;
+          final data =
+              (await client.getCustomRewards(onlyManageableRewards: true)).data;
           expect(data!.length, 1);
         });
 
         test('3', () async {
           final data = (await client.getCustomRewards(
-            broadcasterId: '274637212',
             ids: ['92af127c-7326-4483-a52b-b0da0be61c01'],
           ))
               .data;
@@ -104,7 +101,6 @@ void main() {
       group('description', () {
         test('1', () async {
           final data = (await client.getCustomRewardRedemptions(
-            broadcasterId: '274637212',
             rewardId: '92af127c-7326-4483-a52b-b0da0be61c01',
             status: TwitchRewardRedemptionStatus.canceled,
           ))
@@ -114,7 +110,6 @@ void main() {
 
         test('2', () async {
           final data = (await client.getCustomRewardRedemptions(
-            broadcasterId: '274637212',
             rewardId: '92af127c-7326-4483-a52b-b0da0be61c01',
             ids: ['17fa2df1-ad76-4804-bfa5-a40ef63efe63'],
           ))
@@ -138,12 +133,15 @@ void main() {
         expect(leaderboard.rank, 1);
         expect(leaderboard.score, 12543);
       });
+
+      test('Broadcaster Subscriptions', () async {
+        // final data = (await client.getBroadcasterSubscriptions()).data;
+      });
     });
 
     group('POST', () {
       test('Create Custom Rewards', () async {
         final data = (await client.createCustomRewards(
-          broadcasterId: '274637212',
           title: 'game analysis 1v1',
           cost: 50000,
         ))
@@ -185,7 +183,6 @@ void main() {
     group('DELETE', () {
       test('Delete Custom Reward', () async {
         final data = await client.deleteCustomReward(
-          broadcasterId: '274637212',
           id: 'b045196d-9ce7-4a27-a9b9-279ed341ab28',
         );
         expect(data, '204 No Content');
