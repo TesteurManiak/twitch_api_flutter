@@ -510,8 +510,9 @@ class TwitchClient {
     final data = await twitchHttpClient
         .getCall(['subscriptions'], queryParameters: queryParameters);
     return TwitchResponse<
-            TwitchBroadcasterSubscription>.broadcasterSubscriptions(
-        data as Map<String, dynamic>);
+        TwitchBroadcasterSubscription>.broadcasterSubscriptions(
+      data as Map<String, dynamic>,
+    );
   }
 
   /// Retrieves the list of available Cheermotes, animated emotes to which
