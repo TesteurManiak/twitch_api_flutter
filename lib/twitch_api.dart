@@ -9,6 +9,7 @@ export 'src/models/twitch_cheermote.dart';
 export 'src/models/twitch_cheermote_tier.dart';
 export 'src/models/twitch_cheermote_type.dart';
 export 'src/models/twitch_custom_reward.dart';
+export 'src/models/twitch_custom_reward_redemption.dart';
 export 'src/models/twitch_date_range.dart';
 export 'src/models/twitch_extension_analytic.dart';
 export 'src/models/twitch_game.dart';
