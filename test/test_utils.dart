@@ -21,6 +21,21 @@ class TwitchMockProvider extends TwitchHttpClient {
       case 'channels/editors':
         return jsonDecode(
             await readFileStringAsync('get_channel_editors.json'));
+      case 'channel_points/custom_rewards':
+        if (queryParameters['only_manageable_rewards'] as bool == true) {
+          return jsonDecode(
+            await readFileStringAsync('get_custom_rewards_2.json'),
+          );
+        } else if (queryParameters['id'] ==
+            '92af127c-7326-4483-a52b-b0da0be61c01') {
+          return jsonDecode(
+            await readFileStringAsync('get_custom_rewards_3.json'),
+          );
+        } else {
+          return jsonDecode(
+            await readFileStringAsync('get_custom_rewards_1.json'),
+          );
+        }
       default:
         throw 'Bad Request: Query Parameter missing or invalid';
     }

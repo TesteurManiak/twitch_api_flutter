@@ -56,7 +56,7 @@ Future<TwitchToken> _openConnectionPage({List<TwitchApiScope> scopes = const []}
 
 Now you are ready to use the methods implemented in [Supported Features](#supported-features) section.
 
-## Supported Endpoints (17/56)
+## Supported Endpoints (18/56)
 
 ### Ads
 
@@ -82,8 +82,8 @@ Now you are ready to use the methods implemented in [Supported Features](#suppor
 ### Channel Points
 
 * [x] Create Custom Rewards
-* [ ] Delete Custom Reward
-* [ ] Get Custom Reward
+* [x] Delete Custom Reward
+* [x] Get Custom Reward
 * [ ] Get Custom Reward Redemption
 * [ ] Update Custom Reward
 * [ ] Update Redemption Status

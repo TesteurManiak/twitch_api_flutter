@@ -729,4 +729,36 @@ class TwitchClient {
     );
     return data as String;
   }
+
+  /// Returns a list of Custom Reward objects for the Custom Rewards on a channel.
+  ///
+  /// Required scope: [TwitchApiScope.channelReadRedemptions]
+  ///
+  /// `broadcasterId`: Provided `broadcasterId` must match the `userId` in the
+  /// user OAuth token.
+  ///
+  /// `ids`: When used, this parameter filters the results and only returns
+  /// reward objects for the Custom Rewards with matching ID. Maximum length: 50
+  ///
+  /// `onlyManageableRewards`: When set to true, only returns Custom Rewards that
+  /// the calling `clientId` can manage. Default: false.
+  Future<TwitchResponse<TwitchCustomReward>> getCustomRewards({
+    required String broadcasterId,
+    List<String> ids = const [],
+    bool onlyManageableRewards = false,
+  }) async {
+    assert(ids.length <= 50, 'ids.length cannot exceed 50');
+
+    final queryParameters = <String, dynamic>{
+      'broadcaster_id': broadcasterId,
+      'only_manageable_rewards': onlyManageableRewards,
+    };
+    if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
+
+    final data = await twitchHttpClient.getCall(
+      ['channel_points', 'custom_rewards'],
+      queryParameters: queryParameters,
+    );
+    return TwitchResponse.customReward(data as Map<String, dynamic>);
+  }
 }

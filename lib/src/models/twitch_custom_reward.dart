@@ -74,7 +74,7 @@ class TwitchCustomReward {
   final String broadcasterName;
 
   /// Broadcaster’s user login name.
-  final String broadcasterLogin;
+  final String? broadcasterLogin;
 
   /// Display name of the channel the reward is for.
   final String broadcasterId;
@@ -163,7 +163,7 @@ class TwitchCustomReward {
   factory TwitchCustomReward.fromJson(Map<String, dynamic> json) =>
       TwitchCustomReward(
         broadcasterName: json['broadcaster_name'] as String,
-        broadcasterLogin: json['broadcaster_login'] as String,
+        broadcasterLogin: json['broadcaster_login'] as String?,
         broadcasterId: json['broadcaster_id'] as String,
         id: json['id'] as String,
         image: json['image'] != null

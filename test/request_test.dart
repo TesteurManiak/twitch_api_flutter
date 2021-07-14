@@ -75,6 +75,35 @@ void main() {
         expect(channelEditor.userId, '182891647');
         expect(channelEditor.userName, 'mauerbac');
       });
+
+      group('Custom Rewards', () {
+        test('1', () async {
+          final data =
+              (await client.getCustomRewards(broadcasterId: '274637212')).data;
+
+          expect(data!.length, 1);
+        });
+
+        test('2', () async {
+          final data = (await client.getCustomRewards(
+                  broadcasterId: '274637212', onlyManageableRewards: true))
+              .data;
+          expect(data!.length, 1);
+        });
+
+        // TODO: Example Request #3
+        //  curl -X GET 'https://api.twitch.tv/helix/channel_points/custom_rewards?broadcaster_id=274637212&id=92af127c-7326-4483-a52b-b0da0be61c01'
+        // -H 'Client-Id: gx2pv4208cff0ig9ou7nk3riccffxt' \
+        // -H 'Authorization: Bearer vjxv3i0l4zxru966wsnwji51tmpkj2'
+        test('3', () async {
+          final data = (await client.getCustomRewards(
+            broadcasterId: '274637212',
+            ids: ['92af127c-7326-4483-a52b-b0da0be61c01'],
+          ))
+              .data;
+          expect(data!.length, 1);
+        });
+      });
     });
 
     group('POST', () {
@@ -119,7 +148,7 @@ void main() {
       });
     });
 
-    group('PATCH', () {
+    group('DELETE', () {
       test('Delete Custom Reward', () async {
         final data = await client.deleteCustomReward(
           broadcasterId: '274637212',
