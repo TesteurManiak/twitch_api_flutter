@@ -36,6 +36,16 @@ class TwitchMockProvider extends TwitchHttpClient {
             await readFileStringAsync('get_custom_rewards_1.json'),
           );
         }
+      case 'channel_points/custom_rewards/redemptions':
+        if (queryParameters['status'] == 'CANCELED') {
+          return jsonDecode(
+            await readFileStringAsync('get_custom_reward_redemption_1.json'),
+          );
+        } else {
+          return jsonDecode(
+            await readFileStringAsync('get_custom_reward_redemption_2.json'),
+          );
+        }
       default:
         throw 'Bad Request: Query Parameter missing or invalid';
     }

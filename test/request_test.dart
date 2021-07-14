@@ -91,14 +91,32 @@ void main() {
           expect(data!.length, 1);
         });
 
-        // TODO: Example Request #3
-        //  curl -X GET 'https://api.twitch.tv/helix/channel_points/custom_rewards?broadcaster_id=274637212&id=92af127c-7326-4483-a52b-b0da0be61c01'
-        // -H 'Client-Id: gx2pv4208cff0ig9ou7nk3riccffxt' \
-        // -H 'Authorization: Bearer vjxv3i0l4zxru966wsnwji51tmpkj2'
         test('3', () async {
           final data = (await client.getCustomRewards(
             broadcasterId: '274637212',
             ids: ['92af127c-7326-4483-a52b-b0da0be61c01'],
+          ))
+              .data;
+          expect(data!.length, 1);
+        });
+      });
+
+      group('description', () {
+        test('1', () async {
+          final data = (await client.getCustomRewardRedemptions(
+            broadcasterId: '274637212',
+            rewardId: '92af127c-7326-4483-a52b-b0da0be61c01',
+            status: TwitchRewardRedemptionStatus.canceled,
+          ))
+              .data;
+          expect(data!.length, 1);
+        });
+
+        test('2', () async {
+          final data = (await client.getCustomRewardRedemptions(
+            broadcasterId: '274637212',
+            rewardId: '92af127c-7326-4483-a52b-b0da0be61c01',
+            ids: ['17fa2df1-ad76-4804-bfa5-a40ef63efe63'],
           ))
               .data;
           expect(data!.length, 1);

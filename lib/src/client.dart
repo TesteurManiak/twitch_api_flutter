@@ -6,6 +6,7 @@ import 'package:twitch_api/src/models/twitch_broadcaster_subscription.dart';
 import 'package:twitch_api/src/models/twitch_channel_editor.dart';
 import 'package:twitch_api/src/models/twitch_channel_info.dart';
 import 'package:twitch_api/src/models/twitch_cheermote.dart';
+import 'package:twitch_api/src/models/twitch_custom_reward_redemption.dart';
 import 'package:twitch_api/src/models/twitch_extension_transaction.dart';
 import 'package:twitch_api/src/models/twitch_game.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
@@ -18,7 +19,7 @@ import 'package:twitch_api/src/models/twitch_user.dart';
 import 'package:twitch_api/src/providers/twitch_dio_provider.dart';
 import 'package:twitch_api/src/providers/twitch_http_client.dart';
 import 'package:twitch_api/twitch_api.dart';
-import 'extensions/enum_extensions.dart' show TwitchTimePeriodModifier;
+import 'extensions/enum_extensions.dart';
 
 import 'models/twitch_api_scopes.dart';
 
@@ -760,5 +761,70 @@ class TwitchClient {
       queryParameters: queryParameters,
     );
     return TwitchResponse.customReward(data as Map<String, dynamic>);
+  }
+
+  /// Returns Custom Reward Redemption objects for a Custom Reward on a channel
+  /// that was created by the same `clientId`.
+  ///
+  /// Developers only have access to get and update redemptions for the rewards
+  /// created programmatically by the same `clientId`.
+  ///
+  /// Required scope: [TwitchApiScope.channelReadRedemptions]
+  ///
+  /// `broadcasterId`: Provided `broadcasterId` must match the `userId` in the
+  /// user OAuth token.
+  ///
+  /// `rewardId`: When ID is not provided, this parameter returns paginated
+  /// Custom Reward Redemption objects for redemptions of the Custom Reward with
+  /// ID `rewardId`.
+  ///
+  /// `ids`: When used, this param filters the results and only returns Custom
+  /// Reward Redemption objects for the redemptions with matching ID. Maximum:
+  /// 50
+  ///
+  /// `status`: When `id` is not provided, this param is required and filters
+  /// the paginated Custom Reward Redemption objects for redemptions with the
+  /// matching status.
+  ///
+  /// `sort`: Sort order of redemptions returned when getting the paginated
+  /// Custom Reward Redemption objects for a reward.
+  ///
+  /// `after`: Cursor for forward pagination: tells the server where to start
+  /// fetching the next set of results, in a multi-page response. This applies
+  /// only to queries without ID. If an ID is specified, it supersedes any
+  /// cursor/offset combinations. The cursor value specified here is from the
+  /// pagination response field of a prior query.
+  ///
+  /// `first`: Number of results to be returned when getting the paginated
+  /// Custom Reward Redemption objects for a reward. Limit: 50.
+  Future<TwitchResponse<TwitchCustomRewardRedemption>>
+      getCustomRewardRedemptions({
+    required String broadcasterId,
+    required String rewardId,
+    List<String> ids = const [],
+    TwitchRewardRedemptionStatus? status,
+    TwitchRedemptionSort sort = TwitchRedemptionSort.oldest,
+    String? after,
+    int first = 20,
+  }) async {
+    assert(ids.length <= 50, 'ids.length cannot exceed 50');
+    assert(ids.isNotEmpty || status != null);
+    assert(first <= 50 && first >= 0, 'first cannot exceed 50');
+
+    final queryParameters = <String, dynamic>{
+      'broadcaster_id': broadcasterId,
+      'reward_id': rewardId,
+      'sort': sort.string,
+      'first': first.toString(),
+    };
+    if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
+    if (status != null) queryParameters['status'] = status.string;
+    if (after != null) queryParameters['after'] = after;
+
+    final data = await twitchHttpClient.getCall(
+      ['channel_points', 'custom_rewards', 'redemptions'],
+      queryParameters: queryParameters,
+    );
+    return TwitchResponse.customRewardRedemption(data as Map<String, dynamic>);
   }
 }
