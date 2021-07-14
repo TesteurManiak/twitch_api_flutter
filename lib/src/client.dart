@@ -643,9 +643,6 @@ class TwitchClient {
 
   /// Creates a Custom Reward on a channel.
   ///
-  /// `broadcasterId`: Provided `broadcasterId` must match the `userId` in the
-  /// user OAuth token.
-  ///
   /// `title`: The title of the reward.
   ///
   /// `cost`: The cost of the reward.
@@ -671,7 +668,6 @@ class TwitchClient {
   /// status immediately when redeemed and skip the request queue instead of the
   /// normal UNFULFILLED status.
   Future<TwitchResponse<TwitchCustomReward>> createCustomRewards({
-    required String broadcasterId,
     required String title,
     required int cost,
     String? prompt,
@@ -708,25 +704,22 @@ class TwitchClient {
     final data = await twitchHttpClient.postCall(
       ['channel_points', 'custom_rewards'],
       body,
-      queryParameters: {'broadcaster_id': broadcasterId},
+      queryParameters: {'broadcaster_id': twitchHttpClient.twitchToken.userId},
     );
     return TwitchResponse.customReward(data as Map<String, dynamic>);
   }
 
   /// Deletes a Custom Reward on a channel.
   ///
-  /// `broadcasterId`: Provided `broadcasterId` must match the `userId` in the
-  /// user OAuth token.
-  ///
   /// `id`: ID of the Custom Reward to delete, must match a Custom Reward on
   /// `broadcasterId`’s channel.
-  Future<String> deleteCustomReward({
-    required String broadcasterId,
-    required String id,
-  }) async {
+  Future<String> deleteCustomReward({required String id}) async {
     final data = await twitchHttpClient.deleteCall(
       ['channel_points', 'custom_rewards'],
-      queryParameters: {'broadcaster_id': broadcasterId, 'id': id},
+      queryParameters: {
+        'broadcaster_id': twitchHttpClient.twitchToken.userId,
+        'id': id,
+      },
     );
     return data as String;
   }
@@ -735,23 +728,19 @@ class TwitchClient {
   ///
   /// Required scope: [TwitchApiScope.channelReadRedemptions]
   ///
-  /// `broadcasterId`: Provided `broadcasterId` must match the `userId` in the
-  /// user OAuth token.
-  ///
   /// `ids`: When used, this parameter filters the results and only returns
   /// reward objects for the Custom Rewards with matching ID. Maximum length: 50
   ///
   /// `onlyManageableRewards`: When set to true, only returns Custom Rewards that
   /// the calling `clientId` can manage. Default: false.
   Future<TwitchResponse<TwitchCustomReward>> getCustomRewards({
-    required String broadcasterId,
     List<String> ids = const [],
     bool onlyManageableRewards = false,
   }) async {
     assert(ids.length <= 50, 'ids.length cannot exceed 50');
 
     final queryParameters = <String, dynamic>{
-      'broadcaster_id': broadcasterId,
+      'broadcaster_id': twitchHttpClient.twitchToken.userId,
       'only_manageable_rewards': onlyManageableRewards,
     };
     if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
@@ -770,9 +759,6 @@ class TwitchClient {
   /// created programmatically by the same `clientId`.
   ///
   /// Required scope: [TwitchApiScope.channelReadRedemptions]
-  ///
-  /// `broadcasterId`: Provided `broadcasterId` must match the `userId` in the
-  /// user OAuth token.
   ///
   /// `rewardId`: When ID is not provided, this parameter returns paginated
   /// Custom Reward Redemption objects for redemptions of the Custom Reward with
@@ -799,7 +785,6 @@ class TwitchClient {
   /// Custom Reward Redemption objects for a reward. Limit: 50.
   Future<TwitchResponse<TwitchCustomRewardRedemption>>
       getCustomRewardRedemptions({
-    required String broadcasterId,
     required String rewardId,
     List<String> ids = const [],
     TwitchRewardRedemptionStatus? status,
@@ -812,7 +797,7 @@ class TwitchClient {
     assert(first <= 50 && first >= 0, 'first cannot exceed 50');
 
     final queryParameters = <String, dynamic>{
-      'broadcaster_id': broadcasterId,
+      'broadcaster_id': twitchHttpClient.twitchToken.userId,
       'reward_id': rewardId,
       'sort': sort.string,
       'first': first.toString(),

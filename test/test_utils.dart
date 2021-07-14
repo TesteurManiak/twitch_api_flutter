@@ -78,7 +78,12 @@ class TwitchMockProvider extends TwitchHttpClient {
   }
 
   @override
-  TwitchToken get twitchToken => throw UnimplementedError();
+  final TwitchToken twitchToken = TwitchToken(
+    scope: '',
+    token: '',
+    tokenType: '',
+    userId: '',
+  );
 
   @override
   Future<TwitchToken?> validateToken() => throw UnimplementedError();
