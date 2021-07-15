@@ -79,17 +79,21 @@ class TwitchClient {
   ///
   /// Required scope: `TwitchApiScope.channelEditCommercial`
   ///
-  /// [broadcasterId]: ID of the channel requesting a commercial.
+  /// `broadcasterId`: ID of the channel requesting a commercial.
   ///
-  /// [length]: Desired length of the commercial in seconds. Valid options are
+  /// `length`: Desired length of the commercial in seconds. Valid options are
   /// `30, 60, 90, 120, 150, 180`.
-  Future<TwitchResponse<TwitchStartCommercial>> startCommercial(
-      String broadcasterId, int length) async {
+  Future<TwitchResponse<TwitchStartCommercial>> startCommercial({
+    required String broadcasterId,
+    required int length,
+  }) async {
     assert(broadcasterId == twitchHttpClient.twitchToken.userId);
-    assert(length > 29 && length < 181 && length % 30 == 0);
+    assert(length >= 30 && length <= 180 && length % 30 == 0);
     try {
-      final data = await twitchHttpClient.postCall(['channels', 'commercial'],
-          {'broadcaster_id': broadcasterId, 'length': length.toString()});
+      final data = await twitchHttpClient.postCall(
+        ['channels', 'commercial'],
+        {'broadcaster_id': broadcasterId, 'length': length.toString()},
+      );
       return TwitchResponse.startCommercial(data as Map<String, dynamic>);
     } catch (e) {
       throw TwitchStartCommercialException(e.toString());

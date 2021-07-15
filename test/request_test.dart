@@ -183,6 +183,17 @@ void main() {
         expect(customReward.redemptionsRedeemedCurrentStream, isNull);
         expect(customReward.cooldownExpiresAt, isNull);
       });
+
+      test('Start Commercial', () async {
+        final data =
+            (await client.startCommercial(broadcasterId: '', length: 60)).data;
+        expect(data!.length, 1);
+
+        final commercial = data.first;
+        expect(commercial.length, 60);
+        expect(commercial.message, '');
+        expect(commercial.retryAfter, 480);
+      });
     });
 
     group('DELETE', () {
