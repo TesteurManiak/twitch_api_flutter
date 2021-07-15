@@ -117,7 +117,9 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () => _twitchClient
                 .startCommercial(
-                    _twitchClient.twitchHttpClient.twitchToken.userId, 60)
+              broadcasterId: _twitchClient.twitchHttpClient.twitchToken.userId,
+              length: 60,
+            )
                 .catchError((error) {
               _displayDataAlert('startCommercial', error.toString());
             }),

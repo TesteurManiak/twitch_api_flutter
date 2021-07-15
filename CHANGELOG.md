@@ -1,6 +1,7 @@
 ## [0.4.0] - 
 
-* Refacto to separate implementation of the HTTP provider,  `TwitchClient.accessToken` and `TwitchClient.validateToken` are deprecated
+* **Breaking change:** `TwitchClient.startCommercial` is now taking named parameters
+* Refacto to separate implementation of the HTTP provider, `TwitchClient.accessToken` and `TwitchClient.validateToken` are deprecated
 * Added method `createCustomRewards`, `deleteCustomReward`, `getCustomRewards`, `getCustomRewardRedemptions`
 
 ## [0.3.1] - 24/06/2021
