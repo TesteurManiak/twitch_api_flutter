@@ -195,6 +195,27 @@ void main() {
           expect(analytics.dateRange.endedAt, '2018-06-13T00:00:00Z');
         });
       });
+
+      test('Users', () async {
+        final data = (await client.getUsers(ids: ['141981764'])).data!;
+        expect(data.length, 1);
+
+        final user = data.first;
+        expect(user.id, '141981764');
+        expect(user.login, 'twitchdev');
+        expect(user.displayName, 'TwitchDev');
+        expect(user.type, '');
+        expect(user.broadcasterType, TwitchBroadcasterType.partner);
+        expect(user.description,
+            'Supporting third-party developers building Twitch integrations from chatbots to game integrations.');
+        expect(user.profileImageUrl,
+            'https://static-cdn.jtvnw.net/jtv_user_pictures/8a6381c7-d0c0-4576-b179-38bd5ce1d6af-profile_image-300x300.png');
+        expect(user.offlineImageUrl,
+            'https://static-cdn.jtvnw.net/jtv_user_pictures/3f13ab61-ec78-4fe6-8481-8682cb3b0ac2-channel_offline_image-1920x1080.png');
+        expect(user.viewCount, 5980557);
+        expect(user.email, 'not-real@email.com');
+        expect(user.createdAt, '2016-12-14T20:32:28.894263Z');
+      });
     });
 
     group('POST', () {

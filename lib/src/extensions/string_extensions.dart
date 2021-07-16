@@ -52,4 +52,15 @@ extension StringModifier on String {
         throw TwitchApiException('Unknown TwitchRewardRedemptionStatus: $this');
     }
   }
+
+  TwitchBroadcasterType toBroadcasterType() {
+    switch (toLowerCase()) {
+      case 'partner':
+        return TwitchBroadcasterType.partner;
+      case 'affiliate':
+        return TwitchBroadcasterType.affiliate;
+      default:
+        return TwitchBroadcasterType.none;
+    }
+  }
 }
