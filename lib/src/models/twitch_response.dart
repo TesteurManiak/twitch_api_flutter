@@ -56,7 +56,7 @@ class TwitchResponse<T> {
                 TwitchExtensionAnalytic.fromJson(e as Map<String, dynamic>)
                     as T)
             .toList(),
-        pagination: json['pagination'] as Map<String, dynamic>,
+        pagination: json['pagination'] as Map<String, dynamic>?,
       );
 
   /// Constructor for request containing [TwitchGameAnalytic].
@@ -66,7 +66,7 @@ class TwitchResponse<T> {
             .map<T>((e) =>
                 TwitchGameAnalytic.fromJson(e as Map<String, dynamic>) as T)
             .toList(),
-        pagination: json['pagination'] as Map<String, dynamic>,
+        pagination: json['pagination'] as Map<String, dynamic>?,
       );
 
   /// Constructor for request containing [TwitchStreamInfo].
@@ -76,7 +76,7 @@ class TwitchResponse<T> {
             .map<T>((e) =>
                 TwitchStreamInfo.fromJson(e as Map<String, dynamic>) as T)
             .toList(),
-        pagination: json['pagination'] as Map<String, dynamic>,
+        pagination: json['pagination'] as Map<String, dynamic>?,
       );
 
   /// Constructor for request containing [TwitchTopGame].
@@ -85,7 +85,7 @@ class TwitchResponse<T> {
             .map<T>(
                 (e) => TwitchTopGame.fromJson(e as Map<String, dynamic>) as T)
             .toList(),
-        pagination: json['pagination'] as Map<String, dynamic>,
+        pagination: json['pagination'] as Map<String, dynamic>?,
       );
 
   /// Constructor for request containing [TwitchSearchCategory].
@@ -95,7 +95,7 @@ class TwitchResponse<T> {
             .map<T>((e) =>
                 TwitchSearchCategory.fromJson(e as Map<String, dynamic>) as T)
             .toList(),
-        pagination: json['pagination'] as Map<String, dynamic>,
+        pagination: json['pagination'] as Map<String, dynamic>?,
       );
 
   /// Constructor for request containing [TwitchBroadcasterSubscription].
@@ -105,7 +105,7 @@ class TwitchResponse<T> {
             .map<T>((e) => TwitchBroadcasterSubscription.fromJson(
                 e as Map<String, dynamic>) as T)
             .toList(),
-        pagination: json['pagination'] as Map<String, dynamic>,
+        pagination: json['pagination'] as Map<String, dynamic>?,
         total: json['total'] as int,
       );
 
