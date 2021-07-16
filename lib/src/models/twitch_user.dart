@@ -1,5 +1,9 @@
+import 'package:twitch_api/src/extensions/string_extensions.dart';
+
+enum TwitchBroadcasterType { partner, affiliate, none }
+
 class TwitchUser {
-  final String broadcasterType;
+  final TwitchBroadcasterType broadcasterType;
   final String description;
   final String displayName;
   final String email;
@@ -30,7 +34,8 @@ class TwitchUser {
         login: json['login'] as String,
         displayName: json['display_name'] as String,
         type: json['type'] as String,
-        broadcasterType: json['broadcaster_type'] as String,
+        broadcasterType:
+            (json['broadcaster_type'] as String).toBroadcasterType(),
         description: json['description'] as String,
         profileImageUrl: json['profile_image_url'] as String,
         offlineImageUrl: json['offline_image_url'] as String,

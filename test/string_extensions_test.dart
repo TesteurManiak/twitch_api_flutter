@@ -5,6 +5,7 @@ import 'package:twitch_api/src/models/twitch_cheermote_type.dart';
 import 'package:twitch_api/src/models/twitch_custom_reward_redemption.dart';
 import 'package:twitch_api/src/models/twitch_extension_transaction.dart';
 import 'package:twitch_api/src/models/twitch_stream_info.dart';
+import 'package:twitch_api/src/models/twitch_user.dart';
 
 void main() {
   group('String Extensions', () {
@@ -68,6 +69,12 @@ void main() {
         () => 'error'.toRewardRedemptionStatus(),
         throwsA(isA<TwitchApiException>()),
       );
+    });
+
+    test('toBroadcasterType()', () {
+      expect('partner'.toBroadcasterType(), TwitchBroadcasterType.partner);
+      expect('affiliate'.toBroadcasterType(), TwitchBroadcasterType.affiliate);
+      expect(''.toBroadcasterType(), TwitchBroadcasterType.none);
     });
   });
 }
