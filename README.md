@@ -57,7 +57,7 @@ Future<TwitchToken> _openConnectionPage({List<TwitchApiScope> scopes = const []}
 
 Now you are ready to use the methods implemented in [Supported Features](#supported-features) section.
 
-## Supported Endpoints (21/56)
+## Supported Endpoints (21/85)
 
 ### Ads
 
@@ -89,6 +89,14 @@ Now you are ready to use the methods implemented in [Supported Features](#suppor
 * [ ] Update Custom Reward
 * [ ] Update Redemption Status
 
+### Chat
+
+* [ ] Get Channel Emotes	
+* [ ] Get Global Emotes
+* [ ] Get Emote Sets
+* [ ] Get Channel Chat Badges
+* [ ] Get Global Chat Badges
+
 ### Clips
 
 * [ ] Create Clip
@@ -100,6 +108,21 @@ Now you are ready to use the methods implemented in [Supported Features](#suppor
 * [ ] Get Code Status
 * [ ] Get Drops Entitlements
 * [ ] Redeem Code
+
+### Extensions
+
+* [ ] Get Extension Configuration Segment
+* [ ] Set Extension Configuration Segment
+* [ ] Set Extension Required Configuration
+* [ ] Send Extension PubSub Message
+* [ ] Get Live Channels
+* [ ] Get Extension Secrets
+* [ ] Create Extension Secret
+* [ ] Send Extension Chat Message
+* [ ] Get Extensions
+* [ ] Get Released Extensions
+* [ ] Get Extension Bits Products
+* [ ] Update Extension Bits Product
 
 ### EventSub
 
@@ -123,6 +146,27 @@ Now you are ready to use the methods implemented in [Supported Features](#suppor
 * [ ] Get Banned Users
 * [ ] Get Moderators
 * [ ] Get Moderator Events
+
+### Polls
+
+* [ ] Get Polls
+* [ ] Create Poll
+* [ ] End Poll
+
+### Predictions
+
+* [ ] Get Predictions
+* [ ] Create Prediction
+* [ ] End Prediction
+
+### Schedule
+
+* [ ] Get Channel Stream Schedule
+* [ ] Get Channel iCalendar
+* [ ] Update Channel Stream Schedule
+* [ ] Create Channel Stream Schedule Segment
+* [ ] Update Channel Stream Schedule Segment
+* [ ] Delete Channel Stream Schedule Segment
 
 ### Search
 
