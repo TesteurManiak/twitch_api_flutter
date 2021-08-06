@@ -71,6 +71,10 @@ class TwitchMockProvider extends TwitchHttpClient {
         }
       case 'users':
         return jsonDecode(await readFileStringAsync('get_users.json'));
+      case 'channels':
+        return jsonDecode(
+          await readFileStringAsync('get_channel_informations.json'),
+        );
       default:
         throw 'Bad Request: Query Parameter missing or invalid';
     }

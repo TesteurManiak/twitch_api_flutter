@@ -216,6 +216,20 @@ void main() {
         expect(user.email, 'not-real@email.com');
         expect(user.createdAt, '2016-12-14T20:32:28.894263Z');
       });
+
+      test('Channel Informations', () async {
+        final data = (await client.getChannelInformations('141981764')).data!;
+        expect(data.length, 1);
+
+        final channel = data.first;
+        expect(channel.broadcasterId, '141981764');
+        expect(channel.broadcasterName, 'TwitchDev');
+        expect(channel.broadcasterLanguage, 'en');
+        expect(channel.gameId, '509670');
+        expect(channel.gameName, 'Science & Technology');
+        expect(channel.title, 'TwitchDev Monthly Update // May 6, 2021');
+        expect(channel.delay, 0);
+      });
     });
 
     group('POST', () {
