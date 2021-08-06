@@ -7,7 +7,6 @@ import 'package:twitch_api/src/models/twitch_extension_analytic.dart';
 import 'package:twitch_api/src/models/twitch_extension_transaction.dart';
 import 'package:twitch_api/src/models/twitch_game.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
-import 'package:twitch_api/src/models/twitch_search_category.dart';
 import 'package:twitch_api/src/models/twitch_search_channel.dart';
 import 'package:twitch_api/src/models/twitch_start_commercial.dart';
 import 'package:twitch_api/src/models/twitch_stream_info.dart';
@@ -74,16 +73,6 @@ class TwitchResponse<T> {
         data: (json['data'] as Iterable)
             .map<T>((e) =>
                 TwitchStreamInfo.fromJson(e as Map<String, dynamic>) as T)
-            .toList(),
-        pagination: json['pagination'] as Map<String, dynamic>?,
-      );
-
-  /// Constructor for request containing [TwitchSearchCategory].
-  factory TwitchResponse.searchCategories(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: (json['data'] as Iterable)
-            .map<T>((e) =>
-                TwitchSearchCategory.fromJson(e as Map<String, dynamic>) as T)
             .toList(),
         pagination: json['pagination'] as Map<String, dynamic>?,
       );

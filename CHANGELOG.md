@@ -1,6 +1,6 @@
 ## [0.4.0] - 
 
-* **Breaking change:** `TwitchClient.startCommercial` is now taking named parameters,  `TwitchUser.broadcasterType` became a `TwitchBroadcasterType`, `TwitchUserFollow.followedAt` is now a `DateTime`, removed class `TwitchTopGame` use `TwitchGame` instead
+* **Breaking change:** `TwitchClient.startCommercial` is now taking named parameters,  `TwitchUser.broadcasterType` became a `TwitchBroadcasterType`, `TwitchUserFollow.followedAt` is now a `DateTime`, removed class `TwitchTopGame`/`TwitchSearchCategory` use `TwitchGame` instead
 * Refacto to separate implementation of the HTTP provider, `TwitchClient.accessToken` and `TwitchClient.validateToken` are deprecated
 * Added method `createCustomRewards`, `deleteCustomReward`, `getCustomRewards`, `getCustomRewardRedemptions`
 

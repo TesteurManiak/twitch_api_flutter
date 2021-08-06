@@ -11,7 +11,6 @@ import 'package:twitch_api/src/models/twitch_extension_transaction.dart';
 import 'package:twitch_api/src/models/twitch_game.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/models/twitch_response.dart';
-import 'package:twitch_api/src/models/twitch_search_category.dart';
 import 'package:twitch_api/src/models/twitch_start_commercial.dart';
 import 'package:twitch_api/src/models/twitch_time_period.dart';
 import 'package:twitch_api/src/models/twitch_token.dart';
@@ -370,7 +369,7 @@ class TwitchClient {
   /// fetching the next set of results, in a multi-page response. The cursor
   /// value specified here is from the `pagination` response field of a prior
   /// query.
-  Future<TwitchResponse<TwitchSearchCategory>> searchCategories({
+  Future<TwitchResponse<TwitchGame>> searchCategories({
     required String query,
     int first = 20,
     String? after,
@@ -384,8 +383,7 @@ class TwitchClient {
     if (after != null) queryParameters['after'] = after;
     final data = await twitchHttpClient
         .getCall(['search', 'categories'], queryParameters: queryParameters);
-    return TwitchResponse<TwitchSearchCategory>.searchCategories(
-        data as Map<String, dynamic>);
+    return TwitchResponse.games(data as Map<String, dynamic>);
   }
 
   /// Returns a list of channels (users who have streamed within the past 6
