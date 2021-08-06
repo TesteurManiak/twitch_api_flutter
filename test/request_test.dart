@@ -254,6 +254,17 @@ void main() {
         expect(user.toName, 'LIRIK');
         expect(user.followedAt.toIso8601String(), '2017-08-22T22:55:24.000Z');
       });
+
+      test('Top Games', () async {
+        final data = (await client.getTopGames()).data!;
+        expect(data.length, 1);
+
+        final game = data.first;
+        expect(game.id, '493057');
+        expect(game.name, "PLAYERUNKNOWN'S BATTLEGROUNDS");
+        expect(game.getBoxArtUrl(),
+            'https://static-cdn.jtvnw.net/ttv-boxart/PLAYERUNKNOWN%27S%20BATTLEGROUNDS-285x380.jpg');
+      });
     });
 
     group('POST', () {
