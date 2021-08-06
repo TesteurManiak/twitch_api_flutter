@@ -20,7 +20,6 @@ export 'src/models/twitch_search_channel.dart';
 export 'src/models/twitch_stream_info.dart';
 export 'src/models/twitch_time_period.dart';
 export 'src/models/twitch_token.dart';
-export 'src/models/twitch_top_game.dart';
 export 'src/models/twitch_user.dart';
 export 'src/models/twitch_user_follow.dart';
 export 'src/providers/twitch_http_client.dart';

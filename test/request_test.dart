@@ -230,6 +230,41 @@ void main() {
         expect(channel.title, 'TwitchDev Monthly Update // May 6, 2021');
         expect(channel.delay, 0);
       });
+
+      test('Games', () async {
+        final data = (await client.getGames(ids: ['493057'])).data!;
+        expect(data.length, 1);
+
+        final game = data.first;
+        expect(game.id, '33214');
+        expect(game.getBoxArtUrl(),
+            'https://static-cdn.jtvnw.net/ttv-boxart/Fortnite-52x72.jpg');
+        expect(game.name, 'Fortnite');
+      });
+
+      test('Users Follows', () async {
+        final data = (await client.getUsersFollows(toId: '23161357')).data!;
+        expect(data.length, 2);
+
+        final user = data.first;
+        expect(user.fromId, '171003792');
+        expect(user.fromLogin, 'iiisutha067iii');
+        expect(user.fromName, 'IIIsutha067III');
+        expect(user.toId, '23161357');
+        expect(user.toName, 'LIRIK');
+        expect(user.followedAt.toIso8601String(), '2017-08-22T22:55:24.000Z');
+      });
+
+      test('Top Games', () async {
+        final data = (await client.getTopGames()).data!;
+        expect(data.length, 1);
+
+        final game = data.first;
+        expect(game.id, '493057');
+        expect(game.name, "PLAYERUNKNOWN'S BATTLEGROUNDS");
+        expect(game.getBoxArtUrl(),
+            'https://static-cdn.jtvnw.net/ttv-boxart/PLAYERUNKNOWN%27S%20BATTLEGROUNDS-285x380.jpg');
+      });
     });
 
     group('POST', () {

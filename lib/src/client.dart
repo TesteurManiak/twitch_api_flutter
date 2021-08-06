@@ -294,7 +294,10 @@ class TwitchClient {
     String? toId,
   }) async {
     assert(first < 101 && first > 0);
-    assert(fromId != null || toId != null);
+    assert(
+      fromId != null || toId != null,
+      'At minimum, fromId or toId must be provided for a query to be valid.',
+    );
 
     final queryParameters = <String, dynamic>{'first': first.toString()};
     if (after != null) queryParameters['after'] = after;
@@ -308,7 +311,7 @@ class TwitchClient {
 
   /// Gets games sorted by number of current viewers on Twitch, most popular
   /// first.
-  Future<TwitchResponse<TwitchTopGame>> getTopGames(
+  Future<TwitchResponse<TwitchGame>> getTopGames(
       {String? after, String? before, int first = 20}) async {
     assert(first < 101 && first > 0);
 
@@ -318,7 +321,7 @@ class TwitchClient {
 
     final data = await twitchHttpClient
         .getCall(['games', 'top'], queryParameters: queryParameters);
-    return TwitchResponse<TwitchTopGame>.topGames(data as Map<String, dynamic>);
+    return TwitchResponse.games(data as Map<String, dynamic>);
   }
 
   /// Gets game information by game ID or name.
