@@ -280,6 +280,27 @@ void main() {
           'https://static-cdn.jtvnw.net/ttv-boxart/Fortnite-285x380.jpg',
         );
       });
+
+      test('Search Channels', () async {
+        final data = (await client.searchChannels(query: 'loserfruit')).data!;
+        expect(data.length, 1);
+
+        final channel = data.first;
+        expect(channel.id, '41245072');
+        expect(channel.displayName, 'Loserfruit');
+        expect(channel.gameName, 'House Flipper');
+        expect(channel.gameId, '498000');
+        expect(channel.broadcasterLanguage, 'en');
+        expect(channel.broadcasterLogin, 'loserfruit');
+        expect(channel.isLive, false);
+        expect(channel.tagIds.isEmpty, true);
+        expect(
+          channel.thumbnailUrl,
+          'https://static-cdn.jtvnw.net/jtv_user_pictures/fd17325a-7dc2-46c6-8617-e90ec259501c-profile_image-300x300.png',
+        );
+        expect(channel.title, 'loserfruit');
+        expect(channel.startedAt, isNull);
+      });
     });
 
     group('POST', () {
