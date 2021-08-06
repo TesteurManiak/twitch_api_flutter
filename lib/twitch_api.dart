@@ -15,7 +15,6 @@ export 'src/models/twitch_extension_analytic.dart';
 export 'src/models/twitch_extension_transaction.dart';
 export 'src/models/twitch_game.dart';
 export 'src/models/twitch_response.dart';
-export 'src/models/twitch_search_category.dart';
 export 'src/models/twitch_search_channel.dart';
 export 'src/models/twitch_stream_info.dart';
 export 'src/models/twitch_time_period.dart';

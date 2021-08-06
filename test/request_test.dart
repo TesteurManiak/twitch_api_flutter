@@ -262,8 +262,23 @@ void main() {
         final game = data.first;
         expect(game.id, '493057');
         expect(game.name, "PLAYERUNKNOWN'S BATTLEGROUNDS");
-        expect(game.getBoxArtUrl(),
-            'https://static-cdn.jtvnw.net/ttv-boxart/PLAYERUNKNOWN%27S%20BATTLEGROUNDS-285x380.jpg');
+        expect(
+          game.getBoxArtUrl(),
+          'https://static-cdn.jtvnw.net/ttv-boxart/PLAYERUNKNOWN%27S%20BATTLEGROUNDS-285x380.jpg',
+        );
+      });
+
+      test('Search Categories', () async {
+        final data = (await client.searchCategories(query: 'fort')).data!;
+        expect(data.length, 1);
+
+        final category = data.first;
+        expect(category.id, '33214');
+        expect(category.name, 'Fortnite');
+        expect(
+          category.getBoxArtUrl(),
+          'https://static-cdn.jtvnw.net/ttv-boxart/Fortnite-285x380.jpg',
+        );
       });
     });
 

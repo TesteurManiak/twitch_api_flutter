@@ -199,8 +199,10 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () => _twitchClient.searchCategories(query: 'fort').then(
                   (value) => _displayDataAlert(
-                      value.data.first.name, value.data.first.boxArtUrl,
-                      isImg: true),
+                    value.data.first.name,
+                    value.data.first.getBoxArtUrl(),
+                    isImg: true,
+                  ),
                 ),
             child: const Text('Search "fort" Category'),
           ),
