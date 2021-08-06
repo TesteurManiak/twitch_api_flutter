@@ -230,6 +230,17 @@ void main() {
         expect(channel.title, 'TwitchDev Monthly Update // May 6, 2021');
         expect(channel.delay, 0);
       });
+
+      test('Games', () async {
+        final data = (await client.getGames(ids: ['493057'])).data!;
+        expect(data.length, 1);
+
+        final game = data.first;
+        expect(game.id, '33214');
+        expect(game.getBoxArtUrl(),
+            'https://static-cdn.jtvnw.net/ttv-boxart/Fortnite-52x72.jpg');
+        expect(game.name, 'Fortnite');
+      });
     });
 
     group('POST', () {
