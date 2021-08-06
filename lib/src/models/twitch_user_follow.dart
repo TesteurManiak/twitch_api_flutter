@@ -1,6 +1,6 @@
 class TwitchUserFollow {
   /// Date and time when the [fromId] user followed the [toId] user.
-  final String followedAt;
+  final DateTime followedAt;
 
   /// ID of the user following the [toId] user.
   final String fromId;
@@ -15,7 +15,7 @@ class TwitchUserFollow {
   final String toId;
 
   /// Login of the user being followed by the [fromId] user.
-  final String toLogin;
+  final String? toLogin;
 
   /// Display name corresponding to [toId].
   final String toName;
@@ -32,12 +32,12 @@ class TwitchUserFollow {
 
   factory TwitchUserFollow.fromJson(Map<String, dynamic> json) =>
       TwitchUserFollow(
-        followedAt: json['followed_at'] as String,
+        followedAt: DateTime.parse(json['followed_at'] as String),
         fromId: json['from_id'] as String,
         fromLogin: json['from_login'] as String,
         fromName: json['from_name'] as String,
         toId: json['to_id'] as String,
-        toLogin: json['to_login'] as String,
+        toLogin: json['to_login'] as String?,
         toName: json['to_name'] as String,
       );
 }

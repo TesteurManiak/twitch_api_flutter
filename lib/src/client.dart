@@ -294,7 +294,10 @@ class TwitchClient {
     String? toId,
   }) async {
     assert(first < 101 && first > 0);
-    assert(fromId != null || toId != null);
+    assert(
+      fromId != null || toId != null,
+      'At minimum, fromId or toId must be provided for a query to be valid.',
+    );
 
     final queryParameters = <String, dynamic>{'first': first.toString()};
     if (after != null) queryParameters['after'] = after;
