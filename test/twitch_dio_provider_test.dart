@@ -29,6 +29,15 @@ void main() {
         (server) => server.reply(200, {'message': 'Success!'}),
       );
 
+    _dioAdapter.onPost(
+      TwitchClient.baseUrl.replace(
+        pathSegments: <String>[TwitchClient.basePath, 'post'],
+        queryParameters: {},
+      ).toString(),
+      (server) => server.reply(201, {'message': 'Success!'}),
+      data: {'data': 'test'},
+    );
+
     final _dioProvider = TwitchDioProvider(clientId: '', dio: _dio)
       ..initializeToken(
         TwitchToken.fromUrl(
@@ -53,5 +62,15 @@ void main() {
           await _dioProvider.getCall(['test']) as Map<String, dynamic>;
       expect(response['message'], 'Success!');
     });
+
+    test('postCall', () async {
+      final response = await _dioProvider.postCall(
+        ['post'],
+        {'data': 'test'},
+      ) as Map<String, dynamic>;
+      expect(response['message'], 'Success!');
+    });
+
+    test('patchCall', () async {});
   });
 }
