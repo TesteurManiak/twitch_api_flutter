@@ -44,6 +44,12 @@ void main() {
         ).toString(),
         (server) => server.reply(201, {'message': 'Success!'}),
         data: {'data': 'test'},
+      )
+      ..onDelete(
+        TwitchClient.baseUrl.replace(
+          pathSegments: <String>[TwitchClient.basePath, 'test'],
+        ).toString(),
+        (server) => server.reply(201, {'message': 'Success!'}),
       );
 
     final _dioProvider = TwitchDioProvider(clientId: '', dio: _dio)
@@ -84,6 +90,12 @@ void main() {
         ['test'],
         {'data': 'test'},
       ) as Map<String, dynamic>;
+      expect(response['message'], 'Success!');
+    });
+
+    test('deleteCall', () async {
+      final response =
+          await _dioProvider.deleteCall(['test']) as Map<String, dynamic>;
       expect(response['message'], 'Success!');
     });
   });
