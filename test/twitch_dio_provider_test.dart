@@ -8,7 +8,8 @@ import 'package:twitch_api/twitch_api.dart';
 void main() {
   group('TwitchDioProvider', () {
     final _dio = Dio();
-    final _dioAdapter = DioAdapter(dio: _dio)
+
+    DioAdapter(dio: _dio)
       ..onGet(
         TwitchClient.oauth2Url.replace(
           pathSegments: <String>[TwitchClient.oauthPath, 'validate'],
@@ -27,16 +28,23 @@ void main() {
           queryParameters: {},
         ).toString(),
         (server) => server.reply(200, {'message': 'Success!'}),
+      )
+      ..onPost(
+        TwitchClient.baseUrl.replace(
+          pathSegments: <String>[TwitchClient.basePath, 'test'],
+          queryParameters: {},
+        ).toString(),
+        (server) => server.reply(201, {'message': 'Success!'}),
+        data: {'data': 'test'},
+      )
+      ..onPatch(
+        TwitchClient.baseUrl.replace(
+          pathSegments: <String>[TwitchClient.basePath, 'test'],
+          queryParameters: {},
+        ).toString(),
+        (server) => server.reply(201, {'message': 'Success!'}),
+        data: {'data': 'test'},
       );
-
-    _dioAdapter.onPost(
-      TwitchClient.baseUrl.replace(
-        pathSegments: <String>[TwitchClient.basePath, 'post'],
-        queryParameters: {},
-      ).toString(),
-      (server) => server.reply(201, {'message': 'Success!'}),
-      data: {'data': 'test'},
-    );
 
     final _dioProvider = TwitchDioProvider(clientId: '', dio: _dio)
       ..initializeToken(
@@ -65,12 +73,18 @@ void main() {
 
     test('postCall', () async {
       final response = await _dioProvider.postCall(
-        ['post'],
+        ['test'],
         {'data': 'test'},
       ) as Map<String, dynamic>;
       expect(response['message'], 'Success!');
     });
 
-    test('patchCall', () async {});
+    test('patchCall', () async {
+      final response = await _dioProvider.patchCall(
+        ['test'],
+        {'data': 'test'},
+      ) as Map<String, dynamic>;
+      expect(response['message'], 'Success!');
+    });
   });
 }
