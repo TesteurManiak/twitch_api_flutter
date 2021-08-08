@@ -45,26 +45,66 @@ void main() {
             'https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/static/1/1.png');
       });
 
-      test('Streams', () async {
-        final data = (await client.getStreams()).data;
-        expect(data!.length, 1);
+      group('Streams', () {
+        test('1', () async {
+          final data = (await client.getStreams()).data!;
+          expect(data.length, 1);
 
-        final twitchStreamInfo = data.first;
-        expect(twitchStreamInfo.id, '41375541868');
-        expect(twitchStreamInfo.userId, '459331509');
-        expect(twitchStreamInfo.userLogin, 'auronplay');
-        expect(twitchStreamInfo.userName, 'auronplay');
-        expect(twitchStreamInfo.gameId, '494131');
-        expect(twitchStreamInfo.gameName, 'Little Nightmares');
-        expect(twitchStreamInfo.type, TwitchStreamType.live);
-        expect(twitchStreamInfo.title,
-            'hablamos y le damos a Little Nightmares 1');
-        expect(twitchStreamInfo.viewerCount, 78365);
-        expect(twitchStreamInfo.language, 'es');
-        expect(twitchStreamInfo.thumbnailUrl,
-            'https://static-cdn.jtvnw.net/previews-ttv/live_user_auronplay-{width}x{height}.jpg');
-        expect(twitchStreamInfo.tagIds.length, 1);
-        expect(twitchStreamInfo.isMature, false);
+          final twitchStreamInfo = data.first;
+          expect(twitchStreamInfo.id, '41375541868');
+          expect(twitchStreamInfo.userId, '459331509');
+          expect(twitchStreamInfo.userLogin, 'auronplay');
+          expect(twitchStreamInfo.userName, 'auronplay');
+          expect(twitchStreamInfo.gameId, '494131');
+          expect(twitchStreamInfo.gameName, 'Little Nightmares');
+          expect(twitchStreamInfo.type, TwitchStreamType.live);
+          expect(twitchStreamInfo.title,
+              'hablamos y le damos a Little Nightmares 1');
+          expect(twitchStreamInfo.viewerCount, 78365);
+          expect(twitchStreamInfo.language, 'es');
+          expect(
+            twitchStreamInfo.thumbnailUrl,
+            'https://static-cdn.jtvnw.net/previews-ttv/live_user_auronplay-{width}x{height}.jpg',
+          );
+          expect(
+            twitchStreamInfo.tagIds,
+            ['d4bb9c58-2141-4881-bcdc-3fe0505457d1'],
+          );
+          expect(twitchStreamInfo.isMature, false);
+        });
+
+        test('2', () async {
+          final data = (await client.getStreams(
+            after:
+                'eyJiIjp7IkN1cnNvciI6ImV5SnpJam8zT0RNMk5TNDBORFF4TlRjMU1UY3hOU3dpWkNJNlptRnNjMlVzSW5RaU9uUnlkV1Y5In0sImEiOnsiQ3Vyc29yIjoiZXlKeklqb3hOVGs0TkM0MU56RXhNekExTVRZNU1ESXNJbVFpT21aaGJITmxMQ0owSWpwMGNuVmxmUT09In19',
+          ))
+              .data!;
+          expect(data.length, 1);
+
+          final twitchStreamInfo = data.first;
+          expect(twitchStreamInfo.id, '40944942733');
+          expect(twitchStreamInfo.userId, '67931625');
+          expect(twitchStreamInfo.userLogin, 'amar');
+          expect(twitchStreamInfo.userName, 'Amar');
+          expect(twitchStreamInfo.gameId, '33214');
+          expect(twitchStreamInfo.gameName, 'Fortnite');
+          expect(twitchStreamInfo.type, TwitchStreamType.live);
+          expect(
+            twitchStreamInfo.title,
+            '27h Stream Pringles Deathrun Map + 12k MK Turnier | !sub !JustLegends !Pc !yfood',
+          );
+          expect(twitchStreamInfo.viewerCount, 14944);
+          expect(twitchStreamInfo.language, 'de');
+          expect(
+            twitchStreamInfo.thumbnailUrl,
+            'https://static-cdn.jtvnw.net/previews-ttv/live_user_amar-{width}x{height}.jpg',
+          );
+          expect(
+            twitchStreamInfo.tagIds,
+            ['9166ad14-41f1-4b04-a3b8-c8eb838c6be6'],
+          );
+          expect(twitchStreamInfo.isMature, false);
+        });
       });
 
       test('Channel Editors', () async {
@@ -279,6 +319,27 @@ void main() {
           category.getBoxArtUrl(),
           'https://static-cdn.jtvnw.net/ttv-boxart/Fortnite-285x380.jpg',
         );
+      });
+
+      test('Search Channels', () async {
+        final data = (await client.searchChannels(query: 'loserfruit')).data!;
+        expect(data.length, 1);
+
+        final channel = data.first;
+        expect(channel.id, '41245072');
+        expect(channel.displayName, 'Loserfruit');
+        expect(channel.gameName, 'House Flipper');
+        expect(channel.gameId, '498000');
+        expect(channel.broadcasterLanguage, 'en');
+        expect(channel.broadcasterLogin, 'loserfruit');
+        expect(channel.isLive, false);
+        expect(channel.tagIds.isEmpty, true);
+        expect(
+          channel.thumbnailUrl,
+          'https://static-cdn.jtvnw.net/jtv_user_pictures/fd17325a-7dc2-46c6-8617-e90ec259501c-profile_image-300x300.png',
+        );
+        expect(channel.title, 'loserfruit');
+        expect(channel.startedAt, isNull);
       });
     });
 

@@ -2,6 +2,9 @@ class TwitchSearchChannel {
   /// ID of the game being played on the stream
   final String gameId;
 
+  /// Name of the game being played on the stream.
+  final String gameName;
+
   /// Channel ID
   final String id;
 
@@ -37,6 +40,7 @@ class TwitchSearchChannel {
 
   TwitchSearchChannel({
     required this.gameId,
+    required this.gameName,
     required this.id,
     required this.broadcasterLogin,
     required this.displayName,
@@ -51,6 +55,7 @@ class TwitchSearchChannel {
   factory TwitchSearchChannel.fromJson(Map<String, dynamic> json) =>
       TwitchSearchChannel(
         gameId: json['game_id'] as String,
+        gameName: json['game_name'] as String,
         id: json['id'] as String,
         broadcasterLogin: json['broadcaster_login'] as String,
         displayName: json['display_name'] as String,
