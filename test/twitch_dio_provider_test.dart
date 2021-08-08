@@ -59,6 +59,12 @@ void main() {
         ),
       );
 
+    test('twitchToken', () {
+      expect(_dioProvider.twitchToken.token, 'test');
+      expect(_dioProvider.twitchToken.tokenType, 'type');
+      expect(_dioProvider.twitchToken.scope, 'scope');
+    });
+
     test('validateToken', () async {
       final responseToken = await _dioProvider.validateToken();
       expect(responseToken.token, 'test');
