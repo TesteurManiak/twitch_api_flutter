@@ -8,20 +8,49 @@ import 'package:twitch_api/twitch_api.dart';
 void main() {
   group('TwitchDioProvider', () {
     final _dio = Dio();
-    final _dioAdapter = DioAdapter(dio: _dio);
 
-    _dioAdapter.onGet(
-      TwitchClient.oauth2Url.replace(
-        pathSegments: <String>[TwitchClient.oauthPath, 'validate'],
-      ).toString(),
-      (server) => server.reply(200, {
-        TwitchToken.clientIdEntry: 'clientId',
-        TwitchToken.loginEntry: 'login',
-        TwitchToken.scopesEntry: ['scope'],
-        TwitchToken.userIdEntry: 'userId',
-        TwitchToken.expiresInEntry: 1,
-      }),
-    );
+    DioAdapter(dio: _dio)
+      ..onGet(
+        TwitchClient.oauth2Url.replace(
+          pathSegments: <String>[TwitchClient.oauthPath, 'validate'],
+        ).toString(),
+        (server) => server.reply(200, {
+          TwitchToken.clientIdEntry: 'clientId',
+          TwitchToken.loginEntry: 'login',
+          TwitchToken.scopesEntry: ['scope'],
+          TwitchToken.userIdEntry: 'userId',
+          TwitchToken.expiresInEntry: 1,
+        }),
+      )
+      ..onGet(
+        TwitchClient.baseUrl.replace(
+          pathSegments: <String>[TwitchClient.basePath, 'test'],
+          queryParameters: {},
+        ).toString(),
+        (server) => server.reply(200, {'message': 'Success!'}),
+      )
+      ..onPost(
+        TwitchClient.baseUrl.replace(
+          pathSegments: <String>[TwitchClient.basePath, 'test'],
+          queryParameters: {},
+        ).toString(),
+        (server) => server.reply(201, {'message': 'Success!'}),
+        data: {'data': 'test'},
+      )
+      ..onPatch(
+        TwitchClient.baseUrl.replace(
+          pathSegments: <String>[TwitchClient.basePath, 'test'],
+          queryParameters: {},
+        ).toString(),
+        (server) => server.reply(201, {'message': 'Success!'}),
+        data: {'data': 'test'},
+      )
+      ..onDelete(
+        TwitchClient.baseUrl.replace(
+          pathSegments: <String>[TwitchClient.basePath, 'test'],
+        ).toString(),
+        (server) => server.reply(201, {'message': 'Success!'}),
+      );
 
     final _dioProvider = TwitchDioProvider(clientId: '', dio: _dio)
       ..initializeToken(
@@ -40,6 +69,34 @@ void main() {
       expect(responseToken.scopes, ['scope']);
       expect(responseToken.userId, 'userId');
       expect(responseToken.expiresIn, 1);
+    });
+
+    test('getCall', () async {
+      final response =
+          await _dioProvider.getCall(['test']) as Map<String, dynamic>;
+      expect(response['message'], 'Success!');
+    });
+
+    test('postCall', () async {
+      final response = await _dioProvider.postCall(
+        ['test'],
+        {'data': 'test'},
+      ) as Map<String, dynamic>;
+      expect(response['message'], 'Success!');
+    });
+
+    test('patchCall', () async {
+      final response = await _dioProvider.patchCall(
+        ['test'],
+        {'data': 'test'},
+      ) as Map<String, dynamic>;
+      expect(response['message'], 'Success!');
+    });
+
+    test('deleteCall', () async {
+      final response =
+          await _dioProvider.deleteCall(['test']) as Map<String, dynamic>;
+      expect(response['message'], 'Success!');
     });
   });
 }
