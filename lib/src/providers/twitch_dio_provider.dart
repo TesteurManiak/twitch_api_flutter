@@ -5,7 +5,7 @@ import 'package:twitch_api/src/models/twitch_token.dart';
 import 'package:twitch_api/src/providers/twitch_http_client.dart';
 
 class TwitchDioProvider extends TwitchHttpClient {
-  final _dio = Dio();
+  final Dio dio;
   final String clientId;
 
   late TwitchToken _twitchToken;
@@ -13,7 +13,7 @@ class TwitchDioProvider extends TwitchHttpClient {
   @override
   TwitchToken get twitchToken => _twitchToken;
 
-  TwitchDioProvider({required this.clientId});
+  TwitchDioProvider({required this.clientId, required this.dio});
 
   @override
   Future getCall(
@@ -27,7 +27,7 @@ class TwitchDioProvider extends TwitchHttpClient {
           'Client-Id': clientId,
           'Authorization': 'Bearer ${accessToken.token}',
         });
-        final response = await _dio.getUri(
+        final response = await dio.getUri(
           TwitchClient.baseUrl.replace(
             pathSegments: <String>[TwitchClient.basePath, ...pathSegments],
             queryParameters: queryParameters,
@@ -59,7 +59,7 @@ class TwitchDioProvider extends TwitchHttpClient {
           'Authorization': 'Bearer ${accessToken.token}',
           'Content-Type': 'application/json',
         });
-        final response = await _dio.postUri(
+        final response = await dio.postUri(
           TwitchClient.baseUrl.replace(
             pathSegments: <String>[TwitchClient.basePath, ...pathSegments],
             queryParameters: queryParameters,
@@ -92,7 +92,7 @@ class TwitchDioProvider extends TwitchHttpClient {
           'Authorization': 'Bearer ${accessToken.token}',
           'Content-Type': 'application/json',
         });
-        final response = await _dio.patchUri(
+        final response = await dio.patchUri(
           TwitchClient.baseUrl.replace(
             pathSegments: <String>[TwitchClient.basePath, ...pathSegments],
             queryParameters: queryParameters,
@@ -117,7 +117,7 @@ class TwitchDioProvider extends TwitchHttpClient {
       final options = Options(
         headers: {'Authorization': 'OAuth ${_twitchToken.token}'},
       );
-      final response = await _dio.getUri(
+      final response = await dio.getUri(
         TwitchClient.oauth2Url.replace(
           pathSegments: <String>[TwitchClient.oauthPath, 'validate'],
         ),
@@ -152,7 +152,7 @@ class TwitchDioProvider extends TwitchHttpClient {
           'Authorization': 'Bearer ${accessToken.token}',
           'Content-Type': 'application/json',
         });
-        final response = await _dio.deleteUri(
+        final response = await dio.deleteUri(
           TwitchClient.baseUrl.replace(
             pathSegments: <String>[TwitchClient.basePath, ...pathSegments],
           ),
