@@ -103,6 +103,7 @@ void main() {
             twitchStreamInfo.tagIds,
             ['9166ad14-41f1-4b04-a3b8-c8eb838c6be6'],
           );
+          expect(twitchStreamInfo.isMature, false);
         });
       });
 
