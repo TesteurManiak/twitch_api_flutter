@@ -17,6 +17,10 @@ class TwitchMockProvider extends TwitchHttpClient {
       case 'bits/cheermotes':
         return jsonDecode(await readFileStringAsync('get_cheermotes.json'));
       case 'streams':
+        if (queryParameters['after'] ==
+            'eyJiIjp7IkN1cnNvciI6ImV5SnpJam8zT0RNMk5TNDBORFF4TlRjMU1UY3hOU3dpWkNJNlptRnNjMlVzSW5RaU9uUnlkV1Y5In0sImEiOnsiQ3Vyc29yIjoiZXlKeklqb3hOVGs0TkM0MU56RXhNekExTVRZNU1ESXNJbVFpT21aaGJITmxMQ0owSWpwMGNuVmxmUT09In19') {
+          return jsonDecode(await readFileStringAsync('get_streams_2.json'));
+        }
         return jsonDecode(await readFileStringAsync('get_streams_1.json'));
       case 'channels/editors':
         return jsonDecode(
