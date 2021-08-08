@@ -37,7 +37,7 @@ class TwitchClient {
   Uri authorizeUri(List<TwitchApiScope> scopes) {
     final scopesSet = <String>{}
       ..add('viewing_activity_read')
-      ..addAll(scopes.map((e) => TwitchApiScopes.getScopeString(e)).toSet());
+      ..addAll(scopes.map((e) => e.string).toSet());
     return oauth2Url.replace(
       pathSegments: <String>[oauthPath, authPath],
       queryParameters: {
