@@ -4,12 +4,45 @@ import 'package:twitch_api/twitch_api.dart';
 import 'test_utils.dart';
 
 void main() {
+  group('TwitchClient', () {
+    final client = TwitchClient(
+      clientId: '',
+      redirectUri: '',
+      token: TwitchToken.fromUrl(
+        'http://localhost/#access_token=test&token_type=type&scope=scope',
+      ),
+    );
+
+    test('TwitchClient with non null token', () {
+      final token = client.twitchHttpClient.twitchToken;
+      expect(token.token, 'test');
+      expect(token.tokenType, 'type');
+      expect(token.scope, 'scope');
+    });
+  });
+
   group('Request', () {
     final client = TwitchClient(
       clientId: '',
       redirectUri: '',
       twitchHttpClient: TwitchMockProvider(),
     );
+
+    test('authorizeUri', () {
+      expect(
+        client.authorizeUri([TwitchApiScope.channelReadRedemptions]),
+        TwitchClient.oauth2Url.replace(
+          pathSegments: [TwitchClient.oauthPath, TwitchClient.authPath],
+          queryParameters: {
+            'response_type': 'token',
+            'client_id': '',
+            'redirect_uri': '',
+            'scope':
+                'viewing_activity_read ${TwitchApiScope.channelReadRedemptions.string}',
+          },
+        ),
+      );
+    });
 
     group('GET', () {
       test('Cheermotes', () async {
