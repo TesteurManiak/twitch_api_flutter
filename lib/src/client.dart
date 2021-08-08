@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:twitch_api/src/exceptions/twitch_api_exception.dart';
 import 'package:twitch_api/src/models/twitch_bits_leaderboard.dart';
 import 'package:twitch_api/src/models/twitch_broadcaster_subscription.dart';
@@ -55,8 +56,8 @@ class TwitchClient {
     required this.redirectUri,
     TwitchHttpClient? twitchHttpClient,
     TwitchToken? token,
-  }) : twitchHttpClient =
-            twitchHttpClient ?? TwitchDioProvider(clientId: clientId) {
+  }) : twitchHttpClient = twitchHttpClient ??
+            TwitchDioProvider(clientId: clientId, dio: Dio()) {
     if (token != null) {
       initializeToken(token);
     }
