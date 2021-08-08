@@ -10,18 +10,27 @@ enum TwitchApiScope {
   userReadEmail,
 }
 
-class TwitchApiScopes {
-  static const _scopes = <TwitchApiScope, String>{
-    TwitchApiScope.analyticsReadExtensions: 'analytics:read:extensions',
-    TwitchApiScope.analyticsReadGames: 'analytics:read:games',
-    TwitchApiScope.bitsRead: 'bits:read',
-    TwitchApiScope.channelEditCommercial: 'channel:edit:commercial',
-    TwitchApiScope.channelManageBroadcast: 'channel:manage:broadcast',
-    TwitchApiScope.channelReadEditors: 'channel:read:editors',
-    TwitchApiScope.channelReadRedemptions: 'channel:read:redemptions',
-    TwitchApiScope.channelReadSubscriptions: 'channel:read:subscriptions',
-    TwitchApiScope.userReadEmail: 'user:read:email',
-  };
-
-  static String getScopeString(TwitchApiScope scope) => _scopes[scope]!;
+extension TwitchApiScopeModifier on TwitchApiScope {
+  String get string {
+    switch (this) {
+      case TwitchApiScope.analyticsReadExtensions:
+        return 'analytics:read:extensions';
+      case TwitchApiScope.analyticsReadGames:
+        return 'analytics:read:games';
+      case TwitchApiScope.bitsRead:
+        return 'bits:read';
+      case TwitchApiScope.channelEditCommercial:
+        return 'channel:edit:commercial';
+      case TwitchApiScope.channelManageBroadcast:
+        return 'channel:manage:broadcast';
+      case TwitchApiScope.channelReadEditors:
+        return 'channel:read:editors';
+      case TwitchApiScope.channelReadRedemptions:
+        return 'channel:read:redemptions';
+      case TwitchApiScope.channelReadSubscriptions:
+        return 'channel:read:subscriptions';
+      case TwitchApiScope.userReadEmail:
+        return 'user:read:email';
+    }
+  }
 }
