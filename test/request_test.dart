@@ -11,6 +11,22 @@ void main() {
       twitchHttpClient: TwitchMockProvider(),
     );
 
+    test('authorizeUri', () {
+      expect(
+        client.authorizeUri([TwitchApiScope.channelReadRedemptions]),
+        TwitchClient.oauth2Url.replace(
+          pathSegments: [TwitchClient.oauthPath, TwitchClient.authPath],
+          queryParameters: {
+            'response_type': 'token',
+            'client_id': '',
+            'redirect_uri': '',
+            'scope':
+                'viewing_activity_read ${TwitchApiScope.channelReadRedemptions.string}',
+          },
+        ),
+      );
+    });
+
     group('GET', () {
       test('Cheermotes', () async {
         final data = (await client.getCheermotes()).data;
