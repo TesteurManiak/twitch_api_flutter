@@ -6,7 +6,7 @@ class TwitchToken {
   final String? login;
   final List<String>? scopes;
   final String? userId;
-  final int? expiresIn;
+  final int expiresIn;
 
   static const _accessTokenKey = 'access_token=';
   static const _scopeKey = 'scope=';
@@ -25,10 +25,10 @@ class TwitchToken {
     this.login,
     this.scopes,
     this.userId,
-    this.expiresIn,
+    this.expiresIn = 0,
   });
 
-  bool get isValid => expiresIn != null && expiresIn! > 0;
+  bool get isValid => expiresIn > 0;
 
   factory TwitchToken.fromUrl(String url) {
     final content = url.split('#').last;
