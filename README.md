@@ -86,7 +86,7 @@ Now you are ready to use the methods implemented in [Supported Features](#suppor
 * [x] Delete Custom Reward
 * [x] Get Custom Reward
 * [x] Get Custom Reward Redemption
-* [ ] Update Custom Reward
+* [x] Update Custom Reward
 * [ ] Update Redemption Status
 
 ### Chat

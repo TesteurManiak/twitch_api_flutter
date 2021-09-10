@@ -436,5 +436,155 @@ void main() {
         expect(data, '204 No Content');
       });
     });
+
+    group('PATCH', () {
+      group('Update Custom Reward', () {
+        test('Parameters', () {
+          expect(
+            () => client.updateCustomReward(
+              broadcasterId: '',
+              id: '',
+              cost: -1,
+            ),
+            throwsA(isA<AssertionError>()),
+          );
+
+          expect(
+            () => client.updateCustomReward(
+              broadcasterId: '',
+              id: '',
+              isMaxPerStreamEnabled: true,
+            ),
+            throwsA(isA<AssertionError>()),
+          );
+
+          expect(
+            () => client.updateCustomReward(
+              broadcasterId: '',
+              id: '',
+              maxPerStream: 1,
+            ),
+            throwsA(isA<AssertionError>()),
+          );
+
+          expect(
+            () => client.updateCustomReward(
+              broadcasterId: '',
+              id: '',
+              isMaxPerUserPerStreamEnabled: true,
+            ),
+            throwsA(isA<AssertionError>()),
+          );
+
+          expect(
+            () => client.updateCustomReward(
+              broadcasterId: '',
+              id: '',
+              maxPerUserPerStream: 1,
+            ),
+            throwsA(isA<AssertionError>()),
+          );
+
+          expect(
+            () => client.updateCustomReward(
+              broadcasterId: '',
+              id: '',
+              isGlobalCooldownEnabled: true,
+            ),
+            throwsA(isA<AssertionError>()),
+          );
+          expect(
+            () => client.updateCustomReward(
+              broadcasterId: '',
+              id: '',
+              globalCooldownSeconds: 1,
+            ),
+            throwsA(isA<AssertionError>()),
+          );
+        });
+
+        test('1', () async {
+          final data = (await client.updateCustomReward(
+            broadcasterId: '274637212',
+            id: '92af127c-7326-4483-a52b-b0da0be61c01',
+            isEnabled: false,
+          ))
+              .data;
+          expect(data!.length, 1);
+
+          final customReward = data.first;
+          expect(customReward.broadcasterName, 'torpedo09');
+          expect(customReward.broadcasterLogin, 'torpedo09');
+          expect(customReward.broadcasterId, '274637212');
+          expect(customReward.id, '92af127c-7326-4483-a52b-b0da0be61c01');
+          expect(customReward.image, isNull);
+          expect(customReward.backgroundColor, '#00E5CB');
+          expect(customReward.isEnabled, false);
+          expect(customReward.cost, 30000);
+          expect(customReward.title, 'game analysis 2v2');
+          expect(customReward.prompt, '');
+          expect(customReward.isUserInputRequired, false);
+          expect(customReward.maxPerStreamSetting.isEnabled, true);
+          expect(customReward.maxPerStreamSetting.maxPerStream, 60);
+          expect(customReward.maxPerUserPerStreamSetting.isEnabled, false);
+          expect(
+              customReward.maxPerUserPerStreamSetting.maxPerUserPerStream, 0);
+          expect(customReward.globalCooldownSetting.isEnabled, false);
+          expect(customReward.globalCooldownSetting.globalCooldownSeconds, 0);
+          expect(customReward.isPaused, false);
+          expect(customReward.isInStock, false);
+          expect(customReward.defaultImage.url1x,
+              'https://static-cdn.jtvnw.net/custom-reward-images/default-1.png');
+          expect(customReward.defaultImage.url2x,
+              'https://static-cdn.jtvnw.net/custom-reward-images/default-2.png');
+          expect(customReward.defaultImage.url4x,
+              'https://static-cdn.jtvnw.net/custom-reward-images/default-4.png');
+          expect(customReward.shouldRedemptionsSkipRequestQueue, true);
+          expect(customReward.redemptionsRedeemedCurrentStream, 60);
+          expect(customReward.cooldownExpiresAt, isNull);
+        });
+
+        test('2', () async {
+          final data = (await client.updateCustomReward(
+            broadcasterId: '274637212',
+            id: '92af127c-7326-4483-a52b-b0da0be61c01',
+            title: 'game analysis 2v2',
+          ))
+              .data;
+          expect(data!.length, 1);
+
+          final customReward = data.first;
+          expect(customReward.broadcasterName, 'torpedo09');
+          expect(customReward.broadcasterLogin, 'torpedo09');
+          expect(customReward.broadcasterId, '274637212');
+          expect(customReward.id, '92af127c-7326-4483-a52b-b0da0be61c01');
+          expect(customReward.image, isNull);
+          expect(customReward.backgroundColor, '');
+          expect(customReward.isEnabled, false);
+          expect(customReward.cost, 30000);
+          expect(customReward.title, 'game analysis 2v2');
+          expect(customReward.prompt, '');
+          expect(customReward.isUserInputRequired, false);
+          expect(customReward.maxPerStreamSetting.isEnabled, true);
+          expect(customReward.maxPerStreamSetting.maxPerStream, 60);
+          expect(customReward.maxPerUserPerStreamSetting.isEnabled, false);
+          expect(
+              customReward.maxPerUserPerStreamSetting.maxPerUserPerStream, 0);
+          expect(customReward.globalCooldownSetting.isEnabled, false);
+          expect(customReward.globalCooldownSetting.globalCooldownSeconds, 0);
+          expect(customReward.isPaused, false);
+          expect(customReward.isInStock, true);
+          expect(customReward.defaultImage.url1x,
+              'https://static-cdn.jtvnw.net/custom-reward-images/default-1.png');
+          expect(customReward.defaultImage.url2x,
+              'https://static-cdn.jtvnw.net/custom-reward-images/default-2.png');
+          expect(customReward.defaultImage.url4x,
+              'https://static-cdn.jtvnw.net/custom-reward-images/default-4.png');
+          expect(customReward.shouldRedemptionsSkipRequestQueue, true);
+          expect(customReward.redemptionsRedeemedCurrentStream, 60);
+          expect(customReward.cooldownExpiresAt, isNull);
+        });
+      });
+    });
   });
 }

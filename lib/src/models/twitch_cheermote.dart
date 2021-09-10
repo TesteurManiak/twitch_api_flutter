@@ -1,7 +1,7 @@
-import 'package:twitch_api/src/models/twitch_cheermote_tier.dart';
-import 'package:twitch_api/src/models/twitch_cheermote_type.dart';
 import 'package:twitch_api/src/extensions/string_extensions.dart'
     show StringModifier;
+import 'package:twitch_api/src/models/twitch_cheermote_tier.dart';
+import 'package:twitch_api/src/models/twitch_cheermote_type.dart';
 
 class TwitchCheermote {
   /// The string used to Cheer that precedes the Bits amount.

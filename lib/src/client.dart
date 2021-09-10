@@ -752,11 +752,11 @@ class TwitchClient {
     };
     if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
 
-    final data = await twitchHttpClient.getCall(
+    final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['channel_points', 'custom_rewards'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.customReward(data as Map<String, dynamic>);
+    return TwitchResponse.customReward(data!);
   }
 
   /// Returns Custom Reward Redemption objects for a Custom Reward on a channel
@@ -813,10 +813,166 @@ class TwitchClient {
     if (status != null) queryParameters['status'] = status.string;
     if (after != null) queryParameters['after'] = after;
 
-    final data = await twitchHttpClient.getCall(
+    final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['channel_points', 'custom_rewards', 'redemptions'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.customRewardRedemption(data as Map<String, dynamic>);
+    return TwitchResponse.customRewardRedemption(data!);
+  }
+
+  /// Updates a Custom Reward created on a channel.
+  ///
+  /// The Custom Reward specified by `id` must have been created by the
+  /// [clientId] attached to the user OAuth token.
+  ///
+  /// Required scope: [TwitchApiScope.channelManageRedemptions]
+  ///
+  /// `broadcasterId`: Provided `broadcasterId` must match the user_id in the
+  /// user OAuth token.
+  ///
+  /// `id`: ID of the Custom Reward to update. Must match a Custom Reward on the
+  /// channel of the `broadcasterId`.
+  ///
+  /// `title`: The title of the reward.
+  ///
+  /// `prompt`: The prompt for the viewer when they are redeeming the reward.
+  ///
+  /// `cost`: The cost of the reward.
+  ///
+  /// `backgroundColor`: Custom background color for the reward as a hexadecimal
+  /// value. Example: `#00E5CB`.
+  ///
+  /// `isEnabled`: Is the reward currently enabled, if false the reward won’t
+  /// show up to viewers.
+  ///
+  /// `isUserInputRequired`: Does the user need to enter information when
+  /// redeeming the reward.
+  ///
+  /// `isMaxPerStreamEnabled`: Whether a maximum per stream is enabled. Required
+  /// when any value of `maxPerStream` is included.
+  ///
+  /// `maxPerStream`: The maximum number per stream if enabled. Required when
+  /// any value of `isMaxPerStreamEnabled` is included.
+  ///
+  /// `isMaxPerUserPerStreamEnabled`: Whether a maximum per user per stream is
+  /// enabled. Required when any value of `maxPerUserPerStream` is included.
+  ///
+  /// `maxPerUserPerStream`: The maximum number per user per stream if enabled.
+  /// Required when any value of `isMaxPerUserPerStreamEnabled` is included.
+  ///
+  /// `isGlobalCooldownEnabled`: Whether a global cooldown is enabled. Required
+  /// when any value of `globalCooldownSeconds` is included.
+  ///
+  /// `globalCooldownSeconds`: The global cooldown in seconds if enabled.
+  /// Required when any value of `isGlobalCooldownEnabled` is included.
+  ///
+  /// `isPaused`: Is the reward currently paused, if true viewers cannot redeem.
+  ///
+  /// `shouldRedemptionsSkipRequestQueue`: Should redemptions be set to
+  /// FULFILLED status immediately when redeemed and skip the request queue
+  /// instead of the normal UNFULFILLED status.
+  Future<TwitchResponse<TwitchCustomReward>> updateCustomReward({
+    required String broadcasterId,
+    required String id,
+    String? title,
+    String? prompt,
+    int? cost,
+    String? backgroundColor,
+    bool? isEnabled,
+    bool? isUserInputRequired,
+    bool? isMaxPerStreamEnabled,
+    int? maxPerStream,
+    bool? isMaxPerUserPerStreamEnabled,
+    int? maxPerUserPerStream,
+    bool? isGlobalCooldownEnabled,
+    int? globalCooldownSeconds,
+    bool? isPaused,
+    bool? shouldRedemptionsSkipRequestQueue,
+  }) async {
+    assert(cost == null || cost >= 0);
+    assert(
+      isMaxPerStreamEnabled == null ||
+          !isMaxPerStreamEnabled ||
+          maxPerStream != null,
+      'Required when any value of maxPerStream is included.',
+    );
+    assert(
+      maxPerStream == null ||
+          (maxPerStream >= 0 &&
+              isMaxPerStreamEnabled != null &&
+              isMaxPerStreamEnabled),
+      'Required when any value of isMaxPerStreamEnabled is included.',
+    );
+    assert(
+      isMaxPerUserPerStreamEnabled == null ||
+          !isMaxPerUserPerStreamEnabled ||
+          maxPerUserPerStream != null,
+    );
+    assert(
+      maxPerUserPerStream == null ||
+          (maxPerUserPerStream >= 0 &&
+              isMaxPerUserPerStreamEnabled != null &&
+              isMaxPerUserPerStreamEnabled),
+      'Required when any value of isMaxPerUserPerStreamEnabled is included.',
+    );
+    assert(
+      isGlobalCooldownEnabled == null ||
+          !isGlobalCooldownEnabled ||
+          globalCooldownSeconds != null,
+      'Required when any value of globalCooldownSeconds is included.',
+    );
+    assert(
+      globalCooldownSeconds == null ||
+          (globalCooldownSeconds >= 0 &&
+              isGlobalCooldownEnabled != null &&
+              isGlobalCooldownEnabled),
+      'Required when any value of isGlobalCooldownEnabled is included.',
+    );
+
+    final queryParameters = <String, dynamic>{
+      'broadcaster_id': broadcasterId,
+      'id': id,
+    };
+
+    final body = <String, dynamic>{};
+    if (title != null) body['title'] = title;
+    if (prompt != null) body['prompt'] = prompt;
+    if (cost != null) body['cost'] = cost.toString();
+    if (backgroundColor != null) body['background_color'] = backgroundColor;
+    if (isEnabled != null) body['is_enabled'] = isEnabled;
+    if (isUserInputRequired != null) {
+      body['is_user_input_required'] = isUserInputRequired;
+    }
+    if (isMaxPerStreamEnabled != null) {
+      body['is_max_per_stream_enabled'] = isMaxPerStreamEnabled;
+    }
+    if (maxPerStream != null) {
+      body['max_per_stream'] = maxPerStream.toString();
+    }
+    if (isMaxPerUserPerStreamEnabled != null) {
+      body['is_max_per_user_per_stream_enabled'] = isMaxPerUserPerStreamEnabled;
+    }
+    if (maxPerUserPerStream != null) {
+      body['max_per_user_per_stream'] = maxPerUserPerStream.toString();
+    }
+    if (isGlobalCooldownEnabled != null) {
+      body['is_global_cooldown_enabled'] = isGlobalCooldownEnabled;
+    }
+    if (globalCooldownSeconds != null) {
+      body['global_cooldown_seconds'] = globalCooldownSeconds.toString();
+    }
+    if (isPaused != null) body['is_paused'] = isPaused;
+    if (shouldRedemptionsSkipRequestQueue != null) {
+      body['should_redemptions_skip_request_queue'] =
+          shouldRedemptionsSkipRequestQueue;
+    }
+
+    final data = await twitchHttpClient.patchCall<Map<String, dynamic>>(
+      ['channel_points', 'custom_rewards'],
+      body,
+      queryParameters: queryParameters,
+    );
+
+    return TwitchResponse.customReward(data!);
   }
 }
