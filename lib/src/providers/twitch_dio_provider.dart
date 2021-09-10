@@ -16,7 +16,7 @@ class TwitchDioProvider extends TwitchHttpClient {
   TwitchDioProvider({required this.clientId, required this.dio});
 
   @override
-  Future getCall(
+  Future<T?> getCall<T>(
     Iterable<String> pathSegments, {
     Map<String, dynamic> queryParameters = const {},
   }) async {
@@ -26,7 +26,7 @@ class TwitchDioProvider extends TwitchHttpClient {
         'Client-Id': clientId,
         'Authorization': 'Bearer ${accessToken.token}',
       });
-      final response = await dio.getUri(
+      final response = await dio.getUri<T>(
         TwitchClient.baseUrl.replace(
           pathSegments: <String>[TwitchClient.basePath, ...pathSegments],
           queryParameters: queryParameters,
@@ -40,7 +40,7 @@ class TwitchDioProvider extends TwitchHttpClient {
   }
 
   @override
-  Future postCall(
+  Future<T?> postCall<T>(
     Iterable<String> pathSegments,
     dynamic data, {
     Map<String, dynamic> queryParameters = const {},
@@ -52,7 +52,7 @@ class TwitchDioProvider extends TwitchHttpClient {
         'Authorization': 'Bearer ${accessToken.token}',
         'Content-Type': 'application/json',
       });
-      final response = await dio.postUri(
+      final response = await dio.postUri<T>(
         TwitchClient.baseUrl.replace(
           pathSegments: <String>[TwitchClient.basePath, ...pathSegments],
           queryParameters: queryParameters,
@@ -67,7 +67,7 @@ class TwitchDioProvider extends TwitchHttpClient {
   }
 
   @override
-  Future patchCall(
+  Future<T?> patchCall<T>(
     Iterable<String> pathSegments,
     dynamic data, {
     Map<String, dynamic> queryParameters = const {},
@@ -79,7 +79,7 @@ class TwitchDioProvider extends TwitchHttpClient {
         'Authorization': 'Bearer ${accessToken.token}',
         'Content-Type': 'application/json',
       });
-      final response = await dio.patchUri(
+      final response = await dio.patchUri<T>(
         TwitchClient.baseUrl.replace(
           pathSegments: <String>[TwitchClient.basePath, ...pathSegments],
           queryParameters: queryParameters,
@@ -98,14 +98,13 @@ class TwitchDioProvider extends TwitchHttpClient {
     final options = Options(
       headers: {'Authorization': 'OAuth ${_twitchToken.token}'},
     );
-    final response = await dio.getUri(
+    final response = await dio.getUri<Map<String, dynamic>>(
       TwitchClient.oauth2Url.replace(
         pathSegments: <String>[TwitchClient.oauthPath, 'validate'],
       ),
       options: options,
     );
-    _twitchToken = TwitchToken.fromValidation(
-        _twitchToken, response.data as Map<String, dynamic>);
+    _twitchToken = TwitchToken.fromValidation(_twitchToken, response.data!);
 
     if (_twitchToken.token.isEmpty || !_twitchToken.isValid) {
       throw const TwitchNotConnectedException(
@@ -118,7 +117,7 @@ class TwitchDioProvider extends TwitchHttpClient {
   void initializeToken(TwitchToken twitchToken) => _twitchToken = twitchToken;
 
   @override
-  Future deleteCall(
+  Future<T?> deleteCall<T>(
     Iterable<String> pathSegments, {
     Map<String, dynamic> queryParameters = const {},
   }) async {
@@ -129,7 +128,7 @@ class TwitchDioProvider extends TwitchHttpClient {
         'Authorization': 'Bearer ${accessToken.token}',
         'Content-Type': 'application/json',
       });
-      final response = await dio.deleteUri(
+      final response = await dio.deleteUri<T>(
         TwitchClient.baseUrl.replace(
           pathSegments: <String>[TwitchClient.basePath, ...pathSegments],
         ),

@@ -4,6 +4,7 @@ enum TwitchApiScope {
   bitsRead,
   channelEditCommercial,
   channelManageBroadcast,
+  channelManageRedemptions,
   channelReadEditors,
   channelReadRedemptions,
   channelReadSubscriptions,
@@ -23,6 +24,8 @@ extension TwitchApiScopeModifier on TwitchApiScope {
         return 'channel:edit:commercial';
       case TwitchApiScope.channelManageBroadcast:
         return 'channel:manage:broadcast';
+      case TwitchApiScope.channelManageRedemptions:
+        return 'channel:manage:redemptions';
       case TwitchApiScope.channelReadEditors:
         return 'channel:read:editors';
       case TwitchApiScope.channelReadRedemptions:

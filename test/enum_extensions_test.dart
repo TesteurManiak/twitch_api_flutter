@@ -1,6 +1,6 @@
 import 'package:test/test.dart';
-import 'package:twitch_api/src/models/twitch_extension_transaction.dart';
 import 'package:twitch_api/src/extensions/enum_extensions.dart';
+import 'package:twitch_api/src/models/twitch_extension_transaction.dart';
 import 'package:twitch_api/src/models/twitch_time_period.dart';
 
 void main() {
