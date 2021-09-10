@@ -693,9 +693,10 @@ class TwitchClient {
   ///
   /// `globalCooldownSeconds`: The cooldown in seconds if enabled.
   ///
-  /// `shouldRedemptionsSkipQueue`: Should redemptions be set to FULFILLED
-  /// status immediately when redeemed and skip the request queue instead of the
-  /// normal UNFULFILLED status.
+  /// `shouldRedemptionsSkipQueue`: Should redemptions be set to
+  /// [TwitchRewardRedemptionStatus.fulfilled] status immediately when redeemed
+  /// and skip the request queue instead of the normal
+  /// [TwitchRewardRedemptionStatus.unfulfilled] status.
   Future<TwitchResponse<TwitchCustomReward>> createCustomRewards({
     required String title,
     required int cost,
@@ -891,8 +892,9 @@ class TwitchClient {
   /// `isPaused`: Is the reward currently paused, if true viewers cannot redeem.
   ///
   /// `shouldRedemptionsSkipRequestQueue`: Should redemptions be set to
-  /// FULFILLED status immediately when redeemed and skip the request queue
-  /// instead of the normal UNFULFILLED status.
+  /// [TwitchRewardRedemptionStatus.fulfilled] status immediately when redeemed
+  /// and skip the request queue instead of the normal
+  /// [TwitchRewardRedemptionStatus.unfulfilled] status.
   Future<TwitchResponse<TwitchCustomReward>> updateCustomReward({
     required String broadcasterId,
     required String id,
@@ -996,5 +998,53 @@ class TwitchClient {
     );
 
     return TwitchResponse.customReward(data!);
+  }
+
+  /// Updates the status of Custom Reward Redemption objects on a channel that
+  /// are in the [TwitchRewardRedemptionStatus.unfulfilled] status.
+  ///
+  /// The Custom Reward Redemption specified by id must be for a Custom Reward
+  /// created by the [clientId] attached to the user OAuth token.
+  ///
+  /// Required scope: [TwitchApiScope.channelManageRedemptions]
+  ///
+  /// `ids`: ID of the Custom Reward Redemption to update, must match a Custom
+  /// Reward Redemption on `broadcasterId`’s channel. Maximum: 50.
+  ///
+  /// `broadcasterId`: Provided `broadcasterId` must match the `userId` in the
+  /// user OAuth token.
+  ///
+  /// `rewardId`: ID of the Custom Reward the redemptions to be updated are for.
+  ///
+  /// `status`: The new status to set redemptions to. Can be either
+  /// [TwitchRewardRedemptionStatus.fulfilled] or
+  /// [TwitchRewardRedemptionStatus.canceled]. Updating to
+  /// [TwitchRewardRedemptionStatus.canceled] will refund the user their Channel
+  /// Points.
+  Future<TwitchResponse<TwitchCustomRewardRedemption>> updateRedemptionStatus({
+    required List<String> ids,
+    required String broadcasterId,
+    required String rewardId,
+    required TwitchRewardRedemptionStatus status,
+  }) async {
+    assert(ids.length <= 50 && ids.isNotEmpty);
+    assert(status == TwitchRewardRedemptionStatus.fulfilled ||
+        status == TwitchRewardRedemptionStatus.canceled);
+
+    final queryParameters = <String, dynamic>{
+      'id': ids.join(','),
+      'broadcaster_id': broadcasterId,
+      'reward_id': rewardId,
+    };
+
+    final body = <String, dynamic>{'status': status.string};
+
+    final data = await twitchHttpClient.patchCall<Map<String, dynamic>>(
+      ['channel_points', 'custom_rewards', 'redemptions'],
+      body,
+      queryParameters: queryParameters,
+    );
+
+    return TwitchResponse.customRewardRedemption(data!);
   }
 }

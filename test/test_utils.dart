@@ -121,6 +121,10 @@ class TwitchMockProvider extends TwitchHttpClient {
           return jsonDecode(
               await readFileStringAsync('update_custom_reward_2.json')) as T;
         }
+      case 'channel_points/custom_rewards/redemptions':
+        return jsonDecode(
+          await readFileStringAsync('update_redemption_status.json'),
+        ) as T;
       default:
         throw 'Bad Request: Query Parameter missing or invalid';
     }

@@ -585,6 +585,60 @@ void main() {
           expect(customReward.cooldownExpiresAt, isNull);
         });
       });
+
+      group('Update Redemption Status', () {
+        test('Parameters', () {
+          expect(
+            () => client.updateRedemptionStatus(
+              broadcasterId: '',
+              ids: [],
+              rewardId: '',
+              status: TwitchRewardRedemptionStatus.canceled,
+            ),
+            throwsA(isA<AssertionError>()),
+          );
+
+          expect(
+            () => client.updateRedemptionStatus(
+              broadcasterId: '',
+              ids: ['1'],
+              rewardId: '',
+              status: TwitchRewardRedemptionStatus.unfulfilled,
+            ),
+            throwsA(isA<AssertionError>()),
+          );
+        });
+
+        test('1', () async {
+          final data = (await client.updateRedemptionStatus(
+            ids: ['17fa2df1-ad76-4804-bfa5-a40ef63efe63'],
+            broadcasterId: '274637212',
+            rewardId: '92af127c-7326-4483-a52b-b0da0be61c01',
+            status: TwitchRewardRedemptionStatus.canceled,
+          ))
+              .data;
+          expect(data!.length, 1);
+
+          final redemption = data.first;
+          expect(redemption.broadcasterName, 'torpedo09');
+          expect(redemption.broadcasterLogin, 'torpedo09');
+          expect(redemption.broadcasterId, '274637212');
+          expect(redemption.id, '17fa2df1-ad76-4804-bfa5-a40ef63efe63');
+          expect(redemption.userId, '274637212');
+          expect(redemption.userName, 'torpedo09');
+          expect(redemption.userLogin, 'torpedo09');
+          expect(redemption.userInput, '');
+          expect(redemption.status, TwitchRewardRedemptionStatus.canceled);
+          expect(
+            redemption.redeemedAt.toIso8601String(),
+            '2020-07-01T18:37:32.000Z',
+          );
+          expect(redemption.reward.id, '92af127c-7326-4483-a52b-b0da0be61c01');
+          expect(redemption.reward.title, 'game analysis');
+          expect(redemption.reward.cost, 50000);
+          expect(redemption.reward.prompt, '');
+        });
+      });
     });
   });
 }
