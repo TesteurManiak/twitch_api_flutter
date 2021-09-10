@@ -584,6 +584,23 @@ void main() {
           expect(customReward.redemptionsRedeemedCurrentStream, 60);
           expect(customReward.cooldownExpiresAt, isNull);
         });
+
+        test('3', () async {
+          await client.updateCustomReward(
+            broadcasterId: '274637212',
+            id: '92af127c-7326-4483-a52b-b0da0be61c01',
+            title: 'game analysis 2v2',
+            prompt: '',
+            cost: 30000,
+            isUserInputRequired: true,
+            isMaxPerStreamEnabled: true,
+            maxPerStream: 60,
+            isMaxPerUserPerStreamEnabled: true,
+            maxPerUserPerStream: 60,
+            isGlobalCooldownEnabled: true,
+            globalCooldownSeconds: 60,
+          );
+        });
       });
 
       group('Update Redemption Status', () {
