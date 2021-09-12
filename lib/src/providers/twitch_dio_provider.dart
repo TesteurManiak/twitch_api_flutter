@@ -8,10 +8,10 @@ class TwitchDioProvider extends TwitchHttpClient {
   final Dio dio;
   final String clientId;
 
-  late TwitchToken _twitchToken;
+  TwitchToken? _twitchToken;
 
   @override
-  TwitchToken get twitchToken => _twitchToken;
+  TwitchToken? get twitchToken => _twitchToken;
 
   TwitchDioProvider({required this.clientId, required this.dio});
 
@@ -95,8 +95,9 @@ class TwitchDioProvider extends TwitchHttpClient {
 
   @override
   Future<TwitchToken> validateToken() async {
+    assert(_twitchToken != null);
     final options = Options(
-      headers: {'Authorization': 'OAuth ${_twitchToken.token}'},
+      headers: {'Authorization': 'OAuth ${_twitchToken!.token}'},
     );
     final response = await dio.getUri<Map<String, dynamic>>(
       TwitchClient.oauth2Url.replace(
@@ -104,13 +105,13 @@ class TwitchDioProvider extends TwitchHttpClient {
       ),
       options: options,
     );
-    _twitchToken = TwitchToken.fromValidation(_twitchToken, response.data!);
+    _twitchToken = TwitchToken.fromValidation(_twitchToken!, response.data!);
 
-    if (_twitchToken.token.isEmpty || !_twitchToken.isValid) {
+    if (_twitchToken!.token.isEmpty || !_twitchToken!.isValid) {
       throw const TwitchNotConnectedException(
           'You are not connected to your Twitch account.');
     }
-    return _twitchToken;
+    return _twitchToken!;
   }
 
   @override

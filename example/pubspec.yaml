@@ -24,7 +24,7 @@ dependencies:
   cupertino_icons: ^1.0.0
   flutter:
     sdk: flutter
-  flutter_webview_plugin: ^0.3.11
+  flutter_webview_plugin: ^0.4.0
   twitch_api:
     path: ../
 

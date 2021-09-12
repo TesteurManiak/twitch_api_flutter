@@ -28,7 +28,7 @@ class TwitchMockProvider extends TwitchHttpClient {
         return jsonDecode(await readFileStringAsync('get_channel_editors.json'))
             as T;
       case 'channel_points/custom_rewards':
-        if (queryParameters['only_manageable_rewards'] as bool == true) {
+        if (queryParameters['only_manageable_rewards'] as String == 'true') {
           return jsonDecode(
             await readFileStringAsync('get_custom_rewards_2.json'),
           ) as T;
@@ -146,12 +146,12 @@ class TwitchMockProvider extends TwitchHttpClient {
   }
 
   @override
-  final TwitchToken twitchToken = TwitchToken(
-    scope: '',
-    token: '',
-    tokenType: '',
-    userId: '',
-  );
+  TwitchToken? get twitchToken => TwitchToken(
+        scope: '',
+        token: '',
+        tokenType: '',
+        userId: '',
+      );
 
   @override
   Future<TwitchToken?> validateToken() => throw UnimplementedError();

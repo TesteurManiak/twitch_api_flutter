@@ -1,7 +1,7 @@
 import 'package:twitch_api/src/models/twitch_token.dart';
 
 abstract class TwitchHttpClient {
-  TwitchToken get twitchToken;
+  TwitchToken? get twitchToken;
 
   /// Method to initialize the token the first time after connection.
   ///
