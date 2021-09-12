@@ -111,9 +111,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: ListView(
         children: <Widget>[
           Text(
-              'Welcome user: ${_twitchClient.twitchHttpClient.twitchToken.userId}'),
+              'Welcome user: ${_twitchClient.twitchHttpClient.twitchToken?.userId}'),
           Text(
-              'Your Twitch token is: ${_twitchClient.twitchHttpClient.twitchToken.token}'),
+              'Your Twitch token is: ${_twitchClient.twitchHttpClient.twitchToken?.token}'),
           ElevatedButton(
             onPressed: () => _twitchClient
                 .startCommercial(
@@ -249,7 +249,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
             child: const Text('Get your channel editors'),
-          )
+          ),
+          ElevatedButton(
+            onPressed: () => _twitchClient.getCustomRewards().then(
+                  (value) => _displayDataAlert(
+                    'Get Custom Rewards',
+                    value.data.map<String>((e) => e.title).join(', '),
+                  ),
+                ),
+            child: const Text('Get custom rewards'),
+          ),
         ],
       ),
     );

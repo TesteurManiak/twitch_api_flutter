@@ -2,11 +2,12 @@
 
 * Added method `updateCustomReward` and `updateRedemptionStatus`
 * Updated typecast for `TwitchHttpClient`
+* `TwitchHttpClient.twitchToken` is now a `TwitchToken?`
 
 ## [0.4.0] - 09/08/2021
 
-* **Breaking change:** `TwitchClient.startCommercial` is now taking named parameters, `TwitchUser.broadcasterType` became a `TwitchBroadcasterType`, `TwitchUserFollow.followedAt` is now a `DateTime`, removed class `TwitchTopGame`/`TwitchSearchCategory` use `TwitchGame` instead, removed `TwitchApiScopes.getScopeString` instead use the getter `string` from the enum
-* Refacto to separate implementation of the HTTP provider, `TwitchClient.accessToken` and `TwitchClient.validateToken` are deprecated
+* **Breaking change:** `TwitchClient.startCommercial` is now taking named parameters,  `TwitchUser.broadcasterType` became a `TwitchBroadcasterType`,  `TwitchUserFollow.followedAt` is now a `DateTime`, removed class `TwitchTopGame`/`TwitchSearchCategory` use `TwitchGame` instead, removed `TwitchApiScopes.getScopeString` instead use the getter `string` from the enum
+* Refacto to separate implementation of the HTTP provider,  `TwitchClient.accessToken` and `TwitchClient.validateToken` are deprecated
 * Added method `createCustomRewards`, `deleteCustomReward`, `getCustomRewards`, `getCustomRewardRedemptions`
 
 ## [0.3.1] - 24/06/2021

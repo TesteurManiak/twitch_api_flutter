@@ -87,7 +87,7 @@ class TwitchClient {
     required String broadcasterId,
     required int length,
   }) async {
-    assert(broadcasterId == twitchHttpClient.twitchToken.userId);
+    assert(broadcasterId == twitchHttpClient.twitchToken?.userId);
     assert(length >= 30 && length <= 180 && length % 30 == 0);
     try {
       final data = await twitchHttpClient.postCall<Map<String, dynamic>>(
@@ -155,7 +155,7 @@ class TwitchClient {
         (endedAt != null && startedAt != null));
     assert(first < 101 && first > 0);
 
-    final queryParameters = <String, dynamic>{'first': first.toString()};
+    final queryParameters = <String, String?>{'first': first.toString()};
     if (after != null) queryParameters['after'] = after;
     if (endedAt != null && startedAt != null) {
       queryParameters['ended_at'] = endedAt;
@@ -197,7 +197,7 @@ class TwitchClient {
         (endedAt != null && startedAt != null));
     assert(first < 101 && first > 0);
 
-    final queryParameters = <String, dynamic>{'first': first.toString()};
+    final queryParameters = <String, String?>{'first': first.toString()};
     if (after != null && gameId == null) queryParameters['after'] = after;
     if (endedAt != null && startedAt != null) {
       queryParameters['ended_at'] = endedAt;
@@ -242,7 +242,7 @@ class TwitchClient {
   }) async {
     assert(count > 0 && count < 101);
 
-    final queryParameters = <String, dynamic>{
+    final queryParameters = <String, String?>{
       'count': count.toString(),
       'period': period.string,
     };
@@ -278,7 +278,7 @@ class TwitchClient {
     assert(logins.length < 101);
     assert(ids.length + logins.length < 101);
 
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, String?>{};
     if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
     if (logins.isNotEmpty) queryParameters['login'] = logins.join(',');
 
@@ -305,7 +305,7 @@ class TwitchClient {
       'At minimum, fromId or toId must be provided for a query to be valid.',
     );
 
-    final queryParameters = <String, dynamic>{'first': first.toString()};
+    final queryParameters = <String, String?>{'first': first.toString()};
     if (after != null) queryParameters['after'] = after;
     if (fromId != null) queryParameters['from_id'] = fromId;
     if (toId != null) queryParameters['to_id'] = toId;
@@ -326,7 +326,7 @@ class TwitchClient {
   }) async {
     assert(first < 101 && first > 0);
 
-    final queryParameters = <String, dynamic>{'first': first.toString()};
+    final queryParameters = <String, String?>{'first': first.toString()};
     if (after != null) queryParameters['after'] = after;
     if (before != null) queryParameters['before'] = before;
 
@@ -353,7 +353,7 @@ class TwitchClient {
     assert(ids.length < 101);
     assert(names.length < 101);
 
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, String?>{};
     if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
     if (names.isNotEmpty) queryParameters['name'] = names.join(',');
 
@@ -392,7 +392,7 @@ class TwitchClient {
   }) async {
     assert(first > 0 && first < 101);
 
-    final queryParameters = <String, dynamic>{
+    final queryParameters = <String, String?>{
       'query': query,
       'first': first.toString(),
     };
@@ -427,7 +427,7 @@ class TwitchClient {
   }) async {
     assert(first > 0 && first < 101);
 
-    final queryParameters = <String, dynamic>{
+    final queryParameters = <String, String?>{
       'query': query,
       'first': first.toString(),
       'live_only': liveOnly.toString(),
@@ -484,7 +484,7 @@ class TwitchClient {
     assert(userIds.length < 101);
     assert(userLogins.length < 101);
 
-    final queryParameters = <String, dynamic>{'first': first.toString()};
+    final queryParameters = <String, String?>{'first': first.toString()};
     if (after != null && after.isNotEmpty) queryParameters['after'] = after;
     if (before != null && before.isNotEmpty) queryParameters['before'] = before;
     if (gameIds.isNotEmpty) queryParameters['game_id'] = gameIds.join(',');
@@ -526,8 +526,8 @@ class TwitchClient {
     assert(first > 0 && first < 101);
     assert(userIds.length < 101);
 
-    final queryParameters = <String, dynamic>{
-      'broadcaster_id': twitchHttpClient.twitchToken.userId,
+    final queryParameters = <String, String?>{
+      'broadcaster_id': twitchHttpClient.twitchToken?.userId,
       'first': first.toString(),
     };
     if (userIds.isNotEmpty) queryParameters['user_id'] = userIds.join(',');
@@ -549,7 +549,7 @@ class TwitchClient {
   /// Cheermotes.
   Future<TwitchResponse<TwitchCheermote>> getCheermotes(
       {String? broadcasterId}) async {
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, String?>{};
     if (broadcasterId != null) {
       queryParameters['broadcaster_id'] = broadcasterId;
     }
@@ -584,7 +584,7 @@ class TwitchClient {
   }) async {
     assert(first > 0 && first < 101);
 
-    final queryParameters = <String, dynamic>{
+    final queryParameters = <String, String?>{
       'extension_id': extensionId,
       'first': first.toString(),
     };
@@ -734,7 +734,9 @@ class TwitchClient {
     final data = await twitchHttpClient.postCall<Map<String, dynamic>>(
       ['channel_points', 'custom_rewards'],
       body,
-      queryParameters: {'broadcaster_id': twitchHttpClient.twitchToken.userId},
+      queryParameters: <String, String?>{
+        'broadcaster_id': twitchHttpClient.twitchToken?.userId
+      },
     );
     return TwitchResponse.customReward(data!);
   }
@@ -746,8 +748,8 @@ class TwitchClient {
   Future<String> deleteCustomReward({required String id}) async {
     final data = await twitchHttpClient.deleteCall<String>(
       ['channel_points', 'custom_rewards'],
-      queryParameters: {
-        'broadcaster_id': twitchHttpClient.twitchToken.userId,
+      queryParameters: <String, String?>{
+        'broadcaster_id': twitchHttpClient.twitchToken?.userId,
         'id': id,
       },
     );
@@ -769,9 +771,9 @@ class TwitchClient {
   }) async {
     assert(ids.length <= 50, 'ids.length cannot exceed 50');
 
-    final queryParameters = <String, dynamic>{
-      'broadcaster_id': twitchHttpClient.twitchToken.userId,
-      'only_manageable_rewards': onlyManageableRewards,
+    final queryParameters = <String, String?>{
+      'broadcaster_id': twitchHttpClient.twitchToken?.userId,
+      'only_manageable_rewards': onlyManageableRewards.toString(),
     };
     if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
 
@@ -823,11 +825,14 @@ class TwitchClient {
     int first = 20,
   }) async {
     assert(ids.length <= 50, 'ids.length cannot exceed 50');
-    assert(ids.isNotEmpty || status != null);
+    assert(
+      ids.isNotEmpty || status != null,
+      'If ids is not provided you need to define a status.',
+    );
     assert(first <= 50 && first >= 0, 'first cannot exceed 50');
 
-    final queryParameters = <String, dynamic>{
-      'broadcaster_id': twitchHttpClient.twitchToken.userId,
+    final queryParameters = <String, String?>{
+      'broadcaster_id': twitchHttpClient.twitchToken?.userId,
       'reward_id': rewardId,
       'sort': sort.string,
       'first': first.toString(),
@@ -953,7 +958,7 @@ class TwitchClient {
       'Required when any value of isGlobalCooldownEnabled is included.',
     );
 
-    final queryParameters = <String, dynamic>{
+    final queryParameters = <String, String?>{
       'broadcaster_id': broadcasterId,
       'id': id,
     };
@@ -1031,7 +1036,7 @@ class TwitchClient {
     assert(status == TwitchRewardRedemptionStatus.fulfilled ||
         status == TwitchRewardRedemptionStatus.canceled);
 
-    final queryParameters = <String, dynamic>{
+    final queryParameters = <String, String?>{
       'id': ids.join(','),
       'broadcaster_id': broadcasterId,
       'reward_id': rewardId,

@@ -15,9 +15,9 @@ void main() {
 
     test('TwitchClient with non null token', () {
       final token = client.twitchHttpClient.twitchToken;
-      expect(token.token, 'test');
-      expect(token.tokenType, 'type');
-      expect(token.scope, 'scope');
+      expect(token?.token, 'test');
+      expect(token?.tokenType, 'type');
+      expect(token?.scope, 'scope');
     });
   });
 
