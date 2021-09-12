@@ -1,4 +1,4 @@
-## [0.4.1] - In development
+## [0.5.0] - 12/09/2020
 
 * Added method `updateCustomReward` and `updateRedemptionStatus`
 * Updated typecast for `TwitchHttpClient`
