@@ -1,4 +1,4 @@
-## [0.5.1] - 22/10/2021
+## [0.5.1] - 27/10/2021
 
 * Migrate example to nullsafety
 * Fixed [issue #3](https://github.com/TesteurManiak/twitch_api_flutter/issues/3)
