@@ -97,7 +97,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               if (!isImg && data != null) Text(data),
-              if (isImg && data != null) Image.network(data),
+              if (isImg && data != null)
+                Image.network(
+                  data,
+                  loadingBuilder: (_, __, ___) =>
+                      const CircularProgressIndicator(),
+                ),
             ],
           ),
         );
@@ -211,9 +216,14 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () =>
                 _twitchClient.getStreams(userLogins: ['auronplay']).then(
               (value) => _displayDataAlert(
-                method: value.data?.first.userLogin,
-                data: 'Viewers: ${value.data?.first.viewerCount}',
-                isOnline: value.data?.first.type == TwitchStreamType.live,
+                method: (value.data?.isNotEmpty ?? false)
+                    ? value.data?.first.userLogin
+                    : 'getStreams',
+                data:
+                    'Viewers: ${(value.data?.isNotEmpty ?? false) ? value.data?.first.viewerCount : "No data"}',
+                isOnline: (value.data?.isNotEmpty ?? false)
+                    ? value.data?.first.type == TwitchStreamType.live
+                    : false,
               ),
             ),
             child: const Text('Get auronplay Stream Info'),
