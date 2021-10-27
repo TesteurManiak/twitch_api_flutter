@@ -1,3 +1,8 @@
+## [0.5.1] - 22/10/2021
+
+* Migrate example to nullsafety
+* Fixed [issue #3](https://github.com/TesteurManiak/twitch_api_flutter/issues/3)
+
 ## [0.5.0] - 12/09/2020
 
 * Added method `updateCustomReward` and `updateRedemptionStatus`
