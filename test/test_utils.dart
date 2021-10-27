@@ -154,7 +154,7 @@ class TwitchMockProvider extends TwitchHttpClient {
       );
 
   @override
-  Future<TwitchToken?> validateToken() => throw UnimplementedError();
+  Future<TwitchToken> validateToken() => throw UnimplementedError();
 
   @override
   Future<T?> deleteCall<T>(Iterable<String> pathSegments,
