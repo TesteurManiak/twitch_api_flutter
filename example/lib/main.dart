@@ -73,9 +73,9 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void _displayDataAlert(
-    String method,
-    String? data, {
+  void _displayDataAlert({
+    String? method,
+    String? data,
     bool isImg = false,
     bool? isOnline,
   }) {
@@ -83,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text(method),
+          title: Text(method ?? ''),
           content: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
@@ -127,7 +127,10 @@ class _MyHomePageState extends State<MyHomePage> {
               length: 60,
             )
                 .catchError((error) {
-              _displayDataAlert('startCommercial', error.toString());
+              _displayDataAlert(
+                method: 'startCommercial',
+                data: error.toString(),
+              );
             }),
             child: const Text('Start Commercial'),
           ),
@@ -135,7 +138,10 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () => _twitchClient
                 .getExtensionAnalytics(first: 1)
                 .catchError((error) {
-              _displayDataAlert('getExtensionAnalytics', error.toString());
+              _displayDataAlert(
+                method: 'getExtensionAnalytics',
+                data: error.toString(),
+              );
             }),
             child: const Text('Get Extension Analytics'),
           ),
@@ -143,22 +149,28 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () => _twitchClient
                 .getGameAnalytics(gameId: '493057')
                 .catchError((error) {
-              _displayDataAlert('getGameAnalytics', error.toString());
+              _displayDataAlert(
+                method: 'getGameAnalytics',
+                data: error.toString(),
+              );
             }),
             child: const Text('Get Games Analytics'),
           ),
           ElevatedButton(
-            onPressed: () => _twitchClient
-                .getUsersFollows(toId: '23161357')
-                .then((value) => _displayDataAlert(
-                    'getUsersFollows', 'Total followers: ${value.total}')),
+            onPressed: () =>
+                _twitchClient.getUsersFollows(toId: '23161357').then(
+                      (value) => _displayDataAlert(
+                        method: 'getUsersFollows',
+                        data: 'Total followers: ${value.total}',
+                      ),
+                    ),
             child: const Text('Get User Follows from id 23161357'),
           ),
           ElevatedButton(
             onPressed: () => _twitchClient.getUsers(ids: ['44322889']).then(
               (value) => _displayDataAlert(
-                value.data?.first.displayName ?? '',
-                value.data?.first.description,
+                method: value.data?.first.displayName,
+                data: value.data?.first.description,
               ),
             ),
             child: const Text('Get User Dallas from id'),
@@ -166,8 +178,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () => _twitchClient.getTopGames().then(
                   (value) => _displayDataAlert(
-                    'Top Games',
-                    value.data?.map<String>((e) => e.name).toList().join('\n'),
+                    method: 'Top Games',
+                    data: value.data
+                        ?.map<String>((e) => e.name)
+                        .toList()
+                        .join('\n'),
                   ),
                 ),
             child: const Text('Get Top Games'),
@@ -175,8 +190,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () => _twitchClient.getGames(names: ['Fortnite']).then(
               (value) => _displayDataAlert(
-                value.data?.first.name ?? '',
-                value.data?.first.getBoxArtUrl(),
+                method: value.data?.first.name,
+                data: value.data?.first.getBoxArtUrl(),
                 isImg: true,
               ),
             ),
@@ -186,8 +201,8 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () =>
                 _twitchClient.getChannelInformations('44445592').then(
                       (value) => _displayDataAlert(
-                        value.data?.first.broadcasterName ?? '',
-                        value.data?.first.title,
+                        method: value.data?.first.broadcasterName,
+                        data: value.data?.first.title,
                       ),
                     ),
             child: const Text('Get Pokimane Channel Info'),
@@ -196,8 +211,8 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () =>
                 _twitchClient.getStreams(userLogins: ['auronplay']).then(
               (value) => _displayDataAlert(
-                value.data?.first.userLogin ?? '',
-                'Viewers: ${value.data?.first.viewerCount}',
+                method: value.data?.first.userLogin,
+                data: 'Viewers: ${value.data?.first.viewerCount}',
                 isOnline: value.data?.first.type == TwitchStreamType.live,
               ),
             ),
@@ -208,8 +223,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 _twitchClient.searchChannels(query: 'loserfruit').then(
               (value) {
                 _displayDataAlert(
-                  value.data?.first.displayName ?? '',
-                  value.data?.first.thumbnailUrl,
+                  method: value.data?.first.displayName,
+                  data: value.data?.first.thumbnailUrl,
                   isImg: true,
                   isOnline: value.data?.first.isLive,
                 );
@@ -220,8 +235,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () => _twitchClient.searchCategories(query: 'fort').then(
                   (value) => _displayDataAlert(
-                    value.data?.first.name ?? '',
-                    value.data?.first.getBoxArtUrl(),
+                    method: value.data?.first.name,
+                    data: value.data?.first.getBoxArtUrl(),
                     isImg: true,
                   ),
                 ),
@@ -230,29 +245,37 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () => _twitchClient.getBroadcasterSubscriptions().then(
                   (value) => _displayDataAlert(
-                      value.data.first.userName, value.data.first.tier),
+                    method: value.data?.first.userName,
+                    data: value.data?.first.tier,
+                  ),
                 ),
             child: const Text('Get Broadcaster Subscriptions'),
           ),
           ElevatedButton(
             onPressed: () => _twitchClient.getBitsLeaderboard().then(
-                  (value) => _displayDataAlert(value.data.first.userName,
-                      value.data.first.score.toString()),
+                  (value) => _displayDataAlert(
+                    method: value.data?.first.userName,
+                    data: value.data?.first.score.toString(),
+                  ),
                 ),
             child: const Text('Get Bits Leaderboard'),
           ),
           ElevatedButton(
             onPressed: () => _twitchClient.getCheermotes().then(
                   (value) => _displayDataAlert(
-                    value.data.first.prefix,
-                    value.data.first.tiers.map((e) => e.id).toList().toString(),
+                    method: value.data?.first.prefix,
+                    data: value.data?.first.tiers
+                        .map((e) => e.id)
+                        .toList()
+                        .toString(),
                   ),
                 ),
             child: const Text('Get Cheermotes'),
           ),
           ElevatedButton(
             onPressed: () => _twitchClient.modifyChannelinformation(
-              broadcasterId: _twitchClient.twitchHttpClient.twitchToken.userId,
+              broadcasterId:
+                  _twitchClient.twitchHttpClient.twitchToken!.userId!,
               title: 'Test',
             ),
             child: const Text('Modify your channel title to: Test'),
@@ -261,12 +284,12 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () => _twitchClient
                 .getChannelEditors(
                   broadcasterId:
-                      _twitchClient.twitchHttpClient.twitchToken.userId,
+                      _twitchClient.twitchHttpClient.twitchToken!.userId!,
                 )
                 .then(
                   (value) => _displayDataAlert(
-                    'You have ${value.data?.length} editors',
-                    value.data?.map<String>((e) => e.userName).join(', '),
+                    method: 'You have ${value.data?.length} editors',
+                    data: value.data?.map<String>((e) => e.userName).join(', '),
                   ),
                 ),
             child: const Text('Get your channel editors'),
@@ -274,8 +297,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () => _twitchClient.getCustomRewards().then(
                   (value) => _displayDataAlert(
-                    'Get Custom Rewards',
-                    value.data?.map<String>((e) => e.title).join(', '),
+                    method: 'Get Custom Rewards',
+                    data: value.data?.map<String>((e) => e.title).join(', '),
                   ),
                 ),
             child: const Text('Get custom rewards'),
