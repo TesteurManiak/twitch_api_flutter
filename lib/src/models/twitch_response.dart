@@ -43,7 +43,7 @@ class TwitchResponse<T> {
             .map<T>((e) =>
                 TwitchSearchChannel.fromJson(e as Map<String, dynamic>) as T)
             .toList(),
-        pagination: json['pagination'] as Map<String, dynamic>,
+        pagination: json['pagination'] as Map<String, dynamic>?,
       );
 
   /// Constructor for request containing [TwitchExtentsionAnalytic].
@@ -123,7 +123,7 @@ class TwitchResponse<T> {
             .map<T>((e) =>
                 TwitchUserFollow.fromJson(e as Map<String, dynamic>) as T)
             .toList(),
-        pagination: json['pagination'] as Map<String, dynamic>,
+        pagination: json['pagination'] as Map<String, dynamic>?,
         total: json['total'] as int,
       );
 
@@ -132,7 +132,7 @@ class TwitchResponse<T> {
         data: (json['data'] as Iterable)
             .map<T>((e) => TwitchGame.fromJson(e as Map<String, dynamic>) as T)
             .toList(),
-        pagination: json['pagination'] as Map<String, dynamic>,
+        pagination: json['pagination'] as Map<String, dynamic>?,
       );
 
   /// Constructor for request containing [TwitchChannelInfo].

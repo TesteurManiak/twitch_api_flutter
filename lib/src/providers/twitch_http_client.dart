@@ -34,5 +34,5 @@ abstract class TwitchHttpClient {
     Map<String, dynamic> queryParameters = const {},
   });
 
-  Future<TwitchToken?> validateToken();
+  Future<TwitchToken> validateToken();
 }

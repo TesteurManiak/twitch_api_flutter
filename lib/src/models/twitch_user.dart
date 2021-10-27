@@ -6,7 +6,7 @@ class TwitchUser {
   final TwitchBroadcasterType broadcasterType;
   final String description;
   final String displayName;
-  final String email;
+  final String? email;
   final String id;
   final String login;
   final String offlineImageUrl;
@@ -40,7 +40,7 @@ class TwitchUser {
         profileImageUrl: json['profile_image_url'] as String,
         offlineImageUrl: json['offline_image_url'] as String,
         viewCount: json['view_count'] as int,
-        email: json['email'] as String,
+        email: json['email'] as String?,
         createdAt: json['created_at'] as String,
       );
 }
