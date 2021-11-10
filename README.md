@@ -10,7 +10,7 @@ All the endpoints are implemented as defined in the [Twitch API Reference](https
 
 ## Getting started
 
-**NOTE: This package is in its early stage, please be patient until more methods are implemented or do not hesitate to open a merge request if you added support for an endpoint. Currently I do not have a roadmap of the endpoint I am going to add in priority so do not hesitate to make suggestions depending of your needs.**
+**NOTE: This package is in its early stage, please be patient until more methods are implemented or do not hesitate to open a merge request if you added support for an endpoint. Currently I do not have a roadmap of the endpoint I am going to add in priority so do not hesitate to [open an issue](https://github.com/TesteurManiak/twitch_api_flutter/issues) to make suggestions depending of your needs.**
 
 To use this package you will need to register an application on the [Twitch developer console](https://dev.twitch.tv/console/apps) to get a **client ID**.
 
