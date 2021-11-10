@@ -21,37 +21,52 @@ After registering your application you will need to instantiate the `TwitchClien
 ```dart
 import 'package:twitch_api/twitch_api.dart';
 
-final _twitchClient = TwitchClient(clientId: clientId, redirectUri: redirectUri);
+final _twitchClient = TwitchClient(
+  clientId: clientId,
+  redirectUri: redirectUri,
+);
 ```
 
-Now that you have initialized the client the last step before using the method will be to manage the first connection with your twitch account and initialize the token you will receive. You can find a complete example of an implementation using the package [flutter_webview_plugin]().
+Now that you have initialized the client the last step before using the method will be to manage the first connection with your twitch account and initialize the token you will receive. You can find a complete example of an implementation using the package [flutter_webview_plugin](https://pub.dev/packages/flutter_webview_plugin).
 
 ```dart
 const clientId = "<YOUR_CLIENT_ID>";
 const redirectUri = "<YOUR_REDIRECT_URL>"; // ex: "http://localhost/"
 
-void _urlListener(String url) {
-    if (url.startsWith(redirectUri)) {
-        // After you got to your redirectUri you can initialize the token.
-        _twitchClient.initializeToken(TwitchToken.fromUrl(url));
-        _flutterWebviewPlugin.close();
-    }
-}
+final _twitchClient = TwitchClient(
+  clientId: clientId,
+  redirectUri: redirectUri,
+);
+
+final _flutterWebviewPlugin = FlutterWebviewPlugin();
 
 // First authentication through a webview
-Future<TwitchToken> _openConnectionPage({List<TwitchApiScope> scopes = const []}) {
-    _flutterWebviewPlugin.onUrlChanged.listen(_urlListener);
-    _flutterWebviewPlugin.onDestroy.listen((_) => Navigator.pop(context));
+Future<TwitchToken> _openConnectionPage({
+  List<TwitchApiScope> scopes = const [],
+}) {
+  // Listen for url changes to detect redirection on our redirectUri.
+  _flutterWebviewPlugin.onUrlChanged.listen((url) {
+    if (url.startsWith(_twitchClient.redirectUri)) {
+      // After you got to your redirectUri you can initialize the token.
+      _twitchClient.initializeToken(TwitchToken.fromUrl(url));
 
-    // Get authorization URL for the connection with the webview.
-    final url = _twitchClient.authorizeUri(scopes);
+      // Close the webview
+      _flutterWebviewPlugin.close();
+    }
+  });
 
-    return Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => WebViewPage(url.toString()),
-      ),
-    ).then((_) => _twitchClient.validateToken());
+  // When the webview is closed pop the current route.
+  _flutterWebviewPlugin.onDestroy.listen((_) => Navigator.pop(context));
+
+  // Get authorization URL for the connection with the webview.
+  final _url = _twitchClient.authorizeUri(scopes);
+
+  return Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => WebViewPage(_url.toString()),
+    ),
+  ).then((_) => _twitchClient.twitchHttpClient.validateToken());
 }
 ```
 
