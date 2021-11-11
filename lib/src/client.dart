@@ -1,27 +1,25 @@
 import 'dart:async';
 
-import 'package:dio/dio.dart';
-import 'package:twitch_api/src/exceptions/twitch_api_exception.dart';
-import 'package:twitch_api/src/models/twitch_bits_leaderboard.dart';
-import 'package:twitch_api/src/models/twitch_broadcaster_subscription.dart';
-import 'package:twitch_api/src/models/twitch_channel_editor.dart';
-import 'package:twitch_api/src/models/twitch_channel_info.dart';
-import 'package:twitch_api/src/models/twitch_cheermote.dart';
-import 'package:twitch_api/src/models/twitch_custom_reward_redemption.dart';
-import 'package:twitch_api/src/models/twitch_extension_transaction.dart';
-import 'package:twitch_api/src/models/twitch_game.dart';
-import 'package:twitch_api/src/models/twitch_game_analytic.dart';
-import 'package:twitch_api/src/models/twitch_response.dart';
-import 'package:twitch_api/src/models/twitch_start_commercial.dart';
-import 'package:twitch_api/src/models/twitch_time_period.dart';
-import 'package:twitch_api/src/models/twitch_token.dart';
-import 'package:twitch_api/src/models/twitch_user.dart';
-import 'package:twitch_api/src/providers/twitch_dio_provider.dart';
-import 'package:twitch_api/src/providers/twitch_http_client.dart';
-import 'package:twitch_api/twitch_api.dart';
+import '../twitch_api.dart';
+import 'exceptions/twitch_api_exception.dart';
 import 'extensions/enum_extensions.dart';
-
 import 'models/twitch_api_scopes.dart';
+import 'models/twitch_bits_leaderboard.dart';
+import 'models/twitch_broadcaster_subscription.dart';
+import 'models/twitch_channel_editor.dart';
+import 'models/twitch_channel_info.dart';
+import 'models/twitch_cheermote.dart';
+import 'models/twitch_custom_reward_redemption.dart';
+import 'models/twitch_extension_transaction.dart';
+import 'models/twitch_game.dart';
+import 'models/twitch_game_analytic.dart';
+import 'models/twitch_response.dart';
+import 'models/twitch_start_commercial.dart';
+import 'models/twitch_time_period.dart';
+import 'models/twitch_token.dart';
+import 'models/twitch_user.dart';
+import 'providers/twitch_dio_provider.dart';
+import 'providers/twitch_http_client.dart';
 
 class TwitchClient {
   static const basePath = 'helix';
@@ -35,6 +33,23 @@ class TwitchClient {
   final String clientId;
   final TwitchHttpClient twitchHttpClient;
 
+  /// Return the authorization Uri for the Twitch API.
+  ///
+  /// ### Code Sample
+  ///
+  /// ```dart
+  /// final client = TwitchClient(
+  ///   clientId: '<your client id>',
+  ///   redirectUri: '<your redirect uri>',
+  /// );
+  /// print(client.authorizeUri([]));
+  /// ```
+  ///
+  /// ### Output
+  ///
+  /// ```url
+  /// https://id.twitch.tv/oauth2/authorize?client_id=<your client id>&redirect_uri=<your redirect uri>&response_type=token&scope=viewing_activity_read
+  /// ```
   Uri authorizeUri(List<TwitchApiScope> scopes) {
     final scopesSet = <String>{}
       ..add('viewing_activity_read')
@@ -56,8 +71,8 @@ class TwitchClient {
     required this.redirectUri,
     TwitchHttpClient? twitchHttpClient,
     TwitchToken? token,
-  }) : twitchHttpClient = twitchHttpClient ??
-            TwitchDioProvider(clientId: clientId, dio: Dio()) {
+  }) : twitchHttpClient =
+            twitchHttpClient ?? TwitchDioProvider(clientId: clientId) {
     if (token != null) {
       initializeToken(token);
     }

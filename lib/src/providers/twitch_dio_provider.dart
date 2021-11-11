@@ -5,7 +5,7 @@ import 'package:twitch_api/src/models/twitch_token.dart';
 import 'package:twitch_api/src/providers/twitch_http_client.dart';
 
 class TwitchDioProvider extends TwitchHttpClient {
-  final Dio dio;
+  final dio = Dio();
   final String clientId;
 
   TwitchToken? _twitchToken;
@@ -13,7 +13,7 @@ class TwitchDioProvider extends TwitchHttpClient {
   @override
   TwitchToken? get twitchToken => _twitchToken;
 
-  TwitchDioProvider({required this.clientId, required this.dio});
+  TwitchDioProvider({required this.clientId});
 
   @override
   Future<T?> getCall<T>(

@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:test/test.dart';
 import 'package:twitch_api/src/models/twitch_token.dart';
@@ -7,9 +6,9 @@ import 'package:twitch_api/twitch_api.dart';
 
 void main() {
   group('TwitchDioProvider', () {
-    final _dio = Dio();
+    final _dioProvider = TwitchDioProvider(clientId: '');
 
-    DioAdapter(dio: _dio)
+    DioAdapter(dio: _dioProvider.dio)
       ..onGet(
         TwitchClient.oauth2Url.replace(
           pathSegments: <String>[TwitchClient.oauthPath, 'validate'],
@@ -52,12 +51,11 @@ void main() {
         (server) => server.reply(201, {'message': 'Success!'}),
       );
 
-    final _dioProvider = TwitchDioProvider(clientId: '', dio: _dio)
-      ..initializeToken(
-        TwitchToken.fromUrl(
-          'http://localhost/#access_token=test&token_type=type&scope=scope',
-        ),
-      );
+    _dioProvider.initializeToken(
+      TwitchToken.fromUrl(
+        'http://localhost/#access_token=test&token_type=type&scope=scope',
+      ),
+    );
 
     test('twitchToken', () {
       expect(_dioProvider.twitchToken?.token, 'test');
