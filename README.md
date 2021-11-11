@@ -70,7 +70,7 @@ Future<TwitchToken> _openConnectionPage({
 }
 ```
 
-Now you are ready to use the methods implemented in [Supported Features](#supported-features) section.
+Now you are ready to use the methods implemented in [Supported Endpoints](#supported-endpoints-2385) section.
 
 ## Supported Endpoints (23/85)
 
