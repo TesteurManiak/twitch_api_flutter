@@ -9,20 +9,20 @@ abstract class TwitchHttpClient {
   void initializeToken(TwitchToken twitchToken);
 
   /// Generic method for authenticated GET calls.
-  Future<T?> getCall<T>(
+  Future<T> getCall<T>(
     Iterable<String> pathSegments, {
     Map<String, dynamic> queryParameters = const {},
   });
 
   /// Generic method for authenticated POST calls.
-  Future<T?> postCall<T>(
+  Future<T> postCall<T>(
     Iterable<String> pathSegments,
     dynamic data, {
     Map<String, dynamic> queryParameters = const {},
   });
 
   /// Generic method for authenticated PATCH calls.
-  Future<T?> patchCall<T>(
+  Future<T> patchCall<T>(
     Iterable<String> pathSegments,
     dynamic data, {
     Map<String, dynamic> queryParameters = const {},

@@ -134,6 +134,11 @@ class TwitchResponse<T> {
 }
 
 class ChannelEmotesResponse extends TwitchResponse<TwitchEmotes> {
+  /// A templated URL. Use the values from id, format, scale, and theme_mode to
+  /// replace the like-named placeholder strings in the templated URL to create
+  /// a CDN (content delivery network) URL that you use to fetch the emote. For
+  /// information about what the template looks like and how to use it to fetch
+  /// emotes, see [Emote CDN URL format](https://dev.twitch.tv/docs/irc/emotes#cdn-template).
   final String template;
 
   ChannelEmotesResponse({
@@ -144,6 +149,26 @@ class ChannelEmotesResponse extends TwitchResponse<TwitchEmotes> {
   factory ChannelEmotesResponse.fromJson(Map<String, dynamic> json) =>
       ChannelEmotesResponse(
         data: _parseObjects(json, TwitchEmotes.fromJson),
+        template: json['template'] as String,
+      );
+}
+
+class ChannelGlobalEmotesResponse extends TwitchResponse<TwitchGlobalEmotes> {
+  /// A templated URL. Use the values from id, format, scale, and theme_mode to
+  /// replace the like-named placeholder strings in the templated URL to create
+  /// a CDN (content delivery network) URL that you use to fetch the emote. For
+  /// information about what the template looks like and how to use it to fetch
+  /// emotes, see [Emote CDN URL format](https://dev.twitch.tv/docs/irc/emotes#cdn-template).
+  final String template;
+
+  ChannelGlobalEmotesResponse({
+    required List<TwitchGlobalEmotes> data,
+    required this.template,
+  }) : super(data: data);
+
+  factory ChannelGlobalEmotesResponse.fromJson(Map<String, dynamic> json) =>
+      ChannelGlobalEmotesResponse(
+        data: _parseObjects(json, TwitchGlobalEmotes.fromJson),
         template: json['template'] as String,
       );
 }

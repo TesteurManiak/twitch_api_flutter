@@ -17,7 +17,7 @@ class TwitchDioProvider extends TwitchHttpClient {
   TwitchDioProvider({required this.clientId});
 
   @override
-  Future<T?> getCall<T>(
+  Future<T> getCall<T>(
     Iterable<String> pathSegments, {
     Map<String, dynamic> queryParameters = const {},
   }) async {
@@ -36,14 +36,14 @@ class TwitchDioProvider extends TwitchHttpClient {
         ),
         options: options,
       );
-      return response.data;
+      return response.data!;
     } else {
       throw const TwitchApiException('OAuth token is not valid');
     }
   }
 
   @override
-  Future<T?> postCall<T>(
+  Future<T> postCall<T>(
     Iterable<String> pathSegments,
     dynamic data, {
     Map<String, dynamic> queryParameters = const {},
@@ -65,14 +65,14 @@ class TwitchDioProvider extends TwitchHttpClient {
         options: options,
         data: data,
       );
-      return response.data;
+      return response.data!;
     } else {
       throw const TwitchApiException('OAuth token is not valid');
     }
   }
 
   @override
-  Future<T?> patchCall<T>(
+  Future<T> patchCall<T>(
     Iterable<String> pathSegments,
     dynamic data, {
     Map<String, dynamic> queryParameters = const {},
@@ -94,7 +94,7 @@ class TwitchDioProvider extends TwitchHttpClient {
         options: options,
         data: data,
       );
-      return response.data;
+      return response.data!;
     } else {
       throw const TwitchApiException('OAuth token is not valid');
     }

@@ -11,7 +11,7 @@ Future<String> readFileStringAsync(String name) =>
 
 class TwitchMockProvider extends TwitchHttpClient {
   @override
-  Future<T?> getCall<T>(
+  Future<T> getCall<T>(
     Iterable<String> pathSegments, {
     Map<String, dynamic> queryParameters = const {},
   }) async {
@@ -100,6 +100,9 @@ class TwitchMockProvider extends TwitchHttpClient {
       case 'chat/emotes':
         return jsonDecode(await readFileStringAsync('get_channel_emotes.json'))
             as T;
+      case 'chat/emotes/global':
+        return jsonDecode(await readFileStringAsync('get_global_emotes.json'))
+            as T;
       default:
         throw 'Bad Request: Query Parameter missing or invalid';
     }
@@ -109,7 +112,7 @@ class TwitchMockProvider extends TwitchHttpClient {
   void initializeToken(_) {}
 
   @override
-  Future<T?> patchCall<T>(
+  Future<T> patchCall<T>(
     Iterable<String> pathSegments,
     dynamic data, {
     Map<String, dynamic> queryParameters = const {},
@@ -137,7 +140,7 @@ class TwitchMockProvider extends TwitchHttpClient {
   }
 
   @override
-  Future<T?> postCall<T>(
+  Future<T> postCall<T>(
     Iterable<String> pathSegments,
     _, {
     Map<String, dynamic> queryParameters = const {},
