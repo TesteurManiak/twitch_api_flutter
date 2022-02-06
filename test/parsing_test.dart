@@ -2,9 +2,6 @@ import 'dart:convert';
 
 import 'package:test/test.dart';
 import 'package:twitch_api/src/models/twitch_channel_editor.dart';
-import 'package:twitch_api/src/models/twitch_custom_reward.dart';
-import 'package:twitch_api/src/models/twitch_extension_transaction.dart';
-import 'package:twitch_api/src/models/twitch_response.dart';
 import 'package:twitch_api/twitch_api.dart';
 
 import 'test_utils.dart';

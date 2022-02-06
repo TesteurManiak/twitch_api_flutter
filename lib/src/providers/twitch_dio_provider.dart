@@ -137,5 +137,6 @@ class TwitchDioProvider extends TwitchHttpClient {
       );
       return response.data;
     }
+    return null;
   }
 }

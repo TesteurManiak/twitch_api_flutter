@@ -1,5 +1,4 @@
 import 'package:twitch_api/src/exceptions/twitch_api_exception.dart';
-import 'package:twitch_api/src/models/twitch_extension_transaction.dart';
 
 import '../../twitch_api.dart';
 
