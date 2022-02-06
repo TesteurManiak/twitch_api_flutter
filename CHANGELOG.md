@@ -4,6 +4,7 @@
 * Updated dependencies, bumped Dart SDK to `2.15.0`.
 * Improved tests and parsing.
 * Added method `getChannelEmotes`
+* Added method `getGlobalEmotes`
 
 ## [0.5.1] - 27/10/2021
 

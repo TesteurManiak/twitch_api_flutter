@@ -96,7 +96,7 @@ class TwitchClient {
         ['channels', 'commercial'],
         {'broadcaster_id': broadcasterId, 'length': length.toString()},
       );
-      return TwitchResponse.startCommercial(data!);
+      return TwitchResponse.startCommercial(data);
     } catch (e) {
       throw TwitchStartCommercialException(e.toString());
     }
@@ -173,7 +173,7 @@ class TwitchClient {
         ['analytics', 'extensions'],
         queryParameters: queryParameters,
       );
-      return TwitchResponse<TwitchExtensionAnalytic>.extensionAnalytics(data!);
+      return TwitchResponse<TwitchExtensionAnalytic>.extensionAnalytics(data);
     } catch (e) {
       throw TwitchGetExtensionAnalyticsException(e.toString());
     }
@@ -216,7 +216,7 @@ class TwitchClient {
       ['analytics', 'games'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse<TwitchGameAnalytic>.gameAnalytics(data!);
+    return TwitchResponse<TwitchGameAnalytic>.gameAnalytics(data);
   }
 
   /// Gets a ranked list of Bits leaderboard information for an authorized
@@ -259,7 +259,7 @@ class TwitchClient {
       ['bits', 'leaderboard'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.bitsLeaderboard(data!);
+    return TwitchResponse.bitsLeaderboard(data);
   }
 
   /// Gets information about one or more specified Twitch users. Users are
@@ -320,7 +320,7 @@ class TwitchClient {
       ['users', 'follows'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.usersFollows(data!);
+    return TwitchResponse.usersFollows(data);
   }
 
   /// Gets games sorted by number of current viewers on Twitch, most popular
@@ -340,7 +340,7 @@ class TwitchClient {
       ['games', 'top'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.games(data!);
+    return TwitchResponse.games(data);
   }
 
   /// Gets game information by game ID or name.
@@ -380,7 +380,7 @@ class TwitchClient {
       ['channels'],
       queryParameters: {'broadcaster_id': broadcasterId},
     );
-    return TwitchResponse.channelInformations(data!);
+    return TwitchResponse.channelInformations(data);
   }
 
   /// Returns a list of games or categories that match the query via name either
@@ -410,7 +410,7 @@ class TwitchClient {
       ['search', 'categories'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.games(data!);
+    return TwitchResponse.games(data);
   }
 
   /// Returns a list of channels (users who have streamed within the past 6
@@ -447,7 +447,7 @@ class TwitchClient {
       ['search', 'channels'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse<TwitchSearchChannel>.searchChannels(data!);
+    return TwitchResponse<TwitchSearchChannel>.searchChannels(data);
   }
 
   /// Gets information about active streams. Streams are returned sorted by
@@ -509,7 +509,7 @@ class TwitchClient {
       ['streams'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.streamsInfo(data!);
+    return TwitchResponse.streamsInfo(data);
   }
 
   /// Get all of a broadcaster’s subscriptions.
@@ -547,7 +547,7 @@ class TwitchClient {
       queryParameters: queryParameters,
     );
     return TwitchResponse<
-        TwitchBroadcasterSubscription>.broadcasterSubscriptions(data!);
+        TwitchBroadcasterSubscription>.broadcasterSubscriptions(data);
   }
 
   /// Retrieves the list of available Cheermotes, animated emotes to which
@@ -567,7 +567,7 @@ class TwitchClient {
       ['bits', 'cheermotes'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.cheermotes(data!);
+    return TwitchResponse.cheermotes(data);
   }
 
   /// Allows extension back end servers to fetch a list of transactions that
@@ -605,7 +605,7 @@ class TwitchClient {
       ['extensions', 'transactions'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.extensionTransaction(data!);
+    return TwitchResponse.extensionTransaction(data);
   }
 
   /// Modifies channel information for users.
@@ -677,7 +677,7 @@ class TwitchClient {
       ['channels', 'editors'],
       queryParameters: {'broadcaster_id': broadcasterId},
     );
-    return TwitchResponse.channelEditor(data!);
+    return TwitchResponse.channelEditor(data);
   }
 
   /// Creates a Custom Reward on a channel.
@@ -748,7 +748,7 @@ class TwitchClient {
         'broadcaster_id': twitchHttpClient.twitchToken?.userId
       },
     );
-    return TwitchResponse.customReward(data!);
+    return TwitchResponse.customReward(data);
   }
 
   /// Deletes a Custom Reward on a channel.
@@ -791,7 +791,7 @@ class TwitchClient {
       ['channel_points', 'custom_rewards'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.customReward(data!);
+    return TwitchResponse.customReward(data);
   }
 
   /// Returns Custom Reward Redemption objects for a Custom Reward on a channel
@@ -855,7 +855,7 @@ class TwitchClient {
       ['channel_points', 'custom_rewards', 'redemptions'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.customRewardRedemption(data!);
+    return TwitchResponse.customRewardRedemption(data);
   }
 
   /// Updates a Custom Reward created on a channel.
@@ -1012,7 +1012,7 @@ class TwitchClient {
       queryParameters: queryParameters,
     );
 
-    return TwitchResponse.customReward(data!);
+    return TwitchResponse.customReward(data);
   }
 
   /// Updates the status of Custom Reward Redemption objects on a channel that
@@ -1057,7 +1057,7 @@ class TwitchClient {
         'reward_id': rewardId,
       },
     );
-    return TwitchResponse.customRewardRedemption(data!);
+    return TwitchResponse.customRewardRedemption(data);
   }
 
   /// Gets all emotes that the specified Twitch channel created. Broadcasters
@@ -1076,6 +1076,16 @@ class TwitchClient {
       ['chat', 'emotes'],
       queryParameters: <String, String>{'broadcaster_id': broadcasterId},
     );
-    return ChannelEmotesResponse.fromJson(data!);
+    return ChannelEmotesResponse.fromJson(data);
+  }
+
+  /// Gets all [global emotes](https://www.twitch.tv/creatorcamp/en/learn-the-basics/emotes/).
+  /// Global emotes are Twitch-created emoticons that users can use in any
+  /// Twitch chat.
+  Future<ChannelGlobalEmotesResponse> getGlobalEmotes() async {
+    final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
+      ['chat', 'emotes', 'global'],
+    );
+    return ChannelGlobalEmotesResponse.fromJson(data);
   }
 }

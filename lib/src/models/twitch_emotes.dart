@@ -3,7 +3,7 @@ import 'twitch_emote_format.dart';
 import 'twitch_emote_type.dart';
 import 'twitch_theme_mode.dart';
 
-class TwitchEmotes {
+class TwitchGlobalEmotes {
   /// An ID that identifies the emote.
   final String id;
 
@@ -16,17 +16,6 @@ class TwitchEmotes {
   /// NOTE: The preference is for you to use the templated URL in the template
   /// field to fetch the image instead of using these URLs.
   final TwitchCustomRewardImage images;
-
-  /// The subscriber tier at which the emote is unlocked. This field contains
-  /// the tier information only if [emoteType] is set to
-  /// [TwitchEmoteType.subscriptions], otherwise, it’s an empty string.
-  final String tier;
-
-  /// The type of emote.
-  final TwitchEmoteType emoteType;
-
-  /// An ID that identifies the emote set that the emote belongs to.
-  final String emoteSetId;
 
   /// The formats that the emote is available in. For example, if the emote is
   /// available only as a static PNG, the array contains only
@@ -42,17 +31,65 @@ class TwitchEmotes {
   /// The background themes that the emote is available in.
   final List<TwitchThemeMode> themeMode;
 
-  TwitchEmotes({
+  TwitchGlobalEmotes({
     required this.id,
     required this.name,
     required this.images,
-    required this.tier,
-    required this.emoteType,
-    required this.emoteSetId,
     required this.format,
     required this.scale,
     required this.themeMode,
   });
+
+  factory TwitchGlobalEmotes.fromJson(Map<String, dynamic> json) {
+    return TwitchGlobalEmotes(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      images: TwitchCustomRewardImage.fromJson(
+        json['images'] as Map<String, dynamic>,
+      ),
+      format: (json['format'] as Iterable)
+          .cast<String>()
+          .map<TwitchEmoteFormat>((e) => e.toTwitchEmoteFormat())
+          .toList(),
+      scale: (json['scale'] as Iterable).cast<String>().toList(),
+      themeMode: (json['theme_mode'] as Iterable)
+          .cast<String>()
+          .map<TwitchThemeMode>((e) => e.toTwitchThemeMode())
+          .toList(),
+    );
+  }
+}
+
+class TwitchEmotes extends TwitchGlobalEmotes {
+  /// The subscriber tier at which the emote is unlocked. This field contains
+  /// the tier information only if [emoteType] is set to
+  /// [TwitchEmoteType.subscriptions], otherwise, it’s an empty string.
+  final String tier;
+
+  /// The type of emote.
+  final TwitchEmoteType emoteType;
+
+  /// An ID that identifies the emote set that the emote belongs to.
+  final String emoteSetId;
+
+  TwitchEmotes({
+    required String id,
+    required String name,
+    required TwitchCustomRewardImage images,
+    required this.tier,
+    required this.emoteType,
+    required this.emoteSetId,
+    required List<TwitchEmoteFormat> format,
+    required List<String> scale,
+    required List<TwitchThemeMode> themeMode,
+  }) : super(
+          id: id,
+          name: name,
+          images: images,
+          format: format,
+          scale: scale,
+          themeMode: themeMode,
+        );
 
   factory TwitchEmotes.fromJson(Map<String, dynamic> json) {
     return TwitchEmotes(
