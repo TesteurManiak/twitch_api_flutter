@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:twitch_api/src/client.dart';
-import 'package:twitch_api/src/exceptions/twitch_api_exception.dart';
-import 'package:twitch_api/src/models/twitch_token.dart';
-import 'package:twitch_api/src/providers/twitch_http_client.dart';
+
+import '../client.dart';
+import '../exceptions/twitch_api_exception.dart';
+import '../models/twitch_token.dart';
+import 'twitch_http_client.dart';
 
 class TwitchDioProvider extends TwitchHttpClient {
   final dio = Dio();
@@ -22,10 +23,12 @@ class TwitchDioProvider extends TwitchHttpClient {
   }) async {
     final accessToken = await validateToken();
     if (accessToken.isValid) {
-      final options = Options(headers: {
-        'Client-Id': clientId,
-        'Authorization': 'Bearer ${accessToken.token}',
-      });
+      final options = Options(
+        headers: {
+          'Client-Id': clientId,
+          'Authorization': 'Bearer ${accessToken.token}',
+        },
+      );
       final response = await dio.getUri<T>(
         TwitchClient.baseUrl.replace(
           pathSegments: <String>[TwitchClient.basePath, ...pathSegments],
@@ -47,11 +50,13 @@ class TwitchDioProvider extends TwitchHttpClient {
   }) async {
     final accessToken = await validateToken();
     if (accessToken.isValid) {
-      final options = Options(headers: {
-        'Client-Id': clientId,
-        'Authorization': 'Bearer ${accessToken.token}',
-        'Content-Type': 'application/json',
-      });
+      final options = Options(
+        headers: {
+          'Client-Id': clientId,
+          'Authorization': 'Bearer ${accessToken.token}',
+          'Content-Type': 'application/json',
+        },
+      );
       final response = await dio.postUri<T>(
         TwitchClient.baseUrl.replace(
           pathSegments: <String>[TwitchClient.basePath, ...pathSegments],
@@ -74,11 +79,13 @@ class TwitchDioProvider extends TwitchHttpClient {
   }) async {
     final accessToken = await validateToken();
     if (accessToken.isValid) {
-      final options = Options(headers: {
-        'Client-Id': clientId,
-        'Authorization': 'Bearer ${accessToken.token}',
-        'Content-Type': 'application/json',
-      });
+      final options = Options(
+        headers: {
+          'Client-Id': clientId,
+          'Authorization': 'Bearer ${accessToken.token}',
+          'Content-Type': 'application/json',
+        },
+      );
       final response = await dio.patchUri<T>(
         TwitchClient.baseUrl.replace(
           pathSegments: <String>[TwitchClient.basePath, ...pathSegments],
@@ -109,7 +116,8 @@ class TwitchDioProvider extends TwitchHttpClient {
 
     if (_twitchToken!.token.isEmpty || !_twitchToken!.isValid) {
       throw const TwitchNotConnectedException(
-          'You are not connected to your Twitch account.');
+        'You are not connected to your Twitch account.',
+      );
     }
     return _twitchToken!;
   }
@@ -124,11 +132,13 @@ class TwitchDioProvider extends TwitchHttpClient {
   }) async {
     final accessToken = await validateToken();
     if (accessToken.isValid) {
-      final options = Options(headers: {
-        'Client-Id': clientId,
-        'Authorization': 'Bearer ${accessToken.token}',
-        'Content-Type': 'application/json',
-      });
+      final options = Options(
+        headers: {
+          'Client-Id': clientId,
+          'Authorization': 'Bearer ${accessToken.token}',
+          'Content-Type': 'application/json',
+        },
+      );
       final response = await dio.deleteUri<T>(
         TwitchClient.baseUrl.replace(
           pathSegments: <String>[TwitchClient.basePath, ...pathSegments],

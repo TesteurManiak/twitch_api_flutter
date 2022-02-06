@@ -1,6 +1,5 @@
-import 'package:twitch_api/src/exceptions/twitch_api_exception.dart';
-
 import '../../twitch_api.dart';
+import '../exceptions/twitch_api_exception.dart';
 
 extension StringModifier on String {
   TwitchStreamType toStreamType() {
@@ -35,7 +34,8 @@ extension StringModifier on String {
         return TwitchExtensionTransactionProductType.bitsInExtension;
       default:
         throw TwitchApiException(
-            'Unknown TwitchExtensionTransactionProductType: $this');
+          'Unknown TwitchExtensionTransactionProductType: $this',
+        );
     }
   }
 

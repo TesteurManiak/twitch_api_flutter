@@ -1,7 +1,6 @@
-import 'package:twitch_api/src/extensions/string_extensions.dart'
-    show StringModifier;
-import 'package:twitch_api/src/models/twitch_cheermote_tier.dart';
-import 'package:twitch_api/src/models/twitch_cheermote_type.dart';
+import '../extensions/string_extensions.dart' show StringModifier;
+import 'twitch_cheermote_tier.dart';
+import 'twitch_cheermote_type.dart';
 
 class TwitchCheermote {
   /// The string used to Cheer that precedes the Bits amount.
@@ -38,7 +37,8 @@ class TwitchCheermote {
         prefix: json['prefix'] as String,
         tiers: (json['tiers'] as Iterable)
             .map<TwitchCheermoteTier>(
-                (e) => TwitchCheermoteTier.fromJson(e as Map<String, dynamic>))
+              (e) => TwitchCheermoteTier.fromJson(e as Map<String, dynamic>),
+            )
             .toList(),
         type: json['type'].toString().toCheermoteType(),
         order: json['order'] as int,

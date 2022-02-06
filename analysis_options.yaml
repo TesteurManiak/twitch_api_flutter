@@ -1,5 +1,14 @@
-include: lint_analysis_options.yaml
+include: package:lint/analysis_options.yaml
+
+analyzer:
+  exclude:
+    - lib/**.g.dart
+    - test/**.mocks.dart
+    - lib/generated_plugin_registrant.dart
+  strong-mode:
+    implicit-casts: false
 
 linter:
   rules:
-    avoid_classes_with_only_static_members: false
+    prefer_relative_imports: true
+    always_use_package_imports: false

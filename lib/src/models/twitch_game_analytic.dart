@@ -1,4 +1,4 @@
-import 'package:twitch_api/twitch_api.dart';
+import '../../twitch_api.dart';
 
 class TwitchGameAnalytic {
   final TwitchDateRange dateRange;
@@ -19,6 +19,7 @@ class TwitchGameAnalytic {
         type: json['type'] as String,
         url: json['URL'] as String,
         dateRange: TwitchDateRange.fromJson(
-            json['date_range'] as Map<String, dynamic>),
+          json['date_range'] as Map<String, dynamic>,
+        ),
       );
 }

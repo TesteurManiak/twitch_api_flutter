@@ -153,8 +153,10 @@ class TwitchClient {
     String? startedAt,
     String? type,
   }) async {
-    assert((endedAt == null && startedAt == null) ||
-        (endedAt != null && startedAt != null));
+    assert(
+      (endedAt == null && startedAt == null) ||
+          (endedAt != null && startedAt != null),
+    );
     assert(first < 101 && first > 0);
 
     final queryParameters = <String, String?>{'first': first.toString()};
@@ -195,8 +197,10 @@ class TwitchClient {
     String? startedAt,
     String? type,
   }) async {
-    assert((endedAt == null && startedAt == null) ||
-        (endedAt != null && startedAt != null));
+    assert(
+      (endedAt == null && startedAt == null) ||
+          (endedAt != null && startedAt != null),
+    );
     assert(first < 101 && first > 0);
 
     final queryParameters = <String, String?>{'first': first.toString()};
@@ -349,8 +353,10 @@ class TwitchClient {
   /// “Pokemon” will not return a list of Pokemon games; instead, query any
   /// specific Pokemon games in which you are interested. At most 100 name
   /// values can be specified.
-  Future<TwitchResponse<TwitchGame>> getGames(
-      {List<String> ids = const [], List<String> names = const []}) async {
+  Future<TwitchResponse<TwitchGame>> getGames({
+    List<String> ids = const [],
+    List<String> names = const [],
+  }) async {
     assert((ids.isNotEmpty) || (names.isNotEmpty));
     assert(ids.length < 101);
     assert(names.length < 101);
@@ -368,7 +374,8 @@ class TwitchClient {
   ///
   /// [broadcasterId]: ID of the channel to be updated.
   Future<TwitchResponse<TwitchChannelInfo>> getChannelInformations(
-      String broadcasterId) async {
+    String broadcasterId,
+  ) async {
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['channels'],
       queryParameters: {'broadcaster_id': broadcasterId},
@@ -549,8 +556,9 @@ class TwitchClient {
   ///
   /// `broadcasterId`: ID for the broadcaster who might own specialized
   /// Cheermotes.
-  Future<TwitchResponse<TwitchCheermote>> getCheermotes(
-      {String? broadcasterId}) async {
+  Future<TwitchResponse<TwitchCheermote>> getCheermotes({
+    String? broadcasterId,
+  }) async {
     final queryParameters = <String, String?>{};
     if (broadcasterId != null) {
       queryParameters['broadcaster_id'] = broadcasterId;
@@ -1035,8 +1043,10 @@ class TwitchClient {
     required TwitchRewardRedemptionStatus status,
   }) async {
     assert(ids.length <= 50 && ids.isNotEmpty);
-    assert(status == TwitchRewardRedemptionStatus.fulfilled ||
-        status == TwitchRewardRedemptionStatus.canceled);
+    assert(
+      status == TwitchRewardRedemptionStatus.fulfilled ||
+          status == TwitchRewardRedemptionStatus.canceled,
+    );
 
     final queryParameters = <String, String?>{
       'id': ids.join(','),

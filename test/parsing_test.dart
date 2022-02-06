@@ -11,7 +11,8 @@ void main() {
     test('Cheermotes', () {
       final json = jsonDecode(readFileStringSync('get_cheermotes.json'));
       final obj = TwitchResponse<TwitchCheermote>.cheermotes(
-          json as Map<String, dynamic>);
+        json as Map<String, dynamic>,
+      );
 
       expect(obj.data!.length, 1);
 
@@ -35,13 +36,17 @@ void main() {
 
       final darkAnimated = cheermoteTier.images.dark.animated;
       expect(darkAnimated.containsKey('1'), true);
-      expect(darkAnimated['1'],
-          'https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/animated/1/1.gif');
+      expect(
+        darkAnimated['1'],
+        'https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/animated/1/1.gif',
+      );
 
       final darkStatic = cheermoteTier.images.dark.staticImgs;
       expect(darkStatic.containsKey('1'), true);
-      expect(darkStatic['1'],
-          'https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/static/1/1.png');
+      expect(
+        darkStatic['1'],
+        'https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/static/1/1.png',
+      );
     });
 
     test('Get Extension Transactions', () {
@@ -49,7 +54,8 @@ void main() {
           jsonDecode(readFileStringSync('get_extension_transactions.json'));
       final obj =
           TwitchResponse<TwitchExtensionTransaction>.extensionTransaction(
-              json as Map<String, dynamic>);
+        json as Map<String, dynamic>,
+      );
 
       expect(obj.data!.length, 2);
 
@@ -64,8 +70,10 @@ void main() {
       expect(extensionTransaction.userId, '424596340');
       expect(extensionTransaction.userLogin, 'quotrok');
       expect(extensionTransaction.userName, 'quotrok');
-      expect(extensionTransaction.productType,
-          TwitchExtensionTransactionProductType.bitsInExtension);
+      expect(
+        extensionTransaction.productType,
+        TwitchExtensionTransactionProductType.bitsInExtension,
+      );
       expect(extensionTransaction.productData.sku, 'testSku100');
       expect(extensionTransaction.productData.cost.amount, 100);
       expect(extensionTransaction.productData.cost.type, 'bits');
@@ -77,7 +85,8 @@ void main() {
       test('1', () {
         final json = jsonDecode(readFileStringSync('get_streams_1.json'));
         final obj = TwitchResponse<TwitchStreamInfo>.streamsInfo(
-            json as Map<String, dynamic>);
+          json as Map<String, dynamic>,
+        );
 
         expect(obj.data!.length, 1);
 
@@ -89,12 +98,16 @@ void main() {
         expect(twitchStreamInfo.gameId, '494131');
         expect(twitchStreamInfo.gameName, 'Little Nightmares');
         expect(twitchStreamInfo.type, TwitchStreamType.live);
-        expect(twitchStreamInfo.title,
-            'hablamos y le damos a Little Nightmares 1');
+        expect(
+          twitchStreamInfo.title,
+          'hablamos y le damos a Little Nightmares 1',
+        );
         expect(twitchStreamInfo.viewerCount, 78365);
         expect(twitchStreamInfo.language, 'es');
-        expect(twitchStreamInfo.thumbnailUrl,
-            'https://static-cdn.jtvnw.net/previews-ttv/live_user_auronplay-{width}x{height}.jpg');
+        expect(
+          twitchStreamInfo.thumbnailUrl,
+          'https://static-cdn.jtvnw.net/previews-ttv/live_user_auronplay-{width}x{height}.jpg',
+        );
         expect(twitchStreamInfo.tagIds.length, 1);
         expect(twitchStreamInfo.isMature, false);
       });
@@ -141,12 +154,18 @@ void main() {
         expect(customReward.globalCooldownSetting.globalCooldownSeconds, 0);
         expect(customReward.isPaused, false);
         expect(customReward.isInStock, true);
-        expect(customReward.defaultImage.url1x,
-            'https://static-cdn.jtvnw.net/custom-reward-images/default-1.png');
-        expect(customReward.defaultImage.url2x,
-            'https://static-cdn.jtvnw.net/custom-reward-images/default-2.png');
-        expect(customReward.defaultImage.url4x,
-            'https://static-cdn.jtvnw.net/custom-reward-images/default-4.png');
+        expect(
+          customReward.defaultImage.url1x,
+          'https://static-cdn.jtvnw.net/custom-reward-images/default-1.png',
+        );
+        expect(
+          customReward.defaultImage.url2x,
+          'https://static-cdn.jtvnw.net/custom-reward-images/default-2.png',
+        );
+        expect(
+          customReward.defaultImage.url4x,
+          'https://static-cdn.jtvnw.net/custom-reward-images/default-4.png',
+        );
         expect(customReward.shouldRedemptionsSkipRequestQueue, false);
         expect(customReward.redemptionsRedeemedCurrentStream, isNull);
         expect(customReward.cooldownExpiresAt, isNull);

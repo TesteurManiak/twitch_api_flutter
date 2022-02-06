@@ -1,4 +1,4 @@
-import 'package:twitch_api/src/models/twitch_token.dart';
+import '../models/twitch_token.dart';
 
 abstract class TwitchHttpClient {
   TwitchToken? get twitchToken;

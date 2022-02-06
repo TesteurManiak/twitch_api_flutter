@@ -46,7 +46,8 @@ class TwitchMaxPerUserPerStreamSetting {
   });
 
   factory TwitchMaxPerUserPerStreamSetting.fromJson(
-          Map<String, dynamic> json) =>
+    Map<String, dynamic> json,
+  ) =>
       TwitchMaxPerUserPerStreamSetting(
         isEnabled: json['is_enabled'] as bool,
         maxPerUserPerStream: json['max_per_user_per_stream'] as int,
@@ -168,7 +169,8 @@ class TwitchCustomReward {
         id: json['id'] as String,
         image: json['image'] != null
             ? TwitchCustomRewardImage.fromJson(
-                json['image'] as Map<String, dynamic>)
+                json['image'] as Map<String, dynamic>,
+              )
             : null,
         backgroundColor: json['background_color'] as String,
         isEnabled: json['is_enabled'] as bool,
@@ -177,15 +179,19 @@ class TwitchCustomReward {
         prompt: json['prompt'] as String,
         isUserInputRequired: json['is_user_input_required'] as bool,
         maxPerStreamSetting: TwitchMaxPerStream.fromJson(
-            json['max_per_stream_setting'] as Map<String, dynamic>),
+          json['max_per_stream_setting'] as Map<String, dynamic>,
+        ),
         maxPerUserPerStreamSetting: TwitchMaxPerUserPerStreamSetting.fromJson(
-            json['max_per_user_per_stream_setting'] as Map<String, dynamic>),
+          json['max_per_user_per_stream_setting'] as Map<String, dynamic>,
+        ),
         globalCooldownSetting: TwitchGlobalCooldownSetting.fromJson(
-            json['global_cooldown_setting'] as Map<String, dynamic>),
+          json['global_cooldown_setting'] as Map<String, dynamic>,
+        ),
         isPaused: json['is_paused'] as bool,
         isInStock: json['is_in_stock'] as bool,
         defaultImage: TwitchCustomRewardImage.fromJson(
-            json['default_image'] as Map<String, dynamic>),
+          json['default_image'] as Map<String, dynamic>,
+        ),
         shouldRedemptionsSkipRequestQueue:
             json['should_redemptions_skip_request_queue'] as bool,
         redemptionsRedeemedCurrentStream:
