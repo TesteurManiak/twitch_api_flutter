@@ -1,3 +1,10 @@
+## [0.6.0]
+
+* Fixed linting and analysis warnings.
+* Updated dependencies, bumped Dart SDK to `2.15.0`.
+* Improved tests and parsing.
+* Added method `getChannelEmotes`
+
 ## [0.5.1] - 27/10/2021
 
 * Migrate example to nullsafety
