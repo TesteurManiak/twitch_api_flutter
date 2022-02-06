@@ -1,9 +1,20 @@
 import '../../twitch_api.dart';
 import 'twitch_channel_editor.dart';
+import 'twitch_emotes.dart';
 import 'twitch_game_analytic.dart';
 import 'twitch_start_commercial.dart';
 
 typedef TwitchModelParser = dynamic Function(Map<String, dynamic> json);
+
+List<T> _parseObjects<T>(
+  Map<String, dynamic> json,
+  TwitchModelParser parser,
+) {
+  return (json['data'] as Iterable)
+      .cast<Map<String, dynamic>>()
+      .map<T>((e) => parser(e) as T)
+      .toList();
+}
 
 /// Generic class for Twitch's API response using pagination.
 class TwitchResponse<T> {
@@ -26,16 +37,6 @@ class TwitchResponse<T> {
     this.total,
     this.dateRange,
   });
-
-  static List<T> _parseObjects<T>(
-    Map<String, dynamic> json,
-    TwitchModelParser parser,
-  ) {
-    return (json['data'] as Iterable)
-        .cast<Map<String, dynamic>>()
-        .map<T>((e) => parser(e) as T)
-        .toList();
-  }
 
   /// Constructor for request containing [TwitchSearchChannel].
   factory TwitchResponse.searchChannels(Map<String, dynamic> json) =>
@@ -129,5 +130,20 @@ class TwitchResponse<T> {
   factory TwitchResponse.customRewardRedemption(Map<String, dynamic> json) =>
       TwitchResponse(
         data: _parseObjects(json, TwitchCustomRewardRedemption.fromJson),
+      );
+}
+
+class ChannelEmotesResponse extends TwitchResponse<TwitchEmotes> {
+  final String template;
+
+  ChannelEmotesResponse({
+    required List<TwitchEmotes> data,
+    required this.template,
+  }) : super(data: data);
+
+  factory ChannelEmotesResponse.fromJson(Map<String, dynamic> json) =>
+      ChannelEmotesResponse(
+        data: _parseObjects(json, TwitchEmotes.fromJson),
+        template: json['template'] as String,
       );
 }

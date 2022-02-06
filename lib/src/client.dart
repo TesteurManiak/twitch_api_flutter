@@ -1047,21 +1047,39 @@ class TwitchClient {
       status == TwitchRewardRedemptionStatus.fulfilled ||
           status == TwitchRewardRedemptionStatus.canceled,
     );
-
     final queryParameters = <String, String?>{
       'id': ids.join(','),
       'broadcaster_id': broadcasterId,
       'reward_id': rewardId,
     };
-
     final body = <String, dynamic>{'status': status.string};
-
     final data = await twitchHttpClient.patchCall<Map<String, dynamic>>(
       ['channel_points', 'custom_rewards', 'redemptions'],
       body,
       queryParameters: queryParameters,
     );
-
     return TwitchResponse.customRewardRedemption(data!);
+  }
+
+  /// Gets all emotes that the specified Twitch channel created. Broadcasters
+  /// create these custom emotes for users who subscribe to or follow the
+  /// channel, or cheer Bits in the channel’s chat window. For information about
+  /// the custom emotes, see [subscriber emotes]https://help.twitch.tv/s/article/subscriber-emote-guide?language=en_US),
+  /// [Bits tier emotes](https://help.twitch.tv/s/article/custom-bit-badges-guide?language=bg#slots),
+  /// and [follower emotes](https://blog.twitch.tv/en/2021/06/04/kicking-off-10-years-with-our-biggest-emote-update-ever/).
+  ///
+  /// `broadcasterId`: An ID that identifies the broadcaster to get the emotes
+  /// from.
+  Future<ChannelEmotesResponse> getChannelEmotes({
+    required String broadcasterId,
+  }) async {
+    final queryParameters = <String, String>{
+      'broadcaster_id': broadcasterId,
+    };
+    final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
+      ['chat', 'emotes'],
+      queryParameters: queryParameters,
+    );
+    return ChannelEmotesResponse.fromJson(data!);
   }
 }
