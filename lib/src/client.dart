@@ -1047,16 +1047,15 @@ class TwitchClient {
       status == TwitchRewardRedemptionStatus.fulfilled ||
           status == TwitchRewardRedemptionStatus.canceled,
     );
-    final queryParameters = <String, String?>{
-      'id': ids.join(','),
-      'broadcaster_id': broadcasterId,
-      'reward_id': rewardId,
-    };
     final body = <String, dynamic>{'status': status.string};
     final data = await twitchHttpClient.patchCall<Map<String, dynamic>>(
       ['channel_points', 'custom_rewards', 'redemptions'],
       body,
-      queryParameters: queryParameters,
+      queryParameters: <String, String?>{
+        'id': ids.join(','),
+        'broadcaster_id': broadcasterId,
+        'reward_id': rewardId,
+      },
     );
     return TwitchResponse.customRewardRedemption(data!);
   }
@@ -1073,12 +1072,9 @@ class TwitchClient {
   Future<ChannelEmotesResponse> getChannelEmotes({
     required String broadcasterId,
   }) async {
-    final queryParameters = <String, String>{
-      'broadcaster_id': broadcasterId,
-    };
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['chat', 'emotes'],
-      queryParameters: queryParameters,
+      queryParameters: <String, String>{'broadcaster_id': broadcasterId},
     );
     return ChannelEmotesResponse.fromJson(data!);
   }
