@@ -5,6 +5,7 @@
 * Improved tests and parsing.
 * Added method `getChannelEmotes`
 * Added method `getGlobalEmotes`
+* Added method `getEmoteSets`
 
 ## [0.5.1] - 27/10/2021
 
@@ -21,7 +22,7 @@
 
 * **Breaking change:** `TwitchClient.startCommercial` is now taking named parameters,  `TwitchUser.broadcasterType` became a `TwitchBroadcasterType`,  `TwitchUserFollow.followedAt` is now a `DateTime`, removed class `TwitchTopGame`/`TwitchSearchCategory` use `TwitchGame` instead, removed `TwitchApiScopes.getScopeString` instead use the getter `string` from the enum
 * Refacto to separate implementation of the HTTP provider,  `TwitchClient.accessToken` and `TwitchClient.validateToken` are deprecated
-* Added method `createCustomRewards`, `deleteCustomReward`, `getCustomRewards`, `getCustomRewardRedemptions`
+* Added method `createCustomRewards`,  `deleteCustomReward`,  `getCustomRewards`,  `getCustomRewardRedemptions`
 
 ## [0.3.1] - 24/06/2021
 
@@ -36,25 +37,25 @@
 
 ## [0.2.0] - 23/04/2021
 
-* Added methods `getBitsLeaderboard`, `getCheermotes`, `getExtensionTransaction`
-* **Breaking Changes:** `startCommercial`, `getUsers`, `getUsersFollows`, `getGames`,  `getChannelInformations` now returns an object of type `TwitchResponse`
+* Added methods `getBitsLeaderboard`,  `getCheermotes`,  `getExtensionTransaction`
+* **Breaking Changes:** `startCommercial`,  `getUsers`,  `getUsersFollows`,  `getGames`,  `getChannelInformations` now returns an object of type `TwitchResponse`
 
 ## [0.1.1] - 26/03/2021.
 
-* Added methods `searchCategories`, `getBroadcasterSubscriptions`
+* Added methods `searchCategories`,  `getBroadcasterSubscriptions`
 
 ## [0.1.0] - 23/03/2021.
 
-* **Breaking Changes:** `getExtensionAnalytics`, `getGameAnalytics`, `getTopGames`, `searchChannels`,  `getStreams` now returns an object of type `TwitchResponse`
+* **Breaking Changes:** `getExtensionAnalytics`,  `getGameAnalytics`,  `getTopGames`,  `searchChannels`,  `getStreams` now returns an object of type `TwitchResponse`
 * Added and improved some comments for a better documentation
 
 ## [0.0.4] - 23/03/2021.
 
-* Added methods: `getStreams`, `searchChannels`
+* Added methods: `getStreams`,  `searchChannels`
 
 ## [0.0.3] - 10/02/2021.
 
-* Added methods: `getUsersFollows`, `getTopGames`, `getGames`, `getChannelInformations`
+* Added methods: `getUsersFollows`,  `getTopGames`,  `getGames`,  `getChannelInformations`
 
 ## [0.0.2+1] - 09/02/2021.
 
@@ -62,11 +63,11 @@
 
 ## [0.0.2] - 09/02/2021.
 
-* Added methods: `getUsers`, `getGameAnalytics`
+* Added methods: `getUsers`,  `getGameAnalytics`
 * Fixed issues with `getExtensionAnalytics` and `getGameAnalytics`
 * Improved comments and example file
 
 ## [0.0.1] - 08/02/2021.
 
 * First release
-* Added methods: `startCommercial`, `getExtensionAnalytics`, `getGameAnalytics`
+* Added methods: `startCommercial`,  `getExtensionAnalytics`,  `getGameAnalytics`

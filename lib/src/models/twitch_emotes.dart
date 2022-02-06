@@ -66,10 +66,14 @@ class TwitchEmotes extends TwitchGlobalEmotes {
   /// [TwitchEmoteType.subscriptions], otherwise, it’s an empty string.
   final String tier;
 
+  /// {@template twitch_emote_type}
   /// The type of emote.
+  /// {@endtemplate}
   final TwitchEmoteType emoteType;
 
+  /// {@template twitch_emote_set_id}
   /// An ID that identifies the emote set that the emote belongs to.
+  /// {@endtemplate}
   final String emoteSetId;
 
   TwitchEmotes({
@@ -101,6 +105,58 @@ class TwitchEmotes extends TwitchGlobalEmotes {
       tier: json['tier'] as String,
       emoteType: (json['emote_type'] as String).toTwitchEmoteType(),
       emoteSetId: json['emote_set_id'] as String,
+      format: (json['format'] as Iterable)
+          .cast<String>()
+          .map<TwitchEmoteFormat>((e) => e.toTwitchEmoteFormat())
+          .toList(),
+      scale: (json['scale'] as Iterable).cast<String>().toList(),
+      themeMode: (json['theme_mode'] as Iterable)
+          .cast<String>()
+          .map<TwitchThemeMode>((e) => e.toTwitchThemeMode())
+          .toList(),
+    );
+  }
+}
+
+class TwitchEmoteSets extends TwitchGlobalEmotes {
+  /// {@macro twitch_emote_type}
+  final TwitchEmoteType emoteType;
+
+  /// {@macro twitch_emote_set_id}
+  final String emoteSetId;
+
+  /// The ID of the broadcaster who owns the emote.
+  final String ownerId;
+
+  TwitchEmoteSets({
+    required String id,
+    required String name,
+    required TwitchCustomRewardImage images,
+    required this.emoteType,
+    required this.emoteSetId,
+    required this.ownerId,
+    required List<TwitchEmoteFormat> format,
+    required List<String> scale,
+    required List<TwitchThemeMode> themeMode,
+  }) : super(
+          id: id,
+          name: name,
+          images: images,
+          format: format,
+          scale: scale,
+          themeMode: themeMode,
+        );
+
+  factory TwitchEmoteSets.fromJson(Map<String, dynamic> json) {
+    return TwitchEmoteSets(
+      id: json['id'] as String,
+      name: json['name'] as String,
+      images: TwitchCustomRewardImage.fromJson(
+        json['images'] as Map<String, dynamic>,
+      ),
+      emoteType: (json['emote_type'] as String).toTwitchEmoteType(),
+      emoteSetId: json['emote_set_id'] as String,
+      ownerId: json['owner_id'] as String,
       format: (json['format'] as Iterable)
           .cast<String>()
           .map<TwitchEmoteFormat>((e) => e.toTwitchEmoteFormat())

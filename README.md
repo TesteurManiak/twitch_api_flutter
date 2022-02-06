@@ -73,7 +73,7 @@ Future<TwitchToken> _openConnectionPage({
 
 Now you are ready to use the methods implemented in [Supported Endpoints](#supported-endpoints-2385) section.
 
-## Supported Endpoints (24/85)
+## Supported Endpoints (25/85)
 
 ### Ads
 
@@ -108,7 +108,7 @@ Now you are ready to use the methods implemented in [Supported Endpoints](#suppo
 ### Chat
 
 * [x] Get Channel Emotes
-* [ ] Get Global Emotes
+* [x] Get Global Emotes
 * [ ] Get Emote Sets
 * [ ] Get Channel Chat Badges
 * [ ] Get Global Chat Badges

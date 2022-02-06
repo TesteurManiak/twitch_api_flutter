@@ -1088,4 +1088,17 @@ class TwitchClient {
     );
     return ChannelGlobalEmotesResponse.fromJson(data);
   }
+
+  /// Gets emotes for one or more specified emote sets.
+  ///
+  /// An emote set groups emotes that have a similar context. For example,
+  /// Twitch places all the subscriber emotes that a broadcaster uploads for
+  /// their channel in the same emote set.
+  Future<EmoteSetsResponse> getEmoteSets({required String emoteSetId}) async {
+    final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
+      ['chat', 'emotes', 'set'],
+      queryParameters: <String, String>{'emote_set_id': emoteSetId},
+    );
+    return EmoteSetsResponse.fromJson(data);
+  }
 }

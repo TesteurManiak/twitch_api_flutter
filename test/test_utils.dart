@@ -15,7 +15,8 @@ class TwitchMockProvider extends TwitchHttpClient {
     Iterable<String> pathSegments, {
     Map<String, dynamic> queryParameters = const {},
   }) async {
-    switch (pathSegments.join('/')) {
+    final path = pathSegments.join('/');
+    switch (path) {
       case 'bits/cheermotes':
         return jsonDecode(await readFileStringAsync('get_cheermotes.json'))
             as T;
@@ -103,8 +104,11 @@ class TwitchMockProvider extends TwitchHttpClient {
       case 'chat/emotes/global':
         return jsonDecode(await readFileStringAsync('get_global_emotes.json'))
             as T;
+      case 'chat/emotes/set':
+        return jsonDecode(await readFileStringAsync('get_emote_sets.json'))
+            as T;
       default:
-        throw 'Bad Request: Query Parameter missing or invalid';
+        throw 'Bad Request: Query Parameter missing or invalid $path';
     }
   }
 
