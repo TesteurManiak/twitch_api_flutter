@@ -3,6 +3,7 @@
 [![Dart](https://github.com/TesteurManiak/twitch_api_flutter/actions/workflows/dart.yml/badge.svg)](https://github.com/TesteurManiak/twitch_api_flutter/actions/workflows/dart.yml)
 [![Pub](https://img.shields.io/pub/v/twitch_api?color=blue&logo=dart)](https://pub.dev/packages/twitch_api)
 [![Coverage Status](https://coveralls.io/repos/github/TesteurManiak/twitch_api_flutter/badge.svg?branch=main)](https://coveralls.io/github/TesteurManiak/twitch_api_flutter?branch=main)
+[![style: lint](https://img.shields.io/badge/style-lint-4BC0F5.svg)](https://pub.dev/packages/lint)
 
 A wrapper in pure Dart to connect to Twitch.tv using OAuth implicit authentication.
 
@@ -72,7 +73,7 @@ Future<TwitchToken> _openConnectionPage({
 
 Now you are ready to use the methods implemented in [Supported Endpoints](#supported-endpoints-2385) section.
 
-## Supported Endpoints (23/85)
+## Supported Endpoints (24/85)
 
 ### Ads
 
@@ -106,7 +107,7 @@ Now you are ready to use the methods implemented in [Supported Endpoints](#suppo
 
 ### Chat
 
-* [ ] Get Channel Emotes	
+* [x] Get Channel Emotes
 * [ ] Get Global Emotes
 * [ ] Get Emote Sets
 * [ ] Get Channel Chat Badges

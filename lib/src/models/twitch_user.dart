@@ -1,4 +1,4 @@
-import 'package:twitch_api/src/extensions/string_extensions.dart';
+import '../extensions/string_extensions.dart';
 
 enum TwitchBroadcasterType { partner, affiliate, none }
 

@@ -1,18 +1,20 @@
-import 'package:twitch_api/src/models/twitch_bits_leaderboard.dart';
-import 'package:twitch_api/src/models/twitch_broadcaster_subscription.dart';
-import 'package:twitch_api/src/models/twitch_channel_editor.dart';
-import 'package:twitch_api/src/models/twitch_channel_info.dart';
-import 'package:twitch_api/src/models/twitch_date_range.dart';
-import 'package:twitch_api/src/models/twitch_extension_analytic.dart';
-import 'package:twitch_api/src/models/twitch_extension_transaction.dart';
-import 'package:twitch_api/src/models/twitch_game.dart';
-import 'package:twitch_api/src/models/twitch_game_analytic.dart';
-import 'package:twitch_api/src/models/twitch_search_channel.dart';
-import 'package:twitch_api/src/models/twitch_start_commercial.dart';
-import 'package:twitch_api/src/models/twitch_stream_info.dart';
-import 'package:twitch_api/src/models/twitch_user.dart';
-import 'package:twitch_api/src/models/twitch_user_follow.dart';
-import 'package:twitch_api/twitch_api.dart';
+import '../../twitch_api.dart';
+import 'twitch_channel_editor.dart';
+import 'twitch_emotes.dart';
+import 'twitch_game_analytic.dart';
+import 'twitch_start_commercial.dart';
+
+typedef TwitchModelParser = dynamic Function(Map<String, dynamic> json);
+
+List<T> _parseObjects<T>(
+  Map<String, dynamic> json,
+  TwitchModelParser parser,
+) {
+  return (json['data'] as Iterable)
+      .cast<Map<String, dynamic>>()
+      .map<T>((e) => parser(e) as T)
+      .toList();
+}
 
 /// Generic class for Twitch's API response using pagination.
 class TwitchResponse<T> {
@@ -39,51 +41,35 @@ class TwitchResponse<T> {
   /// Constructor for request containing [TwitchSearchChannel].
   factory TwitchResponse.searchChannels(Map<String, dynamic> json) =>
       TwitchResponse(
-        data: (json['data'] as Iterable)
-            .map<T>((e) =>
-                TwitchSearchChannel.fromJson(e as Map<String, dynamic>) as T)
-            .toList(),
+        data: _parseObjects(json, TwitchSearchChannel.fromJson),
         pagination: json['pagination'] as Map<String, dynamic>?,
       );
 
   /// Constructor for request containing [TwitchExtentsionAnalytic].
   factory TwitchResponse.extensionAnalytics(Map<String, dynamic> json) =>
       TwitchResponse(
-        data: (json['data'] as Iterable)
-            .map<T>((e) =>
-                TwitchExtensionAnalytic.fromJson(e as Map<String, dynamic>)
-                    as T)
-            .toList(),
+        data: _parseObjects(json, TwitchExtensionAnalytic.fromJson),
         pagination: json['pagination'] as Map<String, dynamic>?,
       );
 
   /// Constructor for request containing [TwitchGameAnalytic].
   factory TwitchResponse.gameAnalytics(Map<String, dynamic> json) =>
       TwitchResponse(
-        data: (json['data'] as Iterable)
-            .map<T>((e) =>
-                TwitchGameAnalytic.fromJson(e as Map<String, dynamic>) as T)
-            .toList(),
+        data: _parseObjects(json, TwitchGameAnalytic.fromJson),
         pagination: json['pagination'] as Map<String, dynamic>?,
       );
 
   /// Constructor for request containing [TwitchStreamInfo].
   factory TwitchResponse.streamsInfo(Map<String, dynamic> json) =>
       TwitchResponse(
-        data: (json['data'] as Iterable)
-            .map<T>((e) =>
-                TwitchStreamInfo.fromJson(e as Map<String, dynamic>) as T)
-            .toList(),
+        data: _parseObjects(json, TwitchStreamInfo.fromJson),
         pagination: json['pagination'] as Map<String, dynamic>?,
       );
 
   /// Constructor for request containing [TwitchBroadcasterSubscription].
   factory TwitchResponse.broadcasterSubscriptions(Map<String, dynamic> json) =>
       TwitchResponse(
-        data: (json['data'] as Iterable)
-            .map<T>((e) => TwitchBroadcasterSubscription.fromJson(
-                e as Map<String, dynamic>) as T)
-            .toList(),
+        data: _parseObjects(json, TwitchBroadcasterSubscription.fromJson),
         pagination: json['pagination'] as Map<String, dynamic>?,
         total: json['total'] as int,
       );
@@ -91,100 +77,73 @@ class TwitchResponse<T> {
   /// Constructor for request containing [TwitchBitsLeaderboard].
   factory TwitchResponse.bitsLeaderboard(Map<String, dynamic> json) =>
       TwitchResponse(
-        data: (json['data'] as Iterable)
-            .map<T>((e) =>
-                TwitchBitsLeaderboard.fromJson(e as Map<String, dynamic>) as T)
-            .toList(),
+        data: _parseObjects(json, TwitchBitsLeaderboard.fromJson),
         dateRange: TwitchDateRange.fromJson(
-            json['date_range'] as Map<String, dynamic>),
+          json['date_range'] as Map<String, dynamic>,
+        ),
         total: json['total'] as int,
       );
 
   /// Constructor for request containing [TwitchStartCommercial].
   factory TwitchResponse.startCommercial(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: (json['data'] as Iterable)
-            .map<T>((e) =>
-                TwitchStartCommercial.fromJson(e as Map<String, dynamic>) as T)
-            .toList(),
-      );
+      TwitchResponse(data: _parseObjects(json, TwitchStartCommercial.fromJson));
 
   /// Constructor for request containing [TwitchUser].
   factory TwitchResponse.users(Map<String, dynamic> json) => TwitchResponse(
-        data: (json['data'] as Iterable)
-            .map<T>((e) => TwitchUser.fromJson(e as Map<String, dynamic>) as T)
-            .toList(),
+        data: _parseObjects(json, TwitchUser.fromJson),
       );
 
   /// Constructor for request containing [TwitchUserFollow].
   factory TwitchResponse.usersFollows(Map<String, dynamic> json) =>
       TwitchResponse(
-        data: (json['data'] as Iterable)
-            .map<T>((e) =>
-                TwitchUserFollow.fromJson(e as Map<String, dynamic>) as T)
-            .toList(),
+        data: _parseObjects(json, TwitchUserFollow.fromJson),
         pagination: json['pagination'] as Map<String, dynamic>?,
         total: json['total'] as int,
       );
 
   /// Constructor for request containing [TwitchGame].
   factory TwitchResponse.games(Map<String, dynamic> json) => TwitchResponse(
-        data: (json['data'] as Iterable)
-            .map<T>((e) => TwitchGame.fromJson(e as Map<String, dynamic>) as T)
-            .toList(),
+        data: _parseObjects(json, TwitchGame.fromJson),
         pagination: json['pagination'] as Map<String, dynamic>?,
       );
 
   /// Constructor for request containing [TwitchChannelInfo].
   factory TwitchResponse.channelInformations(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: (json['data'] as Iterable)
-            .map<T>((e) =>
-                TwitchChannelInfo.fromJson(e as Map<String, dynamic>) as T)
-            .toList(),
-      );
+      TwitchResponse(data: _parseObjects(json, TwitchChannelInfo.fromJson));
 
   /// Constructor for request containing [TwitchCheermote].
   factory TwitchResponse.cheermotes(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: (json['data'] as Iterable)
-            .map<T>(
-                (e) => TwitchCheermote.fromJson(e as Map<String, dynamic>) as T)
-            .toList(),
-      );
+      TwitchResponse(data: _parseObjects(json, TwitchCheermote.fromJson));
 
   /// Constructor for request containing [TwitchExtensionTransaction].
   factory TwitchResponse.extensionTransaction(Map<String, dynamic> json) =>
       TwitchResponse(
-        data: (json['data'] as Iterable)
-            .map<T>((e) =>
-                TwitchExtensionTransaction.fromJson(e as Map<String, dynamic>)
-                    as T)
-            .toList(),
+        data: _parseObjects(json, TwitchExtensionTransaction.fromJson),
       );
 
   factory TwitchResponse.channelEditor(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: (json['data'] as Iterable)
-            .map<T>((e) =>
-                TwitchChannelEditor.fromJson(e as Map<String, dynamic>) as T)
-            .toList(),
-      );
+      TwitchResponse(data: _parseObjects(json, TwitchChannelEditor.fromJson));
 
   factory TwitchResponse.customReward(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: (json['data'] as Iterable)
-            .map<T>((e) =>
-                TwitchCustomReward.fromJson(e as Map<String, dynamic>) as T)
-            .toList(),
-      );
+      TwitchResponse(data: _parseObjects(json, TwitchCustomReward.fromJson));
 
   factory TwitchResponse.customRewardRedemption(Map<String, dynamic> json) =>
       TwitchResponse(
-        data: (json['data'] as Iterable)
-            .map<T>((e) =>
-                TwitchCustomRewardRedemption.fromJson(e as Map<String, dynamic>)
-                    as T)
-            .toList(),
+        data: _parseObjects(json, TwitchCustomRewardRedemption.fromJson),
+      );
+}
+
+class ChannelEmotesResponse extends TwitchResponse<TwitchEmotes> {
+  final String template;
+
+  ChannelEmotesResponse({
+    required List<TwitchEmotes> data,
+    required this.template,
+  }) : super(data: data);
+
+  factory ChannelEmotesResponse.fromJson(Map<String, dynamic> json) =>
+      ChannelEmotesResponse(
+        data: _parseObjects(json, TwitchEmotes.fromJson),
+        template: json['template'] as String,
       );
 }

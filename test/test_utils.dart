@@ -11,8 +11,10 @@ Future<String> readFileStringAsync(String name) =>
 
 class TwitchMockProvider extends TwitchHttpClient {
   @override
-  Future<T?> getCall<T>(Iterable<String> pathSegments,
-      {Map<String, dynamic> queryParameters = const {}}) async {
+  Future<T?> getCall<T>(
+    Iterable<String> pathSegments, {
+    Map<String, dynamic> queryParameters = const {},
+  }) async {
     switch (pathSegments.join('/')) {
       case 'bits/cheermotes':
         return jsonDecode(await readFileStringAsync('get_cheermotes.json'))
@@ -93,9 +95,11 @@ class TwitchMockProvider extends TwitchHttpClient {
           await readFileStringAsync('get_search_categories.json'),
         ) as T;
       case 'search/channels':
-        return jsonDecode(
-          await readFileStringAsync('get_search_channels.json'),
-        ) as T;
+        return jsonDecode(await readFileStringAsync('get_search_channels.json'))
+            as T;
+      case 'chat/emotes':
+        return jsonDecode(await readFileStringAsync('get_channel_emotes.json'))
+            as T;
       default:
         throw 'Bad Request: Query Parameter missing or invalid';
     }
@@ -116,10 +120,12 @@ class TwitchMockProvider extends TwitchHttpClient {
         final isEnabled = _data['is_enabled'] as bool?;
         if (isEnabled != null && !isEnabled) {
           return jsonDecode(
-              await readFileStringAsync('update_custom_reward_1.json')) as T;
+            await readFileStringAsync('update_custom_reward_1.json'),
+          ) as T;
         } else {
           return jsonDecode(
-              await readFileStringAsync('update_custom_reward_2.json')) as T;
+            await readFileStringAsync('update_custom_reward_2.json'),
+          ) as T;
         }
       case 'channel_points/custom_rewards/redemptions':
         return jsonDecode(
@@ -131,12 +137,16 @@ class TwitchMockProvider extends TwitchHttpClient {
   }
 
   @override
-  Future<T?> postCall<T>(Iterable<String> pathSegments, _,
-      {Map<String, dynamic> queryParameters = const {}}) async {
+  Future<T?> postCall<T>(
+    Iterable<String> pathSegments,
+    _, {
+    Map<String, dynamic> queryParameters = const {},
+  }) async {
     switch (pathSegments.join('/')) {
       case 'channel_points/custom_rewards':
         return jsonDecode(
-            await readFileStringAsync('create_custom_rewards.json')) as T;
+          await readFileStringAsync('create_custom_rewards.json'),
+        ) as T;
       case 'channels/commercial':
         return jsonDecode(await readFileStringAsync('start_commercial.json'))
             as T;
@@ -157,8 +167,10 @@ class TwitchMockProvider extends TwitchHttpClient {
   Future<TwitchToken> validateToken() => throw UnimplementedError();
 
   @override
-  Future<T?> deleteCall<T>(Iterable<String> pathSegments,
-      {Map<String, dynamic> queryParameters = const {}}) async {
+  Future<T?> deleteCall<T>(
+    Iterable<String> pathSegments, {
+    Map<String, dynamic> queryParameters = const {},
+  }) async {
     switch (pathSegments.join('/')) {
       case 'channel_points/custom_rewards':
         return '204 No Content' as T;

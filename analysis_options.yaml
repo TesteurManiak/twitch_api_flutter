@@ -1,5 +1,36 @@
-include: lint_analysis_options.yaml
+include: package:lint/analysis_options.yaml
+
+analyzer:
+  exclude:
+    - lib/**.g.dart
+    - test/**.mocks.dart
+    - lib/generated_plugin_registrant.dart
+  strong-mode:
+    implicit-casts: false
+  errors:
+    missing_required_param: error
+    unrelated_type_equality_checks: error
+    missing_return: warning
+    close_sinks: warning
+    cancel_subscriptions: warning
+    parameter_assignments: warning
+    prefer_final_in_for_each: warning
+    prefer_mixin: warning
+    unawaited_futures: warning
+    unnecessary_await_in_return: warning
+    unnecessary_null_aware_assignments: warning
+    use_string_buffers: warning
 
 linter:
   rules:
-    avoid_classes_with_only_static_members: false
+    always_use_package_imports: false
+    prefer_relative_imports: true
+    use_string_buffers: true
+    use_if_null_to_convert_nulls_to_bools: true
+    parameter_assignments: true
+    prefer_null_aware_method_calls: true
+    use_is_even_rather_than_modulo: true
+    prefer_final_in_for_each: true
+    directives_ordering: true
+    avoid_unused_constructor_parameters: true
+    prefer_final_locals: true

@@ -3,23 +3,10 @@ import 'dart:async';
 import '../twitch_api.dart';
 import 'exceptions/twitch_api_exception.dart';
 import 'extensions/enum_extensions.dart';
-import 'models/twitch_api_scopes.dart';
-import 'models/twitch_bits_leaderboard.dart';
-import 'models/twitch_broadcaster_subscription.dart';
 import 'models/twitch_channel_editor.dart';
-import 'models/twitch_channel_info.dart';
-import 'models/twitch_cheermote.dart';
-import 'models/twitch_custom_reward_redemption.dart';
-import 'models/twitch_extension_transaction.dart';
-import 'models/twitch_game.dart';
 import 'models/twitch_game_analytic.dart';
-import 'models/twitch_response.dart';
 import 'models/twitch_start_commercial.dart';
-import 'models/twitch_time_period.dart';
-import 'models/twitch_token.dart';
-import 'models/twitch_user.dart';
 import 'providers/twitch_dio_provider.dart';
-import 'providers/twitch_http_client.dart';
 
 class TwitchClient {
   static const basePath = 'helix';
@@ -166,8 +153,10 @@ class TwitchClient {
     String? startedAt,
     String? type,
   }) async {
-    assert((endedAt == null && startedAt == null) ||
-        (endedAt != null && startedAt != null));
+    assert(
+      (endedAt == null && startedAt == null) ||
+          (endedAt != null && startedAt != null),
+    );
     assert(first < 101 && first > 0);
 
     final queryParameters = <String, String?>{'first': first.toString()};
@@ -208,8 +197,10 @@ class TwitchClient {
     String? startedAt,
     String? type,
   }) async {
-    assert((endedAt == null && startedAt == null) ||
-        (endedAt != null && startedAt != null));
+    assert(
+      (endedAt == null && startedAt == null) ||
+          (endedAt != null && startedAt != null),
+    );
     assert(first < 101 && first > 0);
 
     final queryParameters = <String, String?>{'first': first.toString()};
@@ -362,8 +353,10 @@ class TwitchClient {
   /// “Pokemon” will not return a list of Pokemon games; instead, query any
   /// specific Pokemon games in which you are interested. At most 100 name
   /// values can be specified.
-  Future<TwitchResponse<TwitchGame>> getGames(
-      {List<String> ids = const [], List<String> names = const []}) async {
+  Future<TwitchResponse<TwitchGame>> getGames({
+    List<String> ids = const [],
+    List<String> names = const [],
+  }) async {
     assert((ids.isNotEmpty) || (names.isNotEmpty));
     assert(ids.length < 101);
     assert(names.length < 101);
@@ -381,7 +374,8 @@ class TwitchClient {
   ///
   /// [broadcasterId]: ID of the channel to be updated.
   Future<TwitchResponse<TwitchChannelInfo>> getChannelInformations(
-      String broadcasterId) async {
+    String broadcasterId,
+  ) async {
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['channels'],
       queryParameters: {'broadcaster_id': broadcasterId},
@@ -562,8 +556,9 @@ class TwitchClient {
   ///
   /// `broadcasterId`: ID for the broadcaster who might own specialized
   /// Cheermotes.
-  Future<TwitchResponse<TwitchCheermote>> getCheermotes(
-      {String? broadcasterId}) async {
+  Future<TwitchResponse<TwitchCheermote>> getCheermotes({
+    String? broadcasterId,
+  }) async {
     final queryParameters = <String, String?>{};
     if (broadcasterId != null) {
       queryParameters['broadcaster_id'] = broadcasterId;
@@ -1048,23 +1043,39 @@ class TwitchClient {
     required TwitchRewardRedemptionStatus status,
   }) async {
     assert(ids.length <= 50 && ids.isNotEmpty);
-    assert(status == TwitchRewardRedemptionStatus.fulfilled ||
-        status == TwitchRewardRedemptionStatus.canceled);
-
-    final queryParameters = <String, String?>{
-      'id': ids.join(','),
-      'broadcaster_id': broadcasterId,
-      'reward_id': rewardId,
-    };
-
+    assert(
+      status == TwitchRewardRedemptionStatus.fulfilled ||
+          status == TwitchRewardRedemptionStatus.canceled,
+    );
     final body = <String, dynamic>{'status': status.string};
-
     final data = await twitchHttpClient.patchCall<Map<String, dynamic>>(
       ['channel_points', 'custom_rewards', 'redemptions'],
       body,
-      queryParameters: queryParameters,
+      queryParameters: <String, String?>{
+        'id': ids.join(','),
+        'broadcaster_id': broadcasterId,
+        'reward_id': rewardId,
+      },
     );
-
     return TwitchResponse.customRewardRedemption(data!);
+  }
+
+  /// Gets all emotes that the specified Twitch channel created. Broadcasters
+  /// create these custom emotes for users who subscribe to or follow the
+  /// channel, or cheer Bits in the channel’s chat window. For information about
+  /// the custom emotes, see [subscriber emotes]https://help.twitch.tv/s/article/subscriber-emote-guide?language=en_US),
+  /// [Bits tier emotes](https://help.twitch.tv/s/article/custom-bit-badges-guide?language=bg#slots),
+  /// and [follower emotes](https://blog.twitch.tv/en/2021/06/04/kicking-off-10-years-with-our-biggest-emote-update-ever/).
+  ///
+  /// `broadcasterId`: An ID that identifies the broadcaster to get the emotes
+  /// from.
+  Future<ChannelEmotesResponse> getChannelEmotes({
+    required String broadcasterId,
+  }) async {
+    final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
+      ['chat', 'emotes'],
+      queryParameters: <String, String>{'broadcaster_id': broadcasterId},
+    );
+    return ChannelEmotesResponse.fromJson(data!);
   }
 }
