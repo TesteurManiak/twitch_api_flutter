@@ -1,4 +1,4 @@
-## [0.6.0]
+## [0.6.0] - 22/02/2022
 
 * Fixed linting and analysis warnings.
 * Updated dependencies, bumped Dart SDK to `2.15.0`.
