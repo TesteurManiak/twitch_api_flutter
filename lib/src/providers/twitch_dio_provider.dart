@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
 import '../client.dart';
-import '../exceptions/twitch_api_exception.dart';
+import '../errors/exceptions.dart';
 import '../models/twitch_token.dart';
 import 'twitch_http_client.dart';
 

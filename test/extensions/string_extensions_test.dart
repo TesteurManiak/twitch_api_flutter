@@ -1,5 +1,5 @@
 import 'package:test/test.dart';
-import 'package:twitch_api/src/exceptions/twitch_api_exception.dart';
+import 'package:twitch_api/src/errors/exceptions.dart';
 import 'package:twitch_api/src/extensions/string_extensions.dart';
 import 'package:twitch_api/src/models/twitch_cheermote_type.dart';
 import 'package:twitch_api/src/models/twitch_custom_reward_redemption.dart';

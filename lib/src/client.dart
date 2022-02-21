@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import '../twitch_api.dart';
-import 'exceptions/twitch_api_exception.dart';
+import 'errors/exceptions.dart';
 import 'extensions/enum_extensions.dart';
 import 'models/twitch_channel_editor.dart';
 import 'models/twitch_chat_badge.dart';
