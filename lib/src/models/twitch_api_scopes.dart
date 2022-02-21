@@ -8,6 +8,7 @@ enum TwitchApiScope {
   channelReadEditors,
   channelReadRedemptions,
   channelReadSubscriptions,
+  moderatorReadChatSettings,
   userReadEmail,
 }
 
@@ -32,6 +33,8 @@ extension TwitchApiScopeModifier on TwitchApiScope {
         return 'channel:read:redemptions';
       case TwitchApiScope.channelReadSubscriptions:
         return 'channel:read:subscriptions';
+      case TwitchApiScope.moderatorReadChatSettings:
+        return 'moderator:read:chat_settings';
       case TwitchApiScope.userReadEmail:
         return 'user:read:email';
     }

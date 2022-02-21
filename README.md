@@ -111,7 +111,9 @@ Now you are ready to use the methods implemented in [Supported Endpoints](#suppo
 * [x] Get Global Emotes
 * [x] Get Emote Sets
 * [x] Get Channel Chat Badges
-* [ ] Get Global Chat Badges
+* [x] Get Global Chat Badges
+* [x] Get Chat Settings
+* [ ] Update Chat Settings
 
 ### Clips
 

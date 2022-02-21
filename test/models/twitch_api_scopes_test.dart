@@ -37,6 +37,10 @@ void main() {
         'channel:read:subscriptions',
       );
       expect(
+        TwitchApiScope.moderatorReadChatSettings.string,
+        'moderator:read:chat_settings',
+      );
+      expect(
         TwitchApiScope.userReadEmail.string,
         'user:read:email',
       );
