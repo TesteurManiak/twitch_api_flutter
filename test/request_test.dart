@@ -1,7 +1,7 @@
 import 'package:test/test.dart';
 import 'package:twitch_api/twitch_api.dart';
 
-import 'test_utils.dart';
+import 'utils/twitch_mock_client.dart';
 
 void main() {
   group('TwitchClient', () {
@@ -22,11 +22,7 @@ void main() {
   });
 
   group('Request', () {
-    final client = TwitchClient(
-      clientId: '',
-      redirectUri: '',
-      twitchHttpClient: TwitchMockProvider(),
-    );
+    final client = TwitchMockClient();
 
     test('authorizeUri', () {
       expect(

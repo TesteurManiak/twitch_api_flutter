@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 import 'package:twitch_api/src/models/twitch_channel_editor.dart';
 import 'package:twitch_api/twitch_api.dart';
 
-import 'test_utils.dart';
+import 'utils/test_utils.dart';
 
 void main() {
   group('Parsing', () {

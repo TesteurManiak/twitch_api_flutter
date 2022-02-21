@@ -6,6 +6,7 @@
 * Added method `getChannelEmotes`
 * Added method `getGlobalEmotes`
 * Added method `getEmoteSets`
+* Added method `getChannelChatBadges`
 
 ## [0.5.1] - 27/10/2021
 

@@ -1,15 +1,10 @@
 import 'package:test/test.dart';
 import 'package:twitch_api/src/models/twitch_emote_type.dart';
-import 'package:twitch_api/twitch_api.dart';
 
-import '../test_utils.dart';
+import '../utils/twitch_mock_client.dart';
 
 void main() {
-  final client = TwitchClient(
-    clientId: '',
-    redirectUri: '',
-    twitchHttpClient: TwitchMockProvider(),
-  );
+  final client = TwitchMockClient();
 
   group('getEmoteSets', () {
     test('emoteSetId: 301590448', () async {

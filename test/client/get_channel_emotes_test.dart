@@ -1,15 +1,10 @@
 import 'package:test/expect.dart';
 import 'package:test/scaffolding.dart';
-import 'package:twitch_api/src/client.dart';
 
-import '../test_utils.dart';
+import '../utils/twitch_mock_client.dart';
 
 void main() {
-  final client = TwitchClient(
-    clientId: '',
-    redirectUri: '',
-    twitchHttpClient: TwitchMockProvider(),
-  );
+  final client = TwitchMockClient();
 
   group('getChannelEmotes', () {
     test('1', () async {
