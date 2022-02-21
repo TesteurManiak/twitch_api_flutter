@@ -1,15 +1,11 @@
 import 'dart:convert';
-import 'dart:io';
 
-import 'package:twitch_api/twitch_api.dart';
+import 'package:twitch_api/src/models/twitch_token.dart';
+import 'package:twitch_api/src/providers/twitch_http_client.dart';
 
-String readFileStringSync(String name) =>
-    File('test/test_resources/$name').readAsStringSync();
+import 'test_utils.dart';
 
-Future<String> readFileStringAsync(String name) =>
-    File('test/test_resources/$name').readAsString();
-
-class TwitchMockProvider extends TwitchHttpClient {
+class TwitchMockHttpClient extends TwitchHttpClient {
   @override
   Future<T> getCall<T>(
     Iterable<String> pathSegments, {
@@ -107,6 +103,10 @@ class TwitchMockProvider extends TwitchHttpClient {
       case 'chat/emotes/set':
         return jsonDecode(await readFileStringAsync('get_emote_sets.json'))
             as T;
+      case 'chat/badges':
+        return jsonDecode(
+          await readFileStringAsync('get_channel_chat_badges.json'),
+        ) as T;
       default:
         throw 'Bad Request: Query Parameter missing or invalid $path';
     }
