@@ -1,9 +1,10 @@
 import 'dart:async';
 
 import '../twitch_api.dart';
-import 'exceptions/twitch_api_exception.dart';
+import 'errors/exceptions.dart';
 import 'extensions/enum_extensions.dart';
 import 'models/twitch_channel_editor.dart';
+import 'models/twitch_chat_badge.dart';
 import 'models/twitch_game_analytic.dart';
 import 'models/twitch_start_commercial.dart';
 import 'providers/twitch_dio_provider.dart';
@@ -1087,5 +1088,37 @@ class TwitchClient {
       ['chat', 'emotes', 'global'],
     );
     return ChannelGlobalEmotesResponse.fromJson(data);
+  }
+
+  /// Gets emotes for one or more specified emote sets.
+  ///
+  /// An emote set groups emotes that have a similar context. For example,
+  /// Twitch places all the subscriber emotes that a broadcaster uploads for
+  /// their channel in the same emote set.
+  Future<EmoteSetsResponse> getEmoteSets({required String emoteSetId}) async {
+    final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
+      ['chat', 'emotes', 'set'],
+      queryParameters: <String, String>{'emote_set_id': emoteSetId},
+    );
+    return EmoteSetsResponse.fromJson(data);
+  }
+
+  /// Gets a list of custom chat badges that can be used in chat for the
+  /// specified channel. This includes subscriber badges and Bit badges.
+  ///
+  /// `broadcasterId`: The broadcaster whose chat badges are being requested.
+  /// Provided `broadcasterId` must match the `userId` in the user OAuth token.
+  Future<List<TwitchChatBadge>> getChannelChatBadges({
+    required String broadcasterId,
+  }) async {
+    assert(broadcasterId == twitchHttpClient.twitchToken?.userId);
+    final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
+      ['chat', 'badges'],
+      queryParameters: <String, String>{'broadcaster_id': broadcasterId},
+    );
+    return (data['data'] as Iterable)
+        .cast<Map<String, dynamic>>()
+        .map<TwitchChatBadge>(TwitchChatBadge.fromJson)
+        .toList();
   }
 }

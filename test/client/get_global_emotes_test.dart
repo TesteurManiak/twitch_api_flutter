@@ -1,16 +1,11 @@
 import 'package:test/test.dart';
 import 'package:twitch_api/src/models/twitch_emote_format.dart';
 import 'package:twitch_api/src/models/twitch_theme_mode.dart';
-import 'package:twitch_api/twitch_api.dart';
 
-import '../test_utils.dart';
+import '../utils/twitch_mock_client.dart';
 
 void main() {
-  final client = TwitchClient(
-    clientId: '',
-    redirectUri: '',
-    twitchHttpClient: TwitchMockProvider(),
-  );
+  final client = TwitchMockClient();
 
   group('getGlobalEmotes', () {
     test('1', () async {

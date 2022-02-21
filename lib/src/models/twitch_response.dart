@@ -134,11 +134,13 @@ class TwitchResponse<T> {
 }
 
 class ChannelEmotesResponse extends TwitchResponse<TwitchEmotes> {
+  /// {@template channel_template}
   /// A templated URL. Use the values from id, format, scale, and theme_mode to
   /// replace the like-named placeholder strings in the templated URL to create
   /// a CDN (content delivery network) URL that you use to fetch the emote. For
   /// information about what the template looks like and how to use it to fetch
   /// emotes, see [Emote CDN URL format](https://dev.twitch.tv/docs/irc/emotes#cdn-template).
+  /// {@endtemplate}
   final String template;
 
   ChannelEmotesResponse({
@@ -154,11 +156,7 @@ class ChannelEmotesResponse extends TwitchResponse<TwitchEmotes> {
 }
 
 class ChannelGlobalEmotesResponse extends TwitchResponse<TwitchGlobalEmotes> {
-  /// A templated URL. Use the values from id, format, scale, and theme_mode to
-  /// replace the like-named placeholder strings in the templated URL to create
-  /// a CDN (content delivery network) URL that you use to fetch the emote. For
-  /// information about what the template looks like and how to use it to fetch
-  /// emotes, see [Emote CDN URL format](https://dev.twitch.tv/docs/irc/emotes#cdn-template).
+  /// {@macro channel_template}
   final String template;
 
   ChannelGlobalEmotesResponse({
@@ -169,6 +167,22 @@ class ChannelGlobalEmotesResponse extends TwitchResponse<TwitchGlobalEmotes> {
   factory ChannelGlobalEmotesResponse.fromJson(Map<String, dynamic> json) =>
       ChannelGlobalEmotesResponse(
         data: _parseObjects(json, TwitchGlobalEmotes.fromJson),
+        template: json['template'] as String,
+      );
+}
+
+class EmoteSetsResponse extends TwitchResponse<TwitchEmoteSets> {
+  /// {@macro channel_template}
+  final String template;
+
+  EmoteSetsResponse({
+    required List<TwitchEmoteSets> data,
+    required this.template,
+  }) : super(data: data);
+
+  factory EmoteSetsResponse.fromJson(Map<String, dynamic> json) =>
+      EmoteSetsResponse(
+        data: _parseObjects(json, TwitchEmoteSets.fromJson),
         template: json['template'] as String,
       );
 }
