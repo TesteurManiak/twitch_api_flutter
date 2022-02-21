@@ -19,4 +19,13 @@ void main() {
       expect(tException.toString(), 'TwitchException: $tMessage');
     });
   });
+
+  group('TwitchGetExtensionAnalyticsException', () {
+    const tMessage = 'get extension analytics failed';
+    const tException = TwitchGetExtensionAnalyticsException(tMessage);
+
+    test('toString', () {
+      expect(tException.toString(), 'TwitchException: $tMessage');
+    });
+  });
 }

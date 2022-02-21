@@ -5,6 +5,7 @@ import 'errors/exceptions.dart';
 import 'extensions/enum_extensions.dart';
 import 'models/twitch_channel_editor.dart';
 import 'models/twitch_chat_badge.dart';
+import 'models/twitch_chat_settings.dart';
 import 'models/twitch_game_analytic.dart';
 import 'models/twitch_start_commercial.dart';
 import 'providers/twitch_dio_provider.dart';
@@ -1119,6 +1120,49 @@ class TwitchClient {
     return (data['data'] as Iterable)
         .cast<Map<String, dynamic>>()
         .map<TwitchChatBadge>(TwitchChatBadge.fromJson)
+        .toList();
+  }
+
+  /// Gets a list of chat badges that can be used in chat for any channel.
+  Future<List<TwitchChatBadge>> getGlobalChatBadges() async {
+    final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
+      ['chat', 'badges', 'global'],
+    );
+    return (data['data'] as Iterable)
+        .cast<Map<String, dynamic>>()
+        .map<TwitchChatBadge>(TwitchChatBadge.fromJson)
+        .toList();
+  }
+
+  /// Gets the broadcaster’s chat settings.
+  ///
+  /// To include the `non_moderator_chat_delay` or `non_moderator_chat_delay_duration`
+  /// settings in the response, you must specify a User access token with scope
+  /// set to [TwitchApiScope.moderatorReadChatSettings].
+  ///
+  /// `broadcasterId`: The ID of the broadcaster whose chat settings you want to
+  /// get.
+  ///
+  /// `moderatorId`: Required only to access the `non_moderator_chat_delay` or
+  /// `non_moderator_chat_delay_duration` settings. The ID of a user that has
+  /// permission to moderate the broadcaster’s chat room. This ID must match the
+  /// user ID associated with the user OAuth token. If the broadcaster wants to
+  /// get their own settings (instead of having the moderator do it), set this
+  /// parameter to the broadcaster’s ID, too.
+  Future<List<TwitchChatSettings>> getChatSettings({
+    required String broadcasterId,
+    String? moderatorId,
+  }) async {
+    final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
+      ['chat', 'settings'],
+      queryParameters: <String, String>{
+        'broadcaster_id': broadcasterId,
+        if (moderatorId != null) 'moderator_id': moderatorId,
+      },
+    );
+    return (data['data'] as Iterable)
+        .cast<Map<String, dynamic>>()
+        .map<TwitchChatSettings>(TwitchChatSettings.fromJson)
         .toList();
   }
 }

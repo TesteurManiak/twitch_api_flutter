@@ -107,6 +107,13 @@ class TwitchMockHttpClient extends TwitchHttpClient {
         return jsonDecode(
           await readFileStringAsync('get_channel_chat_badges.json'),
         ) as T;
+      case 'chat/badges/global':
+        return jsonDecode(
+          await readFileStringAsync('get_global_chat_badges.json'),
+        ) as T;
+      case 'chat/settings':
+        return jsonDecode(await readFileStringAsync('get_chat_settings.json'))
+            as T;
       default:
         throw 'Bad Request: Query Parameter missing or invalid $path';
     }
