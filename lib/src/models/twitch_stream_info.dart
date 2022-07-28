@@ -80,7 +80,7 @@ class TwitchStreamInfo {
         startedAt: DateTime.parse(json['started_at'] as String),
         language: json['language'] as String,
         thumbnailUrl: json['thumbnail_url'] as String,
-        tagIds: List<String>.from(json['tag_ids'] as Iterable),
+        tagIds: List<String>.from(json['tag_ids'] as Iterable? ?? const []),
         isMature: json['is_mature'] as bool,
       );
 }
