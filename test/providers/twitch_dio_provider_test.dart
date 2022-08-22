@@ -5,9 +5,9 @@ import 'package:twitch_api/twitch_api.dart';
 
 void main() {
   group('TwitchDioProvider', () {
-    final _dioProvider = TwitchDioProvider(clientId: '');
+    final dioProvider = TwitchDioProvider(clientId: '');
 
-    DioAdapter(dio: _dioProvider.dio)
+    DioAdapter(dio: dioProvider.dio)
       ..onGet(
         TwitchClient.oauth2Url.replace(
           pathSegments: <String>[TwitchClient.oauthPath, 'validate'],
@@ -50,20 +50,20 @@ void main() {
         (server) => server.reply(201, {'message': 'Success!'}),
       );
 
-    _dioProvider.initializeToken(
+    dioProvider.initializeToken(
       TwitchToken.fromUrl(
         'http://localhost/#access_token=test&token_type=type&scope=scope',
       ),
     );
 
     test('twitchToken', () {
-      expect(_dioProvider.twitchToken?.token, 'test');
-      expect(_dioProvider.twitchToken?.tokenType, 'type');
-      expect(_dioProvider.twitchToken?.scope, 'scope');
+      expect(dioProvider.twitchToken?.token, 'test');
+      expect(dioProvider.twitchToken?.tokenType, 'type');
+      expect(dioProvider.twitchToken?.scope, 'scope');
     });
 
     test('validateToken', () async {
-      final responseToken = await _dioProvider.validateToken();
+      final responseToken = await dioProvider.validateToken();
       expect(responseToken.token, 'test');
       expect(responseToken.tokenType, 'type');
       expect(responseToken.scope, 'scope');
@@ -76,12 +76,12 @@ void main() {
 
     test('getCall', () async {
       final response =
-          await _dioProvider.getCall(['test']) as Map<String, dynamic>;
+          await dioProvider.getCall(['test']) as Map<String, dynamic>;
       expect(response['message'], 'Success!');
     });
 
     test('postCall', () async {
-      final response = await _dioProvider.postCall(
+      final response = await dioProvider.postCall(
         ['test'],
         {'data': 'test'},
       ) as Map<String, dynamic>;
@@ -89,7 +89,7 @@ void main() {
     });
 
     test('patchCall', () async {
-      final response = await _dioProvider.patchCall(
+      final response = await dioProvider.patchCall(
         ['test'],
         {'data': 'test'},
       ) as Map<String, dynamic>;
@@ -98,7 +98,7 @@ void main() {
 
     test('deleteCall', () async {
       final response =
-          await _dioProvider.deleteCall(['test']) as Map<String, dynamic>;
+          await dioProvider.deleteCall(['test']) as Map<String, dynamic>;
       expect(response['message'], 'Success!');
     });
   });

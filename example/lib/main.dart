@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.scheduleFrameCallback((_) {
+    WidgetsBinding.instance.scheduleFrameCallback((_) {
       _openConnectionPage(scopes: TwitchApiScope.values)
           .then((value) => setState(() {}));
     });

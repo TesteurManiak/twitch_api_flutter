@@ -128,10 +128,10 @@ class TwitchMockHttpClient extends TwitchHttpClient {
     dynamic data, {
     Map<String, dynamic> queryParameters = const {},
   }) async {
-    final _data = data as Map<String, dynamic>;
+    final castedData = data as Map<String, dynamic>;
     switch (pathSegments.join('/')) {
       case 'channel_points/custom_rewards':
-        final isEnabled = _data['is_enabled'] as bool?;
+        final isEnabled = castedData['is_enabled'] as bool?;
         if (isEnabled != null && !isEnabled) {
           return jsonDecode(
             await readFileStringAsync('update_custom_reward_1.json'),

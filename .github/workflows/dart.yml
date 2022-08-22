@@ -7,9 +7,9 @@ name: Dart
 
 on:
   push:
-    branches: [ main, dev ]
+    branches: [main, dev]
   pull_request:
-    branches: [ main, dev ]
+    branches: [main, dev]
 
 jobs:
   build:
@@ -24,6 +24,10 @@ jobs:
         working-directory: ./lib
       - name: Run tests
         run: dart test --coverage="coverage"
+      - name: Build sample APK
+        uses: subosito/flutter-action@v1.5.3
+        working-directory: ./example
+        run: flutter build apk --release
       - name: Generate Lcov
         run: dart pub run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib
       - name: Collect and report coverage
