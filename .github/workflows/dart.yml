@@ -25,7 +25,6 @@ jobs:
       - name: Run tests
         run: dart test --coverage="coverage"
       - name: Build sample APK
-        uses: subosito/flutter-action@v1.5.3
         working-directory: ./example
         run: flutter build apk --release
       - name: Generate Lcov
