@@ -1,3 +1,9 @@
+## [0.6.1] - 23/08/2022
+
+* Fixed [#6](https://github.com/TesteurManiak/twitch_api_flutter/issues/6)
+* Added `Contributors` section to the `README.md`
+* Updated dependencies
+
 ## [0.6.0] - 22/02/2022
 
 * Fixed linting and analysis warnings.
@@ -13,7 +19,7 @@
 ## [0.5.1] - 27/10/2021
 
 * Migrate example to nullsafety
-* Fixed [issue #3](https://github.com/TesteurManiak/twitch_api_flutter/issues/3)
+* Fixed [#3](https://github.com/TesteurManiak/twitch_api_flutter/issues/3)
 
 ## [0.5.0] - 12/09/2020
 
