@@ -23,12 +23,10 @@ jobs:
         run: dart analyze
         working-directory: ./lib
       - name: Run tests
-        run: dart test --coverage="coverage"
+        run: flutter test --coverage
       - name: Build sample APK
         working-directory: ./example
         run: flutter build apk --release
-      - name: Generate Lcov
-        run: dart pub run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib
       - name: Collect and report coverage
         uses: coverallsapp/github-action@v1.1.2
         with:
