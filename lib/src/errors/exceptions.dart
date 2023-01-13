@@ -8,13 +8,13 @@ class TwitchApiException implements Exception {
 }
 
 class TwitchNotConnectedException extends TwitchApiException {
-  const TwitchNotConnectedException(String msg) : super(msg);
+  const TwitchNotConnectedException(super.msg);
 }
 
 class TwitchStartCommercialException extends TwitchApiException {
-  const TwitchStartCommercialException(String msg) : super(msg);
+  const TwitchStartCommercialException(super.msg);
 }
 
 class TwitchGetExtensionAnalyticsException extends TwitchApiException {
-  const TwitchGetExtensionAnalyticsException(String msg) : super(msg);
+  const TwitchGetExtensionAnalyticsException(super.msg);
 }

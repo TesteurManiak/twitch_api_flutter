@@ -20,6 +20,7 @@ analyzer:
     unnecessary_await_in_return: warning
     unnecessary_null_aware_assignments: warning
     use_string_buffers: warning
+    invalid_annotation_target: ignore
 
 linter:
   rules:

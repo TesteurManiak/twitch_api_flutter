@@ -77,23 +77,16 @@ class TwitchEmotes extends TwitchGlobalEmotes {
   final String emoteSetId;
 
   TwitchEmotes({
-    required String id,
-    required String name,
-    required TwitchCustomRewardImage images,
+    required super.id,
+    required super.name,
+    required super.images,
     required this.tier,
     required this.emoteType,
     required this.emoteSetId,
-    required List<TwitchEmoteFormat> format,
-    required List<String> scale,
-    required List<TwitchThemeMode> themeMode,
-  }) : super(
-          id: id,
-          name: name,
-          images: images,
-          format: format,
-          scale: scale,
-          themeMode: themeMode,
-        );
+    required super.format,
+    required super.scale,
+    required super.themeMode,
+  });
 
   factory TwitchEmotes.fromJson(Map<String, dynamic> json) {
     return TwitchEmotes(
@@ -129,23 +122,16 @@ class TwitchEmoteSets extends TwitchGlobalEmotes {
   final String ownerId;
 
   TwitchEmoteSets({
-    required String id,
-    required String name,
-    required TwitchCustomRewardImage images,
+    required super.id,
+    required super.name,
+    required super.images,
     required this.emoteType,
     required this.emoteSetId,
     required this.ownerId,
-    required List<TwitchEmoteFormat> format,
-    required List<String> scale,
-    required List<TwitchThemeMode> themeMode,
-  }) : super(
-          id: id,
-          name: name,
-          images: images,
-          format: format,
-          scale: scale,
-          themeMode: themeMode,
-        );
+    required super.format,
+    required super.scale,
+    required super.themeMode,
+  });
 
   factory TwitchEmoteSets.fromJson(Map<String, dynamic> json) {
     return TwitchEmoteSets(
