@@ -1,72 +1,52 @@
-class TwitchBroadcasterSubscription {
-  /// User ID of the broadcaster.
-  final String broadcasterId;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  /// Login of the broadcaster.
-  final String broadcasterLogin;
+part 'twitch_broadcaster_subscription.freezed.dart';
+part 'twitch_broadcaster_subscription.g.dart';
 
-  /// Display name of the broadcaster.
-  final String broadcasterName;
+@freezed
+class TwitchBroadcasterSubscription with _$TwitchBroadcasterSubscription {
+  const factory TwitchBroadcasterSubscription({
+    /// User ID of the broadcaster.
+    @JsonKey(name: 'broadcaster_id') required String broadcasterId,
 
-  /// If the subscription was gifted, this is the user ID of the gifter. Empty
-  /// string otherwise.
-  final String gifterId;
+    /// Login of the broadcaster.
+    @JsonKey(name: 'broadcaster_login') required String broadcasterLogin,
 
-  /// If the subscription was gifted, this is the login of the gifter. Empty
-  /// string otherwise.
-  final String gifterLogin;
+    /// Display name of the broadcaster.
+    @JsonKey(name: 'broadcaster_name') required String broadcasterName,
 
-  /// If the subscription was gifted, this is the display name of the gifter.
-  /// Empty string otherwise.
-  final String gifterName;
+    /// If the subscription was gifted, this is the user ID of the gifter. Empty
+    /// string otherwise.
+    @JsonKey(name: 'gifter_id') required String gifterId,
 
-  /// `true` if the subscription is a gift subscription.
-  final bool isGift;
+    /// If the subscription was gifted, this is the login of the gifter. Empty
+    /// string otherwise.
+    @JsonKey(name: 'gifter_login') required String gifterLogin,
 
-  /// Name of the subscription.
-  final String planName;
+    /// If the subscription was gifted, this is the display name of the gifter.
+    /// Empty string otherwise.
+    @JsonKey(name: 'gifter_name') required String gifterName,
 
-  /// Type of subscription (Tier 1, Tier 2, Tier 3). 1000 = Tier 1, 2000 = Tier
-  /// 2, 3000 = Tier 3 subscriptions.
-  final String tier;
+    /// `true` if the subscription is a gift subscription.
+    @JsonKey(name: 'is_gift') required bool isGift,
 
-  /// ID of the subscribed user.
-  final String userId;
+    /// Name of the subscription.
+    @JsonKey(name: 'plan_name') required String planName,
 
-  /// Display name of the subscribed user.
-  final String userName;
+    /// Type of subscription (Tier 1, Tier 2, Tier 3). 1000 = Tier 1, 2000 = Tier
+    /// 2, 3000 = Tier 3 subscriptions.
+    required String tier,
 
-  /// Login of the subscribed user.
-  final String userLogin;
+    /// ID of the subscribed user.
+    @JsonKey(name: 'user_id') required String userId,
 
-  TwitchBroadcasterSubscription({
-    required this.broadcasterId,
-    required this.broadcasterLogin,
-    required this.broadcasterName,
-    required this.gifterId,
-    required this.gifterLogin,
-    required this.gifterName,
-    required this.isGift,
-    required this.planName,
-    required this.tier,
-    required this.userId,
-    required this.userLogin,
-    required this.userName,
-  });
+    /// Display name of the subscribed user.
+    @JsonKey(name: 'user_name') required String userName,
+
+    /// Login of the subscribed user.
+    @JsonKey(name: 'user_login') required String userLogin,
+  }) = _TwitchBroadcasterSubscription;
 
   factory TwitchBroadcasterSubscription.fromJson(Map<String, dynamic> json) =>
-      TwitchBroadcasterSubscription(
-        broadcasterId: json['broadcaster_id'] as String,
-        broadcasterLogin: json['broadcaster_login'] as String,
-        broadcasterName: json['broadcaster_name'] as String,
-        gifterId: json['gifter_id'] as String,
-        gifterLogin: json['gifter_login'] as String,
-        gifterName: json['gifter_name'] as String,
-        isGift: json['is_gift'] as bool,
-        planName: json['plan_name'] as String,
-        tier: json['tier'] as String,
-        userId: json['user_id'] as String,
-        userName: json['user_name'] as String,
-        userLogin: json['user_login'] as String,
-      );
+      _$TwitchBroadcasterSubscriptionFromJson(json);
 }
