@@ -1,25 +1,18 @@
-import 'package:twitch_api/twitch_api.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:twitch_api/src/models/twitch_date_range.dart';
 
-class TwitchGameAnalytic {
-  final TwitchDateRange dateRange;
-  final String gameId;
-  final String type;
-  final String url;
+part 'twitch_game_analytic.freezed.dart';
+part 'twitch_game_analytic.g.dart';
 
-  TwitchGameAnalytic({
-    required this.gameId,
-    required this.type,
-    required this.url,
-    required this.dateRange,
-  });
+@freezed
+class TwitchGameAnalytic with _$TwitchGameAnalytic {
+  const factory TwitchGameAnalytic({
+    @JsonKey(name: 'game_id') required String gameId,
+    required String type,
+    @JsonKey(name: 'URL') required String url,
+    @JsonKey(name: 'date_range') required TwitchDateRange dateRange,
+  }) = _TwitchGameAnalytic;
 
   factory TwitchGameAnalytic.fromJson(Map<String, dynamic> json) =>
-      TwitchGameAnalytic(
-        gameId: json['game_id'] as String,
-        type: json['type'] as String,
-        url: json['URL'] as String,
-        dateRange: TwitchDateRange.fromJson(
-          json['date_range'] as Map<String, dynamic>,
-        ),
-      );
+      _$TwitchGameAnalyticFromJson(json);
 }
