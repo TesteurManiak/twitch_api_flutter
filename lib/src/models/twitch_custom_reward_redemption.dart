@@ -1,94 +1,73 @@
-import 'package:twitch_api/src/extensions/string_extensions.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-enum TwitchRewardRedemptionStatus { unfulfilled, fulfilled, canceled }
+part 'twitch_custom_reward_redemption.freezed.dart';
+part 'twitch_custom_reward_redemption.g.dart';
 
-enum TwitchRedemptionSort { oldest, newest }
-
-class TwitchRedemptionRewardInfo {
-  final String id;
-  final String title;
-  final String prompt;
-  final int cost;
-
-  TwitchRedemptionRewardInfo({
-    required this.id,
-    required this.title,
-    required this.prompt,
-    required this.cost,
-  });
-
-  factory TwitchRedemptionRewardInfo.fromJson(Map<String, dynamic> json) =>
-      TwitchRedemptionRewardInfo(
-        id: json['id'] as String,
-        title: json['title'] as String,
-        prompt: json['prompt'] as String,
-        cost: json['cost'] as int,
-      );
+enum TwitchRewardRedemptionStatus {
+  @JsonValue('UNFULFILLED')
+  unfulfilled,
+  @JsonValue('FULFILLED')
+  fulfilled,
+  @JsonValue('CANCELED')
+  canceled,
 }
 
-class TwitchCustomRewardRedemption {
-  /// The id of the broadcaster that the reward belongs to.
-  final String broadcasterId;
+enum TwitchRedemptionSort {
+  oldest,
+  newest,
+}
 
-  /// Broadcaster’s user login name.
-  final String broadcasterLogin;
+@freezed
+class TwitchRedemptionRewardInfo with _$TwitchRedemptionRewardInfo {
+  const factory TwitchRedemptionRewardInfo({
+    required String id,
+    required String title,
+    required String prompt,
+    required int cost,
+  }) = _TwitchRedemptionRewardInfo;
 
-  /// The display name of the broadcaster that the reward belongs to.
-  final String broadcasterName;
+  factory TwitchRedemptionRewardInfo.fromJson(Map<String, dynamic> json) =>
+      _$TwitchRedemptionRewardInfoFromJson(json);
+}
 
-  /// The ID of the redemption.
-  final String id;
+@freezed
+class TwitchCustomRewardRedemption with _$TwitchCustomRewardRedemption {
+  const factory TwitchCustomRewardRedemption({
+    /// The id of the broadcaster that the reward belongs to.
+    @JsonKey(name: 'broadcaster_id') required String broadcasterId,
 
-  /// The login of the user who redeemed the reward.
-  final String? userLogin;
+    /// Broadcaster’s user login name.
+    @JsonKey(name: 'broadcaster_login') required String broadcasterLogin,
 
-  /// The ID of the user that redeemed the reward.
-  final String userId;
+    /// The display name of the broadcaster that the reward belongs to.
+    @JsonKey(name: 'broadcaster_name') required String broadcasterName,
 
-  /// The display name of the user that redeemed the reward.
-  final String userName;
+    /// The ID of the redemption.
+    required String id,
 
-  /// Basic information about the Custom Reward that was redeemed at the time it
-  /// was redeemed.
-  final TwitchRedemptionRewardInfo reward;
+    /// The login of the user who redeemed the reward.
+    @JsonKey(name: 'user_login') required String? userLogin,
 
-  /// The user input provided. Empty string if not provided.
-  final String userInput;
+    /// The ID of the user that redeemed the reward.
+    @JsonKey(name: 'user_id') required String userId,
 
-  /// One of UNFULFILLED, FULFILLED or CANCELED.
-  final TwitchRewardRedemptionStatus status;
+    /// The display name of the user that redeemed the reward.
+    @JsonKey(name: 'user_name') required String userName,
 
-  /// RFC3339 timestamp of when the reward was redeemed.
-  final DateTime redeemedAt;
+    /// Basic information about the Custom Reward that was redeemed at the time it
+    /// was redeemed.
+    required TwitchRedemptionRewardInfo reward,
 
-  TwitchCustomRewardRedemption({
-    required this.broadcasterId,
-    required this.broadcasterLogin,
-    required this.broadcasterName,
-    required this.id,
-    required this.userLogin,
-    required this.userId,
-    required this.userName,
-    required this.reward,
-    required this.userInput,
-    required this.status,
-    required this.redeemedAt,
-  });
+    /// The user input provided. Empty string if not provided.
+    @JsonKey(name: 'user_input') required String userInput,
+
+    /// One of UNFULFILLED, FULFILLED or CANCELED.
+    required TwitchRewardRedemptionStatus status,
+
+    /// RFC3339 timestamp of when the reward was redeemed.
+    @JsonKey(name: 'redeemed_at') required DateTime redeemedAt,
+  }) = _TwitchCustomRewardRedemption;
 
   factory TwitchCustomRewardRedemption.fromJson(Map<String, dynamic> json) =>
-      TwitchCustomRewardRedemption(
-        broadcasterId: json["broadcaster_id"] as String,
-        broadcasterLogin: json["broadcaster_login"] as String,
-        broadcasterName: json["broadcaster_name"] as String,
-        id: json["id"] as String,
-        userLogin: json["user_login"] as String?,
-        userId: json["user_id"] as String,
-        userName: json["user_name"] as String,
-        reward: TwitchRedemptionRewardInfo.fromJson(
-          json["reward"] as Map<String, dynamic>,
-        ),
-        userInput: json["user_input"] as String,
-        status: (json["status"] as String).toRewardRedemptionStatus(),
-        redeemedAt: DateTime.parse(json["redeemed_at"] as String),
-      );
+      _$TwitchCustomRewardRedemptionFromJson(json);
 }
