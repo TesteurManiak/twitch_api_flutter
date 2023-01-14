@@ -11,23 +11,6 @@ extension StringModifier on String {
     }
   }
 
-  TwitchCheermoteType toCheermoteType() {
-    switch (toLowerCase()) {
-      case 'global_first_party':
-        return TwitchCheermoteType.globalFirstParty;
-      case 'global_third_party':
-        return TwitchCheermoteType.globalThirdParty;
-      case 'channel_custom':
-        return TwitchCheermoteType.channelCustom;
-      case 'display_only':
-        return TwitchCheermoteType.displayOnly;
-      case 'sponsored':
-        return TwitchCheermoteType.sponsored;
-      default:
-        throw TwitchApiException('Unknown TwitchCheermoteType: $this');
-    }
-  }
-
   TwitchExtensionTransactionProductType toTransactionProductType() {
     switch (toUpperCase()) {
       case 'BITS_IN_EXTENSION':

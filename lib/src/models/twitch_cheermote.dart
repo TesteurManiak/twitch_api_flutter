@@ -1,48 +1,35 @@
-import '../extensions/string_extensions.dart' show StringModifier;
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'twitch_cheermote_tier.dart';
 import 'twitch_cheermote_type.dart';
 
-class TwitchCheermote {
-  /// The string used to Cheer that precedes the Bits amount.
-  final String prefix;
+part 'twitch_cheermote.freezed.dart';
+part 'twitch_cheermote.g.dart';
 
-  /// An array of Cheermotes with their metadata.
-  final List<TwitchCheermoteTier> tiers;
+@freezed
+class TwitchCheermote with _$TwitchCheermote {
+  const factory TwitchCheermote({
+    /// The string used to Cheer that precedes the Bits amount.
+    required String prefix,
 
-  /// Shows whether the emote is `globalFirstParty`, `globalThirdParty`,
-  /// `channelCustom`, `displayOnly`, or `sponsored`.
-  final TwitchCheermoteType type;
+    /// An array of Cheermotes with their metadata.
+    required List<TwitchCheermoteTier> tiers,
 
-  /// Order of the emotes as shown in the bits card, in ascending order.
-  final int order;
+    /// Shows whether the emote is `globalFirstParty`, `globalThirdParty`,
+    /// `channelCustom`, `displayOnly`, or `sponsored`.
+    required TwitchCheermoteType type,
 
-  /// The data when this Cheermote was last updated.
-  final DateTime lastUpdated;
+    /// Order of the emotes as shown in the bits card, in ascending order.
+    required int order,
 
-  /// Indicates whether or not this emote provides a charity contribution match
-  /// during charity campaigns.
-  final bool isCharitable;
+    /// The data when this Cheermote was last updated.
+    @JsonKey(name: 'last_updated') required DateTime lastUpdated,
 
-  TwitchCheermote({
-    required this.prefix,
-    required this.tiers,
-    required this.type,
-    required this.order,
-    required this.lastUpdated,
-    required this.isCharitable,
-  });
+    /// Indicates whether or not this emote provides a charity contribution match
+    /// during charity campaigns.
+    @JsonKey(name: 'is_charitable') required bool isCharitable,
+  }) = _TwitchCheermote;
 
   factory TwitchCheermote.fromJson(Map<String, dynamic> json) =>
-      TwitchCheermote(
-        prefix: json['prefix'] as String,
-        tiers: (json['tiers'] as Iterable)
-            .map<TwitchCheermoteTier>(
-              (e) => TwitchCheermoteTier.fromJson(e as Map<String, dynamic>),
-            )
-            .toList(),
-        type: json['type'].toString().toCheermoteType(),
-        order: json['order'] as int,
-        lastUpdated: DateTime.parse(json['last_updated'] as String),
-        isCharitable: json['is_charitable'] as bool,
-      );
+      _$TwitchCheermoteFromJson(json);
 }

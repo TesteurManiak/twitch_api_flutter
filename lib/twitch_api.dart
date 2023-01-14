@@ -6,7 +6,8 @@ export 'src/models/twitch_bits_leaderboard.dart';
 export 'src/models/twitch_broadcaster_subscription.dart';
 export 'src/models/twitch_channel_info.dart';
 export 'src/models/twitch_cheermote.dart';
-export 'src/models/twitch_cheermote_tier.dart';
+export 'src/models/twitch_cheermote_tier.dart'
+    hide CheermoteImageSet, CheermoteImage;
 export 'src/models/twitch_cheermote_type.dart';
 export 'src/models/twitch_custom_reward.dart';
 export 'src/models/twitch_custom_reward_redemption.dart';

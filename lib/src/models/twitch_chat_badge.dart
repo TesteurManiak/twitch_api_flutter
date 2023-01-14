@@ -1,49 +1,36 @@
-class TwitchChatBadge {
-  /// ID for the chat badge set.
-  final String setId;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  /// Contains chat badge objects for the set.
-  final List<BadgeVersion> versions;
+part 'twitch_chat_badge.freezed.dart';
+part 'twitch_chat_badge.g.dart';
 
-  TwitchChatBadge({required this.setId, required this.versions});
+@freezed
+class TwitchChatBadge with _$TwitchChatBadge {
+  const factory TwitchChatBadge({
+    /// ID for the chat badge set.
+    @JsonKey(name: 'set_id') required String setId,
+    required List<BadgeVersion> versions,
+  }) = _TwitchChatBadge;
 
-  factory TwitchChatBadge.fromJson(Map<String, dynamic> json) {
-    return TwitchChatBadge(
-      setId: json['set_id'] as String,
-      versions: (json['versions'] as Iterable)
-          .cast<Map<String, dynamic>>()
-          .map<BadgeVersion>(BadgeVersion.fromJson)
-          .toList(),
-    );
-  }
+  factory TwitchChatBadge.fromJson(Map<String, dynamic> json) =>
+      _$TwitchChatBadgeFromJson(json);
 }
 
-class BadgeVersion {
-  /// ID of the chat badge version.
-  final String id;
+@freezed
+class BadgeVersion with _$BadgeVersion {
+  const factory BadgeVersion({
+    /// ID of the chat badge version.
+    required String id,
 
-  /// Small image URL.
-  final String smallImageUrl;
+    /// Small image URL.
+    @JsonKey(name: 'image_url_1x') required String smallImageUrl,
 
-  /// Medium image URL.
-  final String mediumImageUrl;
+    /// Medium image URL.
+    @JsonKey(name: 'image_url_2x') required String mediumImageUrl,
 
-  /// Large image URL.
-  final String largeImageUrl;
+    /// Large image URL.
+    @JsonKey(name: 'image_url_4x') required String largeImageUrl,
+  }) = _BadgeVersion;
 
-  BadgeVersion({
-    required this.id,
-    required this.smallImageUrl,
-    required this.mediumImageUrl,
-    required this.largeImageUrl,
-  });
-
-  factory BadgeVersion.fromJson(Map<String, dynamic> json) {
-    return BadgeVersion(
-      id: json['id'] as String,
-      smallImageUrl: json['image_url_1x'] as String,
-      mediumImageUrl: json['image_url_2x'] as String,
-      largeImageUrl: json['image_url_4x'] as String,
-    );
-  }
+  factory BadgeVersion.fromJson(Map<String, dynamic> json) =>
+      _$BadgeVersionFromJson(json);
 }
