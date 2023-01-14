@@ -1,7 +1,7 @@
-import 'twitch_custom_reward.dart';
-import 'twitch_emote_format.dart';
-import 'twitch_emote_type.dart';
-import 'twitch_theme_mode.dart';
+import 'package:twitch_api/src/models/twitch_custom_reward.dart';
+import 'package:twitch_api/src/models/twitch_emote_format.dart';
+import 'package:twitch_api/src/models/twitch_emote_type.dart';
+import 'package:twitch_api/src/models/twitch_theme_mode.dart';
 
 class TwitchGlobalEmotes {
   /// An ID that identifies the emote.

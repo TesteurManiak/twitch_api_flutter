@@ -1,4 +1,4 @@
-import 'twitch_date_range.dart';
+import 'package:twitch_api/src/models/twitch_date_range.dart';
 
 class TwitchExtensionAnalytic {
   final TwitchDateRange dateRange;

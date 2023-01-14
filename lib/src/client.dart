@@ -1,14 +1,14 @@
 import 'dart:async';
 
-import '../twitch_api.dart';
-import 'errors/exceptions.dart';
-import 'extensions/enum_extensions.dart';
-import 'models/twitch_channel_editor.dart';
-import 'models/twitch_chat_badge.dart';
-import 'models/twitch_chat_settings.dart';
-import 'models/twitch_game_analytic.dart';
-import 'models/twitch_start_commercial.dart';
-import 'providers/twitch_dio_provider.dart';
+import 'package:twitch_api/src/errors/exceptions.dart';
+import 'package:twitch_api/src/extensions/enum_extensions.dart';
+import 'package:twitch_api/src/models/twitch_channel_editor.dart';
+import 'package:twitch_api/src/models/twitch_chat_badge.dart';
+import 'package:twitch_api/src/models/twitch_chat_settings.dart';
+import 'package:twitch_api/src/models/twitch_game_analytic.dart';
+import 'package:twitch_api/src/models/twitch_start_commercial.dart';
+import 'package:twitch_api/src/providers/twitch_dio_provider.dart';
+import 'package:twitch_api/twitch_api.dart';
 
 class TwitchClient {
   static const basePath = 'helix';

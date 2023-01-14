@@ -1,4 +1,4 @@
-import '../../twitch_api.dart';
+import 'package:twitch_api/twitch_api.dart';
 
 class TwitchGameAnalytic {
   final TwitchDateRange dateRange;

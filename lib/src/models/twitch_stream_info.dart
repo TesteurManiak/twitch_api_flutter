@@ -1,4 +1,4 @@
-import '../extensions/string_extensions.dart';
+import 'package:twitch_api/src/extensions/string_extensions.dart';
 
 enum TwitchStreamType { live, error }
 

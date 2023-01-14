@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 
-import '../client.dart';
-import '../errors/exceptions.dart';
-import '../models/twitch_token.dart';
-import 'twitch_http_client.dart';
+import 'package:twitch_api/src/client.dart';
+import 'package:twitch_api/src/errors/exceptions.dart';
+import 'package:twitch_api/src/models/twitch_token.dart';
+import 'package:twitch_api/src/providers/twitch_http_client.dart';
 
 class TwitchDioProvider extends TwitchHttpClient {
   final dio = Dio();

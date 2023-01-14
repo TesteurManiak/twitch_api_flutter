@@ -1,5 +1,5 @@
-import '../../twitch_api.dart';
-import '../errors/exceptions.dart';
+import 'package:twitch_api/src/errors/exceptions.dart';
+import 'package:twitch_api/twitch_api.dart';
 
 extension StringModifier on String {
   TwitchStreamType toStreamType() {

@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'twitch_cheermote_tier.dart';
-import 'twitch_cheermote_type.dart';
+import 'package:twitch_api/src/models/twitch_cheermote_tier.dart';
+import 'package:twitch_api/src/models/twitch_cheermote_type.dart';
 
 part 'twitch_cheermote.freezed.dart';
 part 'twitch_cheermote.g.dart';
