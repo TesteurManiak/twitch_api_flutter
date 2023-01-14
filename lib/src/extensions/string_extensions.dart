@@ -11,17 +11,6 @@ extension StringModifier on String {
     }
   }
 
-  TwitchExtensionTransactionProductType toTransactionProductType() {
-    switch (toUpperCase()) {
-      case 'BITS_IN_EXTENSION':
-        return TwitchExtensionTransactionProductType.bitsInExtension;
-      default:
-        throw TwitchApiException(
-          'Unknown TwitchExtensionTransactionProductType: $this',
-        );
-    }
-  }
-
   TwitchRewardRedemptionStatus toRewardRedemptionStatus() {
     switch (toUpperCase()) {
       case 'UNFULFILLED':

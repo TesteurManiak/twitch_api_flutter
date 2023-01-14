@@ -14,7 +14,7 @@ export 'src/models/twitch_custom_reward_redemption.dart';
 export 'src/models/twitch_custom_reward_redemption.dart';
 export 'src/models/twitch_date_range.dart';
 export 'src/models/twitch_extension_analytic.dart';
-export 'src/models/twitch_extension_transaction.dart';
+export 'src/models/twitch_extension_transaction.dart' hide Cost, ProductData;
 export 'src/models/twitch_game.dart';
 export 'src/models/twitch_response.dart';
 export 'src/models/twitch_search_channel.dart';

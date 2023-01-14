@@ -2,7 +2,6 @@ import 'package:test/test.dart';
 import 'package:twitch_api/src/errors/exceptions.dart';
 import 'package:twitch_api/src/extensions/string_extensions.dart';
 import 'package:twitch_api/src/models/twitch_custom_reward_redemption.dart';
-import 'package:twitch_api/src/models/twitch_extension_transaction.dart';
 import 'package:twitch_api/src/models/twitch_stream_info.dart';
 
 void main() {
@@ -10,17 +9,6 @@ void main() {
     test('toStreamType()', () {
       expect('live'.toStreamType(), TwitchStreamType.live);
       expect('error'.toStreamType(), TwitchStreamType.error);
-    });
-
-    test('toTransactionProductType()', () {
-      expect(
-        'BITS_IN_EXTENSION'.toTransactionProductType(),
-        TwitchExtensionTransactionProductType.bitsInExtension,
-      );
-      expect(
-        () => 'BITS_IN_CHANNEL'.toTransactionProductType(),
-        throwsA(isA<TwitchApiException>()),
-      );
     });
 
     test('toRewardRedemptionStatus()', () {
