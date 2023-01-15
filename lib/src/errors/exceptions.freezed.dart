@@ -91,11 +91,16 @@ class __$$_TwitchApiExceptionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TwitchApiException extends _TwitchApiException {
-  const _$_TwitchApiException({required this.msg}) : super._();
+class _$_TwitchApiException implements _TwitchApiException {
+  const _$_TwitchApiException({required this.msg});
 
   @override
   final String msg;
+
+  @override
+  String toString() {
+    return 'TwitchApiException(msg: $msg)';
+  }
 
   @override
   bool operator ==(dynamic other) {
@@ -116,10 +121,9 @@ class _$_TwitchApiException extends _TwitchApiException {
           this, _$identity);
 }
 
-abstract class _TwitchApiException extends TwitchApiException {
+abstract class _TwitchApiException implements TwitchApiException {
   const factory _TwitchApiException({required final String msg}) =
       _$_TwitchApiException;
-  const _TwitchApiException._() : super._();
 
   @override
   String get msg;
