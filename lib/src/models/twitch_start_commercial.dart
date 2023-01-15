@@ -1,23 +1,21 @@
-class TwitchStartCommercial {
-  TwitchStartCommercial({
-    required this.length,
-    required this.message,
-    required this.retryAfter,
-  });
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'twitch_start_commercial.freezed.dart';
+part 'twitch_start_commercial.g.dart';
+
+@freezed
+class TwitchStartCommercial with _$TwitchStartCommercial {
+  const factory TwitchStartCommercial({
+    /// Length of the triggered commercial.
+    required int length,
+
+    /// Provides contextual information on why the request failed.
+    required String message,
+
+    /// Seconds until the next commercial can be served on this channel.
+    @JsonKey(name: 'retry_after') required int retryAfter,
+  }) = _TwitchStartCommercial;
 
   factory TwitchStartCommercial.fromJson(Map<String, dynamic> json) =>
-      TwitchStartCommercial(
-        length: json['length'] as int,
-        message: json['message'] as String,
-        retryAfter: json['retry_after'] as int,
-      );
-
-  /// Length of the triggered commercial.
-  final int length;
-
-  /// Provides contextual information on why the request failed.
-  final String message;
-
-  /// Seconds until the next commercial can be served on this channel.
-  final int retryAfter;
+      _$TwitchStartCommercialFromJson(json);
 }
