@@ -27,7 +27,7 @@ _$_ExtensionAnalyticsResponse _$$_ExtensionAnalyticsResponseFromJson(
           .map((e) =>
               TwitchExtensionAnalytic.fromJson(e as Map<String, dynamic>))
           .toList(),
-      pagination: json['pagination'] as Map<String, dynamic>,
+      pagination: json['pagination'] as Map<String, dynamic>?,
     );
 
 Map<String, dynamic> _$$_ExtensionAnalyticsResponseToJson(
@@ -43,7 +43,7 @@ _$_GameAnalyticsResponse _$$_GameAnalyticsResponseFromJson(
       data: (json['data'] as List<dynamic>)
           .map((e) => TwitchGameAnalytic.fromJson(e as Map<String, dynamic>))
           .toList(),
-      pagination: json['pagination'] as Map<String, dynamic>,
+      pagination: json['pagination'] as Map<String, dynamic>?,
     );
 
 Map<String, dynamic> _$$_GameAnalyticsResponseToJson(

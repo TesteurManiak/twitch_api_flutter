@@ -185,7 +185,7 @@ mixin _$ExtensionAnalyticsResponse {
   /// A cursor value, to be used in a subsequent request to specify the
   /// starting point of the next set of results.
   /// {@endtemplate}
-  Map<String, dynamic> get pagination => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get pagination => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -201,7 +201,7 @@ abstract class $ExtensionAnalyticsResponseCopyWith<$Res> {
           ExtensionAnalyticsResponse>;
   @useResult
   $Res call(
-      {List<TwitchExtensionAnalytic> data, Map<String, dynamic> pagination});
+      {List<TwitchExtensionAnalytic> data, Map<String, dynamic>? pagination});
 }
 
 /// @nodoc
@@ -219,17 +219,17 @@ class _$ExtensionAnalyticsResponseCopyWithImpl<$Res,
   @override
   $Res call({
     Object? data = null,
-    Object? pagination = null,
+    Object? pagination = freezed,
   }) {
     return _then(_value.copyWith(
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as List<TwitchExtensionAnalytic>,
-      pagination: null == pagination
+      pagination: freezed == pagination
           ? _value.pagination
           : pagination // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as Map<String, dynamic>?,
     ) as $Val);
   }
 }
@@ -244,7 +244,7 @@ abstract class _$$_ExtensionAnalyticsResponseCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<TwitchExtensionAnalytic> data, Map<String, dynamic> pagination});
+      {List<TwitchExtensionAnalytic> data, Map<String, dynamic>? pagination});
 }
 
 /// @nodoc
@@ -261,17 +261,17 @@ class __$$_ExtensionAnalyticsResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? data = null,
-    Object? pagination = null,
+    Object? pagination = freezed,
   }) {
     return _then(_$_ExtensionAnalyticsResponse(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
               as List<TwitchExtensionAnalytic>,
-      pagination: null == pagination
+      pagination: freezed == pagination
           ? _value._pagination
           : pagination // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as Map<String, dynamic>?,
     ));
   }
 }
@@ -281,7 +281,7 @@ class __$$_ExtensionAnalyticsResponseCopyWithImpl<$Res>
 class _$_ExtensionAnalyticsResponse implements _ExtensionAnalyticsResponse {
   const _$_ExtensionAnalyticsResponse(
       {required final List<TwitchExtensionAnalytic> data,
-      required final Map<String, dynamic> pagination})
+      required final Map<String, dynamic>? pagination})
       : _data = data,
         _pagination = pagination;
 
@@ -303,17 +303,19 @@ class _$_ExtensionAnalyticsResponse implements _ExtensionAnalyticsResponse {
   /// A cursor value, to be used in a subsequent request to specify the
   /// starting point of the next set of results.
   /// {@endtemplate}
-  final Map<String, dynamic> _pagination;
+  final Map<String, dynamic>? _pagination;
 
   /// {@template twitchResponse.pagination}
   /// A cursor value, to be used in a subsequent request to specify the
   /// starting point of the next set of results.
   /// {@endtemplate}
   @override
-  Map<String, dynamic> get pagination {
+  Map<String, dynamic>? get pagination {
+    final value = _pagination;
+    if (value == null) return null;
     if (_pagination is EqualUnmodifiableMapView) return _pagination;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_pagination);
+    return EqualUnmodifiableMapView(value);
   }
 
   @override
@@ -357,7 +359,7 @@ abstract class _ExtensionAnalyticsResponse
     implements ExtensionAnalyticsResponse {
   const factory _ExtensionAnalyticsResponse(
           {required final List<TwitchExtensionAnalytic> data,
-          required final Map<String, dynamic> pagination}) =
+          required final Map<String, dynamic>? pagination}) =
       _$_ExtensionAnalyticsResponse;
 
   factory _ExtensionAnalyticsResponse.fromJson(Map<String, dynamic> json) =
@@ -373,7 +375,7 @@ abstract class _ExtensionAnalyticsResponse
   /// A cursor value, to be used in a subsequent request to specify the
   /// starting point of the next set of results.
   /// {@endtemplate}
-  Map<String, dynamic> get pagination;
+  Map<String, dynamic>? get pagination;
   @override
   @JsonKey(ignore: true)
   _$$_ExtensionAnalyticsResponseCopyWith<_$_ExtensionAnalyticsResponse>
@@ -391,7 +393,7 @@ mixin _$GameAnalyticsResponse {
   List<TwitchGameAnalytic> get data => throw _privateConstructorUsedError;
 
   /// {@macro twitchResponse.pagination}
-  Map<String, dynamic> get pagination => throw _privateConstructorUsedError;
+  Map<String, dynamic>? get pagination => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -405,7 +407,7 @@ abstract class $GameAnalyticsResponseCopyWith<$Res> {
           $Res Function(GameAnalyticsResponse) then) =
       _$GameAnalyticsResponseCopyWithImpl<$Res, GameAnalyticsResponse>;
   @useResult
-  $Res call({List<TwitchGameAnalytic> data, Map<String, dynamic> pagination});
+  $Res call({List<TwitchGameAnalytic> data, Map<String, dynamic>? pagination});
 }
 
 /// @nodoc
@@ -423,17 +425,17 @@ class _$GameAnalyticsResponseCopyWithImpl<$Res,
   @override
   $Res call({
     Object? data = null,
-    Object? pagination = null,
+    Object? pagination = freezed,
   }) {
     return _then(_value.copyWith(
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
               as List<TwitchGameAnalytic>,
-      pagination: null == pagination
+      pagination: freezed == pagination
           ? _value.pagination
           : pagination // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as Map<String, dynamic>?,
     ) as $Val);
   }
 }
@@ -446,7 +448,7 @@ abstract class _$$_GameAnalyticsResponseCopyWith<$Res>
       __$$_GameAnalyticsResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<TwitchGameAnalytic> data, Map<String, dynamic> pagination});
+  $Res call({List<TwitchGameAnalytic> data, Map<String, dynamic>? pagination});
 }
 
 /// @nodoc
@@ -461,17 +463,17 @@ class __$$_GameAnalyticsResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? data = null,
-    Object? pagination = null,
+    Object? pagination = freezed,
   }) {
     return _then(_$_GameAnalyticsResponse(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
               as List<TwitchGameAnalytic>,
-      pagination: null == pagination
+      pagination: freezed == pagination
           ? _value._pagination
           : pagination // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
+              as Map<String, dynamic>?,
     ));
   }
 }
@@ -481,7 +483,7 @@ class __$$_GameAnalyticsResponseCopyWithImpl<$Res>
 class _$_GameAnalyticsResponse implements _GameAnalyticsResponse {
   const _$_GameAnalyticsResponse(
       {required final List<TwitchGameAnalytic> data,
-      required final Map<String, dynamic> pagination})
+      required final Map<String, dynamic>? pagination})
       : _data = data,
         _pagination = pagination;
 
@@ -500,14 +502,16 @@ class _$_GameAnalyticsResponse implements _GameAnalyticsResponse {
   }
 
   /// {@macro twitchResponse.pagination}
-  final Map<String, dynamic> _pagination;
+  final Map<String, dynamic>? _pagination;
 
   /// {@macro twitchResponse.pagination}
   @override
-  Map<String, dynamic> get pagination {
+  Map<String, dynamic>? get pagination {
+    final value = _pagination;
+    if (value == null) return null;
     if (_pagination is EqualUnmodifiableMapView) return _pagination;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_pagination);
+    return EqualUnmodifiableMapView(value);
   }
 
   @override
@@ -550,7 +554,7 @@ class _$_GameAnalyticsResponse implements _GameAnalyticsResponse {
 abstract class _GameAnalyticsResponse implements GameAnalyticsResponse {
   const factory _GameAnalyticsResponse(
           {required final List<TwitchGameAnalytic> data,
-          required final Map<String, dynamic> pagination}) =
+          required final Map<String, dynamic>? pagination}) =
       _$_GameAnalyticsResponse;
 
   factory _GameAnalyticsResponse.fromJson(Map<String, dynamic> json) =
@@ -563,7 +567,7 @@ abstract class _GameAnalyticsResponse implements GameAnalyticsResponse {
   @override
 
   /// {@macro twitchResponse.pagination}
-  Map<String, dynamic> get pagination;
+  Map<String, dynamic>? get pagination;
   @override
   @JsonKey(ignore: true)
   _$$_GameAnalyticsResponseCopyWith<_$_GameAnalyticsResponse> get copyWith =>

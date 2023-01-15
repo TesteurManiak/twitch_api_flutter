@@ -142,7 +142,7 @@ class ExtensionAnalyticsResponse with _$ExtensionAnalyticsResponse {
     /// A cursor value, to be used in a subsequent request to specify the
     /// starting point of the next set of results.
     /// {@endtemplate}
-    required Map<String, dynamic> pagination,
+    required Map<String, dynamic>? pagination,
   }) = _ExtensionAnalyticsResponse;
 
   factory ExtensionAnalyticsResponse.fromJson(Map<String, dynamic> json) =>
@@ -157,7 +157,7 @@ class GameAnalyticsResponse with _$GameAnalyticsResponse {
     required List<TwitchGameAnalytic> data,
 
     /// {@macro twitchResponse.pagination}
-    required Map<String, dynamic> pagination,
+    required Map<String, dynamic>? pagination,
   }) = _GameAnalyticsResponse;
 
   factory GameAnalyticsResponse.fromJson(Map<String, dynamic> json) =>
