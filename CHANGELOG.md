@@ -1,3 +1,12 @@
+## [1.0.0]
+
+* Refactored the package using `freezed` and `json_serializable`
+
+### Breaking changes
+
+* Removed `accessToken`, use `twitchHttpClient.twitchToken` instead
+* Removed `validateToken`, use `twitchHttpClient.validateToken` instead
+
 ## [0.6.1] - 23/08/2022
 
 * Fixed [#6](https://github.com/TesteurManiak/twitch_api_flutter/issues/6)

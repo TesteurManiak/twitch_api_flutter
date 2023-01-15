@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:twitch_api/src/errors/exceptions.dart';
-import 'package:twitch_api/src/extensions/enum_extensions.dart';
 import 'package:twitch_api/src/models/twitch_channel_editor.dart';
 import 'package:twitch_api/src/models/twitch_chat_badge.dart';
 import 'package:twitch_api/src/models/twitch_chat_settings.dart';
@@ -24,25 +23,19 @@ class TwitchClient {
 
   /// Return the authorization Uri for the Twitch API.
   ///
-  /// ### Code Sample
-  ///
   /// ```dart
   /// final client = TwitchClient(
   ///   clientId: '<your client id>',
   ///   redirectUri: '<your redirect uri>',
   /// );
-  /// print(client.authorizeUri([]));
-  /// ```
   ///
-  /// ### Output
-  ///
-  /// ```url
-  /// https://id.twitch.tv/oauth2/authorize?client_id=<your client id>&redirect_uri=<your redirect uri>&response_type=token&scope=viewing_activity_read
+  /// // https://id.twitch.tv/oauth2/authorize?client_id=<your client id>&redirect_uri=<your redirect uri>&response_type=token&scope=viewing_activity_read
+  /// client.authorizeUri([]);
   /// ```
   Uri authorizeUri(List<TwitchApiScope> scopes) {
     final scopesSet = <String>{}
-      ..add('viewing_activity_read')
-      ..addAll(scopes.map((e) => e.string).toSet());
+      ..add(TwitchApiScope.viewingActivityRead.string)
+      ..addAll(scopes.map((e) => e.string));
     return oauth2Url.replace(
       pathSegments: <String>[oauthPath, authPath],
       queryParameters: {
@@ -66,12 +59,6 @@ class TwitchClient {
       initializeToken(token);
     }
   }
-
-  @Deprecated('Use [twitchHttpClient.twitchToken]')
-  TwitchToken? get accessToken => twitchHttpClient.twitchToken;
-
-  @Deprecated('Use [twitchHttpClient.validateToken()]')
-  Future<TwitchToken?> validateToken() => twitchHttpClient.validateToken();
 
   /// Method to initialize the token the first time after connection.
   ///
@@ -161,7 +148,10 @@ class TwitchClient {
     );
     assert(first < 101 && first > 0);
 
-    final queryParameters = <String, String?>{'first': first.toString()};
+    final queryParameters = <String, String>{
+      'first': first.toString(),
+      if (after != null) 'after': after,
+    };
     if (after != null) queryParameters['after'] = after;
     if (endedAt != null && startedAt != null) {
       queryParameters['ended_at'] = endedAt;
@@ -250,12 +240,12 @@ class TwitchClient {
   }) async {
     assert(count > 0 && count < 101);
 
-    final queryParameters = <String, String?>{
+    final queryParameters = <String, String>{
       'count': count.toString(),
-      'period': period.string,
+      'period': period.name,
+      if (startedAt != null) 'started_at': startedAt,
+      if (userId != null) 'user_id': userId,
     };
-    if (startedAt != null) queryParameters['started_at'] = startedAt;
-    if (userId != null) queryParameters['user_id'] = userId;
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['bits', 'leaderboard'],
@@ -282,9 +272,12 @@ class TwitchClient {
     List<String> ids = const [],
     List<String> logins = const [],
   }) async {
-    assert(ids.length < 101);
-    assert(logins.length < 101);
-    assert(ids.length + logins.length < 101);
+    assert(ids.length < 101, 'You can only request 100 ids at a time');
+    assert(logins.length < 101, 'You can only request 100 logins at a time');
+    assert(
+      (ids.length + logins.length) < 101,
+      'You can only request 100 ids or logins at a time',
+    );
 
     final queryParameters = <String, String?>{};
     if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
@@ -846,11 +839,11 @@ class TwitchClient {
     final queryParameters = <String, String?>{
       'broadcaster_id': twitchHttpClient.twitchToken?.userId,
       'reward_id': rewardId,
-      'sort': sort.string,
+      'sort': sort.name.toUpperCase(),
       'first': first.toString(),
     };
     if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
-    if (status != null) queryParameters['status'] = status.string;
+    if (status != null) queryParameters['status'] = status.name.toUpperCase();
     if (after != null) queryParameters['after'] = after;
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
@@ -1049,7 +1042,9 @@ class TwitchClient {
       status == TwitchRewardRedemptionStatus.fulfilled ||
           status == TwitchRewardRedemptionStatus.canceled,
     );
-    final body = <String, dynamic>{'status': status.string};
+    final body = <String, dynamic>{
+      'status': status.name.toUpperCase(),
+    };
     final data = await twitchHttpClient.patchCall<Map<String, dynamic>>(
       ['channel_points', 'custom_rewards', 'redemptions'],
       body,

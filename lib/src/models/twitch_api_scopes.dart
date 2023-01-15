@@ -1,4 +1,5 @@
 enum TwitchApiScope {
+  viewingActivityRead('viewing_activity_read'),
   analyticsReadExtensions('analytics:read:extensions'),
   analyticsReadGames('analytics:read:games'),
   bitsRead('bits:read'),
