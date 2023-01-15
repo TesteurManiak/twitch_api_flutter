@@ -1,5 +1,4 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:twitch_api/src/errors/exceptions.dart';
 import 'package:twitch_api/src/models/twitch_channel_editor.dart';
 import 'package:twitch_api/src/models/twitch_emotes.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
@@ -28,8 +27,6 @@ class TwitchResponse<T> {
     this.pagination,
     this.total,
     this.dateRange,
-    this.hasError = false,
-    this.error,
   });
 
   factory TwitchResponse.customRewardRedemption(Map<String, dynamic> json) =>
@@ -140,11 +137,6 @@ class TwitchResponse<T> {
 
   /// Date range of the returned data.
   final TwitchDateRange? dateRange;
-
-  final bool hasError;
-
-  /// Error message if [hasError] is true.
-  final TwitchApiException? error;
 }
 
 @freezed
