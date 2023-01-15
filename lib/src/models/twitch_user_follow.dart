@@ -1,43 +1,33 @@
-class TwitchUserFollow {
-  /// Date and time when the [fromId] user followed the [toId] user.
-  final DateTime followedAt;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  /// ID of the user following the [toId] user.
-  final String fromId;
+part 'twitch_user_follow.freezed.dart';
+part 'twitch_user_follow.g.dart';
 
-  /// Login of the user following the [toId] user.
-  final String fromLogin;
+@freezed
+class TwitchUserFollow with _$TwitchUserFollow {
+  const factory TwitchUserFollow({
+    /// Date and time when the [fromId] user followed the [toId] user.
+    @JsonKey(name: 'followed_at') required DateTime followedAt,
 
-  /// Display name corresponding to [fromId].
-  final String fromName;
+    /// ID of the user following the [toId] user.
+    @JsonKey(name: 'from_id') required String fromId,
 
-  /// ID of the user being followed by the [fromId] user.
-  final String toId;
+    /// Login of the user following the [toId] user.
+    @JsonKey(name: 'from_login') required String fromLogin,
 
-  /// Login of the user being followed by the [fromId] user.
-  final String? toLogin;
+    /// Display name corresponding to [fromId].
+    @JsonKey(name: 'from_name') required String fromName,
 
-  /// Display name corresponding to [toId].
-  final String toName;
+    /// ID of the user being followed by the [fromId] user.
+    @JsonKey(name: 'to_id') required String toId,
 
-  TwitchUserFollow({
-    required this.followedAt,
-    required this.fromId,
-    required this.fromLogin,
-    required this.fromName,
-    required this.toId,
-    required this.toLogin,
-    required this.toName,
-  });
+    /// Login of the user being followed by the [fromId] user.
+    @JsonKey(name: 'to_login') required String? toLogin,
+
+    /// Display name corresponding to [toId].
+    @JsonKey(name: 'to_name') required String toName,
+  }) = _TwitchUserFollow;
 
   factory TwitchUserFollow.fromJson(Map<String, dynamic> json) =>
-      TwitchUserFollow(
-        followedAt: DateTime.parse(json['followed_at'] as String),
-        fromId: json['from_id'] as String,
-        fromLogin: json['from_login'] as String,
-        fromName: json['from_name'] as String,
-        toId: json['to_id'] as String,
-        toLogin: json['to_login'] as String?,
-        toName: json['to_name'] as String,
-      );
+      _$TwitchUserFollowFromJson(json);
 }

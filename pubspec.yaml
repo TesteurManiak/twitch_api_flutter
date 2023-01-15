@@ -20,6 +20,8 @@ dev_dependencies:
   http_mock_adapter: ^0.3.3
   json_serializable: ^6.5.4
   lint: ^2.0.1
+  mocktail: ^0.3.0
+  remove_from_coverage: ^2.0.0
   test: ^1.22.2
 
 false_secrets:

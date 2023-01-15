@@ -1,16 +1,10 @@
-enum TwitchEmoteType { bitstier, follower, subscriptions }
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-extension TwitchEmoteTypeExtension on String {
-  TwitchEmoteType toTwitchEmoteType() {
-    switch (this) {
-      case 'bitstier':
-        return TwitchEmoteType.bitstier;
-      case 'follower':
-        return TwitchEmoteType.follower;
-      case 'subscriptions':
-        return TwitchEmoteType.subscriptions;
-      default:
-        throw Exception('Invalid TwitchEmoteType: $this');
-    }
-  }
+enum TwitchEmoteType {
+  @JsonValue('bitstier')
+  bitstier,
+  @JsonValue('follower')
+  follower,
+  @JsonValue('subscriptions')
+  subscriptions,
 }
