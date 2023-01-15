@@ -9,7 +9,4 @@ class TwitchApiException with _$TwitchApiException implements Exception {
   }) = _TwitchApiException;
 
   const TwitchApiException._();
-
-  @override
-  String toString() => 'TwitchException: $msg';
 }
