@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:twitch_api/src/errors/exceptions.dart';
 import 'package:twitch_api/src/models/twitch_channel_editor.dart';
 import 'package:twitch_api/src/models/twitch_chat_badge.dart';
 import 'package:twitch_api/src/models/twitch_chat_settings.dart';
@@ -80,15 +79,12 @@ class TwitchClient {
   }) async {
     assert(broadcasterId == twitchHttpClient.twitchToken?.userId);
     assert(length >= 30 && length <= 180 && length % 30 == 0);
-    try {
-      final data = await twitchHttpClient.postCall<Map<String, dynamic>>(
-        ['channels', 'commercial'],
-        {'broadcaster_id': broadcasterId, 'length': length.toString()},
-      );
-      return TwitchResponse.startCommercial(data);
-    } catch (e) {
-      throw TwitchApiException(msg: e.toString());
-    }
+
+    final data = await twitchHttpClient.postCall<Map<String, dynamic>>(
+      ['channels', 'commercial'],
+      {'broadcaster_id': broadcasterId, 'length': length.toString()},
+    );
+    return TwitchResponse.startCommercial(data);
   }
 
   /// Gets a URL that Extension developers can use to download analytics reports
@@ -160,15 +156,11 @@ class TwitchClient {
     if (extensionId != null) queryParameters['extension_id'] = extensionId;
     if (type != null) queryParameters['type'] = type;
 
-    try {
-      final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
-        ['analytics', 'extensions'],
-        queryParameters: queryParameters,
-      );
-      return TwitchResponse<TwitchExtensionAnalytic>.extensionAnalytics(data);
-    } catch (e) {
-      throw TwitchApiException(msg: e.toString());
-    }
+    final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
+      ['analytics', 'extensions'],
+      queryParameters: queryParameters,
+    );
+    return TwitchResponse<TwitchExtensionAnalytic>.extensionAnalytics(data);
   }
 
   /// Gets a URL that game developers can use to download analytics reports
