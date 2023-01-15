@@ -147,14 +147,13 @@ class TwitchClient {
     final queryParameters = <String, String>{
       'first': first.toString(),
       if (after != null) 'after': after,
+      if (endedAt != null && startedAt != null) ...{
+        'ended_at': endedAt,
+        'started_at': startedAt,
+      },
+      if (extensionId != null) 'extension_id': extensionId,
+      if (type != null) 'type': type,
     };
-    if (after != null) queryParameters['after'] = after;
-    if (endedAt != null && startedAt != null) {
-      queryParameters['ended_at'] = endedAt;
-      queryParameters['started_at'] = startedAt;
-    }
-    if (extensionId != null) queryParameters['extension_id'] = extensionId;
-    if (type != null) queryParameters['type'] = type;
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['analytics', 'extensions'],
