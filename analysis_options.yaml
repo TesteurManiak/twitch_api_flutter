@@ -33,3 +33,5 @@ linter:
     - directives_ordering
     - avoid_unused_constructor_parameters
     - prefer_final_locals
+    - sort_constructors_first
+    - sort_unnamed_constructors_first

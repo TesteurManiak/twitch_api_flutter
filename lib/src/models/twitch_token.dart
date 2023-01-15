@@ -1,34 +1,31 @@
-class TwitchToken {
-  final String token;
-  final String scope;
-  final String tokenType;
-  final String? clientId;
-  final String? login;
-  final List<String>? scopes;
-  final String? userId;
-  final int expiresIn;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  static const _accessTokenKey = 'access_token=';
-  static const _scopeKey = 'scope=';
-  static const _tokenTypeKey = 'token_type=';
-  static const clientIdEntry = 'client_id';
-  static const loginEntry = 'login';
-  static const scopesEntry = 'scopes';
-  static const userIdEntry = 'user_id';
-  static const expiresInEntry = 'expires_in';
+part 'twitch_token.freezed.dart';
 
-  TwitchToken({
-    required this.token,
-    required this.scope,
-    required this.tokenType,
-    this.clientId,
-    this.login,
-    this.scopes,
-    this.userId,
-    this.expiresIn = 0,
-  });
-
-  bool get isValid => expiresIn > 0;
+@freezed
+class TwitchToken with _$TwitchToken {
+  const factory TwitchToken({
+    required String token,
+    required String scope,
+    required String tokenType,
+    String? clientId,
+    String? login,
+    List<String>? scopes,
+    String? userId,
+    @Default(0) int expiresIn,
+  }) = _TwitchToken;
+  factory TwitchToken.fromValidation(
+    TwitchToken incompleteToken,
+    Map<String, dynamic> json,
+  ) {
+    return incompleteToken.copyWith(
+      clientId: json[clientIdEntry] as String,
+      login: json[loginEntry] as String,
+      scopes: List<String>.from(json[scopesEntry] as Iterable),
+      userId: json[userIdEntry] as String,
+      expiresIn: json[expiresInEntry] as int,
+    );
+  }
 
   factory TwitchToken.fromUrl(String url) {
     final content = url.split('#').last;
@@ -46,36 +43,15 @@ class TwitchToken {
     );
   }
 
-  factory TwitchToken.fromValidation(
-    TwitchToken incompleteToken,
-    Map<String, dynamic> json,
-  ) =>
-      incompleteToken.copyWith(
-        clientId: json[clientIdEntry] as String,
-        login: json[loginEntry] as String,
-        scopes: List<String>.from(json[scopesEntry] as Iterable),
-        userId: json[userIdEntry] as String,
-        expiresIn: json[expiresInEntry] as int,
-      );
+  const TwitchToken._();
+  static const _accessTokenKey = 'access_token=';
+  static const _scopeKey = 'scope=';
+  static const _tokenTypeKey = 'token_type=';
+  static const clientIdEntry = 'client_id';
+  static const loginEntry = 'login';
+  static const scopesEntry = 'scopes';
+  static const userIdEntry = 'user_id';
+  static const expiresInEntry = 'expires_in';
 
-  TwitchToken copyWith({
-    String? token,
-    String? scope,
-    String? tokenType,
-    String? clientId,
-    String? login,
-    List<String>? scopes,
-    String? userId,
-    int? expiresIn,
-  }) =>
-      TwitchToken(
-        token: token ?? this.token,
-        scope: scope ?? this.scope,
-        tokenType: tokenType ?? this.tokenType,
-        clientId: clientId ?? this.clientId,
-        login: login ?? this.login,
-        scopes: scopes ?? this.scopes,
-        userId: userId ?? this.userId,
-        expiresIn: expiresIn ?? this.expiresIn,
-      );
+  bool get isValid => expiresIn > 0;
 }

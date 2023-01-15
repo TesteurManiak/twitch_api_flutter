@@ -10,6 +10,19 @@ import 'package:twitch_api/src/providers/twitch_dio_provider.dart';
 import 'package:twitch_api/twitch_api.dart';
 
 class TwitchClient {
+  /// By default the `twitchHttpClient` will be a [TwitchDioProvider].
+  TwitchClient({
+    required this.clientId,
+    required this.redirectUri,
+    TwitchHttpClient? twitchHttpClient,
+    TwitchToken? token,
+  }) : twitchHttpClient =
+            twitchHttpClient ?? TwitchDioProvider(clientId: clientId) {
+    if (token != null) {
+      initializeToken(token);
+    }
+  }
+
   static const basePath = 'helix';
   static const oauthPath = 'oauth2';
   static const authPath = 'authorize';
@@ -45,19 +58,6 @@ class TwitchClient {
         'scope': scopesSet.join(' '),
       },
     );
-  }
-
-  /// By default the `twitchHttpClient` will be a [TwitchDioProvider].
-  TwitchClient({
-    required this.clientId,
-    required this.redirectUri,
-    TwitchHttpClient? twitchHttpClient,
-    TwitchToken? token,
-  }) : twitchHttpClient =
-            twitchHttpClient ?? TwitchDioProvider(clientId: clientId) {
-    if (token != null) {
-      initializeToken(token);
-    }
   }
 
   /// Method to initialize the token the first time after connection.

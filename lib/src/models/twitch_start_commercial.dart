@@ -1,13 +1,4 @@
 class TwitchStartCommercial {
-  /// Length of the triggered commercial.
-  final int length;
-
-  /// Provides contextual information on why the request failed.
-  final String message;
-
-  /// Seconds until the next commercial can be served on this channel.
-  final int retryAfter;
-
   TwitchStartCommercial({
     required this.length,
     required this.message,
@@ -20,4 +11,13 @@ class TwitchStartCommercial {
         message: json['message'] as String,
         retryAfter: json['retry_after'] as int,
       );
+
+  /// Length of the triggered commercial.
+  final int length;
+
+  /// Provides contextual information on why the request failed.
+  final String message;
+
+  /// Seconds until the next commercial can be served on this channel.
+  final int retryAfter;
 }

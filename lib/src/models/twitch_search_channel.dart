@@ -1,4 +1,35 @@
 class TwitchSearchChannel {
+  TwitchSearchChannel({
+    required this.gameId,
+    required this.gameName,
+    required this.id,
+    required this.broadcasterLogin,
+    required this.displayName,
+    required this.broadcasterLanguage,
+    required this.title,
+    required this.thumbnailUrl,
+    required this.isLive,
+    this.startedAt,
+    required this.tagIds,
+  });
+
+  factory TwitchSearchChannel.fromJson(Map<String, dynamic> json) =>
+      TwitchSearchChannel(
+        gameId: json['game_id'] as String,
+        gameName: json['game_name'] as String,
+        id: json['id'] as String,
+        broadcasterLogin: json['broadcaster_login'] as String,
+        displayName: json['display_name'] as String,
+        broadcasterLanguage: json['broadcaster_language'] as String,
+        title: json['title'] as String,
+        thumbnailUrl: json['thumbnail_url'] as String,
+        isLive: json['is_live'] as bool,
+        startedAt: (json['is_live'] as bool)
+            ? DateTime.parse(json['started_at'] as String)
+            : null,
+        tagIds: List<String>.from(json['tag_ids'] as Iterable),
+      );
+
   /// ID of the game being played on the stream
   final String gameId;
 
@@ -37,35 +68,4 @@ class TwitchSearchChannel {
   /// https://www.twitch.tv/directory/all/tags for tag types Note: Category Tags
   /// are not returned
   final List<String> tagIds;
-
-  TwitchSearchChannel({
-    required this.gameId,
-    required this.gameName,
-    required this.id,
-    required this.broadcasterLogin,
-    required this.displayName,
-    required this.broadcasterLanguage,
-    required this.title,
-    required this.thumbnailUrl,
-    required this.isLive,
-    this.startedAt,
-    required this.tagIds,
-  });
-
-  factory TwitchSearchChannel.fromJson(Map<String, dynamic> json) =>
-      TwitchSearchChannel(
-        gameId: json['game_id'] as String,
-        gameName: json['game_name'] as String,
-        id: json['id'] as String,
-        broadcasterLogin: json['broadcaster_login'] as String,
-        displayName: json['display_name'] as String,
-        broadcasterLanguage: json['broadcaster_language'] as String,
-        title: json['title'] as String,
-        thumbnailUrl: json['thumbnail_url'] as String,
-        isLive: json['is_live'] as bool,
-        startedAt: (json['is_live'] as bool)
-            ? DateTime.parse(json['started_at'] as String)
-            : null,
-        tagIds: List<String>.from(json['tag_ids'] as Iterable),
-      );
 }

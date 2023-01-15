@@ -170,7 +170,7 @@ class TwitchMockHttpClient extends TwitchHttpClient {
   }
 
   @override
-  TwitchToken? get twitchToken => TwitchToken(
+  TwitchToken? get twitchToken => const TwitchToken(
         scope: '',
         token: '',
         tokenType: '',
