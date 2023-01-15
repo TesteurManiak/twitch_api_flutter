@@ -60,7 +60,7 @@ _$_BitsLeaderboardResponse _$$_BitsLeaderboardResponseFromJson(
           .map((e) => TwitchBitsLeaderboard.fromJson(e as Map<String, dynamic>))
           .toList(),
       dateRange:
-          TwitchDateRange.fromJson(json['dateRange'] as Map<String, dynamic>),
+          TwitchDateRange.fromJson(json['date_range'] as Map<String, dynamic>),
       total: json['total'] as int,
     );
 
@@ -68,7 +68,7 @@ Map<String, dynamic> _$$_BitsLeaderboardResponseToJson(
         _$_BitsLeaderboardResponse instance) =>
     <String, dynamic>{
       'data': instance.data,
-      'dateRange': instance.dateRange,
+      'date_range': instance.dateRange,
       'total': instance.total,
     };
 
@@ -100,6 +100,60 @@ Map<String, dynamic> _$$_UsersFollowsResponseToJson(
       'data': instance.data,
       'pagination': instance.pagination,
       'total': instance.total,
+    };
+
+_$_TopGamesResponse _$$_TopGamesResponseFromJson(Map<String, dynamic> json) =>
+    _$_TopGamesResponse(
+      data: (json['data'] as List<dynamic>)
+          .map((e) => TwitchGame.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      pagination: json['pagination'] as Map<String, dynamic>?,
+    );
+
+Map<String, dynamic> _$$_TopGamesResponseToJson(_$_TopGamesResponse instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+      'pagination': instance.pagination,
+    };
+
+_$_GamesResponse _$$_GamesResponseFromJson(Map<String, dynamic> json) =>
+    _$_GamesResponse(
+      data: (json['data'] as List<dynamic>)
+          .map((e) => TwitchGame.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$_GamesResponseToJson(_$_GamesResponse instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+    };
+
+_$_ChannelInformationResponse _$$_ChannelInformationResponseFromJson(
+        Map<String, dynamic> json) =>
+    _$_ChannelInformationResponse(
+      data: (json['data'] as List<dynamic>)
+          .map((e) => TwitchChannelInfo.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$_ChannelInformationResponseToJson(
+        _$_ChannelInformationResponse instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+    };
+
+_$_SearchCategoriesResponse _$$_SearchCategoriesResponseFromJson(
+        Map<String, dynamic> json) =>
+    _$_SearchCategoriesResponse(
+      data: (json['data'] as List<dynamic>)
+          .map((e) => TwitchGame.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$_SearchCategoriesResponseToJson(
+        _$_SearchCategoriesResponse instance) =>
+    <String, dynamic>{
+      'data': instance.data,
     };
 
 _$_CheermotesResponse _$$_CheermotesResponseFromJson(

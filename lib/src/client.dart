@@ -319,22 +319,24 @@ class TwitchClient {
 
   /// Gets games sorted by number of current viewers on Twitch, most popular
   /// first.
-  Future<TwitchResponse<TwitchGame>> getTopGames({
+  Future<TopGamesResponse> getTopGames({
     String? after,
     String? before,
     int first = 20,
   }) async {
     assert(first < 101 && first > 0);
 
-    final queryParameters = <String, String?>{'first': first.toString()};
-    if (after != null) queryParameters['after'] = after;
-    if (before != null) queryParameters['before'] = before;
+    final queryParameters = <String, String>{
+      'first': first.toString(),
+      if (after != null) 'after': after,
+      if (before != null) 'before': before,
+    };
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['games', 'top'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.games(data);
+    return TopGamesResponse.fromJson(data);
   }
 
   /// Gets game information by game ID or name.
@@ -347,34 +349,37 @@ class TwitchClient {
   /// “Pokemon” will not return a list of Pokemon games; instead, query any
   /// specific Pokemon games in which you are interested. At most 100 name
   /// values can be specified.
-  Future<TwitchResponse<TwitchGame>> getGames({
+  Future<GamesResponse> getGames({
     List<String> ids = const [],
     List<String> names = const [],
   }) async {
-    assert((ids.isNotEmpty) || (names.isNotEmpty));
+    assert(ids.isNotEmpty || names.isNotEmpty);
     assert(ids.length < 101);
     assert(names.length < 101);
 
-    final queryParameters = <String, String?>{};
-    if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
-    if (names.isNotEmpty) queryParameters['name'] = names.join(',');
+    final queryParameters = <String, String>{
+      if (ids.isNotEmpty) 'id': ids.join(','),
+      if (names.isNotEmpty) 'name': names.join(','),
+    };
 
-    final data = await twitchHttpClient
-        .getCall(['games'], queryParameters: queryParameters);
-    return TwitchResponse.games(data as Map<String, dynamic>);
+    final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
+      ['games'],
+      queryParameters: queryParameters,
+    );
+    return GamesResponse.fromJson(data);
   }
 
   /// Gets channel information for users.
   ///
   /// [broadcasterId]: ID of the channel to be updated.
-  Future<TwitchResponse<TwitchChannelInfo>> getChannelInformations(
+  Future<ChannelInformationResponse> getChannelInformations(
     String broadcasterId,
   ) async {
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['channels'],
       queryParameters: {'broadcaster_id': broadcasterId},
     );
-    return TwitchResponse.channelInformations(data);
+    return ChannelInformationResponse.fromJson(data);
   }
 
   /// Returns a list of games or categories that match the query via name either
@@ -388,23 +393,25 @@ class TwitchClient {
   /// fetching the next set of results, in a multi-page response. The cursor
   /// value specified here is from the `pagination` response field of a prior
   /// query.
-  Future<TwitchResponse<TwitchGame>> searchCategories({
+  Future<SearchCategoriesResponse> searchCategories({
     required String query,
     int first = 20,
     String? after,
   }) async {
+    assert(query.isNotEmpty);
     assert(first > 0 && first < 101);
 
-    final queryParameters = <String, String?>{
+    final queryParameters = <String, String>{
       'query': query,
       'first': first.toString(),
+      if (after != null) 'after': after,
     };
-    if (after != null) queryParameters['after'] = after;
+
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['search', 'categories'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.games(data);
+    return SearchCategoriesResponse.fromJson(data);
   }
 
   /// Returns a list of channels (users who have streamed within the past 6

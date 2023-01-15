@@ -585,6 +585,7 @@ mixin _$BitsLeaderboardResponse {
   List<TwitchBitsLeaderboard> get data => throw _privateConstructorUsedError;
 
   /// {@macro twitchResponse.dateRange}
+  @JsonKey(name: 'date_range')
   TwitchDateRange get dateRange => throw _privateConstructorUsedError;
 
   /// {@macro twitchResponse.total}
@@ -603,7 +604,9 @@ abstract class $BitsLeaderboardResponseCopyWith<$Res> {
       _$BitsLeaderboardResponseCopyWithImpl<$Res, BitsLeaderboardResponse>;
   @useResult
   $Res call(
-      {List<TwitchBitsLeaderboard> data, TwitchDateRange dateRange, int total});
+      {List<TwitchBitsLeaderboard> data,
+      @JsonKey(name: 'date_range') TwitchDateRange dateRange,
+      int total});
 
   $TwitchDateRangeCopyWith<$Res> get dateRange;
 }
@@ -660,7 +663,9 @@ abstract class _$$_BitsLeaderboardResponseCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<TwitchBitsLeaderboard> data, TwitchDateRange dateRange, int total});
+      {List<TwitchBitsLeaderboard> data,
+      @JsonKey(name: 'date_range') TwitchDateRange dateRange,
+      int total});
 
   @override
   $TwitchDateRangeCopyWith<$Res> get dateRange;
@@ -704,7 +709,7 @@ class __$$_BitsLeaderboardResponseCopyWithImpl<$Res>
 class _$_BitsLeaderboardResponse implements _BitsLeaderboardResponse {
   const _$_BitsLeaderboardResponse(
       {required final List<TwitchBitsLeaderboard> data,
-      required this.dateRange,
+      @JsonKey(name: 'date_range') required this.dateRange,
       required this.total})
       : _data = data;
 
@@ -724,6 +729,7 @@ class _$_BitsLeaderboardResponse implements _BitsLeaderboardResponse {
 
   /// {@macro twitchResponse.dateRange}
   @override
+  @JsonKey(name: 'date_range')
   final TwitchDateRange dateRange;
 
   /// {@macro twitchResponse.total}
@@ -770,7 +776,7 @@ class _$_BitsLeaderboardResponse implements _BitsLeaderboardResponse {
 abstract class _BitsLeaderboardResponse implements BitsLeaderboardResponse {
   const factory _BitsLeaderboardResponse(
       {required final List<TwitchBitsLeaderboard> data,
-      required final TwitchDateRange dateRange,
+      @JsonKey(name: 'date_range') required final TwitchDateRange dateRange,
       required final int total}) = _$_BitsLeaderboardResponse;
 
   factory _BitsLeaderboardResponse.fromJson(Map<String, dynamic> json) =
@@ -783,6 +789,7 @@ abstract class _BitsLeaderboardResponse implements BitsLeaderboardResponse {
   @override
 
   /// {@macro twitchResponse.dateRange}
+  @JsonKey(name: 'date_range')
   TwitchDateRange get dateRange;
   @override
 
@@ -1162,6 +1169,658 @@ abstract class _UsersFollowsResponse implements UsersFollowsResponse {
   @JsonKey(ignore: true)
   _$$_UsersFollowsResponseCopyWith<_$_UsersFollowsResponse> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+TopGamesResponse _$TopGamesResponseFromJson(Map<String, dynamic> json) {
+  return _TopGamesResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TopGamesResponse {
+  /// {@macro twitchResponse.data}
+  List<TwitchGame> get data => throw _privateConstructorUsedError;
+
+  /// {@macro twitchResponse.pagination}
+  Map<String, dynamic>? get pagination => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TopGamesResponseCopyWith<TopGamesResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TopGamesResponseCopyWith<$Res> {
+  factory $TopGamesResponseCopyWith(
+          TopGamesResponse value, $Res Function(TopGamesResponse) then) =
+      _$TopGamesResponseCopyWithImpl<$Res, TopGamesResponse>;
+  @useResult
+  $Res call({List<TwitchGame> data, Map<String, dynamic>? pagination});
+}
+
+/// @nodoc
+class _$TopGamesResponseCopyWithImpl<$Res, $Val extends TopGamesResponse>
+    implements $TopGamesResponseCopyWith<$Res> {
+  _$TopGamesResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? pagination = freezed,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchGame>,
+      pagination: freezed == pagination
+          ? _value.pagination
+          : pagination // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_TopGamesResponseCopyWith<$Res>
+    implements $TopGamesResponseCopyWith<$Res> {
+  factory _$$_TopGamesResponseCopyWith(
+          _$_TopGamesResponse value, $Res Function(_$_TopGamesResponse) then) =
+      __$$_TopGamesResponseCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<TwitchGame> data, Map<String, dynamic>? pagination});
+}
+
+/// @nodoc
+class __$$_TopGamesResponseCopyWithImpl<$Res>
+    extends _$TopGamesResponseCopyWithImpl<$Res, _$_TopGamesResponse>
+    implements _$$_TopGamesResponseCopyWith<$Res> {
+  __$$_TopGamesResponseCopyWithImpl(
+      _$_TopGamesResponse _value, $Res Function(_$_TopGamesResponse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? pagination = freezed,
+  }) {
+    return _then(_$_TopGamesResponse(
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchGame>,
+      pagination: freezed == pagination
+          ? _value._pagination
+          : pagination // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_TopGamesResponse implements _TopGamesResponse {
+  const _$_TopGamesResponse(
+      {required final List<TwitchGame> data,
+      required final Map<String, dynamic>? pagination})
+      : _data = data,
+        _pagination = pagination;
+
+  factory _$_TopGamesResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_TopGamesResponseFromJson(json);
+
+  /// {@macro twitchResponse.data}
+  final List<TwitchGame> _data;
+
+  /// {@macro twitchResponse.data}
+  @override
+  List<TwitchGame> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  /// {@macro twitchResponse.pagination}
+  final Map<String, dynamic>? _pagination;
+
+  /// {@macro twitchResponse.pagination}
+  @override
+  Map<String, dynamic>? get pagination {
+    final value = _pagination;
+    if (value == null) return null;
+    if (_pagination is EqualUnmodifiableMapView) return _pagination;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  @override
+  String toString() {
+    return 'TopGamesResponse(data: $data, pagination: $pagination)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_TopGamesResponse &&
+            const DeepCollectionEquality().equals(other._data, _data) &&
+            const DeepCollectionEquality()
+                .equals(other._pagination, _pagination));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_data),
+      const DeepCollectionEquality().hash(_pagination));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_TopGamesResponseCopyWith<_$_TopGamesResponse> get copyWith =>
+      __$$_TopGamesResponseCopyWithImpl<_$_TopGamesResponse>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_TopGamesResponseToJson(
+      this,
+    );
+  }
+}
+
+abstract class _TopGamesResponse implements TopGamesResponse {
+  const factory _TopGamesResponse(
+      {required final List<TwitchGame> data,
+      required final Map<String, dynamic>? pagination}) = _$_TopGamesResponse;
+
+  factory _TopGamesResponse.fromJson(Map<String, dynamic> json) =
+      _$_TopGamesResponse.fromJson;
+
+  @override
+
+  /// {@macro twitchResponse.data}
+  List<TwitchGame> get data;
+  @override
+
+  /// {@macro twitchResponse.pagination}
+  Map<String, dynamic>? get pagination;
+  @override
+  @JsonKey(ignore: true)
+  _$$_TopGamesResponseCopyWith<_$_TopGamesResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+GamesResponse _$GamesResponseFromJson(Map<String, dynamic> json) {
+  return _GamesResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$GamesResponse {
+  /// {@macro twitchResponse.data}
+  List<TwitchGame> get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GamesResponseCopyWith<GamesResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GamesResponseCopyWith<$Res> {
+  factory $GamesResponseCopyWith(
+          GamesResponse value, $Res Function(GamesResponse) then) =
+      _$GamesResponseCopyWithImpl<$Res, GamesResponse>;
+  @useResult
+  $Res call({List<TwitchGame> data});
+}
+
+/// @nodoc
+class _$GamesResponseCopyWithImpl<$Res, $Val extends GamesResponse>
+    implements $GamesResponseCopyWith<$Res> {
+  _$GamesResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchGame>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_GamesResponseCopyWith<$Res>
+    implements $GamesResponseCopyWith<$Res> {
+  factory _$$_GamesResponseCopyWith(
+          _$_GamesResponse value, $Res Function(_$_GamesResponse) then) =
+      __$$_GamesResponseCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<TwitchGame> data});
+}
+
+/// @nodoc
+class __$$_GamesResponseCopyWithImpl<$Res>
+    extends _$GamesResponseCopyWithImpl<$Res, _$_GamesResponse>
+    implements _$$_GamesResponseCopyWith<$Res> {
+  __$$_GamesResponseCopyWithImpl(
+      _$_GamesResponse _value, $Res Function(_$_GamesResponse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$_GamesResponse(
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchGame>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_GamesResponse implements _GamesResponse {
+  const _$_GamesResponse({required final List<TwitchGame> data}) : _data = data;
+
+  factory _$_GamesResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_GamesResponseFromJson(json);
+
+  /// {@macro twitchResponse.data}
+  final List<TwitchGame> _data;
+
+  /// {@macro twitchResponse.data}
+  @override
+  List<TwitchGame> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  @override
+  String toString() {
+    return 'GamesResponse(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_GamesResponse &&
+            const DeepCollectionEquality().equals(other._data, _data));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_GamesResponseCopyWith<_$_GamesResponse> get copyWith =>
+      __$$_GamesResponseCopyWithImpl<_$_GamesResponse>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_GamesResponseToJson(
+      this,
+    );
+  }
+}
+
+abstract class _GamesResponse implements GamesResponse {
+  const factory _GamesResponse({required final List<TwitchGame> data}) =
+      _$_GamesResponse;
+
+  factory _GamesResponse.fromJson(Map<String, dynamic> json) =
+      _$_GamesResponse.fromJson;
+
+  @override
+
+  /// {@macro twitchResponse.data}
+  List<TwitchGame> get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$_GamesResponseCopyWith<_$_GamesResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ChannelInformationResponse _$ChannelInformationResponseFromJson(
+    Map<String, dynamic> json) {
+  return _ChannelInformationResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ChannelInformationResponse {
+  /// {@macro twitchResponse.data}
+  List<TwitchChannelInfo> get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ChannelInformationResponseCopyWith<ChannelInformationResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ChannelInformationResponseCopyWith<$Res> {
+  factory $ChannelInformationResponseCopyWith(ChannelInformationResponse value,
+          $Res Function(ChannelInformationResponse) then) =
+      _$ChannelInformationResponseCopyWithImpl<$Res,
+          ChannelInformationResponse>;
+  @useResult
+  $Res call({List<TwitchChannelInfo> data});
+}
+
+/// @nodoc
+class _$ChannelInformationResponseCopyWithImpl<$Res,
+        $Val extends ChannelInformationResponse>
+    implements $ChannelInformationResponseCopyWith<$Res> {
+  _$ChannelInformationResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchChannelInfo>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_ChannelInformationResponseCopyWith<$Res>
+    implements $ChannelInformationResponseCopyWith<$Res> {
+  factory _$$_ChannelInformationResponseCopyWith(
+          _$_ChannelInformationResponse value,
+          $Res Function(_$_ChannelInformationResponse) then) =
+      __$$_ChannelInformationResponseCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<TwitchChannelInfo> data});
+}
+
+/// @nodoc
+class __$$_ChannelInformationResponseCopyWithImpl<$Res>
+    extends _$ChannelInformationResponseCopyWithImpl<$Res,
+        _$_ChannelInformationResponse>
+    implements _$$_ChannelInformationResponseCopyWith<$Res> {
+  __$$_ChannelInformationResponseCopyWithImpl(
+      _$_ChannelInformationResponse _value,
+      $Res Function(_$_ChannelInformationResponse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$_ChannelInformationResponse(
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchChannelInfo>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ChannelInformationResponse implements _ChannelInformationResponse {
+  const _$_ChannelInformationResponse(
+      {required final List<TwitchChannelInfo> data})
+      : _data = data;
+
+  factory _$_ChannelInformationResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_ChannelInformationResponseFromJson(json);
+
+  /// {@macro twitchResponse.data}
+  final List<TwitchChannelInfo> _data;
+
+  /// {@macro twitchResponse.data}
+  @override
+  List<TwitchChannelInfo> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  @override
+  String toString() {
+    return 'ChannelInformationResponse(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ChannelInformationResponse &&
+            const DeepCollectionEquality().equals(other._data, _data));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ChannelInformationResponseCopyWith<_$_ChannelInformationResponse>
+      get copyWith => __$$_ChannelInformationResponseCopyWithImpl<
+          _$_ChannelInformationResponse>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ChannelInformationResponseToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ChannelInformationResponse
+    implements ChannelInformationResponse {
+  const factory _ChannelInformationResponse(
+          {required final List<TwitchChannelInfo> data}) =
+      _$_ChannelInformationResponse;
+
+  factory _ChannelInformationResponse.fromJson(Map<String, dynamic> json) =
+      _$_ChannelInformationResponse.fromJson;
+
+  @override
+
+  /// {@macro twitchResponse.data}
+  List<TwitchChannelInfo> get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ChannelInformationResponseCopyWith<_$_ChannelInformationResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+SearchCategoriesResponse _$SearchCategoriesResponseFromJson(
+    Map<String, dynamic> json) {
+  return _SearchCategoriesResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SearchCategoriesResponse {
+  /// {@macro twitchResponse.data}
+  List<TwitchGame> get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SearchCategoriesResponseCopyWith<SearchCategoriesResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SearchCategoriesResponseCopyWith<$Res> {
+  factory $SearchCategoriesResponseCopyWith(SearchCategoriesResponse value,
+          $Res Function(SearchCategoriesResponse) then) =
+      _$SearchCategoriesResponseCopyWithImpl<$Res, SearchCategoriesResponse>;
+  @useResult
+  $Res call({List<TwitchGame> data});
+}
+
+/// @nodoc
+class _$SearchCategoriesResponseCopyWithImpl<$Res,
+        $Val extends SearchCategoriesResponse>
+    implements $SearchCategoriesResponseCopyWith<$Res> {
+  _$SearchCategoriesResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchGame>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_SearchCategoriesResponseCopyWith<$Res>
+    implements $SearchCategoriesResponseCopyWith<$Res> {
+  factory _$$_SearchCategoriesResponseCopyWith(
+          _$_SearchCategoriesResponse value,
+          $Res Function(_$_SearchCategoriesResponse) then) =
+      __$$_SearchCategoriesResponseCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<TwitchGame> data});
+}
+
+/// @nodoc
+class __$$_SearchCategoriesResponseCopyWithImpl<$Res>
+    extends _$SearchCategoriesResponseCopyWithImpl<$Res,
+        _$_SearchCategoriesResponse>
+    implements _$$_SearchCategoriesResponseCopyWith<$Res> {
+  __$$_SearchCategoriesResponseCopyWithImpl(_$_SearchCategoriesResponse _value,
+      $Res Function(_$_SearchCategoriesResponse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$_SearchCategoriesResponse(
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchGame>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_SearchCategoriesResponse implements _SearchCategoriesResponse {
+  const _$_SearchCategoriesResponse({required final List<TwitchGame> data})
+      : _data = data;
+
+  factory _$_SearchCategoriesResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_SearchCategoriesResponseFromJson(json);
+
+  /// {@macro twitchResponse.data}
+  final List<TwitchGame> _data;
+
+  /// {@macro twitchResponse.data}
+  @override
+  List<TwitchGame> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  @override
+  String toString() {
+    return 'SearchCategoriesResponse(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SearchCategoriesResponse &&
+            const DeepCollectionEquality().equals(other._data, _data));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SearchCategoriesResponseCopyWith<_$_SearchCategoriesResponse>
+      get copyWith => __$$_SearchCategoriesResponseCopyWithImpl<
+          _$_SearchCategoriesResponse>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_SearchCategoriesResponseToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SearchCategoriesResponse implements SearchCategoriesResponse {
+  const factory _SearchCategoriesResponse(
+      {required final List<TwitchGame> data}) = _$_SearchCategoriesResponse;
+
+  factory _SearchCategoriesResponse.fromJson(Map<String, dynamic> json) =
+      _$_SearchCategoriesResponse.fromJson;
+
+  @override
+
+  /// {@macro twitchResponse.data}
+  List<TwitchGame> get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SearchCategoriesResponseCopyWith<_$_SearchCategoriesResponse>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 CheermotesResponse _$CheermotesResponseFromJson(Map<String, dynamic> json) {

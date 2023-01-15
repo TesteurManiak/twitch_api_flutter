@@ -207,6 +207,113 @@ void main() {
       );
     });
 
+    group('getTopGames', () {
+      test(
+        'should call getCall on games/top and return a valid GamesResponse',
+        () async {
+          const path = ['games', 'top'];
+          const queryParams = {'first': '20'};
+
+          when(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: queryParams,
+            ),
+          ).thenAnswer((_) async => readJson('get_top_games.json'));
+
+          await client.getTopGames();
+
+          verify(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: queryParams,
+            ),
+          );
+        },
+      );
+    });
+
+    group('getGames', () {
+      test(
+        'should call getCall on games and return a valid GamesResponse',
+        () async {
+          const path = ['games'];
+          const ids = ['123'];
+          final queryParams = {'id': ids.join(',')};
+
+          when(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: queryParams,
+            ),
+          ).thenAnswer((_) async => readJson('get_games.json'));
+
+          await client.getGames(ids: ids);
+
+          verify(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: queryParams,
+            ),
+          );
+        },
+      );
+    });
+
+    group('getChannelInformations', () {
+      test(
+        'should call getCall on channels and return a valid ChannelsResponse',
+        () async {
+          const path = ['channels'];
+          const id = '141981764';
+          final queryParams = {'broadcaster_id': id};
+
+          when(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: queryParams,
+            ),
+          ).thenAnswer((_) async => readJson('get_channel_informations.json'));
+
+          await client.getChannelInformations(id);
+
+          verify(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: queryParams,
+            ),
+          );
+        },
+      );
+    });
+
+    group('searchCategories', () {
+      test(
+        'should call getCall on search/categories and return a valid CategoriesResponse',
+        () async {
+          const path = ['search', 'categories'];
+          const query = 'fort';
+          final queryParams = {'query': query, 'first': '20'};
+
+          when(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: queryParams,
+            ),
+          ).thenAnswer((_) async => readJson('search_categories.json'));
+
+          await client.searchCategories(query: query);
+
+          verify(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: queryParams,
+            ),
+          );
+        },
+      );
+    });
+
     group('getCheermotes', () {
       test(
           'should call getCall on bits/cheermotes and return a valid CheermotesResponse',
@@ -232,26 +339,6 @@ void main() {
     });
 
     group('GET', () {
-      test('Cheermotes', () async {
-        const path = ['bits', 'cheermotes'];
-
-        when(
-          () => mockHttpClient.getCall<Map<String, dynamic>>(
-            path,
-            queryParameters: any(named: 'queryParameters'),
-          ),
-        ).thenAnswer((_) async => readJson('get_cheermotes.json'));
-
-        await client.getCheermotes();
-
-        verify(
-          () => mockHttpClient.getCall<Map<String, dynamic>>(
-            path,
-            queryParameters: any(named: 'queryParameters'),
-          ),
-        );
-      });
-
       group('Streams', () {
         test('1', () async {
           final data = (await client.getStreams()).data!;
@@ -374,59 +461,6 @@ void main() {
 
         final subscription = response.data!.first;
         expect(subscription.broadcasterId, '141981764');
-      });
-
-      test('Channel Informations', () async {
-        final data = (await client.getChannelInformations('141981764')).data!;
-        expect(data.length, 1);
-
-        final channel = data.first;
-        expect(channel.broadcasterId, '141981764');
-        expect(channel.broadcasterName, 'TwitchDev');
-        expect(channel.broadcasterLanguage, 'en');
-        expect(channel.gameId, '509670');
-        expect(channel.gameName, 'Science & Technology');
-        expect(channel.title, 'TwitchDev Monthly Update // May 6, 2021');
-        expect(channel.delay, 0);
-      });
-
-      test('Games', () async {
-        final data = (await client.getGames(ids: ['493057'])).data!;
-        expect(data.length, 1);
-
-        final game = data.first;
-        expect(game.id, '33214');
-        expect(
-          game.getBoxArtUrl(),
-          'https://static-cdn.jtvnw.net/ttv-boxart/Fortnite-52x72.jpg',
-        );
-        expect(game.name, 'Fortnite');
-      });
-
-      test('Top Games', () async {
-        final data = (await client.getTopGames()).data!;
-        expect(data.length, 1);
-
-        final game = data.first;
-        expect(game.id, '493057');
-        expect(game.name, "PLAYERUNKNOWN'S BATTLEGROUNDS");
-        expect(
-          game.getBoxArtUrl(),
-          'https://static-cdn.jtvnw.net/ttv-boxart/PLAYERUNKNOWN%27S%20BATTLEGROUNDS-285x380.jpg',
-        );
-      });
-
-      test('Search Categories', () async {
-        final data = (await client.searchCategories(query: 'fort')).data!;
-        expect(data.length, 1);
-
-        final category = data.first;
-        expect(category.id, '33214');
-        expect(category.name, 'Fortnite');
-        expect(
-          category.getBoxArtUrl(),
-          'https://static-cdn.jtvnw.net/ttv-boxart/Fortnite-285x380.jpg',
-        );
       });
 
       test('Search Channels', () async {

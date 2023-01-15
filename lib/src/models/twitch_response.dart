@@ -46,16 +46,6 @@ class TwitchResponse<T> {
         data: _parseObjects(json, TwitchExtensionTransaction.fromJson),
       );
 
-  /// Constructor for request containing [TwitchChannelInfo].
-  factory TwitchResponse.channelInformations(Map<String, dynamic> json) =>
-      TwitchResponse(data: _parseObjects(json, TwitchChannelInfo.fromJson));
-
-  /// Constructor for request containing [TwitchGame].
-  factory TwitchResponse.games(Map<String, dynamic> json) => TwitchResponse(
-        data: _parseObjects(json, TwitchGame.fromJson),
-        pagination: json['pagination'] as Map<String, dynamic>?,
-      );
-
   /// Constructor for request containing [TwitchBroadcasterSubscription].
   factory TwitchResponse.broadcasterSubscriptions(Map<String, dynamic> json) =>
       TwitchResponse(
@@ -149,7 +139,7 @@ class BitsLeaderboardResponse with _$BitsLeaderboardResponse {
     required List<TwitchBitsLeaderboard> data,
 
     /// {@macro twitchResponse.dateRange}
-    required TwitchDateRange dateRange,
+    @JsonKey(name: 'date_range') required TwitchDateRange dateRange,
 
     /// {@macro twitchResponse.total}
     required int total,
@@ -187,6 +177,57 @@ class UsersFollowsResponse with _$UsersFollowsResponse {
 
   factory UsersFollowsResponse.fromJson(Map<String, dynamic> json) =>
       _$UsersFollowsResponseFromJson(json);
+}
+
+/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-top-games
+@freezed
+class TopGamesResponse with _$TopGamesResponse {
+  const factory TopGamesResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchGame> data,
+
+    /// {@macro twitchResponse.pagination}
+    required Map<String, dynamic>? pagination,
+  }) = _TopGamesResponse;
+
+  factory TopGamesResponse.fromJson(Map<String, dynamic> json) =>
+      _$TopGamesResponseFromJson(json);
+}
+
+/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-games
+@freezed
+class GamesResponse with _$GamesResponse {
+  const factory GamesResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchGame> data,
+  }) = _GamesResponse;
+
+  factory GamesResponse.fromJson(Map<String, dynamic> json) =>
+      _$GamesResponseFromJson(json);
+}
+
+/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-channel-information
+@freezed
+class ChannelInformationResponse with _$ChannelInformationResponse {
+  const factory ChannelInformationResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchChannelInfo> data,
+  }) = _ChannelInformationResponse;
+
+  factory ChannelInformationResponse.fromJson(Map<String, dynamic> json) =>
+      _$ChannelInformationResponseFromJson(json);
+}
+
+/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#search-categories
+@freezed
+class SearchCategoriesResponse with _$SearchCategoriesResponse {
+  const factory SearchCategoriesResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchGame> data,
+  }) = _SearchCategoriesResponse;
+
+  factory SearchCategoriesResponse.fromJson(Map<String, dynamic> json) =>
+      _$SearchCategoriesResponseFromJson(json);
 }
 
 @freezed

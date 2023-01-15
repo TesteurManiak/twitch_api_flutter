@@ -185,7 +185,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   (value) => _displayDataAlert(
                     method: 'Top Games',
                     data: value.data
-                        ?.map<String>((e) => e.name)
+                        .map<String>((e) => e.name)
                         .toList()
                         .join('\n'),
                   ),
@@ -195,8 +195,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () => _twitchClient.getGames(names: ['Fortnite']).then(
               (value) => _displayDataAlert(
-                method: value.data?.first.name,
-                data: value.data?.first.getBoxArtUrl(),
+                method: value.data.first.name,
+                data: value.data.first.getBoxArtUrl(),
                 isImg: true,
               ),
             ),
@@ -206,8 +206,8 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () =>
                 _twitchClient.getChannelInformations('44445592').then(
                       (value) => _displayDataAlert(
-                        method: value.data?.first.broadcasterName,
-                        data: value.data?.first.title,
+                        method: value.data.first.broadcasterName,
+                        data: value.data.first.title,
                       ),
                     ),
             child: const Text('Get Pokimane Channel Info'),
@@ -245,8 +245,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () => _twitchClient.searchCategories(query: 'fort').then(
                   (value) => _displayDataAlert(
-                    method: value.data?.first.name,
-                    data: value.data?.first.getBoxArtUrl(),
+                    method: value.data.first.name,
+                    data: value.data.first.getBoxArtUrl(),
                     isImg: true,
                   ),
                 ),
