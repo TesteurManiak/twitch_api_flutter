@@ -291,7 +291,7 @@ class TwitchClient {
   /// in order, most recent follow first.
   ///
   /// At minimum, `fromId` or `toId` must be provided for a query to be valid.
-  Future<TwitchResponse<TwitchUserFollow>> getUsersFollows({
+  Future<UsersFollowsResponse> getUsersFollows({
     String? after,
     int first = 20,
     String? fromId,
@@ -303,16 +303,18 @@ class TwitchClient {
       'At minimum, fromId or toId must be provided for a query to be valid.',
     );
 
-    final queryParameters = <String, String?>{'first': first.toString()};
-    if (after != null) queryParameters['after'] = after;
-    if (fromId != null) queryParameters['from_id'] = fromId;
-    if (toId != null) queryParameters['to_id'] = toId;
+    final queryParameters = <String, String>{
+      'first': first.toString(),
+      if (after != null) 'after': after,
+      if (fromId != null) 'from_id': fromId,
+      if (toId != null) 'to_id': toId,
+    };
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['users', 'follows'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.usersFollows(data);
+    return UsersFollowsResponse.fromJson(data);
   }
 
   /// Gets games sorted by number of current viewers on Twitch, most popular

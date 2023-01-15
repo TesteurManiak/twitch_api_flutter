@@ -180,6 +180,33 @@ void main() {
       );
     });
 
+    group('getUsersFollows', () {
+      test(
+        'should call getCall on users/follows and return a valid UsersFollowsResponse',
+        () async {
+          const path = ['users', 'follows'];
+          const fromId = '123';
+          const queryParams = {'first': '20', 'from_id': fromId};
+
+          when(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: queryParams,
+            ),
+          ).thenAnswer((_) async => readJson('get_users_follows.json'));
+
+          await client.getUsersFollows(fromId: fromId);
+
+          verify(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: queryParams,
+            ),
+          );
+        },
+      );
+    });
+
     group('getCheermotes', () {
       test(
           'should call getCall on bits/cheermotes and return a valid CheermotesResponse',
@@ -349,33 +376,6 @@ void main() {
         expect(subscription.broadcasterId, '141981764');
       });
 
-      test('Users', () async {
-        final data = (await client.getUsers(ids: ['141981764'])).data;
-        expect(data.length, 1);
-
-        final user = data.first;
-        expect(user.id, '141981764');
-        expect(user.login, 'twitchdev');
-        expect(user.displayName, 'TwitchDev');
-        expect(user.type, '');
-        expect(user.broadcasterType, TwitchBroadcasterType.partner);
-        expect(
-          user.description,
-          'Supporting third-party developers building Twitch integrations from chatbots to game integrations.',
-        );
-        expect(
-          user.profileImageUrl,
-          'https://static-cdn.jtvnw.net/jtv_user_pictures/8a6381c7-d0c0-4576-b179-38bd5ce1d6af-profile_image-300x300.png',
-        );
-        expect(
-          user.offlineImageUrl,
-          'https://static-cdn.jtvnw.net/jtv_user_pictures/3f13ab61-ec78-4fe6-8481-8682cb3b0ac2-channel_offline_image-1920x1080.png',
-        );
-        expect(user.viewCount, 5980557);
-        expect(user.email, 'not-real@email.com');
-        expect(user.createdAt, '2016-12-14T20:32:28.894263Z');
-      });
-
       test('Channel Informations', () async {
         final data = (await client.getChannelInformations('141981764')).data!;
         expect(data.length, 1);
@@ -401,19 +401,6 @@ void main() {
           'https://static-cdn.jtvnw.net/ttv-boxart/Fortnite-52x72.jpg',
         );
         expect(game.name, 'Fortnite');
-      });
-
-      test('Users Follows', () async {
-        final data = (await client.getUsersFollows(toId: '23161357')).data!;
-        expect(data.length, 2);
-
-        final user = data.first;
-        expect(user.fromId, '171003792');
-        expect(user.fromLogin, 'iiisutha067iii');
-        expect(user.fromName, 'IIIsutha067III');
-        expect(user.toId, '23161357');
-        expect(user.toName, 'LIRIK');
-        expect(user.followedAt.toIso8601String(), '2017-08-22T22:55:24.000Z');
       });
 
       test('Top Games', () async {

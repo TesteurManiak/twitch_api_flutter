@@ -56,14 +56,6 @@ class TwitchResponse<T> {
         pagination: json['pagination'] as Map<String, dynamic>?,
       );
 
-  /// Constructor for request containing [TwitchUserFollow].
-  factory TwitchResponse.usersFollows(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: _parseObjects(json, TwitchUserFollow.fromJson),
-        pagination: json['pagination'] as Map<String, dynamic>?,
-        total: json['total'] as int,
-      );
-
   /// Constructor for request containing [TwitchBroadcasterSubscription].
   factory TwitchResponse.broadcasterSubscriptions(Map<String, dynamic> json) =>
       TwitchResponse(
@@ -177,6 +169,24 @@ class UsersResponse with _$UsersResponse {
 
   factory UsersResponse.fromJson(Map<String, dynamic> json) =>
       _$UsersResponseFromJson(json);
+}
+
+/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-users-follows
+@freezed
+class UsersFollowsResponse with _$UsersFollowsResponse {
+  const factory UsersFollowsResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchUserFollow> data,
+
+    /// {@macro twitchResponse.pagination}
+    required Map<String, dynamic>? pagination,
+
+    /// {@macro twitchResponse.total}
+    required int total,
+  }) = _UsersFollowsResponse;
+
+  factory UsersFollowsResponse.fromJson(Map<String, dynamic> json) =>
+      _$UsersFollowsResponseFromJson(json);
 }
 
 @freezed

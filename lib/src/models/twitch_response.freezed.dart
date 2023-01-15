@@ -943,6 +943,227 @@ abstract class _UsersResponse implements UsersResponse {
       throw _privateConstructorUsedError;
 }
 
+UsersFollowsResponse _$UsersFollowsResponseFromJson(Map<String, dynamic> json) {
+  return _UsersFollowsResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$UsersFollowsResponse {
+  /// {@macro twitchResponse.data}
+  List<TwitchUserFollow> get data => throw _privateConstructorUsedError;
+
+  /// {@macro twitchResponse.pagination}
+  Map<String, dynamic>? get pagination => throw _privateConstructorUsedError;
+
+  /// {@macro twitchResponse.total}
+  int get total => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $UsersFollowsResponseCopyWith<UsersFollowsResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UsersFollowsResponseCopyWith<$Res> {
+  factory $UsersFollowsResponseCopyWith(UsersFollowsResponse value,
+          $Res Function(UsersFollowsResponse) then) =
+      _$UsersFollowsResponseCopyWithImpl<$Res, UsersFollowsResponse>;
+  @useResult
+  $Res call(
+      {List<TwitchUserFollow> data,
+      Map<String, dynamic>? pagination,
+      int total});
+}
+
+/// @nodoc
+class _$UsersFollowsResponseCopyWithImpl<$Res,
+        $Val extends UsersFollowsResponse>
+    implements $UsersFollowsResponseCopyWith<$Res> {
+  _$UsersFollowsResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? pagination = freezed,
+    Object? total = null,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchUserFollow>,
+      pagination: freezed == pagination
+          ? _value.pagination
+          : pagination // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_UsersFollowsResponseCopyWith<$Res>
+    implements $UsersFollowsResponseCopyWith<$Res> {
+  factory _$$_UsersFollowsResponseCopyWith(_$_UsersFollowsResponse value,
+          $Res Function(_$_UsersFollowsResponse) then) =
+      __$$_UsersFollowsResponseCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {List<TwitchUserFollow> data,
+      Map<String, dynamic>? pagination,
+      int total});
+}
+
+/// @nodoc
+class __$$_UsersFollowsResponseCopyWithImpl<$Res>
+    extends _$UsersFollowsResponseCopyWithImpl<$Res, _$_UsersFollowsResponse>
+    implements _$$_UsersFollowsResponseCopyWith<$Res> {
+  __$$_UsersFollowsResponseCopyWithImpl(_$_UsersFollowsResponse _value,
+      $Res Function(_$_UsersFollowsResponse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? pagination = freezed,
+    Object? total = null,
+  }) {
+    return _then(_$_UsersFollowsResponse(
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchUserFollow>,
+      pagination: freezed == pagination
+          ? _value._pagination
+          : pagination // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_UsersFollowsResponse implements _UsersFollowsResponse {
+  const _$_UsersFollowsResponse(
+      {required final List<TwitchUserFollow> data,
+      required final Map<String, dynamic>? pagination,
+      required this.total})
+      : _data = data,
+        _pagination = pagination;
+
+  factory _$_UsersFollowsResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_UsersFollowsResponseFromJson(json);
+
+  /// {@macro twitchResponse.data}
+  final List<TwitchUserFollow> _data;
+
+  /// {@macro twitchResponse.data}
+  @override
+  List<TwitchUserFollow> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  /// {@macro twitchResponse.pagination}
+  final Map<String, dynamic>? _pagination;
+
+  /// {@macro twitchResponse.pagination}
+  @override
+  Map<String, dynamic>? get pagination {
+    final value = _pagination;
+    if (value == null) return null;
+    if (_pagination is EqualUnmodifiableMapView) return _pagination;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  /// {@macro twitchResponse.total}
+  @override
+  final int total;
+
+  @override
+  String toString() {
+    return 'UsersFollowsResponse(data: $data, pagination: $pagination, total: $total)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_UsersFollowsResponse &&
+            const DeepCollectionEquality().equals(other._data, _data) &&
+            const DeepCollectionEquality()
+                .equals(other._pagination, _pagination) &&
+            (identical(other.total, total) || other.total == total));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_data),
+      const DeepCollectionEquality().hash(_pagination),
+      total);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_UsersFollowsResponseCopyWith<_$_UsersFollowsResponse> get copyWith =>
+      __$$_UsersFollowsResponseCopyWithImpl<_$_UsersFollowsResponse>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_UsersFollowsResponseToJson(
+      this,
+    );
+  }
+}
+
+abstract class _UsersFollowsResponse implements UsersFollowsResponse {
+  const factory _UsersFollowsResponse(
+      {required final List<TwitchUserFollow> data,
+      required final Map<String, dynamic>? pagination,
+      required final int total}) = _$_UsersFollowsResponse;
+
+  factory _UsersFollowsResponse.fromJson(Map<String, dynamic> json) =
+      _$_UsersFollowsResponse.fromJson;
+
+  @override
+
+  /// {@macro twitchResponse.data}
+  List<TwitchUserFollow> get data;
+  @override
+
+  /// {@macro twitchResponse.pagination}
+  Map<String, dynamic>? get pagination;
+  @override
+
+  /// {@macro twitchResponse.total}
+  int get total;
+  @override
+  @JsonKey(ignore: true)
+  _$$_UsersFollowsResponseCopyWith<_$_UsersFollowsResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 CheermotesResponse _$CheermotesResponseFromJson(Map<String, dynamic> json) {
   return _CheermotesResponse.fromJson(json);
 }

@@ -84,6 +84,24 @@ Map<String, dynamic> _$$_UsersResponseToJson(_$_UsersResponse instance) =>
       'data': instance.data,
     };
 
+_$_UsersFollowsResponse _$$_UsersFollowsResponseFromJson(
+        Map<String, dynamic> json) =>
+    _$_UsersFollowsResponse(
+      data: (json['data'] as List<dynamic>)
+          .map((e) => TwitchUserFollow.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      pagination: json['pagination'] as Map<String, dynamic>?,
+      total: json['total'] as int,
+    );
+
+Map<String, dynamic> _$$_UsersFollowsResponseToJson(
+        _$_UsersFollowsResponse instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+      'pagination': instance.pagination,
+      'total': instance.total,
+    };
+
 _$_CheermotesResponse _$$_CheermotesResponseFromJson(
         Map<String, dynamic> json) =>
     _$_CheermotesResponse(
