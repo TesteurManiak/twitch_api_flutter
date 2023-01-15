@@ -9,13 +9,13 @@ void main() {
   group('getEmoteSets', () {
     test('emoteSetId: 301590448', () async {
       final response = await client.getEmoteSets(emoteSetId: '301590448');
-      expect(response.data?.length, 1);
+      expect(response.data.length, 1);
       expect(
         response.template,
         'https://static-cdn.jtvnw.net/emoticons/v2/{{id}}/{{format}}/{{theme_mode}}/{{scale}}',
       );
 
-      final emote = response.data!.first;
+      final emote = response.data.first;
       expect(emote.id, '304456832');
       expect(emote.name, 'twitchdevPitchfork');
       expect(emote.emoteType, TwitchEmoteType.subscriptions);

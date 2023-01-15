@@ -1,9 +1,13 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:twitch_api/src/errors/exceptions.dart';
 import 'package:twitch_api/src/models/twitch_channel_editor.dart';
 import 'package:twitch_api/src/models/twitch_emotes.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/models/twitch_start_commercial.dart';
 import 'package:twitch_api/twitch_api.dart';
+
+part 'twitch_response.freezed.dart';
+part 'twitch_response.g.dart';
 
 typedef TwitchModelParser = dynamic Function(Map<String, dynamic> json);
 
@@ -122,7 +126,9 @@ class TwitchResponse<T> {
         pagination: json['pagination'] as Map<String, dynamic>?,
       );
 
+  /// {@template twitchResponse.data}
   /// List of data from the response parsed into an object.
+  /// {@endtemplate}
   final List<T>? data;
 
   /// A cursor value, to be used in a subsequent request to specify the starting
@@ -141,56 +147,50 @@ class TwitchResponse<T> {
   final TwitchApiException? error;
 }
 
-class ChannelEmotesResponse extends TwitchResponse<TwitchEmotes> {
-  ChannelEmotesResponse({
+@freezed
+class ChannelEmotesResponse with _$ChannelEmotesResponse {
+  const factory ChannelEmotesResponse({
+    /// {@macro twitchResponse.data}
     required List<TwitchEmotes> data,
-    required this.template,
-  }) : super(data: data);
+
+    /// {@template twitchResponse.template}
+    /// A templated URL. Use the values from id, format, scale, and theme_mode to
+    /// replace the like-named placeholder strings in the templated URL to create
+    /// a CDN (content delivery network) URL that you use to fetch the emote. For
+    /// information about what the template looks like and how to use it to fetch
+    /// emotes, see [Emote CDN URL format](https://dev.twitch.tv/docs/irc/emotes#cdn-template).
+    /// {@endtemplate}
+    required String template,
+  }) = _ChannelEmotesResponse;
 
   factory ChannelEmotesResponse.fromJson(Map<String, dynamic> json) =>
-      ChannelEmotesResponse(
-        data: _parseObjects(json, TwitchEmotes.fromJson),
-        template: json['template'] as String,
-      );
-
-  /// {@template channel_template}
-  /// A templated URL. Use the values from id, format, scale, and theme_mode to
-  /// replace the like-named placeholder strings in the templated URL to create
-  /// a CDN (content delivery network) URL that you use to fetch the emote. For
-  /// information about what the template looks like and how to use it to fetch
-  /// emotes, see [Emote CDN URL format](https://dev.twitch.tv/docs/irc/emotes#cdn-template).
-  /// {@endtemplate}
-  final String template;
+      _$ChannelEmotesResponseFromJson(json);
 }
 
-class ChannelGlobalEmotesResponse extends TwitchResponse<TwitchGlobalEmotes> {
-  ChannelGlobalEmotesResponse({
+@freezed
+class ChannelGlobalEmotesResponse with _$ChannelGlobalEmotesResponse {
+  const factory ChannelGlobalEmotesResponse({
+    /// {@macro twitchResponse.data}
     required List<TwitchGlobalEmotes> data,
-    required this.template,
-  }) : super(data: data);
+
+    /// {@macro twitchResponse.template}
+    required String template,
+  }) = _ChannelGlobalEmotesResponse;
 
   factory ChannelGlobalEmotesResponse.fromJson(Map<String, dynamic> json) =>
-      ChannelGlobalEmotesResponse(
-        data: _parseObjects(json, TwitchGlobalEmotes.fromJson),
-        template: json['template'] as String,
-      );
-
-  /// {@macro channel_template}
-  final String template;
+      _$ChannelGlobalEmotesResponseFromJson(json);
 }
 
-class EmoteSetsResponse extends TwitchResponse<TwitchEmoteSets> {
-  EmoteSetsResponse({
+@freezed
+class EmoteSetsResponse with _$EmoteSetsResponse {
+  const factory EmoteSetsResponse({
+    /// {@macro twitchResponse.data}
     required List<TwitchEmoteSets> data,
-    required this.template,
-  }) : super(data: data);
+
+    /// {@macro twitchResponse.template}
+    required String template,
+  }) = _EmoteSetsResponse;
 
   factory EmoteSetsResponse.fromJson(Map<String, dynamic> json) =>
-      EmoteSetsResponse(
-        data: _parseObjects(json, TwitchEmoteSets.fromJson),
-        template: json['template'] as String,
-      );
-
-  /// {@macro channel_template}
-  final String template;
+      _$EmoteSetsResponseFromJson(json);
 }

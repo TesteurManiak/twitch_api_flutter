@@ -12,7 +12,7 @@ void main() {
 
       final response =
           await client.getChannelEmotes(broadcasterId: tBroadcasterId);
-      expect(response.data?.length, 2);
+      expect(response.data.length, 2);
       expect(
         response.template,
         'https://static-cdn.jtvnw.net/emoticons/v2/{{id}}/{{format}}/{{theme_mode}}/{{scale}}',
