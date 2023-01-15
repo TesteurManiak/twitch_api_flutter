@@ -53,6 +53,37 @@ Map<String, dynamic> _$$_GameAnalyticsResponseToJson(
       'pagination': instance.pagination,
     };
 
+_$_BitsLeaderboardResponse _$$_BitsLeaderboardResponseFromJson(
+        Map<String, dynamic> json) =>
+    _$_BitsLeaderboardResponse(
+      data: (json['data'] as List<dynamic>)
+          .map((e) => TwitchBitsLeaderboard.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      dateRange:
+          TwitchDateRange.fromJson(json['dateRange'] as Map<String, dynamic>),
+      total: json['total'] as int,
+    );
+
+Map<String, dynamic> _$$_BitsLeaderboardResponseToJson(
+        _$_BitsLeaderboardResponse instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+      'dateRange': instance.dateRange,
+      'total': instance.total,
+    };
+
+_$_UsersResponse _$$_UsersResponseFromJson(Map<String, dynamic> json) =>
+    _$_UsersResponse(
+      data: (json['data'] as List<dynamic>)
+          .map((e) => TwitchUser.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$_UsersResponseToJson(_$_UsersResponse instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+    };
+
 _$_CheermotesResponse _$$_CheermotesResponseFromJson(
         Map<String, dynamic> json) =>
     _$_CheermotesResponse(

@@ -174,8 +174,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () => _twitchClient.getUsers(ids: ['44322889']).then(
               (value) => _displayDataAlert(
-                method: value.data?.first.displayName,
-                data: value.data?.first.description,
+                method: value.data.first.displayName,
+                data: value.data.first.description,
               ),
             ),
             child: const Text('Get User Dallas from id'),
@@ -264,8 +264,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () => _twitchClient.getBitsLeaderboard().then(
                   (value) => _displayDataAlert(
-                    method: value.data?.first.userName,
-                    data: value.data?.first.score.toString(),
+                    method: value.data.first.userName,
+                    data: value.data.first.score.toString(),
                   ),
                 ),
             child: const Text('Get Bits Leaderboard'),

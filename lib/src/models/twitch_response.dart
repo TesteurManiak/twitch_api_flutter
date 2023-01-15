@@ -64,21 +64,6 @@ class TwitchResponse<T> {
         total: json['total'] as int,
       );
 
-  /// Constructor for request containing [TwitchUser].
-  factory TwitchResponse.users(Map<String, dynamic> json) => TwitchResponse(
-        data: _parseObjects(json, TwitchUser.fromJson),
-      );
-
-  /// Constructor for request containing [TwitchBitsLeaderboard].
-  factory TwitchResponse.bitsLeaderboard(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: _parseObjects(json, TwitchBitsLeaderboard.fromJson),
-        dateRange: TwitchDateRange.fromJson(
-          json['date_range'] as Map<String, dynamic>,
-        ),
-        total: json['total'] as int,
-      );
-
   /// Constructor for request containing [TwitchBroadcasterSubscription].
   factory TwitchResponse.broadcasterSubscriptions(Map<String, dynamic> json) =>
       TwitchResponse(
@@ -162,6 +147,36 @@ class GameAnalyticsResponse with _$GameAnalyticsResponse {
 
   factory GameAnalyticsResponse.fromJson(Map<String, dynamic> json) =>
       _$GameAnalyticsResponseFromJson(json);
+}
+
+/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-bits-leaderboard
+@freezed
+class BitsLeaderboardResponse with _$BitsLeaderboardResponse {
+  const factory BitsLeaderboardResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchBitsLeaderboard> data,
+
+    /// {@macro twitchResponse.dateRange}
+    required TwitchDateRange dateRange,
+
+    /// {@macro twitchResponse.total}
+    required int total,
+  }) = _BitsLeaderboardResponse;
+
+  factory BitsLeaderboardResponse.fromJson(Map<String, dynamic> json) =>
+      _$BitsLeaderboardResponseFromJson(json);
+}
+
+/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-users
+@freezed
+class UsersResponse with _$UsersResponse {
+  const factory UsersResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchUser> data,
+  }) = _UsersResponse;
+
+  factory UsersResponse.fromJson(Map<String, dynamic> json) =>
+      _$UsersResponseFromJson(json);
 }
 
 @freezed

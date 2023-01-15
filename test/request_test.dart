@@ -155,6 +155,31 @@ void main() {
       );
     });
 
+    group('getUsers', () {
+      test(
+        'should call getCall on users and return a valid UsersResponse',
+        () async {
+          const path = ['users'];
+
+          when(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: any(named: 'queryParameters'),
+            ),
+          ).thenAnswer((_) async => readJson('get_users.json'));
+
+          await client.getUsers(ids: ['123']);
+
+          verify(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: any(named: 'queryParameters'),
+            ),
+          );
+        },
+      );
+    });
+
     group('getCheermotes', () {
       test(
           'should call getCall on bits/cheermotes and return a valid CheermotesResponse',
@@ -325,7 +350,7 @@ void main() {
       });
 
       test('Users', () async {
-        final data = (await client.getUsers(ids: ['141981764'])).data!;
+        final data = (await client.getUsers(ids: ['141981764'])).data;
         expect(data.length, 1);
 
         final user = data.first;

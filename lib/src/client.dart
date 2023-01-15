@@ -226,7 +226,7 @@ class TwitchClient {
   /// specified by `userId`. If `userId` is not provided, the endpoint returns
   /// the Bits leaderboard data across top users (subject to the value of
   /// `count`).
-  Future<TwitchResponse<TwitchBitsLeaderboard>> getBitsLeaderboard({
+  Future<BitsLeaderboardResponse> getBitsLeaderboard({
     int count = 10,
     TwitchTimePeriod period = TwitchTimePeriod.all,
     String? startedAt,
@@ -245,7 +245,7 @@ class TwitchClient {
       ['bits', 'leaderboard'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.bitsLeaderboard(data);
+    return BitsLeaderboardResponse.fromJson(data);
   }
 
   /// Gets information about one or more specified Twitch users. Users are
@@ -262,7 +262,7 @@ class TwitchClient {
   /// Note: The limit of 100 IDs and login names is the total limit. You can
   /// request, for example, 50 of each or 100 of one of them. You cannot request
   /// 100 of both.
-  Future<TwitchResponse<TwitchUser>> getUsers({
+  Future<UsersResponse> getUsers({
     List<String> ids = const [],
     List<String> logins = const [],
   }) async {
@@ -273,13 +273,16 @@ class TwitchClient {
       'You can only request 100 ids or logins at a time',
     );
 
-    final queryParameters = <String, String?>{};
-    if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
-    if (logins.isNotEmpty) queryParameters['login'] = logins.join(',');
+    final queryParameters = <String, String>{
+      if (ids.isNotEmpty) 'id': ids.join(','),
+      if (logins.isNotEmpty) 'login': logins.join(','),
+    };
 
-    final data = await twitchHttpClient
-        .getCall(['users'], queryParameters: queryParameters);
-    return TwitchResponse.users(data as Map<String, dynamic>);
+    final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
+      ['users'],
+      queryParameters: queryParameters,
+    );
+    return UsersResponse.fromJson(data);
   }
 
   /// Gets information on follow relationships between two Twitch users. This
