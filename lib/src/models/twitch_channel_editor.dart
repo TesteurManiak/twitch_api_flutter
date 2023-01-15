@@ -1,24 +1,22 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'twitch_channel_editor.freezed.dart';
+part 'twitch_channel_editor.g.dart';
+
 /// User who have editor permissions
-class TwitchChannelEditor {
-  /// User ID of the editor.
-  final String userId;
+@freezed
+class TwitchChannelEditor with _$TwitchChannelEditor {
+  const factory TwitchChannelEditor({
+    /// User ID of the editor.
+    @JsonKey(name: 'user_id') required String userId,
 
-  /// Display name of the editor.
-  final String userName;
+    /// Display name of the editor.
+    @JsonKey(name: 'user_name') required String userName,
 
-  /// Date and time the editor was given editor permissions.
-  final DateTime createdAt;
-
-  TwitchChannelEditor({
-    required this.userId,
-    required this.userName,
-    required this.createdAt,
-  });
+    /// Date and time the editor was given editor permissions.
+    @JsonKey(name: 'created_at') required DateTime createdAt,
+  }) = _TwitchChannelEditor;
 
   factory TwitchChannelEditor.fromJson(Map<String, dynamic> json) =>
-      TwitchChannelEditor(
-        userId: json['user_id'] as String,
-        userName: json['user_name'] as String,
-        createdAt: DateTime.parse(json['created_at'] as String),
-      );
+      _$TwitchChannelEditorFromJson(json);
 }
