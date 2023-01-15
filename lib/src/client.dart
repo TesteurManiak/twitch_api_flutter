@@ -46,6 +46,7 @@ class TwitchClient {
     final scopesSet = <String>{}
       ..add(TwitchApiScope.viewingActivityRead.string)
       ..addAll(scopes.map((e) => e.string));
+
     return oauth2Url.replace(
       pathSegments: <String>[oauthPath, authPath],
       queryParameters: {
@@ -75,12 +76,14 @@ class TwitchClient {
     required String broadcasterId,
     required int length,
   }) async {
-    assert(broadcasterId == twitchHttpClient.twitchToken?.userId);
     assert(length >= 30 && length <= 180 && length % 30 == 0);
 
     final data = await twitchHttpClient.postCall<Map<String, dynamic>>(
       ['channels', 'commercial'],
-      {'broadcaster_id': broadcasterId, 'length': length.toString()},
+      {
+        'broadcaster_id': broadcasterId,
+        'length': length.toString(),
+      },
     );
     return StartCommercialResponse.fromJson(data);
   }
