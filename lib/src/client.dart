@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:twitch_api/src/models/twitch_channel_editor.dart';
 import 'package:twitch_api/src/models/twitch_chat_badge.dart';
 import 'package:twitch_api/src/models/twitch_chat_settings.dart';
-import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/providers/twitch_dio_provider.dart';
 import 'package:twitch_api/twitch_api.dart';
 
@@ -171,7 +170,7 @@ class TwitchClient {
   /// only to queries without `gameId`. If a `gameId` is specified, it supersedes
   /// any cursor/offset combinations. The cursor value specified here is from
   /// the `pagination` response field of a prior query.
-  Future<TwitchResponse<TwitchGameAnalytic>> getGameAnalytics({
+  Future<GameAnalyticsResponse> getGameAnalytics({
     String? after,
     String? endedAt,
     int first = 20,
@@ -185,20 +184,22 @@ class TwitchClient {
     );
     assert(first < 101 && first > 0);
 
-    final queryParameters = <String, String?>{'first': first.toString()};
-    if (after != null && gameId == null) queryParameters['after'] = after;
-    if (endedAt != null && startedAt != null) {
-      queryParameters['ended_at'] = endedAt;
-      queryParameters['started_at'] = startedAt;
-    }
-    if (gameId != null) queryParameters['game_id'] = gameId;
-    if (type != null) queryParameters['type'] = type;
+    final queryParameters = <String, String?>{
+      'first': first.toString(),
+      if (after != null && gameId == null) 'after': after,
+      if (endedAt != null && startedAt != null) ...{
+        'ended_at': endedAt,
+        'started_at': startedAt,
+      },
+      if (gameId != null) 'game_id': gameId,
+      if (type != null) 'type': type,
+    };
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['analytics', 'games'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse<TwitchGameAnalytic>.gameAnalytics(data);
+    return GameAnalyticsResponse.fromJson(data);
   }
 
   /// Gets a ranked list of Bits leaderboard information for an authorized

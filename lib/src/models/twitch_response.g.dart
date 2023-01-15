@@ -37,6 +37,22 @@ Map<String, dynamic> _$$_ExtensionAnalyticsResponseToJson(
       'pagination': instance.pagination,
     };
 
+_$_GameAnalyticsResponse _$$_GameAnalyticsResponseFromJson(
+        Map<String, dynamic> json) =>
+    _$_GameAnalyticsResponse(
+      data: (json['data'] as List<dynamic>)
+          .map((e) => TwitchGameAnalytic.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      pagination: json['pagination'] as Map<String, dynamic>,
+    );
+
+Map<String, dynamic> _$$_GameAnalyticsResponseToJson(
+        _$_GameAnalyticsResponse instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+      'pagination': instance.pagination,
+    };
+
 _$_CheermotesResponse _$$_CheermotesResponseFromJson(
         Map<String, dynamic> json) =>
     _$_CheermotesResponse(

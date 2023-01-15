@@ -1,28 +1,38 @@
+import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 import 'package:twitch_api/twitch_api.dart';
 
-import 'utils/twitch_mock_client.dart';
+import 'utils/mocks.dart';
+import 'utils/test_utils.dart';
 
 void main() {
   group('TwitchClient', () {
-    final client = TwitchClient(
-      clientId: '',
-      redirectUri: '',
-      token: TwitchToken.fromUrl(
-        'http://localhost/#access_token=test&token_type=type&scope=scope',
-      ),
+    final testToken = TwitchToken.fromUrl(
+      'http://localhost/#access_token=test&token_type=type&scope=scope',
     );
 
+    late TwitchHttpClient mockHttpClient;
+    late TwitchClient client;
+
+    setUp(() {
+      mockHttpClient = MockTwitchHttpClient();
+      client = TwitchClient(
+        clientId: '',
+        redirectUri: '',
+        token: testToken,
+        twitchHttpClient: mockHttpClient,
+      );
+    });
+
     test('TwitchClient with non null token', () {
+      when(() => mockHttpClient.twitchToken).thenReturn(testToken);
+
       final token = client.twitchHttpClient.twitchToken;
+
       expect(token?.token, 'test');
       expect(token?.tokenType, 'type');
       expect(token?.scope, 'scope');
     });
-  });
-
-  group('Request', () {
-    final client = TwitchMockClient();
 
     test('authorizeUri', () {
       expect(
@@ -42,39 +52,22 @@ void main() {
 
     group('GET', () {
       test('Cheermotes', () async {
-        final data = (await client.getCheermotes()).data;
-        expect(data.length, 1);
+        const path = ['bits', 'cheermotes'];
 
-        final cheermote = data.first;
-        expect(cheermote.prefix, 'Cheer');
-        expect(cheermote.type, TwitchCheermoteType.globalFirstParty);
-        expect(cheermote.lastUpdated.year, 2018);
-        expect(cheermote.lastUpdated.month, 5);
-        expect(cheermote.lastUpdated.day, 22);
-        expect(cheermote.isCharitable, false);
-        expect(cheermote.tiers.length, 1);
+        when(
+          () => mockHttpClient.getCall<Map<String, dynamic>>(
+            path,
+            queryParameters: any(named: 'queryParameters'),
+          ),
+        ).thenAnswer((_) async => readJson('get_cheermotes.json'));
 
-        final cheermoteTier = cheermote.tiers.first;
-        expect(cheermoteTier.minBits, 1);
-        expect(cheermoteTier.id, '1');
-        expect(cheermoteTier.color, '#979797');
-        expect(cheermoteTier.canCheer, true);
-        expect(cheermoteTier.showInBitsCard, true);
-        expect(cheermoteTier.images.dark.animated.length, 5);
-        expect(cheermoteTier.images.dark.staticImgs.length, 5);
+        await client.getCheermotes();
 
-        final darkAnimated = cheermoteTier.images.dark.animated;
-        expect(darkAnimated.containsKey('1'), true);
-        expect(
-          darkAnimated['1'],
-          'https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/animated/1/1.gif',
-        );
-
-        final darkStatic = cheermoteTier.images.dark.staticImgs;
-        expect(darkStatic.containsKey('1'), true);
-        expect(
-          darkStatic['1'],
-          'https://d3aqoihi2n8ty8.cloudfront.net/actions/cheer/dark/static/1/1.png',
+        verify(
+          () => mockHttpClient.getCall<Map<String, dynamic>>(
+            path,
+            queryParameters: any(named: 'queryParameters'),
+          ),
         );
       });
 
@@ -244,7 +237,7 @@ void main() {
             startedAt: '2018-01-01T00:00:00Z',
             endedAt: '2018-03-01T00:00:00Z',
           ))
-              .data!;
+              .data;
           expect(data.length, 1);
 
           final analytics = data.first;
@@ -260,10 +253,10 @@ void main() {
 
         test('2', () async {
           final response = await client.getGameAnalytics(first: 5);
-          expect(response.data!.length, 1);
-          expect(response.pagination!['cursor'], 'eyJiIjpudWxsLJxhIjoiIn0gf5');
+          expect(response.data.length, 1);
+          expect(response.pagination['cursor'], 'eyJiIjpudWxsLJxhIjoiIn0gf5');
 
-          final analytics = response.data!.first;
+          final analytics = response.data.first;
           expect(analytics.gameId, '9821');
           expect(
             analytics.url,

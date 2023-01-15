@@ -95,11 +95,6 @@ class TwitchResponse<T> {
       );
 
   /// Constructor for request containing [TwitchGameAnalytic].
-  factory TwitchResponse.gameAnalytics(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: _parseObjects(json, TwitchGameAnalytic.fromJson),
-        pagination: json['pagination'] as Map<String, dynamic>?,
-      );
 
   /// Constructor for request containing [TwitchSearchChannel].
   factory TwitchResponse.searchChannels(Map<String, dynamic> json) =>
@@ -124,6 +119,7 @@ class TwitchResponse<T> {
   final TwitchDateRange? dateRange;
 }
 
+/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#start-commercial
 @freezed
 class StartCommercialResponse with _$StartCommercialResponse {
   const factory StartCommercialResponse({
@@ -135,6 +131,7 @@ class StartCommercialResponse with _$StartCommercialResponse {
       _$StartCommercialResponseFromJson(json);
 }
 
+/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-extension-analytics
 @freezed
 class ExtensionAnalyticsResponse with _$ExtensionAnalyticsResponse {
   const factory ExtensionAnalyticsResponse({
@@ -150,6 +147,21 @@ class ExtensionAnalyticsResponse with _$ExtensionAnalyticsResponse {
 
   factory ExtensionAnalyticsResponse.fromJson(Map<String, dynamic> json) =>
       _$ExtensionAnalyticsResponseFromJson(json);
+}
+
+/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-game-analytics
+@freezed
+class GameAnalyticsResponse with _$GameAnalyticsResponse {
+  const factory GameAnalyticsResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchGameAnalytic> data,
+
+    /// {@macro twitchResponse.pagination}
+    required Map<String, dynamic> pagination,
+  }) = _GameAnalyticsResponse;
+
+  factory GameAnalyticsResponse.fromJson(Map<String, dynamic> json) =>
+      _$GameAnalyticsResponseFromJson(json);
 }
 
 @freezed
