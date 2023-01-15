@@ -43,7 +43,7 @@ void main() {
     group('GET', () {
       test('Cheermotes', () async {
         final data = (await client.getCheermotes()).data;
-        expect(data!.length, 1);
+        expect(data.length, 1);
 
         final cheermote = data.first;
         expect(cheermote.prefix, 'Cheer');
@@ -220,13 +220,13 @@ void main() {
 
       test('Extension Analytics', () async {
         final response = await client.getExtensionAnalytics();
-        expect(response.data!.length, 1);
+        expect(response.data.length, 1);
         expect(
-          response.pagination!['cursor'],
+          response.pagination['cursor'],
           'eyJiIjpudWxsLCJhIjp7Ik9mZnNldCI6NX19',
         );
 
-        final analytics = response.data!.first;
+        final analytics = response.data.first;
         expect(analytics.extensionId, 'efgh');
         expect(
           analytics.url,
@@ -439,7 +439,7 @@ void main() {
       test('Start Commercial', () async {
         final data =
             (await client.startCommercial(broadcasterId: '', length: 60)).data;
-        expect(data!.length, 1);
+        expect(data.length, 1);
 
         final commercial = data.first;
         expect(commercial.length, 60);

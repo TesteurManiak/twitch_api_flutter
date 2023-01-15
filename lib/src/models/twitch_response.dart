@@ -46,10 +46,6 @@ class TwitchResponse<T> {
         data: _parseObjects(json, TwitchExtensionTransaction.fromJson),
       );
 
-  /// Constructor for request containing [TwitchCheermote].
-  factory TwitchResponse.cheermotes(Map<String, dynamic> json) =>
-      TwitchResponse(data: _parseObjects(json, TwitchCheermote.fromJson));
-
   /// Constructor for request containing [TwitchChannelInfo].
   factory TwitchResponse.channelInformations(Map<String, dynamic> json) =>
       TwitchResponse(data: _parseObjects(json, TwitchChannelInfo.fromJson));
@@ -72,10 +68,6 @@ class TwitchResponse<T> {
   factory TwitchResponse.users(Map<String, dynamic> json) => TwitchResponse(
         data: _parseObjects(json, TwitchUser.fromJson),
       );
-
-  /// Constructor for request containing [TwitchStartCommercial].
-  factory TwitchResponse.startCommercial(Map<String, dynamic> json) =>
-      TwitchResponse(data: _parseObjects(json, TwitchStartCommercial.fromJson));
 
   /// Constructor for request containing [TwitchBitsLeaderboard].
   factory TwitchResponse.bitsLeaderboard(Map<String, dynamic> json) =>
@@ -109,13 +101,6 @@ class TwitchResponse<T> {
         pagination: json['pagination'] as Map<String, dynamic>?,
       );
 
-  /// Constructor for request containing [TwitchExtentsionAnalytic].
-  factory TwitchResponse.extensionAnalytics(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: _parseObjects(json, TwitchExtensionAnalytic.fromJson),
-        pagination: json['pagination'] as Map<String, dynamic>?,
-      );
-
   /// Constructor for request containing [TwitchSearchChannel].
   factory TwitchResponse.searchChannels(Map<String, dynamic> json) =>
       TwitchResponse(
@@ -137,6 +122,45 @@ class TwitchResponse<T> {
 
   /// Date range of the returned data.
   final TwitchDateRange? dateRange;
+}
+
+@freezed
+class StartCommercialResponse with _$StartCommercialResponse {
+  const factory StartCommercialResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchStartCommercial> data,
+  }) = _StartCommercialResponse;
+
+  factory StartCommercialResponse.fromJson(Map<String, dynamic> json) =>
+      _$StartCommercialResponseFromJson(json);
+}
+
+@freezed
+class ExtensionAnalyticsResponse with _$ExtensionAnalyticsResponse {
+  const factory ExtensionAnalyticsResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchExtensionAnalytic> data,
+
+    /// {@template twitchResponse.pagination}
+    /// A cursor value, to be used in a subsequent request to specify the
+    /// starting point of the next set of results.
+    /// {@endtemplate}
+    required Map<String, dynamic> pagination,
+  }) = _ExtensionAnalyticsResponse;
+
+  factory ExtensionAnalyticsResponse.fromJson(Map<String, dynamic> json) =>
+      _$ExtensionAnalyticsResponseFromJson(json);
+}
+
+@freezed
+class CheermotesResponse with _$CheermotesResponse {
+  const factory CheermotesResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchCheermote> data,
+  }) = _CheermotesResponse;
+
+  factory CheermotesResponse.fromJson(Map<String, dynamic> json) =>
+      _$CheermotesResponseFromJson(json);
 }
 
 @freezed

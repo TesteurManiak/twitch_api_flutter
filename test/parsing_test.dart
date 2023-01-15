@@ -9,14 +9,11 @@ import 'utils/test_utils.dart';
 void main() {
   group('Parsing', () {
     test('Cheermotes', () {
-      final json = jsonDecode(readFileStringSync('get_cheermotes.json'));
-      final obj = TwitchResponse<TwitchCheermote>.cheermotes(
-        json as Map<String, dynamic>,
-      );
+      final obj = CheermotesResponse.fromJson(readJson('get_cheermotes.json'));
 
-      expect(obj.data!.length, 1);
+      expect(obj.data.length, 1);
 
-      final cheermote = obj.data!.first;
+      final cheermote = obj.data.first;
       expect(cheermote.prefix, 'Cheer');
       expect(cheermote.type, TwitchCheermoteType.globalFirstParty);
       expect(cheermote.lastUpdated.year, 2018);

@@ -4,7 +4,6 @@ import 'package:twitch_api/src/models/twitch_channel_editor.dart';
 import 'package:twitch_api/src/models/twitch_chat_badge.dart';
 import 'package:twitch_api/src/models/twitch_chat_settings.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
-import 'package:twitch_api/src/models/twitch_start_commercial.dart';
 import 'package:twitch_api/src/providers/twitch_dio_provider.dart';
 import 'package:twitch_api/twitch_api.dart';
 
@@ -73,7 +72,7 @@ class TwitchClient {
   ///
   /// `length`: Desired length of the commercial in seconds. Valid options are
   /// `30, 60, 90, 120, 150, 180`.
-  Future<TwitchResponse<TwitchStartCommercial>> startCommercial({
+  Future<StartCommercialResponse> startCommercial({
     required String broadcasterId,
     required int length,
   }) async {
@@ -84,7 +83,7 @@ class TwitchClient {
       ['channels', 'commercial'],
       {'broadcaster_id': broadcasterId, 'length': length.toString()},
     );
-    return TwitchResponse.startCommercial(data);
+    return StartCommercialResponse.fromJson(data);
   }
 
   /// Gets a URL that Extension developers can use to download analytics reports
@@ -130,7 +129,7 @@ class TwitchClient {
   /// has no affect on the response as there is only one report type. If
   /// additional types were added, using this field would return only the URL
   /// for the specified report. Limit: 1. Valid values: `"overview_v2"`.
-  Future<TwitchResponse<TwitchExtensionAnalytic>> getExtensionAnalytics({
+  Future<ExtensionAnalyticsResponse> getExtensionAnalytics({
     String? after,
     String? endedAt,
     String? extensionId,
@@ -159,7 +158,7 @@ class TwitchClient {
       ['analytics', 'extensions'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse<TwitchExtensionAnalytic>.extensionAnalytics(data);
+    return ExtensionAnalyticsResponse.fromJson(data);
   }
 
   /// Gets a URL that game developers can use to download analytics reports
@@ -524,9 +523,9 @@ class TwitchClient {
     final queryParameters = <String, String?>{
       'broadcaster_id': twitchHttpClient.twitchToken?.userId,
       'first': first.toString(),
+      if (userIds.isNotEmpty) 'user_id': userIds.join(','),
+      if (after != null) 'after': after,
     };
-    if (userIds.isNotEmpty) queryParameters['user_id'] = userIds.join(',');
-    if (after != null) queryParameters['after'] = after;
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['subscriptions'],
@@ -542,18 +541,17 @@ class TwitchClient {
   ///
   /// `broadcasterId`: ID for the broadcaster who might own specialized
   /// Cheermotes.
-  Future<TwitchResponse<TwitchCheermote>> getCheermotes({
+  Future<CheermotesResponse> getCheermotes({
     String? broadcasterId,
   }) async {
-    final queryParameters = <String, String?>{};
-    if (broadcasterId != null) {
-      queryParameters['broadcaster_id'] = broadcasterId;
-    }
+    final queryParameters = <String, String>{
+      if (broadcasterId != null) 'broadcaster_id': broadcasterId,
+    };
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['bits', 'cheermotes'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.cheermotes(data);
+    return CheermotesResponse.fromJson(data);
   }
 
   /// Allows extension back end servers to fetch a list of transactions that

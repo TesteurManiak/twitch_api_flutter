@@ -273,8 +273,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () => _twitchClient.getCheermotes().then(
                   (value) => _displayDataAlert(
-                    method: value.data?.first.prefix,
-                    data: value.data?.first.tiers
+                    method: value.data.first.prefix,
+                    data: value.data.first.tiers
                         .map((e) => e.id)
                         .toList()
                         .toString(),

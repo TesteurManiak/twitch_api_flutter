@@ -14,6 +14,523 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+StartCommercialResponse _$StartCommercialResponseFromJson(
+    Map<String, dynamic> json) {
+  return _StartCommercialResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$StartCommercialResponse {
+  /// {@macro twitchResponse.data}
+  List<TwitchStartCommercial> get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $StartCommercialResponseCopyWith<StartCommercialResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $StartCommercialResponseCopyWith<$Res> {
+  factory $StartCommercialResponseCopyWith(StartCommercialResponse value,
+          $Res Function(StartCommercialResponse) then) =
+      _$StartCommercialResponseCopyWithImpl<$Res, StartCommercialResponse>;
+  @useResult
+  $Res call({List<TwitchStartCommercial> data});
+}
+
+/// @nodoc
+class _$StartCommercialResponseCopyWithImpl<$Res,
+        $Val extends StartCommercialResponse>
+    implements $StartCommercialResponseCopyWith<$Res> {
+  _$StartCommercialResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchStartCommercial>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_StartCommercialResponseCopyWith<$Res>
+    implements $StartCommercialResponseCopyWith<$Res> {
+  factory _$$_StartCommercialResponseCopyWith(_$_StartCommercialResponse value,
+          $Res Function(_$_StartCommercialResponse) then) =
+      __$$_StartCommercialResponseCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<TwitchStartCommercial> data});
+}
+
+/// @nodoc
+class __$$_StartCommercialResponseCopyWithImpl<$Res>
+    extends _$StartCommercialResponseCopyWithImpl<$Res,
+        _$_StartCommercialResponse>
+    implements _$$_StartCommercialResponseCopyWith<$Res> {
+  __$$_StartCommercialResponseCopyWithImpl(_$_StartCommercialResponse _value,
+      $Res Function(_$_StartCommercialResponse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$_StartCommercialResponse(
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchStartCommercial>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_StartCommercialResponse implements _StartCommercialResponse {
+  const _$_StartCommercialResponse(
+      {required final List<TwitchStartCommercial> data})
+      : _data = data;
+
+  factory _$_StartCommercialResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_StartCommercialResponseFromJson(json);
+
+  /// {@macro twitchResponse.data}
+  final List<TwitchStartCommercial> _data;
+
+  /// {@macro twitchResponse.data}
+  @override
+  List<TwitchStartCommercial> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  @override
+  String toString() {
+    return 'StartCommercialResponse(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_StartCommercialResponse &&
+            const DeepCollectionEquality().equals(other._data, _data));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_StartCommercialResponseCopyWith<_$_StartCommercialResponse>
+      get copyWith =>
+          __$$_StartCommercialResponseCopyWithImpl<_$_StartCommercialResponse>(
+              this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_StartCommercialResponseToJson(
+      this,
+    );
+  }
+}
+
+abstract class _StartCommercialResponse implements StartCommercialResponse {
+  const factory _StartCommercialResponse(
+          {required final List<TwitchStartCommercial> data}) =
+      _$_StartCommercialResponse;
+
+  factory _StartCommercialResponse.fromJson(Map<String, dynamic> json) =
+      _$_StartCommercialResponse.fromJson;
+
+  @override
+
+  /// {@macro twitchResponse.data}
+  List<TwitchStartCommercial> get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$_StartCommercialResponseCopyWith<_$_StartCommercialResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+ExtensionAnalyticsResponse _$ExtensionAnalyticsResponseFromJson(
+    Map<String, dynamic> json) {
+  return _ExtensionAnalyticsResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ExtensionAnalyticsResponse {
+  /// {@macro twitchResponse.data}
+  List<TwitchExtensionAnalytic> get data => throw _privateConstructorUsedError;
+
+  /// {@template twitchResponse.pagination}
+  /// A cursor value, to be used in a subsequent request to specify the
+  /// starting point of the next set of results.
+  /// {@endtemplate}
+  Map<String, dynamic> get pagination => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ExtensionAnalyticsResponseCopyWith<ExtensionAnalyticsResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ExtensionAnalyticsResponseCopyWith<$Res> {
+  factory $ExtensionAnalyticsResponseCopyWith(ExtensionAnalyticsResponse value,
+          $Res Function(ExtensionAnalyticsResponse) then) =
+      _$ExtensionAnalyticsResponseCopyWithImpl<$Res,
+          ExtensionAnalyticsResponse>;
+  @useResult
+  $Res call(
+      {List<TwitchExtensionAnalytic> data, Map<String, dynamic> pagination});
+}
+
+/// @nodoc
+class _$ExtensionAnalyticsResponseCopyWithImpl<$Res,
+        $Val extends ExtensionAnalyticsResponse>
+    implements $ExtensionAnalyticsResponseCopyWith<$Res> {
+  _$ExtensionAnalyticsResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? pagination = null,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchExtensionAnalytic>,
+      pagination: null == pagination
+          ? _value.pagination
+          : pagination // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_ExtensionAnalyticsResponseCopyWith<$Res>
+    implements $ExtensionAnalyticsResponseCopyWith<$Res> {
+  factory _$$_ExtensionAnalyticsResponseCopyWith(
+          _$_ExtensionAnalyticsResponse value,
+          $Res Function(_$_ExtensionAnalyticsResponse) then) =
+      __$$_ExtensionAnalyticsResponseCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {List<TwitchExtensionAnalytic> data, Map<String, dynamic> pagination});
+}
+
+/// @nodoc
+class __$$_ExtensionAnalyticsResponseCopyWithImpl<$Res>
+    extends _$ExtensionAnalyticsResponseCopyWithImpl<$Res,
+        _$_ExtensionAnalyticsResponse>
+    implements _$$_ExtensionAnalyticsResponseCopyWith<$Res> {
+  __$$_ExtensionAnalyticsResponseCopyWithImpl(
+      _$_ExtensionAnalyticsResponse _value,
+      $Res Function(_$_ExtensionAnalyticsResponse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? pagination = null,
+  }) {
+    return _then(_$_ExtensionAnalyticsResponse(
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchExtensionAnalytic>,
+      pagination: null == pagination
+          ? _value._pagination
+          : pagination // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ExtensionAnalyticsResponse implements _ExtensionAnalyticsResponse {
+  const _$_ExtensionAnalyticsResponse(
+      {required final List<TwitchExtensionAnalytic> data,
+      required final Map<String, dynamic> pagination})
+      : _data = data,
+        _pagination = pagination;
+
+  factory _$_ExtensionAnalyticsResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_ExtensionAnalyticsResponseFromJson(json);
+
+  /// {@macro twitchResponse.data}
+  final List<TwitchExtensionAnalytic> _data;
+
+  /// {@macro twitchResponse.data}
+  @override
+  List<TwitchExtensionAnalytic> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  /// {@template twitchResponse.pagination}
+  /// A cursor value, to be used in a subsequent request to specify the
+  /// starting point of the next set of results.
+  /// {@endtemplate}
+  final Map<String, dynamic> _pagination;
+
+  /// {@template twitchResponse.pagination}
+  /// A cursor value, to be used in a subsequent request to specify the
+  /// starting point of the next set of results.
+  /// {@endtemplate}
+  @override
+  Map<String, dynamic> get pagination {
+    if (_pagination is EqualUnmodifiableMapView) return _pagination;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_pagination);
+  }
+
+  @override
+  String toString() {
+    return 'ExtensionAnalyticsResponse(data: $data, pagination: $pagination)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ExtensionAnalyticsResponse &&
+            const DeepCollectionEquality().equals(other._data, _data) &&
+            const DeepCollectionEquality()
+                .equals(other._pagination, _pagination));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_data),
+      const DeepCollectionEquality().hash(_pagination));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ExtensionAnalyticsResponseCopyWith<_$_ExtensionAnalyticsResponse>
+      get copyWith => __$$_ExtensionAnalyticsResponseCopyWithImpl<
+          _$_ExtensionAnalyticsResponse>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ExtensionAnalyticsResponseToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ExtensionAnalyticsResponse
+    implements ExtensionAnalyticsResponse {
+  const factory _ExtensionAnalyticsResponse(
+          {required final List<TwitchExtensionAnalytic> data,
+          required final Map<String, dynamic> pagination}) =
+      _$_ExtensionAnalyticsResponse;
+
+  factory _ExtensionAnalyticsResponse.fromJson(Map<String, dynamic> json) =
+      _$_ExtensionAnalyticsResponse.fromJson;
+
+  @override
+
+  /// {@macro twitchResponse.data}
+  List<TwitchExtensionAnalytic> get data;
+  @override
+
+  /// {@template twitchResponse.pagination}
+  /// A cursor value, to be used in a subsequent request to specify the
+  /// starting point of the next set of results.
+  /// {@endtemplate}
+  Map<String, dynamic> get pagination;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ExtensionAnalyticsResponseCopyWith<_$_ExtensionAnalyticsResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+CheermotesResponse _$CheermotesResponseFromJson(Map<String, dynamic> json) {
+  return _CheermotesResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CheermotesResponse {
+  /// {@macro twitchResponse.data}
+  List<TwitchCheermote> get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CheermotesResponseCopyWith<CheermotesResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CheermotesResponseCopyWith<$Res> {
+  factory $CheermotesResponseCopyWith(
+          CheermotesResponse value, $Res Function(CheermotesResponse) then) =
+      _$CheermotesResponseCopyWithImpl<$Res, CheermotesResponse>;
+  @useResult
+  $Res call({List<TwitchCheermote> data});
+}
+
+/// @nodoc
+class _$CheermotesResponseCopyWithImpl<$Res, $Val extends CheermotesResponse>
+    implements $CheermotesResponseCopyWith<$Res> {
+  _$CheermotesResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchCheermote>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_CheermotesResponseCopyWith<$Res>
+    implements $CheermotesResponseCopyWith<$Res> {
+  factory _$$_CheermotesResponseCopyWith(_$_CheermotesResponse value,
+          $Res Function(_$_CheermotesResponse) then) =
+      __$$_CheermotesResponseCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<TwitchCheermote> data});
+}
+
+/// @nodoc
+class __$$_CheermotesResponseCopyWithImpl<$Res>
+    extends _$CheermotesResponseCopyWithImpl<$Res, _$_CheermotesResponse>
+    implements _$$_CheermotesResponseCopyWith<$Res> {
+  __$$_CheermotesResponseCopyWithImpl(
+      _$_CheermotesResponse _value, $Res Function(_$_CheermotesResponse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$_CheermotesResponse(
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchCheermote>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_CheermotesResponse implements _CheermotesResponse {
+  const _$_CheermotesResponse({required final List<TwitchCheermote> data})
+      : _data = data;
+
+  factory _$_CheermotesResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_CheermotesResponseFromJson(json);
+
+  /// {@macro twitchResponse.data}
+  final List<TwitchCheermote> _data;
+
+  /// {@macro twitchResponse.data}
+  @override
+  List<TwitchCheermote> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  @override
+  String toString() {
+    return 'CheermotesResponse(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CheermotesResponse &&
+            const DeepCollectionEquality().equals(other._data, _data));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CheermotesResponseCopyWith<_$_CheermotesResponse> get copyWith =>
+      __$$_CheermotesResponseCopyWithImpl<_$_CheermotesResponse>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_CheermotesResponseToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CheermotesResponse implements CheermotesResponse {
+  const factory _CheermotesResponse(
+      {required final List<TwitchCheermote> data}) = _$_CheermotesResponse;
+
+  factory _CheermotesResponse.fromJson(Map<String, dynamic> json) =
+      _$_CheermotesResponse.fromJson;
+
+  @override
+
+  /// {@macro twitchResponse.data}
+  List<TwitchCheermote> get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$_CheermotesResponseCopyWith<_$_CheermotesResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 ChannelEmotesResponse _$ChannelEmotesResponseFromJson(
     Map<String, dynamic> json) {
   return _ChannelEmotesResponse.fromJson(json);
