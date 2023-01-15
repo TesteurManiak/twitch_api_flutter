@@ -1,86 +1,64 @@
-import 'package:twitch_api/src/extensions/string_extensions.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-enum TwitchStreamType { live, error }
+part 'twitch_stream_info.freezed.dart';
+part 'twitch_stream_info.g.dart';
 
-class TwitchStreamInfo {
-  /// Stream ID.
-  final String id;
+enum TwitchStreamType {
+  @JsonValue('live')
+  live,
+  @JsonValue('error')
+  error,
+}
 
-  /// ID of the user who is streaming.
-  final String userId;
+@freezed
+class TwitchStreamInfo with _$TwitchStreamInfo {
+  const factory TwitchStreamInfo({
+    /// Stream ID.
+    required String id,
 
-  /// Login of the user who is streaming.
-  final String userLogin;
+    /// ID of the user who is streaming.
+    @JsonKey(name: 'user_id') required String userId,
 
-  /// Display name corresponding to `userId`.
-  final String userName;
+    /// Login of the user who is streaming.
+    @JsonKey(name: 'user_login') required String userLogin,
 
-  /// ID of the game being played on the stream.
-  final String gameId;
+    /// Display name corresponding to [userId].
+    @JsonKey(name: 'user_name') required String userName,
 
-  /// Name of the game being played.
-  final String gameName;
+    /// ID of the game being played on the stream.
+    @JsonKey(name: 'game_id') required String gameId,
 
-  /// Stream type: `TwitchStreamType.live` or `TwitchStreamType.error`
-  /// (in case of error).
-  final TwitchStreamType type;
+    /// Name of the game being played.
+    @JsonKey(name: 'game_name') required String gameName,
 
-  /// Stream title.
-  final String title;
+    /// Stream type: [TwitchStreamType.live] or [TwitchStreamType.error]
+    /// (in case of error).
+    required TwitchStreamType type,
 
-  /// Number of viewers watching the stream at the time of the query.
-  final int viewerCount;
+    /// Stream title.
+    required String title,
 
-  /// UTC timestamp.
-  final DateTime startedAt;
+    /// Number of viewers watching the stream at the time of the query.
+    @JsonKey(name: 'viewer_count') required int viewerCount,
 
-  /// Stream language. A language value is either the [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
-  /// two-letter code for a [supported stream language](https://help.twitch.tv/s/article/languages-on-twitch?language=en_US#streamlang)
-  /// or “other”.
-  final String language;
+    /// UTC timestamp.
+    @JsonKey(name: 'started_at') required DateTime startedAt,
 
-  /// Thumbnail URL of the stream. All image URLs have variable width and
-  /// height. You can replace `{width}` and `{height}` with any values to get
-  /// that size image
-  final String thumbnailUrl;
+    /// Stream language. A language value is either the [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes)
+    /// two-letter code for a [supported stream language](https://help.twitch.tv/s/article/languages-on-twitch?language=en_US#streamlang)
+    /// or “other”.
+    required String language,
 
-  /// Shows tag IDs that apply to the stream.
-  final List<String> tagIds;
+    /// Thumbnail URL of the stream. All image URLs have variable width and
+    /// height. You can replace `{width}` and `{height}` with any values to get
+    /// that size image
+    @JsonKey(name: 'thumbnail_url') required String thumbnailUrl,
 
-  final bool isMature;
-
-  TwitchStreamInfo({
-    required this.id,
-    required this.userId,
-    required this.userLogin,
-    required this.userName,
-    required this.gameId,
-    required this.gameName,
-    required this.type,
-    required this.title,
-    required this.viewerCount,
-    required this.startedAt,
-    required this.language,
-    required this.thumbnailUrl,
-    required this.tagIds,
-    required this.isMature,
-  });
+    /// Shows tag IDs that apply to the stream.
+    @JsonKey(name: 'tag_ids') required List<String>? tagIds,
+    @JsonKey(name: 'is_mature') required bool isMature,
+  }) = _TwitchStreamInfo;
 
   factory TwitchStreamInfo.fromJson(Map<String, dynamic> json) =>
-      TwitchStreamInfo(
-        id: json['id'] as String,
-        userId: json['user_id'] as String,
-        userLogin: json['user_login'] as String,
-        userName: json['user_name'] as String,
-        gameId: json['game_id'] as String,
-        gameName: json['game_name'] as String,
-        type: json['type'].toString().toStreamType(),
-        title: json['title'] as String,
-        viewerCount: json['viewer_count'] as int,
-        startedAt: DateTime.parse(json['started_at'] as String),
-        language: json['language'] as String,
-        thumbnailUrl: json['thumbnail_url'] as String,
-        tagIds: List<String>.from(json['tag_ids'] as Iterable? ?? const []),
-        isMature: json['is_mature'] as bool,
-      );
+      _$TwitchStreamInfoFromJson(json);
 }
