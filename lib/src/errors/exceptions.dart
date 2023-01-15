@@ -1,20 +1,15 @@
-class TwitchApiException implements Exception {
-  final String msg;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  const TwitchApiException(this.msg);
+part 'exceptions.freezed.dart';
+
+@freezed
+class TwitchApiException with _$TwitchApiException implements Exception {
+  const factory TwitchApiException({
+    required String msg,
+  }) = _TwitchApiException;
+
+  const TwitchApiException._();
 
   @override
   String toString() => 'TwitchException: $msg';
-}
-
-class TwitchNotConnectedException extends TwitchApiException {
-  const TwitchNotConnectedException(super.msg);
-}
-
-class TwitchStartCommercialException extends TwitchApiException {
-  const TwitchStartCommercialException(super.msg);
-}
-
-class TwitchGetExtensionAnalyticsException extends TwitchApiException {
-  const TwitchGetExtensionAnalyticsException(super.msg);
 }

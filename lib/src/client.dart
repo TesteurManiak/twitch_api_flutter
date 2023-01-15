@@ -87,7 +87,7 @@ class TwitchClient {
       );
       return TwitchResponse.startCommercial(data);
     } catch (e) {
-      throw TwitchStartCommercialException(e.toString());
+      throw TwitchApiException(msg: e.toString());
     }
   }
 
@@ -167,7 +167,7 @@ class TwitchClient {
       );
       return TwitchResponse<TwitchExtensionAnalytic>.extensionAnalytics(data);
     } catch (e) {
-      throw TwitchGetExtensionAnalyticsException(e.toString());
+      throw TwitchApiException(msg: e.toString());
     }
   }
 

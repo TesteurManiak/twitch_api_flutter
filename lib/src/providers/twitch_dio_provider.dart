@@ -38,7 +38,7 @@ class TwitchDioProvider extends TwitchHttpClient {
       );
       return response.data!;
     } else {
-      throw const TwitchApiException('OAuth token is not valid');
+      throw const TwitchApiException(msg: 'OAuth token is not valid');
     }
   }
 
@@ -67,7 +67,7 @@ class TwitchDioProvider extends TwitchHttpClient {
       );
       return response.data!;
     } else {
-      throw const TwitchApiException('OAuth token is not valid');
+      throw const TwitchApiException(msg: 'OAuth token is not valid');
     }
   }
 
@@ -96,7 +96,7 @@ class TwitchDioProvider extends TwitchHttpClient {
       );
       return response.data!;
     } else {
-      throw const TwitchApiException('OAuth token is not valid');
+      throw const TwitchApiException(msg: 'OAuth token is not valid');
     }
   }
 
@@ -115,8 +115,8 @@ class TwitchDioProvider extends TwitchHttpClient {
     _twitchToken = TwitchToken.fromValidation(_twitchToken!, response.data!);
 
     if (_twitchToken!.token.isEmpty || !_twitchToken!.isValid) {
-      throw const TwitchNotConnectedException(
-        'You are not connected to your Twitch account.',
+      throw const TwitchApiException(
+        msg: 'You are not connected to your Twitch account.',
       );
     }
     return _twitchToken!;
