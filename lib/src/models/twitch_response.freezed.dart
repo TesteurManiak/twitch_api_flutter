@@ -2204,6 +2204,281 @@ abstract class _StreamsResponse implements StreamsResponse {
       throw _privateConstructorUsedError;
 }
 
+BroadcasterSubscriptionsResponse _$BroadcasterSubscriptionsResponseFromJson(
+    Map<String, dynamic> json) {
+  return _BroadcasterSubscriptionsResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$BroadcasterSubscriptionsResponse {
+  /// {@macro twitchResponse.data}
+  List<TwitchBroadcasterSubscription> get data =>
+      throw _privateConstructorUsedError;
+
+  /// {@macro twitchResponse.pagination}
+  Map<String, dynamic>? get pagination => throw _privateConstructorUsedError;
+
+  /// {@macro twitchResponse.total}
+  int get total => throw _privateConstructorUsedError;
+
+  /// The current number of subscriber points earned by this broadcaster.
+  /// Points are based on the subscription tier of each user that subscribes
+  /// to this broadcaster. For example, a Tier 1 subscription is worth 1
+  /// point, Tier 2 is worth 2 points, and Tier 3 is worth 6 points. The
+  /// number of points determines the number of emote slots that are unlocked
+  /// for the broadcaster (see [Subscriber Emote Slots](https://help.twitch.tv/s/article/subscriber-emote-guide?language=en_US#emoteslots)).
+  int get points => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $BroadcasterSubscriptionsResponseCopyWith<BroadcasterSubscriptionsResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $BroadcasterSubscriptionsResponseCopyWith<$Res> {
+  factory $BroadcasterSubscriptionsResponseCopyWith(
+          BroadcasterSubscriptionsResponse value,
+          $Res Function(BroadcasterSubscriptionsResponse) then) =
+      _$BroadcasterSubscriptionsResponseCopyWithImpl<$Res,
+          BroadcasterSubscriptionsResponse>;
+  @useResult
+  $Res call(
+      {List<TwitchBroadcasterSubscription> data,
+      Map<String, dynamic>? pagination,
+      int total,
+      int points});
+}
+
+/// @nodoc
+class _$BroadcasterSubscriptionsResponseCopyWithImpl<$Res,
+        $Val extends BroadcasterSubscriptionsResponse>
+    implements $BroadcasterSubscriptionsResponseCopyWith<$Res> {
+  _$BroadcasterSubscriptionsResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? pagination = freezed,
+    Object? total = null,
+    Object? points = null,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchBroadcasterSubscription>,
+      pagination: freezed == pagination
+          ? _value.pagination
+          : pagination // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+      points: null == points
+          ? _value.points
+          : points // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_BroadcasterSubscriptionsResponseCopyWith<$Res>
+    implements $BroadcasterSubscriptionsResponseCopyWith<$Res> {
+  factory _$$_BroadcasterSubscriptionsResponseCopyWith(
+          _$_BroadcasterSubscriptionsResponse value,
+          $Res Function(_$_BroadcasterSubscriptionsResponse) then) =
+      __$$_BroadcasterSubscriptionsResponseCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {List<TwitchBroadcasterSubscription> data,
+      Map<String, dynamic>? pagination,
+      int total,
+      int points});
+}
+
+/// @nodoc
+class __$$_BroadcasterSubscriptionsResponseCopyWithImpl<$Res>
+    extends _$BroadcasterSubscriptionsResponseCopyWithImpl<$Res,
+        _$_BroadcasterSubscriptionsResponse>
+    implements _$$_BroadcasterSubscriptionsResponseCopyWith<$Res> {
+  __$$_BroadcasterSubscriptionsResponseCopyWithImpl(
+      _$_BroadcasterSubscriptionsResponse _value,
+      $Res Function(_$_BroadcasterSubscriptionsResponse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? pagination = freezed,
+    Object? total = null,
+    Object? points = null,
+  }) {
+    return _then(_$_BroadcasterSubscriptionsResponse(
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchBroadcasterSubscription>,
+      pagination: freezed == pagination
+          ? _value._pagination
+          : pagination // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+      points: null == points
+          ? _value.points
+          : points // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_BroadcasterSubscriptionsResponse
+    implements _BroadcasterSubscriptionsResponse {
+  const _$_BroadcasterSubscriptionsResponse(
+      {required final List<TwitchBroadcasterSubscription> data,
+      required final Map<String, dynamic>? pagination,
+      required this.total,
+      required this.points})
+      : _data = data,
+        _pagination = pagination;
+
+  factory _$_BroadcasterSubscriptionsResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$$_BroadcasterSubscriptionsResponseFromJson(json);
+
+  /// {@macro twitchResponse.data}
+  final List<TwitchBroadcasterSubscription> _data;
+
+  /// {@macro twitchResponse.data}
+  @override
+  List<TwitchBroadcasterSubscription> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  /// {@macro twitchResponse.pagination}
+  final Map<String, dynamic>? _pagination;
+
+  /// {@macro twitchResponse.pagination}
+  @override
+  Map<String, dynamic>? get pagination {
+    final value = _pagination;
+    if (value == null) return null;
+    if (_pagination is EqualUnmodifiableMapView) return _pagination;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  /// {@macro twitchResponse.total}
+  @override
+  final int total;
+
+  /// The current number of subscriber points earned by this broadcaster.
+  /// Points are based on the subscription tier of each user that subscribes
+  /// to this broadcaster. For example, a Tier 1 subscription is worth 1
+  /// point, Tier 2 is worth 2 points, and Tier 3 is worth 6 points. The
+  /// number of points determines the number of emote slots that are unlocked
+  /// for the broadcaster (see [Subscriber Emote Slots](https://help.twitch.tv/s/article/subscriber-emote-guide?language=en_US#emoteslots)).
+  @override
+  final int points;
+
+  @override
+  String toString() {
+    return 'BroadcasterSubscriptionsResponse(data: $data, pagination: $pagination, total: $total, points: $points)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_BroadcasterSubscriptionsResponse &&
+            const DeepCollectionEquality().equals(other._data, _data) &&
+            const DeepCollectionEquality()
+                .equals(other._pagination, _pagination) &&
+            (identical(other.total, total) || other.total == total) &&
+            (identical(other.points, points) || other.points == points));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_data),
+      const DeepCollectionEquality().hash(_pagination),
+      total,
+      points);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_BroadcasterSubscriptionsResponseCopyWith<
+          _$_BroadcasterSubscriptionsResponse>
+      get copyWith => __$$_BroadcasterSubscriptionsResponseCopyWithImpl<
+          _$_BroadcasterSubscriptionsResponse>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_BroadcasterSubscriptionsResponseToJson(
+      this,
+    );
+  }
+}
+
+abstract class _BroadcasterSubscriptionsResponse
+    implements BroadcasterSubscriptionsResponse {
+  const factory _BroadcasterSubscriptionsResponse(
+      {required final List<TwitchBroadcasterSubscription> data,
+      required final Map<String, dynamic>? pagination,
+      required final int total,
+      required final int points}) = _$_BroadcasterSubscriptionsResponse;
+
+  factory _BroadcasterSubscriptionsResponse.fromJson(
+      Map<String, dynamic> json) = _$_BroadcasterSubscriptionsResponse.fromJson;
+
+  @override
+
+  /// {@macro twitchResponse.data}
+  List<TwitchBroadcasterSubscription> get data;
+  @override
+
+  /// {@macro twitchResponse.pagination}
+  Map<String, dynamic>? get pagination;
+  @override
+
+  /// {@macro twitchResponse.total}
+  int get total;
+  @override
+
+  /// The current number of subscriber points earned by this broadcaster.
+  /// Points are based on the subscription tier of each user that subscribes
+  /// to this broadcaster. For example, a Tier 1 subscription is worth 1
+  /// point, Tier 2 is worth 2 points, and Tier 3 is worth 6 points. The
+  /// number of points determines the number of emote slots that are unlocked
+  /// for the broadcaster (see [Subscriber Emote Slots](https://help.twitch.tv/s/article/subscriber-emote-guide?language=en_US#emoteslots)).
+  int get points;
+  @override
+  @JsonKey(ignore: true)
+  _$$_BroadcasterSubscriptionsResponseCopyWith<
+          _$_BroadcasterSubscriptionsResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 CheermotesResponse _$CheermotesResponseFromJson(Map<String, dynamic> json) {
   return _CheermotesResponse.fromJson(json);
 }

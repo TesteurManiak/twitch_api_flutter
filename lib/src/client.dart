@@ -525,8 +525,8 @@ class TwitchClient {
   /// a prior query.
   ///
   /// [first]: Maximum number of objects to return. Maximum: 100. Default: 20.
-  Future<TwitchResponse<TwitchBroadcasterSubscription>>
-      getBroadcasterSubscriptions({
+  Future<BroadcasterSubscriptionsResponse> getBroadcasterSubscriptions({
+    required String broadcasterId,
     List<String> userIds = const [],
     String? after,
     int first = 20,
@@ -534,8 +534,8 @@ class TwitchClient {
     assert(first > 0 && first < 101);
     assert(userIds.length < 101);
 
-    final queryParameters = <String, String?>{
-      'broadcaster_id': twitchHttpClient.twitchToken?.userId,
+    final queryParameters = <String, String>{
+      'broadcaster_id': broadcasterId,
       'first': first.toString(),
       if (userIds.isNotEmpty) 'user_id': userIds.join(','),
       if (after != null) 'after': after,
@@ -545,8 +545,7 @@ class TwitchClient {
       ['subscriptions'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse<
-        TwitchBroadcasterSubscription>.broadcasterSubscriptions(data);
+    return BroadcasterSubscriptionsResponse.fromJson(data);
   }
 
   /// Retrieves the list of available Cheermotes, animated emotes to which

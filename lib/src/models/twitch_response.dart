@@ -46,14 +46,6 @@ class TwitchResponse<T> {
         data: _parseObjects(json, TwitchExtensionTransaction.fromJson),
       );
 
-  /// Constructor for request containing [TwitchBroadcasterSubscription].
-  factory TwitchResponse.broadcasterSubscriptions(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: _parseObjects(json, TwitchBroadcasterSubscription.fromJson),
-        pagination: json['pagination'] as Map<String, dynamic>?,
-        total: json['total'] as int,
-      );
-
   /// Constructor for request containing [TwitchStreamInfo].
   factory TwitchResponse.streamsInfo(Map<String, dynamic> json) =>
       TwitchResponse(
@@ -249,6 +241,34 @@ class StreamsResponse with _$StreamsResponse {
 
   factory StreamsResponse.fromJson(Map<String, dynamic> json) =>
       _$StreamsResponseFromJson(json);
+}
+
+/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-broadcaster-subscriptions
+@freezed
+class BroadcasterSubscriptionsResponse with _$BroadcasterSubscriptionsResponse {
+  const factory BroadcasterSubscriptionsResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchBroadcasterSubscription> data,
+
+    /// {@macro twitchResponse.pagination}
+    required Map<String, dynamic>? pagination,
+
+    /// {@macro twitchResponse.total}
+    required int total,
+
+    /// The current number of subscriber points earned by this broadcaster.
+    /// Points are based on the subscription tier of each user that subscribes
+    /// to this broadcaster. For example, a Tier 1 subscription is worth 1
+    /// point, Tier 2 is worth 2 points, and Tier 3 is worth 6 points. The
+    /// number of points determines the number of emote slots that are unlocked
+    /// for the broadcaster (see [Subscriber Emote Slots](https://help.twitch.tv/s/article/subscriber-emote-guide?language=en_US#emoteslots)).
+    required int points,
+  }) = _BroadcasterSubscriptionsResponse;
+
+  factory BroadcasterSubscriptionsResponse.fromJson(
+    Map<String, dynamic> json,
+  ) =>
+      _$BroadcasterSubscriptionsResponseFromJson(json);
 }
 
 @freezed

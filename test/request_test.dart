@@ -395,6 +395,38 @@ void main() {
       });
     });
 
+    group('getBroadcasterSubscriptions', () {
+      test(
+        'should call getCall on subscriptions and return a valid SubscriptionsResponse',
+        () async {
+          const path = ['subscriptions'];
+          const id = '141981764';
+          const queryParams = {
+            'broadcaster_id': id,
+            'first': '20',
+          };
+
+          when(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: queryParams,
+            ),
+          ).thenAnswer(
+            (_) async => readJson('get_broadcaster_subscriptions.json'),
+          );
+
+          await client.getBroadcasterSubscriptions(broadcasterId: id);
+
+          verify(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: queryParams,
+            ),
+          );
+        },
+      );
+    });
+
     group('GET', () {
       test('Channel Editors', () async {
         final data = (await client.getChannelEditors(broadcasterId: '')).data;
@@ -445,15 +477,6 @@ void main() {
               .data;
           expect(data!.length, 1);
         });
-      });
-
-      test('Broadcaster Subscriptions', () async {
-        final response = await client.getBroadcasterSubscriptions();
-        expect(response.data!.length, 1);
-        expect(response.total, 13);
-
-        final subscription = response.data!.first;
-        expect(subscription.broadcasterId, '141981764');
       });
     });
 

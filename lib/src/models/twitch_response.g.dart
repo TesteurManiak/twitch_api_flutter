@@ -186,6 +186,27 @@ Map<String, dynamic> _$$_StreamsResponseToJson(_$_StreamsResponse instance) =>
       'pagination': instance.pagination,
     };
 
+_$_BroadcasterSubscriptionsResponse
+    _$$_BroadcasterSubscriptionsResponseFromJson(Map<String, dynamic> json) =>
+        _$_BroadcasterSubscriptionsResponse(
+          data: (json['data'] as List<dynamic>)
+              .map((e) => TwitchBroadcasterSubscription.fromJson(
+                  e as Map<String, dynamic>))
+              .toList(),
+          pagination: json['pagination'] as Map<String, dynamic>?,
+          total: json['total'] as int,
+          points: json['points'] as int,
+        );
+
+Map<String, dynamic> _$$_BroadcasterSubscriptionsResponseToJson(
+        _$_BroadcasterSubscriptionsResponse instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+      'pagination': instance.pagination,
+      'total': instance.total,
+      'points': instance.points,
+    };
+
 _$_CheermotesResponse _$$_CheermotesResponseFromJson(
         Map<String, dynamic> json) =>
     _$_CheermotesResponse(

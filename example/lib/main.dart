@@ -253,12 +253,19 @@ class _MyHomePageState extends State<MyHomePage> {
             child: const Text('Search "fort" Category'),
           ),
           ElevatedButton(
-            onPressed: () => _twitchClient.getBroadcasterSubscriptions().then(
-                  (value) => _displayDataAlert(
-                    method: value.data?.first.userName,
-                    data: value.data?.first.tier,
-                  ),
-                ),
+            onPressed: () {
+              final id = _twitchClient.twitchHttpClient.twitchToken?.userId;
+              if (id != null) {
+                _twitchClient
+                    .getBroadcasterSubscriptions(broadcasterId: id)
+                    .then(
+                      (value) => _displayDataAlert(
+                        method: value.data.first.userName,
+                        data: value.data.first.tier,
+                      ),
+                    );
+              }
+            },
             child: const Text('Get Broadcaster Subscriptions'),
           ),
           ElevatedButton(
