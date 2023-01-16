@@ -216,13 +216,13 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () =>
                 _twitchClient.getStreams(userLogins: ['auronplay']).then(
               (value) => _displayDataAlert(
-                method: (value.data?.isNotEmpty ?? false)
-                    ? value.data?.first.userLogin
+                method: (value.data.isNotEmpty)
+                    ? value.data.first.userLogin
                     : 'getStreams',
                 data:
-                    'Viewers: ${(value.data?.isNotEmpty ?? false) ? value.data?.first.viewerCount : "No data"}',
-                isOnline: (value.data?.isNotEmpty ?? false)
-                    ? value.data?.first.type == TwitchStreamType.live
+                    'Viewers: ${(value.data.isNotEmpty) ? value.data.first.viewerCount : "No data"}',
+                isOnline: (value.data.isNotEmpty)
+                    ? value.data.first.type == TwitchStreamType.live
                     : false,
               ),
             ),
@@ -233,10 +233,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 _twitchClient.searchChannels(query: 'loserfruit').then(
               (value) {
                 _displayDataAlert(
-                  method: value.data?.first.displayName,
-                  data: value.data?.first.thumbnailUrl,
+                  method: value.data.first.displayName,
+                  data: value.data.first.thumbnailUrl,
                   isImg: true,
-                  isOnline: value.data?.first.isLive,
+                  isOnline: value.data.first.isLive,
                 );
               },
             ),

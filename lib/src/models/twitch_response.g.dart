@@ -156,6 +156,36 @@ Map<String, dynamic> _$$_SearchCategoriesResponseToJson(
       'data': instance.data,
     };
 
+_$_SearchChannelsResponse _$$_SearchChannelsResponseFromJson(
+        Map<String, dynamic> json) =>
+    _$_SearchChannelsResponse(
+      data: (json['data'] as List<dynamic>)
+          .map((e) => TwitchSearchChannel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      pagination: json['pagination'] as Map<String, dynamic>?,
+    );
+
+Map<String, dynamic> _$$_SearchChannelsResponseToJson(
+        _$_SearchChannelsResponse instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+      'pagination': instance.pagination,
+    };
+
+_$_StreamsResponse _$$_StreamsResponseFromJson(Map<String, dynamic> json) =>
+    _$_StreamsResponse(
+      data: (json['data'] as List<dynamic>)
+          .map((e) => TwitchStreamInfo.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      pagination: json['pagination'] as Map<String, dynamic>?,
+    );
+
+Map<String, dynamic> _$$_StreamsResponseToJson(_$_StreamsResponse instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+      'pagination': instance.pagination,
+    };
+
 _$_CheermotesResponse _$$_CheermotesResponseFromJson(
         Map<String, dynamic> json) =>
     _$_CheermotesResponse(

@@ -429,7 +429,7 @@ class TwitchClient {
   /// `pagination` response field of a prior query.
   ///
   /// `liveOnly`: Filter results for live streams only. Default: `false`
-  Future<TwitchResponse<TwitchSearchChannel>> searchChannels({
+  Future<SearchChannelsResponse> searchChannels({
     required String query,
     int first = 20,
     String? after,
@@ -437,18 +437,18 @@ class TwitchClient {
   }) async {
     assert(first > 0 && first < 101);
 
-    final queryParameters = <String, String?>{
+    final queryParameters = <String, String>{
       'query': query,
       'first': first.toString(),
       'live_only': liveOnly.toString(),
+      if (after != null) 'after': after,
     };
-    if (after != null && after.isNotEmpty) queryParameters['after'] = after;
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['search', 'channels'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse<TwitchSearchChannel>.searchChannels(data);
+    return SearchChannelsResponse.fromJson(data);
   }
 
   /// Gets information about active streams. Streams are returned sorted by
@@ -479,7 +479,7 @@ class TwitchClient {
   ///
   /// `userLogins`: Returns streams broadcast by one or more specified user
   /// login names. You can specify up to 100 names.
-  Future<TwitchResponse<TwitchStreamInfo>> getStreams({
+  Future<StreamsResponse> getStreams({
     String? after,
     String? before,
     int first = 20,
@@ -494,23 +494,21 @@ class TwitchClient {
     assert(userIds.length < 101);
     assert(userLogins.length < 101);
 
-    final queryParameters = <String, String?>{'first': first.toString()};
-    if (after != null && after.isNotEmpty) queryParameters['after'] = after;
-    if (before != null && before.isNotEmpty) queryParameters['before'] = before;
-    if (gameIds.isNotEmpty) queryParameters['game_id'] = gameIds.join(',');
-    if (languages.isNotEmpty) {
-      queryParameters['languages'] = languages.join(',');
-    }
-    if (userIds.isNotEmpty) queryParameters['user_id'] = userIds.join(',');
-    if (userLogins.isNotEmpty) {
-      queryParameters['user_login'] = userLogins.join(',');
-    }
+    final queryParameters = <String, String>{
+      'first': first.toString(),
+      if (after != null) 'after': after,
+      if (before != null) 'before': before,
+      if (gameIds.isNotEmpty) 'game_id': gameIds.join(','),
+      if (languages.isNotEmpty) 'language': languages.join(','),
+      if (userIds.isNotEmpty) 'user_id': userIds.join(','),
+      if (userLogins.isNotEmpty) 'user_login': userLogins.join(','),
+    };
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['streams'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.streamsInfo(data);
+    return StreamsResponse.fromJson(data);
   }
 
   /// Get all of a broadcaster’s subscriptions.

@@ -61,15 +61,6 @@ class TwitchResponse<T> {
         pagination: json['pagination'] as Map<String, dynamic>?,
       );
 
-  /// Constructor for request containing [TwitchGameAnalytic].
-
-  /// Constructor for request containing [TwitchSearchChannel].
-  factory TwitchResponse.searchChannels(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: _parseObjects(json, TwitchSearchChannel.fromJson),
-        pagination: json['pagination'] as Map<String, dynamic>?,
-      );
-
   /// {@template twitchResponse.data}
   /// List of data from the response parsed into an object.
   /// {@endtemplate}
@@ -228,6 +219,36 @@ class SearchCategoriesResponse with _$SearchCategoriesResponse {
 
   factory SearchCategoriesResponse.fromJson(Map<String, dynamic> json) =>
       _$SearchCategoriesResponseFromJson(json);
+}
+
+/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#search-channels
+@freezed
+class SearchChannelsResponse with _$SearchChannelsResponse {
+  const factory SearchChannelsResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchSearchChannel> data,
+
+    /// {@macro twitchResponse.pagination}
+    required Map<String, dynamic>? pagination,
+  }) = _SearchChannelsResponse;
+
+  factory SearchChannelsResponse.fromJson(Map<String, dynamic> json) =>
+      _$SearchChannelsResponseFromJson(json);
+}
+
+/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-streams
+@freezed
+class StreamsResponse with _$StreamsResponse {
+  const factory StreamsResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchStreamInfo> data,
+
+    /// {@macro twitchResponse.pagination}
+    required Map<String, dynamic>? pagination,
+  }) = _StreamsResponse;
+
+  factory StreamsResponse.fromJson(Map<String, dynamic> json) =>
+      _$StreamsResponseFromJson(json);
 }
 
 @freezed

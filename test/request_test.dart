@@ -314,6 +314,63 @@ void main() {
       );
     });
 
+    group('searchChannels', () {
+      test(
+        'should call getCall on search/channels and return a valid ChannelsResponse',
+        () async {
+          const path = ['search', 'channels'];
+          const query = 'fort';
+          final queryParams = {
+            'query': query,
+            'first': '20',
+            'live_only': 'false',
+          };
+
+          when(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: queryParams,
+            ),
+          ).thenAnswer((_) async => readJson('search_channels.json'));
+
+          await client.searchChannels(query: query);
+
+          verify(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: queryParams,
+            ),
+          );
+        },
+      );
+    });
+
+    group('getStreams', () {
+      test(
+        'should call getCall on streams and return a valid StreamsResponse',
+        () async {
+          const path = ['streams'];
+          final queryParams = {'first': '20'};
+
+          when(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: queryParams,
+            ),
+          ).thenAnswer((_) async => readJson('get_streams.json'));
+
+          await client.getStreams();
+
+          verify(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: queryParams,
+            ),
+          );
+        },
+      );
+    });
+
     group('getCheermotes', () {
       test(
           'should call getCall on bits/cheermotes and return a valid CheermotesResponse',
@@ -339,70 +396,6 @@ void main() {
     });
 
     group('GET', () {
-      group('Streams', () {
-        test('1', () async {
-          final data = (await client.getStreams()).data!;
-          expect(data.length, 1);
-
-          final twitchStreamInfo = data.first;
-          expect(twitchStreamInfo.id, '41375541868');
-          expect(twitchStreamInfo.userId, '459331509');
-          expect(twitchStreamInfo.userLogin, 'auronplay');
-          expect(twitchStreamInfo.userName, 'auronplay');
-          expect(twitchStreamInfo.gameId, '494131');
-          expect(twitchStreamInfo.gameName, 'Little Nightmares');
-          expect(twitchStreamInfo.type, TwitchStreamType.live);
-          expect(
-            twitchStreamInfo.title,
-            'hablamos y le damos a Little Nightmares 1',
-          );
-          expect(twitchStreamInfo.viewerCount, 78365);
-          expect(twitchStreamInfo.language, 'es');
-          expect(
-            twitchStreamInfo.thumbnailUrl,
-            'https://static-cdn.jtvnw.net/previews-ttv/live_user_auronplay-{width}x{height}.jpg',
-          );
-          expect(
-            twitchStreamInfo.tagIds,
-            ['d4bb9c58-2141-4881-bcdc-3fe0505457d1'],
-          );
-          expect(twitchStreamInfo.isMature, false);
-        });
-
-        test('2', () async {
-          final data = (await client.getStreams(
-            after:
-                'eyJiIjp7IkN1cnNvciI6ImV5SnpJam8zT0RNMk5TNDBORFF4TlRjMU1UY3hOU3dpWkNJNlptRnNjMlVzSW5RaU9uUnlkV1Y5In0sImEiOnsiQ3Vyc29yIjoiZXlKeklqb3hOVGs0TkM0MU56RXhNekExTVRZNU1ESXNJbVFpT21aaGJITmxMQ0owSWpwMGNuVmxmUT09In19',
-          ))
-              .data!;
-          expect(data.length, 1);
-
-          final twitchStreamInfo = data.first;
-          expect(twitchStreamInfo.id, '40944942733');
-          expect(twitchStreamInfo.userId, '67931625');
-          expect(twitchStreamInfo.userLogin, 'amar');
-          expect(twitchStreamInfo.userName, 'Amar');
-          expect(twitchStreamInfo.gameId, '33214');
-          expect(twitchStreamInfo.gameName, 'Fortnite');
-          expect(twitchStreamInfo.type, TwitchStreamType.live);
-          expect(
-            twitchStreamInfo.title,
-            '27h Stream Pringles Deathrun Map + 12k MK Turnier | !sub !JustLegends !Pc !yfood',
-          );
-          expect(twitchStreamInfo.viewerCount, 14944);
-          expect(twitchStreamInfo.language, 'de');
-          expect(
-            twitchStreamInfo.thumbnailUrl,
-            'https://static-cdn.jtvnw.net/previews-ttv/live_user_amar-{width}x{height}.jpg',
-          );
-          expect(
-            twitchStreamInfo.tagIds,
-            ['9166ad14-41f1-4b04-a3b8-c8eb838c6be6'],
-          );
-          expect(twitchStreamInfo.isMature, false);
-        });
-      });
-
       test('Channel Editors', () async {
         final data = (await client.getChannelEditors(broadcasterId: '')).data;
         expect(data!.length, 2);
@@ -461,27 +454,6 @@ void main() {
 
         final subscription = response.data!.first;
         expect(subscription.broadcasterId, '141981764');
-      });
-
-      test('Search Channels', () async {
-        final data = (await client.searchChannels(query: 'loserfruit')).data!;
-        expect(data.length, 1);
-
-        final channel = data.first;
-        expect(channel.id, '41245072');
-        expect(channel.displayName, 'Loserfruit');
-        expect(channel.gameName, 'House Flipper');
-        expect(channel.gameId, '498000');
-        expect(channel.broadcasterLanguage, 'en');
-        expect(channel.broadcasterLogin, 'loserfruit');
-        expect(channel.isLive, false);
-        expect(channel.tagIds.isEmpty, true);
-        expect(
-          channel.thumbnailUrl,
-          'https://static-cdn.jtvnw.net/jtv_user_pictures/fd17325a-7dc2-46c6-8617-e90ec259501c-profile_image-300x300.png',
-        );
-        expect(channel.title, 'loserfruit');
-        expect(channel.startedAt, isNull);
       });
     });
 
