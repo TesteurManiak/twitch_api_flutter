@@ -221,6 +221,23 @@ Map<String, dynamic> _$$_CheermotesResponseToJson(
       'data': instance.data,
     };
 
+_$_ExtensionTransactionsResponse _$$_ExtensionTransactionsResponseFromJson(
+        Map<String, dynamic> json) =>
+    _$_ExtensionTransactionsResponse(
+      data: (json['data'] as List<dynamic>)
+          .map((e) =>
+              TwitchExtensionTransaction.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      pagination: json['pagination'] as Map<String, dynamic>?,
+    );
+
+Map<String, dynamic> _$$_ExtensionTransactionsResponseToJson(
+        _$_ExtensionTransactionsResponse instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+      'pagination': instance.pagination,
+    };
+
 _$_ChannelEmotesResponse _$$_ChannelEmotesResponseFromJson(
         Map<String, dynamic> json) =>
     _$_ChannelEmotesResponse(

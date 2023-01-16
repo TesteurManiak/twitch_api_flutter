@@ -583,7 +583,7 @@ class TwitchClient {
   /// to queries without ID. If an ID is specified, it supersedes the cursor.
   ///
   /// `first`: Maximum number of objects to return. Maximum: 100. Default: 20
-  Future<TwitchResponse<TwitchExtensionTransaction>> getExtensionTransaction({
+  Future<ExtensionTransactionsResponse> getExtensionTransactions({
     required String extensionId,
     String? id,
     String? after,
@@ -591,18 +591,18 @@ class TwitchClient {
   }) async {
     assert(first > 0 && first < 101);
 
-    final queryParameters = <String, String?>{
+    final queryParameters = <String, String>{
       'extension_id': extensionId,
       'first': first.toString(),
+      if (id != null) 'id': id,
+      if (after != null) 'after': after,
     };
-    if (id != null) queryParameters['id'] = id;
-    if (after != null) queryParameters['after'] = after;
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['extensions', 'transactions'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.extensionTransaction(data);
+    return ExtensionTransactionsResponse.fromJson(data);
   }
 
   /// Modifies channel information for users.

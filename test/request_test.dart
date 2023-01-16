@@ -371,30 +371,6 @@ void main() {
       );
     });
 
-    group('getCheermotes', () {
-      test(
-          'should call getCall on bits/cheermotes and return a valid CheermotesResponse',
-          () async {
-        const path = ['bits', 'cheermotes'];
-
-        when(
-          () => mockHttpClient.getCall<Map<String, dynamic>>(
-            path,
-            queryParameters: any(named: 'queryParameters'),
-          ),
-        ).thenAnswer((_) async => readJson('get_cheermotes.json'));
-
-        await client.getCheermotes();
-
-        verify(
-          () => mockHttpClient.getCall<Map<String, dynamic>>(
-            path,
-            queryParameters: any(named: 'queryParameters'),
-          ),
-        );
-      });
-    });
-
     group('getBroadcasterSubscriptions', () {
       test(
         'should call getCall on subscriptions and return a valid SubscriptionsResponse',
@@ -425,6 +401,61 @@ void main() {
           );
         },
       );
+    });
+
+    group('getCheermotes', () {
+      test(
+          'should call getCall on bits/cheermotes and return a valid CheermotesResponse',
+          () async {
+        const path = ['bits', 'cheermotes'];
+
+        when(
+          () => mockHttpClient.getCall<Map<String, dynamic>>(
+            path,
+            queryParameters: any(named: 'queryParameters'),
+          ),
+        ).thenAnswer((_) async => readJson('get_cheermotes.json'));
+
+        await client.getCheermotes();
+
+        verify(
+          () => mockHttpClient.getCall<Map<String, dynamic>>(
+            path,
+            queryParameters: any(named: 'queryParameters'),
+          ),
+        );
+      });
+    });
+
+    group('getExtensionTransactions', () {
+      test(
+          'should call getCall on extensions/transactions and return a valid ExtensionTransactionResponse',
+          () async {
+        const path = ['extensions', 'transactions'];
+        const id = '1234';
+        const queryParams = {
+          'extension_id': id,
+          'first': '20',
+        };
+
+        when(
+          () => mockHttpClient.getCall<Map<String, dynamic>>(
+            path,
+            queryParameters: queryParams,
+          ),
+        ).thenAnswer(
+          (_) async => readJson('get_extension_transactions.json'),
+        );
+
+        await client.getExtensionTransactions(extensionId: id);
+
+        verify(
+          () => mockHttpClient.getCall<Map<String, dynamic>>(
+            path,
+            queryParameters: queryParams,
+          ),
+        );
+      });
     });
 
     group('GET', () {

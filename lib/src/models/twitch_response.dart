@@ -40,12 +40,6 @@ class TwitchResponse<T> {
   factory TwitchResponse.channelEditor(Map<String, dynamic> json) =>
       TwitchResponse(data: _parseObjects(json, TwitchChannelEditor.fromJson));
 
-  /// Constructor for request containing [TwitchExtensionTransaction].
-  factory TwitchResponse.extensionTransaction(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: _parseObjects(json, TwitchExtensionTransaction.fromJson),
-      );
-
   /// Constructor for request containing [TwitchStreamInfo].
   factory TwitchResponse.streamsInfo(Map<String, dynamic> json) =>
       TwitchResponse(
@@ -280,6 +274,21 @@ class CheermotesResponse with _$CheermotesResponse {
 
   factory CheermotesResponse.fromJson(Map<String, dynamic> json) =>
       _$CheermotesResponseFromJson(json);
+}
+
+/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-extension-transactions
+@freezed
+class ExtensionTransactionsResponse with _$ExtensionTransactionsResponse {
+  const factory ExtensionTransactionsResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchExtensionTransaction> data,
+
+    /// {@macro twitchResponse.pagination}
+    required Map<String, dynamic>? pagination,
+  }) = _ExtensionTransactionsResponse;
+
+  factory ExtensionTransactionsResponse.fromJson(Map<String, dynamic> json) =>
+      _$ExtensionTransactionsResponseFromJson(json);
 }
 
 @freezed

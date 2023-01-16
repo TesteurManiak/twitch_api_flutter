@@ -2630,6 +2630,211 @@ abstract class _CheermotesResponse implements CheermotesResponse {
       throw _privateConstructorUsedError;
 }
 
+ExtensionTransactionsResponse _$ExtensionTransactionsResponseFromJson(
+    Map<String, dynamic> json) {
+  return _ExtensionTransactionsResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ExtensionTransactionsResponse {
+  /// {@macro twitchResponse.data}
+  List<TwitchExtensionTransaction> get data =>
+      throw _privateConstructorUsedError;
+
+  /// {@macro twitchResponse.pagination}
+  Map<String, dynamic>? get pagination => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ExtensionTransactionsResponseCopyWith<ExtensionTransactionsResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ExtensionTransactionsResponseCopyWith<$Res> {
+  factory $ExtensionTransactionsResponseCopyWith(
+          ExtensionTransactionsResponse value,
+          $Res Function(ExtensionTransactionsResponse) then) =
+      _$ExtensionTransactionsResponseCopyWithImpl<$Res,
+          ExtensionTransactionsResponse>;
+  @useResult
+  $Res call(
+      {List<TwitchExtensionTransaction> data,
+      Map<String, dynamic>? pagination});
+}
+
+/// @nodoc
+class _$ExtensionTransactionsResponseCopyWithImpl<$Res,
+        $Val extends ExtensionTransactionsResponse>
+    implements $ExtensionTransactionsResponseCopyWith<$Res> {
+  _$ExtensionTransactionsResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? pagination = freezed,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchExtensionTransaction>,
+      pagination: freezed == pagination
+          ? _value.pagination
+          : pagination // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_ExtensionTransactionsResponseCopyWith<$Res>
+    implements $ExtensionTransactionsResponseCopyWith<$Res> {
+  factory _$$_ExtensionTransactionsResponseCopyWith(
+          _$_ExtensionTransactionsResponse value,
+          $Res Function(_$_ExtensionTransactionsResponse) then) =
+      __$$_ExtensionTransactionsResponseCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {List<TwitchExtensionTransaction> data,
+      Map<String, dynamic>? pagination});
+}
+
+/// @nodoc
+class __$$_ExtensionTransactionsResponseCopyWithImpl<$Res>
+    extends _$ExtensionTransactionsResponseCopyWithImpl<$Res,
+        _$_ExtensionTransactionsResponse>
+    implements _$$_ExtensionTransactionsResponseCopyWith<$Res> {
+  __$$_ExtensionTransactionsResponseCopyWithImpl(
+      _$_ExtensionTransactionsResponse _value,
+      $Res Function(_$_ExtensionTransactionsResponse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? pagination = freezed,
+  }) {
+    return _then(_$_ExtensionTransactionsResponse(
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchExtensionTransaction>,
+      pagination: freezed == pagination
+          ? _value._pagination
+          : pagination // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ExtensionTransactionsResponse
+    implements _ExtensionTransactionsResponse {
+  const _$_ExtensionTransactionsResponse(
+      {required final List<TwitchExtensionTransaction> data,
+      required final Map<String, dynamic>? pagination})
+      : _data = data,
+        _pagination = pagination;
+
+  factory _$_ExtensionTransactionsResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$$_ExtensionTransactionsResponseFromJson(json);
+
+  /// {@macro twitchResponse.data}
+  final List<TwitchExtensionTransaction> _data;
+
+  /// {@macro twitchResponse.data}
+  @override
+  List<TwitchExtensionTransaction> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  /// {@macro twitchResponse.pagination}
+  final Map<String, dynamic>? _pagination;
+
+  /// {@macro twitchResponse.pagination}
+  @override
+  Map<String, dynamic>? get pagination {
+    final value = _pagination;
+    if (value == null) return null;
+    if (_pagination is EqualUnmodifiableMapView) return _pagination;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  @override
+  String toString() {
+    return 'ExtensionTransactionsResponse(data: $data, pagination: $pagination)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ExtensionTransactionsResponse &&
+            const DeepCollectionEquality().equals(other._data, _data) &&
+            const DeepCollectionEquality()
+                .equals(other._pagination, _pagination));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_data),
+      const DeepCollectionEquality().hash(_pagination));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ExtensionTransactionsResponseCopyWith<_$_ExtensionTransactionsResponse>
+      get copyWith => __$$_ExtensionTransactionsResponseCopyWithImpl<
+          _$_ExtensionTransactionsResponse>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ExtensionTransactionsResponseToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ExtensionTransactionsResponse
+    implements ExtensionTransactionsResponse {
+  const factory _ExtensionTransactionsResponse(
+          {required final List<TwitchExtensionTransaction> data,
+          required final Map<String, dynamic>? pagination}) =
+      _$_ExtensionTransactionsResponse;
+
+  factory _ExtensionTransactionsResponse.fromJson(Map<String, dynamic> json) =
+      _$_ExtensionTransactionsResponse.fromJson;
+
+  @override
+
+  /// {@macro twitchResponse.data}
+  List<TwitchExtensionTransaction> get data;
+  @override
+
+  /// {@macro twitchResponse.pagination}
+  Map<String, dynamic>? get pagination;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ExtensionTransactionsResponseCopyWith<_$_ExtensionTransactionsResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 ChannelEmotesResponse _$ChannelEmotesResponseFromJson(
     Map<String, dynamic> json) {
   return _ChannelEmotesResponse.fromJson(json);
