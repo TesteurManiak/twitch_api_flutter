@@ -284,3 +284,17 @@ Map<String, dynamic> _$$_EmoteSetsResponseToJson(
       'data': instance.data,
       'template': instance.template,
     };
+
+_$_ChannelEditorsResponse _$$_ChannelEditorsResponseFromJson(
+        Map<String, dynamic> json) =>
+    _$_ChannelEditorsResponse(
+      data: (json['data'] as List<dynamic>)
+          .map((e) => TwitchChannelEditor.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$_ChannelEditorsResponseToJson(
+        _$_ChannelEditorsResponse instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+    };

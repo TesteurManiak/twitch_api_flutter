@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:twitch_api/src/models/twitch_channel_editor.dart';
 import 'package:twitch_api/src/models/twitch_chat_badge.dart';
 import 'package:twitch_api/src/models/twitch_chat_settings.dart';
 import 'package:twitch_api/src/providers/twitch_dio_provider.dart';
@@ -639,21 +638,24 @@ class TwitchClient {
           delay != null,
       'At least one optional parameter must be provided.',
     );
-    if (broadcasterLanguage != null) {
-      assert(broadcasterLanguage == 'other' || broadcasterLanguage.length == 2);
-    }
-    if (title != null) {
-      assert(title.isNotEmpty, 'The title must not be an empty string.');
-    }
-    if (delay != null) assert(delay > 0);
+    assert(
+      broadcasterLanguage == null ||
+          broadcasterLanguage == 'other' ||
+          broadcasterLanguage.length == 2,
+    );
+    assert(
+      title == null || title.isNotEmpty,
+      'The title must not be an empty string.',
+    );
+    assert(delay == null || delay > 0);
 
-    final data = <String, dynamic>{};
-    if (gameId != null) data['game_id'] = gameId;
-    if (broadcasterLanguage != null) {
-      data['broadcaster_language'] = broadcasterLanguage;
-    }
-    if (title != null) data['title'] = title;
-    if (delay != null) data['delay'] = delay;
+    final data = <String, Object>{
+      if (gameId != null) 'game_id': gameId,
+      if (broadcasterLanguage != null)
+        'broadcaster_language': broadcasterLanguage,
+      if (title != null) 'title': title,
+      if (delay != null) 'delay': delay,
+    };
 
     return twitchHttpClient.patchCall(
       ['channels'],
@@ -667,14 +669,14 @@ class TwitchClient {
   /// Required scope: [TwitchApiScope.channelReadEditors]
   ///
   /// `broadcasterId`: Broadcaster’s user ID associated with the channel.
-  Future<TwitchResponse<TwitchChannelEditor>> getChannelEditors({
+  Future<ChannelEditorsResponse> getChannelEditors({
     required String broadcasterId,
   }) async {
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['channels', 'editors'],
       queryParameters: {'broadcaster_id': broadcasterId},
     );
-    return TwitchResponse.channelEditor(data);
+    return ChannelEditorsResponse.fromJson(data);
   }
 
   /// Creates a Custom Reward on a channel.

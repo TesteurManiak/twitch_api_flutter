@@ -37,9 +37,6 @@ class TwitchResponse<T> {
   factory TwitchResponse.customReward(Map<String, dynamic> json) =>
       TwitchResponse(data: _parseObjects(json, TwitchCustomReward.fromJson));
 
-  factory TwitchResponse.channelEditor(Map<String, dynamic> json) =>
-      TwitchResponse(data: _parseObjects(json, TwitchChannelEditor.fromJson));
-
   /// Constructor for request containing [TwitchStreamInfo].
   factory TwitchResponse.streamsInfo(Map<String, dynamic> json) =>
       TwitchResponse(
@@ -47,19 +44,9 @@ class TwitchResponse<T> {
         pagination: json['pagination'] as Map<String, dynamic>?,
       );
 
-  /// {@template twitchResponse.data}
-  /// List of data from the response parsed into an object.
-  /// {@endtemplate}
   final List<T>? data;
-
-  /// A cursor value, to be used in a subsequent request to specify the starting
-  /// point of the next set of results.
   final Map<String, dynamic>? pagination;
-
-  /// Total number of results returned.
   final int? total;
-
-  /// Date range of the returned data.
   final TwitchDateRange? dateRange;
 }
 
@@ -67,7 +54,9 @@ class TwitchResponse<T> {
 @freezed
 class StartCommercialResponse with _$StartCommercialResponse {
   const factory StartCommercialResponse({
-    /// {@macro twitchResponse.data}
+    /// {@template twitchResponse.data}
+    /// List of data from the response parsed into an object.
+    /// {@endtemplate}
     required List<TwitchStartCommercial> data,
   }) = _StartCommercialResponse;
 
@@ -118,7 +107,9 @@ class BitsLeaderboardResponse with _$BitsLeaderboardResponse {
     /// {@macro twitchResponse.dateRange}
     @JsonKey(name: 'date_range') required TwitchDateRange dateRange,
 
-    /// {@macro twitchResponse.total}
+    /// {@template twitchResponse.total}
+    /// Total number of results returned.
+    /// {@endtemplate}
     required int total,
   }) = _BitsLeaderboardResponse;
 
@@ -337,4 +328,16 @@ class EmoteSetsResponse with _$EmoteSetsResponse {
 
   factory EmoteSetsResponse.fromJson(Map<String, dynamic> json) =>
       _$EmoteSetsResponseFromJson(json);
+}
+
+/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-channel-editors
+@freezed
+class ChannelEditorsResponse with _$ChannelEditorsResponse {
+  const factory ChannelEditorsResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchChannelEditor> data,
+  }) = _ChannelEditorsResponse;
+
+  factory ChannelEditorsResponse.fromJson(Map<String, dynamic> json) =>
+      _$ChannelEditorsResponseFromJson(json);
 }

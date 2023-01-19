@@ -21,7 +21,9 @@ StartCommercialResponse _$StartCommercialResponseFromJson(
 
 /// @nodoc
 mixin _$StartCommercialResponse {
-  /// {@macro twitchResponse.data}
+  /// {@template twitchResponse.data}
+  /// List of data from the response parsed into an object.
+  /// {@endtemplate}
   List<TwitchStartCommercial> get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -108,10 +110,14 @@ class _$_StartCommercialResponse implements _StartCommercialResponse {
   factory _$_StartCommercialResponse.fromJson(Map<String, dynamic> json) =>
       _$$_StartCommercialResponseFromJson(json);
 
-  /// {@macro twitchResponse.data}
+  /// {@template twitchResponse.data}
+  /// List of data from the response parsed into an object.
+  /// {@endtemplate}
   final List<TwitchStartCommercial> _data;
 
-  /// {@macro twitchResponse.data}
+  /// {@template twitchResponse.data}
+  /// List of data from the response parsed into an object.
+  /// {@endtemplate}
   @override
   List<TwitchStartCommercial> get data {
     if (_data is EqualUnmodifiableListView) return _data;
@@ -163,7 +169,9 @@ abstract class _StartCommercialResponse implements StartCommercialResponse {
 
   @override
 
-  /// {@macro twitchResponse.data}
+  /// {@template twitchResponse.data}
+  /// List of data from the response parsed into an object.
+  /// {@endtemplate}
   List<TwitchStartCommercial> get data;
   @override
   @JsonKey(ignore: true)
@@ -588,7 +596,9 @@ mixin _$BitsLeaderboardResponse {
   @JsonKey(name: 'date_range')
   TwitchDateRange get dateRange => throw _privateConstructorUsedError;
 
-  /// {@macro twitchResponse.total}
+  /// {@template twitchResponse.total}
+  /// Total number of results returned.
+  /// {@endtemplate}
   int get total => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -732,7 +742,9 @@ class _$_BitsLeaderboardResponse implements _BitsLeaderboardResponse {
   @JsonKey(name: 'date_range')
   final TwitchDateRange dateRange;
 
-  /// {@macro twitchResponse.total}
+  /// {@template twitchResponse.total}
+  /// Total number of results returned.
+  /// {@endtemplate}
   @override
   final int total;
 
@@ -793,7 +805,9 @@ abstract class _BitsLeaderboardResponse implements BitsLeaderboardResponse {
   TwitchDateRange get dateRange;
   @override
 
-  /// {@macro twitchResponse.total}
+  /// {@template twitchResponse.total}
+  /// Total number of results returned.
+  /// {@endtemplate}
   int get total;
   @override
   @JsonKey(ignore: true)
@@ -3388,5 +3402,161 @@ abstract class _EmoteSetsResponse implements EmoteSetsResponse {
   @override
   @JsonKey(ignore: true)
   _$$_EmoteSetsResponseCopyWith<_$_EmoteSetsResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ChannelEditorsResponse _$ChannelEditorsResponseFromJson(
+    Map<String, dynamic> json) {
+  return _ChannelEditorsResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ChannelEditorsResponse {
+  /// {@macro twitchResponse.data}
+  List<TwitchChannelEditor> get data => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ChannelEditorsResponseCopyWith<ChannelEditorsResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ChannelEditorsResponseCopyWith<$Res> {
+  factory $ChannelEditorsResponseCopyWith(ChannelEditorsResponse value,
+          $Res Function(ChannelEditorsResponse) then) =
+      _$ChannelEditorsResponseCopyWithImpl<$Res, ChannelEditorsResponse>;
+  @useResult
+  $Res call({List<TwitchChannelEditor> data});
+}
+
+/// @nodoc
+class _$ChannelEditorsResponseCopyWithImpl<$Res,
+        $Val extends ChannelEditorsResponse>
+    implements $ChannelEditorsResponseCopyWith<$Res> {
+  _$ChannelEditorsResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchChannelEditor>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_ChannelEditorsResponseCopyWith<$Res>
+    implements $ChannelEditorsResponseCopyWith<$Res> {
+  factory _$$_ChannelEditorsResponseCopyWith(_$_ChannelEditorsResponse value,
+          $Res Function(_$_ChannelEditorsResponse) then) =
+      __$$_ChannelEditorsResponseCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<TwitchChannelEditor> data});
+}
+
+/// @nodoc
+class __$$_ChannelEditorsResponseCopyWithImpl<$Res>
+    extends _$ChannelEditorsResponseCopyWithImpl<$Res,
+        _$_ChannelEditorsResponse>
+    implements _$$_ChannelEditorsResponseCopyWith<$Res> {
+  __$$_ChannelEditorsResponseCopyWithImpl(_$_ChannelEditorsResponse _value,
+      $Res Function(_$_ChannelEditorsResponse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$_ChannelEditorsResponse(
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchChannelEditor>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ChannelEditorsResponse implements _ChannelEditorsResponse {
+  const _$_ChannelEditorsResponse(
+      {required final List<TwitchChannelEditor> data})
+      : _data = data;
+
+  factory _$_ChannelEditorsResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_ChannelEditorsResponseFromJson(json);
+
+  /// {@macro twitchResponse.data}
+  final List<TwitchChannelEditor> _data;
+
+  /// {@macro twitchResponse.data}
+  @override
+  List<TwitchChannelEditor> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  @override
+  String toString() {
+    return 'ChannelEditorsResponse(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ChannelEditorsResponse &&
+            const DeepCollectionEquality().equals(other._data, _data));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_ChannelEditorsResponseCopyWith<_$_ChannelEditorsResponse> get copyWith =>
+      __$$_ChannelEditorsResponseCopyWithImpl<_$_ChannelEditorsResponse>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ChannelEditorsResponseToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ChannelEditorsResponse implements ChannelEditorsResponse {
+  const factory _ChannelEditorsResponse(
+          {required final List<TwitchChannelEditor> data}) =
+      _$_ChannelEditorsResponse;
+
+  factory _ChannelEditorsResponse.fromJson(Map<String, dynamic> json) =
+      _$_ChannelEditorsResponse.fromJson;
+
+  @override
+
+  /// {@macro twitchResponse.data}
+  List<TwitchChannelEditor> get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ChannelEditorsResponseCopyWith<_$_ChannelEditorsResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }

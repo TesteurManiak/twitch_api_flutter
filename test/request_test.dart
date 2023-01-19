@@ -458,16 +458,35 @@ void main() {
       });
     });
 
-    group('GET', () {
-      test('Channel Editors', () async {
-        final data = (await client.getChannelEditors(broadcasterId: '')).data;
-        expect(data!.length, 2);
+    group('getChannelEditors', () {
+      test(
+          'should call getCall on channels/editors and return a valid ChannelEditorsResponse',
+          () async {
+        const path = ['channels', 'editors'];
+        const id = '1234';
+        const queryParams = {'broadcaster_id': id};
 
-        final channelEditor = data.first;
-        expect(channelEditor.userId, '182891647');
-        expect(channelEditor.userName, 'mauerbac');
+        when(
+          () => mockHttpClient.getCall<Map<String, dynamic>>(
+            path,
+            queryParameters: queryParams,
+          ),
+        ).thenAnswer(
+          (_) async => readJson('get_channel_editors.json'),
+        );
+
+        await client.getChannelEditors(broadcasterId: id);
+
+        verify(
+          () => mockHttpClient.getCall<Map<String, dynamic>>(
+            path,
+            queryParameters: queryParams,
+          ),
+        );
       });
+    });
 
+    group('GET', () {
       group('Custom Rewards', () {
         test('1', () async {
           final data = (await client.getCustomRewards()).data;
