@@ -305,8 +305,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
                 .then(
                   (value) => _displayDataAlert(
-                    method: 'You have ${value.data?.length} editors',
-                    data: value.data?.map<String>((e) => e.userName).join(', '),
+                    method: 'You have ${value.data.length} editors',
+                    data: value.data.map<String>((e) => e.userName).join(', '),
                   ),
                 ),
             child: const Text('Get your channel editors'),
