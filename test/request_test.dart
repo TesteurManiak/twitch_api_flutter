@@ -557,29 +557,39 @@ void main() {
       );
     });
 
+    group('getCustomRewards', () {
+      test(
+        'should call getCall on channel_points/custom_rewards and return a valid CustomRewardResponse',
+        () async {
+          const path = ['channel_points', 'custom_rewards'];
+          const id = '92af127c-7326-4483-a52b-b0da0be61c01';
+          const queryParams = {
+            'broadcaster_id': id,
+            'only_manageable_rewards': 'false',
+          };
+
+          when(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: queryParams,
+            ),
+          ).thenAnswer(
+            (_) async => readJson('get_custom_rewards.json'),
+          );
+
+          await client.getCustomRewards(broadcasterId: id);
+
+          verify(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: queryParams,
+            ),
+          );
+        },
+      );
+    });
+
     group('GET', () {
-      group('Custom Rewards', () {
-        test('1', () async {
-          final data = (await client.getCustomRewards()).data;
-
-          expect(data.length, 1);
-        });
-
-        test('2', () async {
-          final data =
-              (await client.getCustomRewards(onlyManageableRewards: true)).data;
-          expect(data.length, 1);
-        });
-
-        test('3', () async {
-          final data = (await client.getCustomRewards(
-            ids: ['92af127c-7326-4483-a52b-b0da0be61c01'],
-          ))
-              .data;
-          expect(data.length, 1);
-        });
-      });
-
       group('Custom Reward Redemption', () {
         test('1', () async {
           final data = (await client.getCustomRewardRedemptions(

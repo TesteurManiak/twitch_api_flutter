@@ -778,16 +778,17 @@ class TwitchClient {
   /// `onlyManageableRewards`: When set to true, only returns Custom Rewards that
   /// the calling `clientId` can manage. Default: false.
   Future<CustomRewardResponse> getCustomRewards({
+    required String broadcasterId,
     List<String> ids = const [],
     bool onlyManageableRewards = false,
   }) async {
     assert(ids.length <= 50, 'ids.length cannot exceed 50');
 
-    final queryParameters = <String, String?>{
-      'broadcaster_id': twitchHttpClient.twitchToken?.userId,
+    final queryParameters = <String, String>{
+      'broadcaster_id': broadcasterId,
       'only_manageable_rewards': onlyManageableRewards.toString(),
+      if (ids.isNotEmpty) 'id': ids.join(','),
     };
-    if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['channel_points', 'custom_rewards'],

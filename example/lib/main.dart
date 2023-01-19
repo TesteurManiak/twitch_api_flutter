@@ -312,7 +312,12 @@ class _MyHomePageState extends State<MyHomePage> {
             child: const Text('Get your channel editors'),
           ),
           ElevatedButton(
-            onPressed: () => _twitchClient.getCustomRewards().then(
+            onPressed: () => _twitchClient
+                .getCustomRewards(
+                  broadcasterId:
+                      _twitchClient.twitchHttpClient.twitchToken?.userId ?? '',
+                )
+                .then(
                   (value) => _displayDataAlert(
                     method: 'Get Custom Rewards',
                     data: value.data.map<String>((e) => e.title).join(', '),
