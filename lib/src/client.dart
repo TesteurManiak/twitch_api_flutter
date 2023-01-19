@@ -752,17 +752,20 @@ class TwitchClient {
 
   /// Deletes a Custom Reward on a channel.
   ///
-  /// `id`: ID of the Custom Reward to delete, must match a Custom Reward on
-  /// `broadcasterId`’s channel.
-  Future<String> deleteCustomReward({required String id}) async {
+  /// `rewardId`: ID of the Custom Reward to delete, must match a Custom Reward
+  /// on [broadcasterId]’s channel.
+  Future<String?> deleteCustomReward({
+    required String broadcasterId,
+    required String rewardId,
+  }) async {
     final data = await twitchHttpClient.deleteCall<String>(
       ['channel_points', 'custom_rewards'],
-      queryParameters: <String, String?>{
-        'broadcaster_id': twitchHttpClient.twitchToken?.userId,
-        'id': id,
+      queryParameters: <String, String>{
+        'broadcaster_id': broadcasterId,
+        'id': rewardId,
       },
     );
-    return data!;
+    return data;
   }
 
   /// Returns a list of Custom Reward objects for the Custom Rewards on a channel.

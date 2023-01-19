@@ -523,6 +523,40 @@ void main() {
       );
     });
 
+    group('deleteCustomReward', () {
+      test(
+        'should call deleteCall on channel_points/custom_rewards and return a valid CustomRewardResponse',
+        () async {
+          const path = ['channel_points', 'custom_rewards'];
+          const broadcasterId = '92af127c-7326-4483-a52b-b0da0be61c01';
+          const rewardId = '92af127c-7326-4483-a52b-b0da0be61c01';
+          const queryParams = {
+            'broadcaster_id': broadcasterId,
+            'id': rewardId,
+          };
+
+          when(
+            () => mockHttpClient.deleteCall<String>(
+              path,
+              queryParameters: queryParams,
+            ),
+          ).thenAnswer((_) async => null);
+
+          await client.deleteCustomReward(
+            broadcasterId: broadcasterId,
+            rewardId: rewardId,
+          );
+
+          verify(
+            () => mockHttpClient.deleteCall<String>(
+              path,
+              queryParameters: queryParams,
+            ),
+          );
+        },
+      );
+    });
+
     group('GET', () {
       group('Custom Rewards', () {
         test('1', () async {
@@ -564,15 +598,6 @@ void main() {
               .data;
           expect(data!.length, 1);
         });
-      });
-    });
-
-    group('DELETE', () {
-      test('Delete Custom Reward', () async {
-        final data = await client.deleteCustomReward(
-          id: 'b045196d-9ce7-4a27-a9b9-279ed341ab28',
-        );
-        expect(data, '204 No Content');
       });
     });
 
