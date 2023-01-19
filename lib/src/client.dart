@@ -706,7 +706,8 @@ class TwitchClient {
   /// [TwitchRewardRedemptionStatus.fulfilled] status immediately when redeemed
   /// and skip the request queue instead of the normal
   /// [TwitchRewardRedemptionStatus.unfulfilled] status.
-  Future<TwitchResponse<TwitchCustomReward>> createCustomRewards({
+  Future<CustomRewardResponse> createCustomRewards({
+    required String broadcasterId,
     required String title,
     required int cost,
     String? prompt,
@@ -721,7 +722,7 @@ class TwitchClient {
     final isMaxPerStreamEnabled = maxPerStream != null;
     final isMaxPerUserPerStreamEnabled = maxPerUserPerStream != null;
     final isGlobalCooldownEnabled = globalCooldownSeconds != null;
-    final body = <String, dynamic>{
+    final body = <String, Object>{
       'title': title,
       'cost': cost,
       'is_enabled': isEnabled,
@@ -730,24 +731,23 @@ class TwitchClient {
       'is_max_per_user_per_stream_enabled': isMaxPerUserPerStreamEnabled,
       'is_global_cooldown_enabled': isGlobalCooldownEnabled,
       'should_redemptions_skip_request_queue': shouldRedemptionsSkipQueue,
+      if (prompt != null) 'prompt': prompt,
+      if (backgroundColor != null) 'background_color': backgroundColor,
+      if (maxPerStream != null) 'max_per_stream': maxPerStream,
+      if (maxPerUserPerStream != null)
+        'max_per_user_per_stream': maxPerUserPerStream,
+      if (globalCooldownSeconds != null)
+        'global_cooldown_seconds': globalCooldownSeconds,
     };
-    if (prompt != null) body['prompt'] = prompt;
-    if (backgroundColor != null) body['background_color'] = backgroundColor;
-    if (maxPerStream != null) body['max_per_stream'] = maxPerStream;
-    if (maxPerUserPerStream != null) {
-      body['max_per_user_per_stream'] = maxPerUserPerStream;
-    }
-    if (globalCooldownSeconds != null) {
-      body['global_cooldown_seconds'] = globalCooldownSeconds;
-    }
+
     final data = await twitchHttpClient.postCall<Map<String, dynamic>>(
       ['channel_points', 'custom_rewards'],
       body,
-      queryParameters: <String, String?>{
-        'broadcaster_id': twitchHttpClient.twitchToken?.userId
+      queryParameters: <String, String>{
+        'broadcaster_id': broadcasterId,
       },
     );
-    return TwitchResponse.customReward(data);
+    return CustomRewardResponse.fromJson(data);
   }
 
   /// Deletes a Custom Reward on a channel.
@@ -774,7 +774,7 @@ class TwitchClient {
   ///
   /// `onlyManageableRewards`: When set to true, only returns Custom Rewards that
   /// the calling `clientId` can manage. Default: false.
-  Future<TwitchResponse<TwitchCustomReward>> getCustomRewards({
+  Future<CustomRewardResponse> getCustomRewards({
     List<String> ids = const [],
     bool onlyManageableRewards = false,
   }) async {
@@ -790,7 +790,7 @@ class TwitchClient {
       ['channel_points', 'custom_rewards'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.customReward(data);
+    return CustomRewardResponse.fromJson(data);
   }
 
   /// Returns Custom Reward Redemption objects for a Custom Reward on a channel
@@ -909,7 +909,7 @@ class TwitchClient {
   /// [TwitchRewardRedemptionStatus.fulfilled] status immediately when redeemed
   /// and skip the request queue instead of the normal
   /// [TwitchRewardRedemptionStatus.unfulfilled] status.
-  Future<TwitchResponse<TwitchCustomReward>> updateCustomReward({
+  Future<CustomRewardResponse> updateCustomReward({
     required String broadcasterId,
     required String id,
     String? title,
@@ -1011,7 +1011,7 @@ class TwitchClient {
       queryParameters: queryParameters,
     );
 
-    return TwitchResponse.customReward(data);
+    return CustomRewardResponse.fromJson(data);
   }
 
   /// Updates the status of Custom Reward Redemption objects on a channel that

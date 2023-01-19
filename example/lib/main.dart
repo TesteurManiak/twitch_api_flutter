@@ -315,7 +315,7 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () => _twitchClient.getCustomRewards().then(
                   (value) => _displayDataAlert(
                     method: 'Get Custom Rewards',
-                    data: value.data?.map<String>((e) => e.title).join(', '),
+                    data: value.data.map<String>((e) => e.title).join(', '),
                   ),
                 ),
             child: const Text('Get custom rewards'),

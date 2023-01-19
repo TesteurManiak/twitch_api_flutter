@@ -26,7 +26,6 @@ mixin _$StartCommercialResponse {
   /// {@endtemplate}
   List<TwitchStartCommercial> get data => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $StartCommercialResponseCopyWith<StartCommercialResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -101,7 +100,7 @@ class __$$_StartCommercialResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_StartCommercialResponse implements _StartCommercialResponse {
   const _$_StartCommercialResponse(
       {required final List<TwitchStartCommercial> data})
@@ -150,13 +149,6 @@ class _$_StartCommercialResponse implements _StartCommercialResponse {
       get copyWith =>
           __$$_StartCommercialResponseCopyWithImpl<_$_StartCommercialResponse>(
               this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_StartCommercialResponseToJson(
-      this,
-    );
-  }
 }
 
 abstract class _StartCommercialResponse implements StartCommercialResponse {
@@ -195,7 +187,6 @@ mixin _$ExtensionAnalyticsResponse {
   /// {@endtemplate}
   Map<String, dynamic>? get pagination => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ExtensionAnalyticsResponseCopyWith<ExtensionAnalyticsResponse>
       get copyWith => throw _privateConstructorUsedError;
@@ -285,7 +276,7 @@ class __$$_ExtensionAnalyticsResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_ExtensionAnalyticsResponse implements _ExtensionAnalyticsResponse {
   const _$_ExtensionAnalyticsResponse(
       {required final List<TwitchExtensionAnalytic> data,
@@ -354,13 +345,6 @@ class _$_ExtensionAnalyticsResponse implements _ExtensionAnalyticsResponse {
   _$$_ExtensionAnalyticsResponseCopyWith<_$_ExtensionAnalyticsResponse>
       get copyWith => __$$_ExtensionAnalyticsResponseCopyWithImpl<
           _$_ExtensionAnalyticsResponse>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_ExtensionAnalyticsResponseToJson(
-      this,
-    );
-  }
 }
 
 abstract class _ExtensionAnalyticsResponse
@@ -403,7 +387,6 @@ mixin _$GameAnalyticsResponse {
   /// {@macro twitchResponse.pagination}
   Map<String, dynamic>? get pagination => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GameAnalyticsResponseCopyWith<GameAnalyticsResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -487,7 +470,7 @@ class __$$_GameAnalyticsResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_GameAnalyticsResponse implements _GameAnalyticsResponse {
   const _$_GameAnalyticsResponse(
       {required final List<TwitchGameAnalytic> data,
@@ -550,13 +533,6 @@ class _$_GameAnalyticsResponse implements _GameAnalyticsResponse {
   _$$_GameAnalyticsResponseCopyWith<_$_GameAnalyticsResponse> get copyWith =>
       __$$_GameAnalyticsResponseCopyWithImpl<_$_GameAnalyticsResponse>(
           this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_GameAnalyticsResponseToJson(
-      this,
-    );
-  }
 }
 
 abstract class _GameAnalyticsResponse implements GameAnalyticsResponse {
@@ -601,7 +577,6 @@ mixin _$BitsLeaderboardResponse {
   /// {@endtemplate}
   int get total => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $BitsLeaderboardResponseCopyWith<BitsLeaderboardResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -715,7 +690,7 @@ class __$$_BitsLeaderboardResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_BitsLeaderboardResponse implements _BitsLeaderboardResponse {
   const _$_BitsLeaderboardResponse(
       {required final List<TwitchBitsLeaderboard> data,
@@ -776,13 +751,6 @@ class _$_BitsLeaderboardResponse implements _BitsLeaderboardResponse {
       get copyWith =>
           __$$_BitsLeaderboardResponseCopyWithImpl<_$_BitsLeaderboardResponse>(
               this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_BitsLeaderboardResponseToJson(
-      this,
-    );
-  }
 }
 
 abstract class _BitsLeaderboardResponse implements BitsLeaderboardResponse {
@@ -824,7 +792,6 @@ mixin _$UsersResponse {
   /// {@macro twitchResponse.data}
   List<TwitchUser> get data => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UsersResponseCopyWith<UsersResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -897,7 +864,7 @@ class __$$_UsersResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_UsersResponse implements _UsersResponse {
   const _$_UsersResponse({required final List<TwitchUser> data}) : _data = data;
 
@@ -938,13 +905,6 @@ class _$_UsersResponse implements _UsersResponse {
   @pragma('vm:prefer-inline')
   _$$_UsersResponseCopyWith<_$_UsersResponse> get copyWith =>
       __$$_UsersResponseCopyWithImpl<_$_UsersResponse>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_UsersResponseToJson(
-      this,
-    );
-  }
 }
 
 abstract class _UsersResponse implements UsersResponse {
@@ -979,7 +939,6 @@ mixin _$UsersFollowsResponse {
   /// {@macro twitchResponse.total}
   int get total => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $UsersFollowsResponseCopyWith<UsersFollowsResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1079,7 +1038,7 @@ class __$$_UsersFollowsResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_UsersFollowsResponse implements _UsersFollowsResponse {
   const _$_UsersFollowsResponse(
       {required final List<TwitchUserFollow> data,
@@ -1149,13 +1108,6 @@ class _$_UsersFollowsResponse implements _UsersFollowsResponse {
   _$$_UsersFollowsResponseCopyWith<_$_UsersFollowsResponse> get copyWith =>
       __$$_UsersFollowsResponseCopyWithImpl<_$_UsersFollowsResponse>(
           this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_UsersFollowsResponseToJson(
-      this,
-    );
-  }
 }
 
 abstract class _UsersFollowsResponse implements UsersFollowsResponse {
@@ -1197,7 +1149,6 @@ mixin _$TopGamesResponse {
   /// {@macro twitchResponse.pagination}
   Map<String, dynamic>? get pagination => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $TopGamesResponseCopyWith<TopGamesResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1280,7 +1231,7 @@ class __$$_TopGamesResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_TopGamesResponse implements _TopGamesResponse {
   const _$_TopGamesResponse(
       {required final List<TwitchGame> data,
@@ -1342,13 +1293,6 @@ class _$_TopGamesResponse implements _TopGamesResponse {
   @pragma('vm:prefer-inline')
   _$$_TopGamesResponseCopyWith<_$_TopGamesResponse> get copyWith =>
       __$$_TopGamesResponseCopyWithImpl<_$_TopGamesResponse>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_TopGamesResponseToJson(
-      this,
-    );
-  }
 }
 
 abstract class _TopGamesResponse implements TopGamesResponse {
@@ -1382,7 +1326,6 @@ mixin _$GamesResponse {
   /// {@macro twitchResponse.data}
   List<TwitchGame> get data => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GamesResponseCopyWith<GamesResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1455,7 +1398,7 @@ class __$$_GamesResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_GamesResponse implements _GamesResponse {
   const _$_GamesResponse({required final List<TwitchGame> data}) : _data = data;
 
@@ -1496,13 +1439,6 @@ class _$_GamesResponse implements _GamesResponse {
   @pragma('vm:prefer-inline')
   _$$_GamesResponseCopyWith<_$_GamesResponse> get copyWith =>
       __$$_GamesResponseCopyWithImpl<_$_GamesResponse>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_GamesResponseToJson(
-      this,
-    );
-  }
 }
 
 abstract class _GamesResponse implements GamesResponse {
@@ -1532,7 +1468,6 @@ mixin _$ChannelInformationResponse {
   /// {@macro twitchResponse.data}
   List<TwitchChannelInfo> get data => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ChannelInformationResponseCopyWith<ChannelInformationResponse>
       get copyWith => throw _privateConstructorUsedError;
@@ -1610,7 +1545,7 @@ class __$$_ChannelInformationResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_ChannelInformationResponse implements _ChannelInformationResponse {
   const _$_ChannelInformationResponse(
       {required final List<TwitchChannelInfo> data})
@@ -1654,13 +1589,6 @@ class _$_ChannelInformationResponse implements _ChannelInformationResponse {
   _$$_ChannelInformationResponseCopyWith<_$_ChannelInformationResponse>
       get copyWith => __$$_ChannelInformationResponseCopyWithImpl<
           _$_ChannelInformationResponse>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_ChannelInformationResponseToJson(
-      this,
-    );
-  }
 }
 
 abstract class _ChannelInformationResponse
@@ -1692,7 +1620,6 @@ mixin _$SearchCategoriesResponse {
   /// {@macro twitchResponse.data}
   List<TwitchGame> get data => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SearchCategoriesResponseCopyWith<SearchCategoriesResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1768,7 +1695,7 @@ class __$$_SearchCategoriesResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_SearchCategoriesResponse implements _SearchCategoriesResponse {
   const _$_SearchCategoriesResponse({required final List<TwitchGame> data})
       : _data = data;
@@ -1811,13 +1738,6 @@ class _$_SearchCategoriesResponse implements _SearchCategoriesResponse {
   _$$_SearchCategoriesResponseCopyWith<_$_SearchCategoriesResponse>
       get copyWith => __$$_SearchCategoriesResponseCopyWithImpl<
           _$_SearchCategoriesResponse>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_SearchCategoriesResponseToJson(
-      this,
-    );
-  }
 }
 
 abstract class _SearchCategoriesResponse implements SearchCategoriesResponse {
@@ -1850,7 +1770,6 @@ mixin _$SearchChannelsResponse {
   /// {@macro twitchResponse.pagination}
   Map<String, dynamic>? get pagination => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SearchChannelsResponseCopyWith<SearchChannelsResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1935,7 +1854,7 @@ class __$$_SearchChannelsResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_SearchChannelsResponse implements _SearchChannelsResponse {
   const _$_SearchChannelsResponse(
       {required final List<TwitchSearchChannel> data,
@@ -1998,13 +1917,6 @@ class _$_SearchChannelsResponse implements _SearchChannelsResponse {
   _$$_SearchChannelsResponseCopyWith<_$_SearchChannelsResponse> get copyWith =>
       __$$_SearchChannelsResponseCopyWithImpl<_$_SearchChannelsResponse>(
           this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_SearchChannelsResponseToJson(
-      this,
-    );
-  }
 }
 
 abstract class _SearchChannelsResponse implements SearchChannelsResponse {
@@ -2042,7 +1954,6 @@ mixin _$StreamsResponse {
   /// {@macro twitchResponse.pagination}
   Map<String, dynamic>? get pagination => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $StreamsResponseCopyWith<StreamsResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2125,7 +2036,7 @@ class __$$_StreamsResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_StreamsResponse implements _StreamsResponse {
   const _$_StreamsResponse(
       {required final List<TwitchStreamInfo> data,
@@ -2187,13 +2098,6 @@ class _$_StreamsResponse implements _StreamsResponse {
   @pragma('vm:prefer-inline')
   _$$_StreamsResponseCopyWith<_$_StreamsResponse> get copyWith =>
       __$$_StreamsResponseCopyWithImpl<_$_StreamsResponse>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_StreamsResponseToJson(
-      this,
-    );
-  }
 }
 
 abstract class _StreamsResponse implements StreamsResponse {
@@ -2243,7 +2147,6 @@ mixin _$BroadcasterSubscriptionsResponse {
   /// for the broadcaster (see [Subscriber Emote Slots](https://help.twitch.tv/s/article/subscriber-emote-guide?language=en_US#emoteslots)).
   int get points => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $BroadcasterSubscriptionsResponseCopyWith<BroadcasterSubscriptionsResponse>
       get copyWith => throw _privateConstructorUsedError;
@@ -2360,7 +2263,7 @@ class __$$_BroadcasterSubscriptionsResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_BroadcasterSubscriptionsResponse
     implements _BroadcasterSubscriptionsResponse {
   const _$_BroadcasterSubscriptionsResponse(
@@ -2445,13 +2348,6 @@ class _$_BroadcasterSubscriptionsResponse
           _$_BroadcasterSubscriptionsResponse>
       get copyWith => __$$_BroadcasterSubscriptionsResponseCopyWithImpl<
           _$_BroadcasterSubscriptionsResponse>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_BroadcasterSubscriptionsResponseToJson(
-      this,
-    );
-  }
 }
 
 abstract class _BroadcasterSubscriptionsResponse
@@ -2502,7 +2398,6 @@ mixin _$CheermotesResponse {
   /// {@macro twitchResponse.data}
   List<TwitchCheermote> get data => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CheermotesResponseCopyWith<CheermotesResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2575,7 +2470,7 @@ class __$$_CheermotesResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_CheermotesResponse implements _CheermotesResponse {
   const _$_CheermotesResponse({required final List<TwitchCheermote> data})
       : _data = data;
@@ -2618,13 +2513,6 @@ class _$_CheermotesResponse implements _CheermotesResponse {
   _$$_CheermotesResponseCopyWith<_$_CheermotesResponse> get copyWith =>
       __$$_CheermotesResponseCopyWithImpl<_$_CheermotesResponse>(
           this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_CheermotesResponseToJson(
-      this,
-    );
-  }
 }
 
 abstract class _CheermotesResponse implements CheermotesResponse {
@@ -2658,7 +2546,6 @@ mixin _$ExtensionTransactionsResponse {
   /// {@macro twitchResponse.pagination}
   Map<String, dynamic>? get pagination => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ExtensionTransactionsResponseCopyWith<ExtensionTransactionsResponse>
       get copyWith => throw _privateConstructorUsedError;
@@ -2751,7 +2638,7 @@ class __$$_ExtensionTransactionsResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_ExtensionTransactionsResponse
     implements _ExtensionTransactionsResponse {
   const _$_ExtensionTransactionsResponse(
@@ -2816,13 +2703,6 @@ class _$_ExtensionTransactionsResponse
   _$$_ExtensionTransactionsResponseCopyWith<_$_ExtensionTransactionsResponse>
       get copyWith => __$$_ExtensionTransactionsResponseCopyWithImpl<
           _$_ExtensionTransactionsResponse>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_ExtensionTransactionsResponseToJson(
-      this,
-    );
-  }
 }
 
 abstract class _ExtensionTransactionsResponse
@@ -2868,7 +2748,6 @@ mixin _$ChannelEmotesResponse {
   /// {@endtemplate}
   String get template => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ChannelEmotesResponseCopyWith<ChannelEmotesResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2952,7 +2831,7 @@ class __$$_ChannelEmotesResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_ChannelEmotesResponse implements _ChannelEmotesResponse {
   const _$_ChannelEmotesResponse(
       {required final List<TwitchEmotes> data, required this.template})
@@ -3008,13 +2887,6 @@ class _$_ChannelEmotesResponse implements _ChannelEmotesResponse {
   _$$_ChannelEmotesResponseCopyWith<_$_ChannelEmotesResponse> get copyWith =>
       __$$_ChannelEmotesResponseCopyWithImpl<_$_ChannelEmotesResponse>(
           this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_ChannelEmotesResponseToJson(
-      this,
-    );
-  }
 }
 
 abstract class _ChannelEmotesResponse implements ChannelEmotesResponse {
@@ -3058,7 +2930,6 @@ mixin _$ChannelGlobalEmotesResponse {
   /// {@macro twitchResponse.template}
   String get template => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ChannelGlobalEmotesResponseCopyWith<ChannelGlobalEmotesResponse>
       get copyWith => throw _privateConstructorUsedError;
@@ -3147,7 +3018,7 @@ class __$$_ChannelGlobalEmotesResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_ChannelGlobalEmotesResponse implements _ChannelGlobalEmotesResponse {
   const _$_ChannelGlobalEmotesResponse(
       {required final List<TwitchGlobalEmotes> data, required this.template})
@@ -3197,13 +3068,6 @@ class _$_ChannelGlobalEmotesResponse implements _ChannelGlobalEmotesResponse {
   _$$_ChannelGlobalEmotesResponseCopyWith<_$_ChannelGlobalEmotesResponse>
       get copyWith => __$$_ChannelGlobalEmotesResponseCopyWithImpl<
           _$_ChannelGlobalEmotesResponse>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_ChannelGlobalEmotesResponseToJson(
-      this,
-    );
-  }
 }
 
 abstract class _ChannelGlobalEmotesResponse
@@ -3241,7 +3105,6 @@ mixin _$EmoteSetsResponse {
   /// {@macro twitchResponse.template}
   String get template => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $EmoteSetsResponseCopyWith<EmoteSetsResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -3324,7 +3187,7 @@ class __$$_EmoteSetsResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_EmoteSetsResponse implements _EmoteSetsResponse {
   const _$_EmoteSetsResponse(
       {required final List<TwitchEmoteSets> data, required this.template})
@@ -3374,13 +3237,6 @@ class _$_EmoteSetsResponse implements _EmoteSetsResponse {
   _$$_EmoteSetsResponseCopyWith<_$_EmoteSetsResponse> get copyWith =>
       __$$_EmoteSetsResponseCopyWithImpl<_$_EmoteSetsResponse>(
           this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_EmoteSetsResponseToJson(
-      this,
-    );
-  }
 }
 
 abstract class _EmoteSetsResponse implements EmoteSetsResponse {
@@ -3415,7 +3271,6 @@ mixin _$ChannelEditorsResponse {
   /// {@macro twitchResponse.data}
   List<TwitchChannelEditor> get data => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ChannelEditorsResponseCopyWith<ChannelEditorsResponse> get copyWith =>
       throw _privateConstructorUsedError;
@@ -3490,7 +3345,7 @@ class __$$_ChannelEditorsResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class _$_ChannelEditorsResponse implements _ChannelEditorsResponse {
   const _$_ChannelEditorsResponse(
       {required final List<TwitchChannelEditor> data})
@@ -3534,13 +3389,6 @@ class _$_ChannelEditorsResponse implements _ChannelEditorsResponse {
   _$$_ChannelEditorsResponseCopyWith<_$_ChannelEditorsResponse> get copyWith =>
       __$$_ChannelEditorsResponseCopyWithImpl<_$_ChannelEditorsResponse>(
           this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_ChannelEditorsResponseToJson(
-      this,
-    );
-  }
 }
 
 abstract class _ChannelEditorsResponse implements ChannelEditorsResponse {
@@ -3558,5 +3406,149 @@ abstract class _ChannelEditorsResponse implements ChannelEditorsResponse {
   @override
   @JsonKey(ignore: true)
   _$$_ChannelEditorsResponseCopyWith<_$_ChannelEditorsResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+CustomRewardResponse _$CustomRewardResponseFromJson(Map<String, dynamic> json) {
+  return _CustomRewardResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CustomRewardResponse {
+  /// {@macro twitchResponse.data}
+  List<TwitchCustomReward> get data => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CustomRewardResponseCopyWith<CustomRewardResponse> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CustomRewardResponseCopyWith<$Res> {
+  factory $CustomRewardResponseCopyWith(CustomRewardResponse value,
+          $Res Function(CustomRewardResponse) then) =
+      _$CustomRewardResponseCopyWithImpl<$Res, CustomRewardResponse>;
+  @useResult
+  $Res call({List<TwitchCustomReward> data});
+}
+
+/// @nodoc
+class _$CustomRewardResponseCopyWithImpl<$Res,
+        $Val extends CustomRewardResponse>
+    implements $CustomRewardResponseCopyWith<$Res> {
+  _$CustomRewardResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchCustomReward>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_CustomRewardResponseCopyWith<$Res>
+    implements $CustomRewardResponseCopyWith<$Res> {
+  factory _$$_CustomRewardResponseCopyWith(_$_CustomRewardResponse value,
+          $Res Function(_$_CustomRewardResponse) then) =
+      __$$_CustomRewardResponseCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<TwitchCustomReward> data});
+}
+
+/// @nodoc
+class __$$_CustomRewardResponseCopyWithImpl<$Res>
+    extends _$CustomRewardResponseCopyWithImpl<$Res, _$_CustomRewardResponse>
+    implements _$$_CustomRewardResponseCopyWith<$Res> {
+  __$$_CustomRewardResponseCopyWithImpl(_$_CustomRewardResponse _value,
+      $Res Function(_$_CustomRewardResponse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$_CustomRewardResponse(
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchCustomReward>,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable(createToJson: false)
+class _$_CustomRewardResponse implements _CustomRewardResponse {
+  const _$_CustomRewardResponse({required final List<TwitchCustomReward> data})
+      : _data = data;
+
+  factory _$_CustomRewardResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_CustomRewardResponseFromJson(json);
+
+  /// {@macro twitchResponse.data}
+  final List<TwitchCustomReward> _data;
+
+  /// {@macro twitchResponse.data}
+  @override
+  List<TwitchCustomReward> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  @override
+  String toString() {
+    return 'CustomRewardResponse(data: $data)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CustomRewardResponse &&
+            const DeepCollectionEquality().equals(other._data, _data));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_data));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CustomRewardResponseCopyWith<_$_CustomRewardResponse> get copyWith =>
+      __$$_CustomRewardResponseCopyWithImpl<_$_CustomRewardResponse>(
+          this, _$identity);
+}
+
+abstract class _CustomRewardResponse implements CustomRewardResponse {
+  const factory _CustomRewardResponse(
+      {required final List<TwitchCustomReward> data}) = _$_CustomRewardResponse;
+
+  factory _CustomRewardResponse.fromJson(Map<String, dynamic> json) =
+      _$_CustomRewardResponse.fromJson;
+
+  @override
+
+  /// {@macro twitchResponse.data}
+  List<TwitchCustomReward> get data;
+  @override
+  @JsonKey(ignore: true)
+  _$$_CustomRewardResponseCopyWith<_$_CustomRewardResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
