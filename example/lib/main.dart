@@ -136,6 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 method: 'startCommercial',
                 data: error.toString(),
               );
+              return error;
             }),
             child: const Text('Start Commercial'),
           ),
@@ -147,6 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 method: 'getExtensionAnalytics',
                 data: error.toString(),
               );
+              return error;
             }),
             child: const Text('Get Extension Analytics'),
           ),
@@ -158,6 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 method: 'getGameAnalytics',
                 data: error.toString(),
               );
+              return error;
             }),
             child: const Text('Get Games Analytics'),
           ),
