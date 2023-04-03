@@ -1,37 +1,5 @@
-include: package:lint/analysis_options.yaml
+include: package:fd_lints/flutter.yaml
 
 analyzer:
-  exclude:
-    - lib/**.g.dart
-    - test/**.mocks.dart
-    - lib/generated_plugin_registrant.dart
-  strong-mode:
-    implicit-casts: false
   errors:
-    missing_required_param: error
-    unrelated_type_equality_checks: error
-    missing_return: warning
-    close_sinks: warning
-    cancel_subscriptions: warning
-    parameter_assignments: warning
-    prefer_final_in_for_each: warning
-    prefer_mixin: warning
-    unawaited_futures: warning
-    unnecessary_await_in_return: warning
-    unnecessary_null_aware_assignments: warning
-    use_string_buffers: warning
     invalid_annotation_target: ignore
-
-linter:
-  rules:
-    - use_string_buffers
-    - use_if_null_to_convert_nulls_to_bools
-    - parameter_assignments
-    - prefer_null_aware_method_calls
-    - use_is_even_rather_than_modulo
-    - prefer_final_in_for_each
-    - directives_ordering
-    - avoid_unused_constructor_parameters
-    - prefer_final_locals
-    - sort_constructors_first
-    - sort_unnamed_constructors_first

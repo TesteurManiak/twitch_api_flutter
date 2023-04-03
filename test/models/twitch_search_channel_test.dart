@@ -15,7 +15,7 @@ void main() {
         'thumbnail_url': 'test',
         'is_live': true,
         'started_at': '2020-01-01T00:00:00Z',
-        'tag_ids': [],
+        'tag_ids': <String>[],
       };
 
       final channel = TwitchSearchChannel.fromJson(tJson);

@@ -86,7 +86,7 @@ void main() {
           tokenType: '',
           scopes: [],
         );
-        expect(token.scopes, []);
+        expect(token.scopes, <String>[]);
         token = token.copyWith(scopes: ['test']);
         expect(token.scopes, ['test']);
       });

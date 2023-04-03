@@ -115,7 +115,9 @@ class TwitchMockHttpClient extends TwitchHttpClient {
         return jsonDecode(await readFileStringAsync('get_chat_settings.json'))
             as T;
       default:
-        throw 'Bad Request: Query Parameter missing or invalid $path';
+        throw Exception(
+          'Bad Request: Query Parameter missing or invalid $path',
+        );
     }
   }
 
@@ -125,7 +127,7 @@ class TwitchMockHttpClient extends TwitchHttpClient {
   @override
   Future<T> patchCall<T>(
     Iterable<String> pathSegments,
-    dynamic data, {
+    Object data, {
     Map<String, dynamic> queryParameters = const {},
   }) async {
     final castedData = data as Map<String, dynamic>;
@@ -146,7 +148,7 @@ class TwitchMockHttpClient extends TwitchHttpClient {
           await readFileStringAsync('update_redemption_status.json'),
         ) as T;
       default:
-        throw 'Bad Request: Query Parameter missing or invalid';
+        throw Exception('Bad Request: Query Parameter missing or invalid');
     }
   }
 
@@ -165,7 +167,7 @@ class TwitchMockHttpClient extends TwitchHttpClient {
         return jsonDecode(await readFileStringAsync('start_commercial.json'))
             as T;
       default:
-        throw 'Bad Request: Query Parameter missing or invalid';
+        throw Exception('Bad Request: Query Parameter missing or invalid');
     }
   }
 
@@ -189,7 +191,7 @@ class TwitchMockHttpClient extends TwitchHttpClient {
       case 'channel_points/custom_rewards':
         return '204 No Content' as T;
       default:
-        throw 'Bad Request: Query Parameter missing or invalid';
+        throw Exception('Bad Request: Query Parameter missing or invalid');
     }
   }
 }

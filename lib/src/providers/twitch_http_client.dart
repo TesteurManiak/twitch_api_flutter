@@ -17,14 +17,14 @@ abstract class TwitchHttpClient {
   /// Generic method for authenticated POST calls.
   Future<T> postCall<T>(
     Iterable<String> pathSegments,
-    dynamic data, {
+    Object data, {
     Map<String, dynamic> queryParameters = const {},
   });
 
   /// Generic method for authenticated PATCH calls.
   Future<T> patchCall<T>(
     Iterable<String> pathSegments,
-    dynamic data, {
+    Object data, {
     Map<String, dynamic> queryParameters = const {},
   });
 

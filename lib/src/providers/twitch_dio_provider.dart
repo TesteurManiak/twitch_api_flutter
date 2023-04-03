@@ -45,7 +45,7 @@ class TwitchDioProvider extends TwitchHttpClient {
   @override
   Future<T> postCall<T>(
     Iterable<String> pathSegments,
-    dynamic data, {
+    Object data, {
     Map<String, dynamic> queryParameters = const {},
   }) async {
     final accessToken = await validateToken();
@@ -74,7 +74,7 @@ class TwitchDioProvider extends TwitchHttpClient {
   @override
   Future<T> patchCall<T>(
     Iterable<String> pathSegments,
-    dynamic data, {
+    Object data, {
     Map<String, dynamic> queryParameters = const {},
   }) async {
     final accessToken = await validateToken();
