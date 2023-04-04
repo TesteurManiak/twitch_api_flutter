@@ -5,8 +5,10 @@ import 'package:twitch_api/src/errors/exceptions.dart';
 import 'package:twitch_api/src/models/twitch_token.dart';
 import 'package:twitch_api/src/providers/twitch_http_client.dart';
 
-class TwitchDioProvider extends TwitchHttpClient {
-  TwitchDioProvider({required this.clientId});
+class TwitchDioClient extends TwitchHttpClient {
+  TwitchDioClient({
+    required this.clientId,
+  });
 
   final dio = Dio();
   final String clientId;

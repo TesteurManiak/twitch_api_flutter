@@ -2,18 +2,18 @@ import 'dart:async';
 
 import 'package:twitch_api/src/models/twitch_chat_badge.dart';
 import 'package:twitch_api/src/models/twitch_chat_settings.dart';
-import 'package:twitch_api/src/providers/twitch_dio_provider.dart';
+import 'package:twitch_api/src/providers/twitch_dio_client.dart';
 import 'package:twitch_api/twitch_api.dart';
 
 class TwitchClient {
-  /// By default the `twitchHttpClient` will be a [TwitchDioProvider].
+  /// By default the `twitchHttpClient` will be a [TwitchDioClient].
   TwitchClient({
     required this.clientId,
     required this.redirectUri,
     TwitchHttpClient? twitchHttpClient,
     TwitchToken? token,
   }) : twitchHttpClient =
-            twitchHttpClient ?? TwitchDioProvider(clientId: clientId) {
+            twitchHttpClient ?? TwitchDioClient(clientId: clientId) {
     if (token != null) {
       initializeToken(token);
     }
