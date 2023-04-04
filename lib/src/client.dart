@@ -1,9 +1,13 @@
 import 'dart:async';
 
+import 'package:twitch_api/src/models/twitch_api_scopes.dart';
 import 'package:twitch_api/src/models/twitch_chat_badge.dart';
 import 'package:twitch_api/src/models/twitch_chat_settings.dart';
-import 'package:twitch_api/src/providers/twitch_dio_client.dart';
-import 'package:twitch_api/twitch_api.dart';
+import 'package:twitch_api/src/models/twitch_custom_reward_redemption.dart';
+import 'package:twitch_api/src/models/twitch_response.dart';
+import 'package:twitch_api/src/models/twitch_time_period.dart';
+import 'package:twitch_api/src/models/twitch_token.dart';
+import 'package:twitch_api/src/network/twitch_http_client.dart';
 
 class TwitchClient {
   /// By default the `twitchHttpClient` will be a [TwitchDioClient].
@@ -186,7 +190,7 @@ class TwitchClient {
     );
     assert(first < 101 && first > 0);
 
-    final queryParameters = <String, String?>{
+    final queryParameters = <String, String>{
       'first': first.toString(),
       if (after != null && gameId == null) 'after': after,
       if (endedAt != null && startedAt != null) ...{

@@ -1,10 +1,14 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class TwitchApiException implements Exception {
+  const TwitchApiException([this.msg]);
 
-part 'exceptions.freezed.dart';
+  final String? msg;
 
-@freezed
-class TwitchApiException with _$TwitchApiException implements Exception {
-  const factory TwitchApiException({
-    required String msg,
-  }) = _TwitchApiException;
+  @override
+  String toString() {
+    return '[TwitchApiException] - $msg';
+  }
+}
+
+class TwitchUnauthorizedException extends TwitchApiException {
+  const TwitchUnauthorizedException([super.msg]);
 }

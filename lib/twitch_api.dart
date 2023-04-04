@@ -22,4 +22,4 @@ export 'src/models/twitch_time_period.dart';
 export 'src/models/twitch_token.dart';
 export 'src/models/twitch_user.dart';
 export 'src/models/twitch_user_follow.dart';
-export 'src/providers/twitch_http_client.dart';
+export 'src/network/twitch_http_client.dart';

@@ -9,8 +9,8 @@ environment:
   sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
-  dio: ^5.1.1
   freezed_annotation: ^2.2.0
+  http: ^0.13.5
   json_annotation: ^4.8.0
 
 dev_dependencies:
@@ -18,7 +18,6 @@ dev_dependencies:
   coverage: ^1.6.3
   fd_lints: ^1.0.2
   freezed: ^2.3.2
-  http_mock_adapter: ^0.4.2
   json_serializable: ^6.6.1
   mocktail: ^0.3.0
   remove_from_coverage: ^2.0.0

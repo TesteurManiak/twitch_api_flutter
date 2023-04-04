@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:twitch_api/src/models/twitch_token.dart';
-import 'package:twitch_api/src/providers/twitch_http_client.dart';
+import 'package:twitch_api/src/network/twitch_http_client.dart';
 
 import 'test_utils.dart';
 
