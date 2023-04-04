@@ -180,3 +180,13 @@ _$_CustomRewardResponse _$$_CustomRewardResponseFromJson(
           .map((e) => TwitchCustomReward.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
+
+_$_CustomRewardRedemptionResponse _$$_CustomRewardRedemptionResponseFromJson(
+        Map<String, dynamic> json) =>
+    _$_CustomRewardRedemptionResponse(
+      data: (json['data'] as List<dynamic>)
+          .map((e) =>
+              TwitchCustomRewardRedemption.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      pagination: json['pagination'] as Map<String, dynamic>?,
+    );

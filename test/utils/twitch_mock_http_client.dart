@@ -44,13 +44,10 @@ class TwitchMockHttpClient extends TwitchHttpClient {
       case 'channel_points/custom_rewards/redemptions':
         if (queryParameters['status'] == 'CANCELED') {
           return jsonDecode(
-            await readFileStringAsync('get_custom_reward_redemption_1.json'),
-          ) as T;
-        } else {
-          return jsonDecode(
-            await readFileStringAsync('get_custom_reward_redemption_2.json'),
+            await readFileStringAsync('get_custom_reward_redemption.json'),
           ) as T;
         }
+        break;
       case 'bits/leaderboard':
         return jsonDecode(
           await readFileStringAsync('get_bits_leaderboard.json'),
@@ -119,6 +116,8 @@ class TwitchMockHttpClient extends TwitchHttpClient {
           'Bad Request: Query Parameter missing or invalid $path',
         );
     }
+
+    throw Exception('Bad Request: Query Parameter missing or invalid $path');
   }
 
   @override

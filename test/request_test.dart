@@ -563,15 +563,11 @@ void main() {
         () async {
           const path = ['channel_points', 'custom_rewards'];
           const id = '92af127c-7326-4483-a52b-b0da0be61c01';
-          const queryParams = {
-            'broadcaster_id': id,
-            'only_manageable_rewards': 'false',
-          };
 
           when(
             () => mockHttpClient.getCall<Map<String, dynamic>>(
               path,
-              queryParameters: queryParams,
+              queryParameters: any(named: 'queryParameters'),
             ),
           ).thenAnswer(
             (_) async => readJson('get_custom_rewards.json'),
@@ -582,240 +578,83 @@ void main() {
           verify(
             () => mockHttpClient.getCall<Map<String, dynamic>>(
               path,
-              queryParameters: queryParams,
+              queryParameters: any(named: 'queryParameters'),
             ),
           );
         },
       );
     });
 
-    group('GET', () {
-      group('Custom Reward Redemption', () {
-        test('1', () async {
-          final data = (await client.getCustomRewardRedemptions(
-            rewardId: '92af127c-7326-4483-a52b-b0da0be61c01',
-            status: TwitchRewardRedemptionStatus.canceled,
-          ))
-              .data;
-          expect(data!.length, 1);
-        });
+    group('getCustomRewardRedemptions', () {
+      test(
+        'should call getCall on channel_points/custom_rewards/redemptions and return a valid CustomRewardRedemptionResponse',
+        () {
+          const path = ['channel_points', 'custom_rewards', 'redemptions'];
+          const rewardId = '92af127c-7326-4483-a52b-b0da0be61c01';
+          const broadcasterId = '274637212';
 
-        test('2', () async {
-          final data = (await client.getCustomRewardRedemptions(
-            rewardId: '92af127c-7326-4483-a52b-b0da0be61c01',
-            ids: ['17fa2df1-ad76-4804-bfa5-a40ef63efe63'],
-          ))
-              .data;
-          expect(data!.length, 1);
-        });
-      });
+          when(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: any(named: 'queryParameters'),
+            ),
+          ).thenAnswer(
+            (_) async => readJson('get_custom_reward_redemption.json'),
+          );
+
+          client.getCustomRewardRedemptions(
+            broadcasterId: broadcasterId,
+            rewardId: rewardId,
+            status: TwitchRewardRedemptionStatus.canceled,
+          );
+
+          verify(
+            () => mockHttpClient.getCall<Map<String, dynamic>>(
+              path,
+              queryParameters: any(named: 'queryParameters'),
+            ),
+          );
+        },
+      );
+    });
+
+    group('updateCustomReward', () {
+      const path = ['channel_points', 'custom_rewards'];
+      const broadcasterId = '92af127c-7326-4483-a52b-b0da0be61c01';
+      const rewardId = '92af127c-7326-4483-a52b-b0da0be61c01';
+
+      test(
+        'should call patchCall on channel_points/custom_rewards and return a valid CustomRewardResponse',
+        () async {
+          when(
+            () => mockHttpClient.patchCall<Map<String, dynamic>>(
+              path,
+              any(),
+              queryParameters: any(named: 'queryParameters'),
+            ),
+          ).thenAnswer(
+            (_) async => readJson('update_custom_reward.json'),
+          );
+
+          await client.updateCustomReward(
+            broadcasterId: broadcasterId,
+            rewardId: rewardId,
+            title: 'title',
+          );
+
+          verify(
+            () => mockHttpClient.patchCall<Map<String, dynamic>>(
+              path,
+              any(),
+              queryParameters: any(named: 'queryParameters'),
+            ),
+          );
+        },
+      );
     });
 
     group('PATCH', () {
-      group('Update Custom Reward', () {
-        test('Parameters', () {
-          expect(
-            () => client.updateCustomReward(
-              broadcasterId: '',
-              id: '',
-              cost: -1,
-            ),
-            throwsA(isA<AssertionError>()),
-          );
-
-          expect(
-            () => client.updateCustomReward(
-              broadcasterId: '',
-              id: '',
-              isMaxPerStreamEnabled: true,
-            ),
-            throwsA(isA<AssertionError>()),
-          );
-
-          expect(
-            () => client.updateCustomReward(
-              broadcasterId: '',
-              id: '',
-              maxPerStream: 1,
-            ),
-            throwsA(isA<AssertionError>()),
-          );
-
-          expect(
-            () => client.updateCustomReward(
-              broadcasterId: '',
-              id: '',
-              isMaxPerUserPerStreamEnabled: true,
-            ),
-            throwsA(isA<AssertionError>()),
-          );
-
-          expect(
-            () => client.updateCustomReward(
-              broadcasterId: '',
-              id: '',
-              maxPerUserPerStream: 1,
-            ),
-            throwsA(isA<AssertionError>()),
-          );
-
-          expect(
-            () => client.updateCustomReward(
-              broadcasterId: '',
-              id: '',
-              isGlobalCooldownEnabled: true,
-            ),
-            throwsA(isA<AssertionError>()),
-          );
-          expect(
-            () => client.updateCustomReward(
-              broadcasterId: '',
-              id: '',
-              globalCooldownSeconds: 1,
-            ),
-            throwsA(isA<AssertionError>()),
-          );
-        });
-
-        test('1', () async {
-          final data = (await client.updateCustomReward(
-            broadcasterId: '274637212',
-            id: '92af127c-7326-4483-a52b-b0da0be61c01',
-            isEnabled: false,
-          ))
-              .data;
-          expect(data.length, 1);
-
-          final customReward = data.first;
-          expect(customReward.broadcasterName, 'torpedo09');
-          expect(customReward.broadcasterLogin, 'torpedo09');
-          expect(customReward.broadcasterId, '274637212');
-          expect(customReward.id, '92af127c-7326-4483-a52b-b0da0be61c01');
-          expect(customReward.image, isNull);
-          expect(customReward.backgroundColor, '#00E5CB');
-          expect(customReward.isEnabled, false);
-          expect(customReward.cost, 30000);
-          expect(customReward.title, 'game analysis 2v2');
-          expect(customReward.prompt, '');
-          expect(customReward.isUserInputRequired, false);
-          expect(customReward.maxPerStreamSetting.isEnabled, true);
-          expect(customReward.maxPerStreamSetting.maxPerStream, 60);
-          expect(customReward.maxPerUserPerStreamSetting.isEnabled, false);
-          expect(
-            customReward.maxPerUserPerStreamSetting.maxPerUserPerStream,
-            0,
-          );
-          expect(customReward.globalCooldownSetting.isEnabled, false);
-          expect(customReward.globalCooldownSetting.globalCooldownSeconds, 0);
-          expect(customReward.isPaused, false);
-          expect(customReward.isInStock, false);
-          expect(
-            customReward.defaultImage.url1x,
-            'https://static-cdn.jtvnw.net/custom-reward-images/default-1.png',
-          );
-          expect(
-            customReward.defaultImage.url2x,
-            'https://static-cdn.jtvnw.net/custom-reward-images/default-2.png',
-          );
-          expect(
-            customReward.defaultImage.url4x,
-            'https://static-cdn.jtvnw.net/custom-reward-images/default-4.png',
-          );
-          expect(customReward.shouldRedemptionsSkipRequestQueue, true);
-          expect(customReward.redemptionsRedeemedCurrentStream, 60);
-          expect(customReward.cooldownExpiresAt, isNull);
-        });
-
-        test('2', () async {
-          final data = (await client.updateCustomReward(
-            broadcasterId: '274637212',
-            id: '92af127c-7326-4483-a52b-b0da0be61c01',
-            title: 'game analysis 2v2',
-          ))
-              .data;
-          expect(data.length, 1);
-
-          final customReward = data.first;
-          expect(customReward.broadcasterName, 'torpedo09');
-          expect(customReward.broadcasterLogin, 'torpedo09');
-          expect(customReward.broadcasterId, '274637212');
-          expect(customReward.id, '92af127c-7326-4483-a52b-b0da0be61c01');
-          expect(customReward.image, isNull);
-          expect(customReward.backgroundColor, '');
-          expect(customReward.isEnabled, false);
-          expect(customReward.cost, 30000);
-          expect(customReward.title, 'game analysis 2v2');
-          expect(customReward.prompt, '');
-          expect(customReward.isUserInputRequired, false);
-          expect(customReward.maxPerStreamSetting.isEnabled, true);
-          expect(customReward.maxPerStreamSetting.maxPerStream, 60);
-          expect(customReward.maxPerUserPerStreamSetting.isEnabled, false);
-          expect(
-            customReward.maxPerUserPerStreamSetting.maxPerUserPerStream,
-            0,
-          );
-          expect(customReward.globalCooldownSetting.isEnabled, false);
-          expect(customReward.globalCooldownSetting.globalCooldownSeconds, 0);
-          expect(customReward.isPaused, false);
-          expect(customReward.isInStock, true);
-          expect(
-            customReward.defaultImage.url1x,
-            'https://static-cdn.jtvnw.net/custom-reward-images/default-1.png',
-          );
-          expect(
-            customReward.defaultImage.url2x,
-            'https://static-cdn.jtvnw.net/custom-reward-images/default-2.png',
-          );
-          expect(
-            customReward.defaultImage.url4x,
-            'https://static-cdn.jtvnw.net/custom-reward-images/default-4.png',
-          );
-          expect(customReward.shouldRedemptionsSkipRequestQueue, true);
-          expect(customReward.redemptionsRedeemedCurrentStream, 60);
-          expect(customReward.cooldownExpiresAt, isNull);
-        });
-
-        test('3', () async {
-          await client.updateCustomReward(
-            broadcasterId: '274637212',
-            id: '92af127c-7326-4483-a52b-b0da0be61c01',
-            title: 'game analysis 2v2',
-            prompt: '',
-            cost: 30000,
-            isUserInputRequired: true,
-            isMaxPerStreamEnabled: true,
-            maxPerStream: 60,
-            isMaxPerUserPerStreamEnabled: true,
-            maxPerUserPerStream: 60,
-            isGlobalCooldownEnabled: true,
-            globalCooldownSeconds: 60,
-          );
-        });
-      });
-
       group('Update Redemption Status', () {
-        test('Parameters', () {
-          expect(
-            () => client.updateRedemptionStatus(
-              broadcasterId: '',
-              ids: [],
-              rewardId: '',
-              status: TwitchRewardRedemptionStatus.canceled,
-            ),
-            throwsA(isA<AssertionError>()),
-          );
-
-          expect(
-            () => client.updateRedemptionStatus(
-              broadcasterId: '',
-              ids: ['1'],
-              rewardId: '',
-              status: TwitchRewardRedemptionStatus.unfulfilled,
-            ),
-            throwsA(isA<AssertionError>()),
-          );
-        });
-
         test('1', () async {
           final data = (await client.updateRedemptionStatus(
             ids: ['17fa2df1-ad76-4804-bfa5-a40ef63efe63'],

@@ -29,6 +29,7 @@ class TwitchResponse<T> {
     this.dateRange,
   });
 
+  @Deprecated('Use CustomRewardRedemptionResponse instead')
   factory TwitchResponse.customRewardRedemption(Map<String, dynamic> json) =>
       TwitchResponse(
         data: _parseObjects(json, TwitchCustomRewardRedemption.fromJson),
@@ -349,4 +350,18 @@ class CustomRewardResponse with _$CustomRewardResponse {
 
   factory CustomRewardResponse.fromJson(Map<String, dynamic> json) =>
       _$CustomRewardResponseFromJson(json);
+}
+
+@Freezed(toJson: false, fromJson: true)
+class CustomRewardRedemptionResponse with _$CustomRewardRedemptionResponse {
+  const factory CustomRewardRedemptionResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchCustomRewardRedemption> data,
+
+    /// {@macro twitchResponse.pagination}
+    required Map<String, dynamic>? pagination,
+  }) = _CustomRewardRedemptionResponse;
+
+  factory CustomRewardRedemptionResponse.fromJson(Map<String, dynamic> json) =>
+      _$CustomRewardRedemptionResponseFromJson(json);
 }

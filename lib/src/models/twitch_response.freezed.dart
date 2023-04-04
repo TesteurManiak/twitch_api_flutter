@@ -3552,3 +3552,200 @@ abstract class _CustomRewardResponse implements CustomRewardResponse {
   _$$_CustomRewardResponseCopyWith<_$_CustomRewardResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+CustomRewardRedemptionResponse _$CustomRewardRedemptionResponseFromJson(
+    Map<String, dynamic> json) {
+  return _CustomRewardRedemptionResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CustomRewardRedemptionResponse {
+  /// {@macro twitchResponse.data}
+  List<TwitchCustomRewardRedemption> get data =>
+      throw _privateConstructorUsedError;
+
+  /// {@macro twitchResponse.pagination}
+  Map<String, dynamic>? get pagination => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CustomRewardRedemptionResponseCopyWith<CustomRewardRedemptionResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CustomRewardRedemptionResponseCopyWith<$Res> {
+  factory $CustomRewardRedemptionResponseCopyWith(
+          CustomRewardRedemptionResponse value,
+          $Res Function(CustomRewardRedemptionResponse) then) =
+      _$CustomRewardRedemptionResponseCopyWithImpl<$Res,
+          CustomRewardRedemptionResponse>;
+  @useResult
+  $Res call(
+      {List<TwitchCustomRewardRedemption> data,
+      Map<String, dynamic>? pagination});
+}
+
+/// @nodoc
+class _$CustomRewardRedemptionResponseCopyWithImpl<$Res,
+        $Val extends CustomRewardRedemptionResponse>
+    implements $CustomRewardRedemptionResponseCopyWith<$Res> {
+  _$CustomRewardRedemptionResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? pagination = freezed,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchCustomRewardRedemption>,
+      pagination: freezed == pagination
+          ? _value.pagination
+          : pagination // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_CustomRewardRedemptionResponseCopyWith<$Res>
+    implements $CustomRewardRedemptionResponseCopyWith<$Res> {
+  factory _$$_CustomRewardRedemptionResponseCopyWith(
+          _$_CustomRewardRedemptionResponse value,
+          $Res Function(_$_CustomRewardRedemptionResponse) then) =
+      __$$_CustomRewardRedemptionResponseCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {List<TwitchCustomRewardRedemption> data,
+      Map<String, dynamic>? pagination});
+}
+
+/// @nodoc
+class __$$_CustomRewardRedemptionResponseCopyWithImpl<$Res>
+    extends _$CustomRewardRedemptionResponseCopyWithImpl<$Res,
+        _$_CustomRewardRedemptionResponse>
+    implements _$$_CustomRewardRedemptionResponseCopyWith<$Res> {
+  __$$_CustomRewardRedemptionResponseCopyWithImpl(
+      _$_CustomRewardRedemptionResponse _value,
+      $Res Function(_$_CustomRewardRedemptionResponse) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? pagination = freezed,
+  }) {
+    return _then(_$_CustomRewardRedemptionResponse(
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchCustomRewardRedemption>,
+      pagination: freezed == pagination
+          ? _value._pagination
+          : pagination // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable(createToJson: false)
+class _$_CustomRewardRedemptionResponse
+    implements _CustomRewardRedemptionResponse {
+  const _$_CustomRewardRedemptionResponse(
+      {required final List<TwitchCustomRewardRedemption> data,
+      required final Map<String, dynamic>? pagination})
+      : _data = data,
+        _pagination = pagination;
+
+  factory _$_CustomRewardRedemptionResponse.fromJson(
+          Map<String, dynamic> json) =>
+      _$$_CustomRewardRedemptionResponseFromJson(json);
+
+  /// {@macro twitchResponse.data}
+  final List<TwitchCustomRewardRedemption> _data;
+
+  /// {@macro twitchResponse.data}
+  @override
+  List<TwitchCustomRewardRedemption> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  /// {@macro twitchResponse.pagination}
+  final Map<String, dynamic>? _pagination;
+
+  /// {@macro twitchResponse.pagination}
+  @override
+  Map<String, dynamic>? get pagination {
+    final value = _pagination;
+    if (value == null) return null;
+    if (_pagination is EqualUnmodifiableMapView) return _pagination;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  @override
+  String toString() {
+    return 'CustomRewardRedemptionResponse(data: $data, pagination: $pagination)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CustomRewardRedemptionResponse &&
+            const DeepCollectionEquality().equals(other._data, _data) &&
+            const DeepCollectionEquality()
+                .equals(other._pagination, _pagination));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_data),
+      const DeepCollectionEquality().hash(_pagination));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CustomRewardRedemptionResponseCopyWith<_$_CustomRewardRedemptionResponse>
+      get copyWith => __$$_CustomRewardRedemptionResponseCopyWithImpl<
+          _$_CustomRewardRedemptionResponse>(this, _$identity);
+}
+
+abstract class _CustomRewardRedemptionResponse
+    implements CustomRewardRedemptionResponse {
+  const factory _CustomRewardRedemptionResponse(
+          {required final List<TwitchCustomRewardRedemption> data,
+          required final Map<String, dynamic>? pagination}) =
+      _$_CustomRewardRedemptionResponse;
+
+  factory _CustomRewardRedemptionResponse.fromJson(Map<String, dynamic> json) =
+      _$_CustomRewardRedemptionResponse.fromJson;
+
+  @override
+
+  /// {@macro twitchResponse.data}
+  List<TwitchCustomRewardRedemption> get data;
+  @override
+
+  /// {@macro twitchResponse.pagination}
+  Map<String, dynamic>? get pagination;
+  @override
+  @JsonKey(ignore: true)
+  _$$_CustomRewardRedemptionResponseCopyWith<_$_CustomRewardRedemptionResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}

@@ -828,8 +828,8 @@ class TwitchClient {
   ///
   /// `first`: Number of results to be returned when getting the paginated
   /// Custom Reward Redemption objects for a reward. Limit: 50.
-  Future<TwitchResponse<TwitchCustomRewardRedemption>>
-      getCustomRewardRedemptions({
+  Future<CustomRewardRedemptionResponse> getCustomRewardRedemptions({
+    required String broadcasterId,
     required String rewardId,
     List<String> ids = const [],
     TwitchRewardRedemptionStatus? status,
@@ -844,21 +844,21 @@ class TwitchClient {
     );
     assert(first <= 50 && first >= 0, 'first cannot exceed 50');
 
-    final queryParameters = <String, String?>{
-      'broadcaster_id': twitchHttpClient.twitchToken?.userId,
+    final queryParameters = <String, String>{
+      'broadcaster_id': broadcasterId,
       'reward_id': rewardId,
       'sort': sort.name.toUpperCase(),
       'first': first.toString(),
+      if (ids.isNotEmpty) 'id': ids.join(','),
+      if (status != null) 'status': status.name.toUpperCase(),
+      if (after != null) 'after': after,
     };
-    if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
-    if (status != null) queryParameters['status'] = status.name.toUpperCase();
-    if (after != null) queryParameters['after'] = after;
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['channel_points', 'custom_rewards', 'redemptions'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.customRewardRedemption(data);
+    return CustomRewardRedemptionResponse.fromJson(data);
   }
 
   /// Updates a Custom Reward created on a channel.
@@ -878,7 +878,7 @@ class TwitchClient {
   ///
   /// `prompt`: The prompt for the viewer when they are redeeming the reward.
   ///
-  /// `cost`: The cost of the reward.
+  /// `cost`: The cost of the reward in channel points. The minimum is 1 point.
   ///
   /// `backgroundColor`: Custom background color for the reward as a hexadecimal
   /// value. Example: `#00E5CB`.
@@ -886,26 +886,15 @@ class TwitchClient {
   /// `isEnabled`: Is the reward currently enabled, if false the reward won’t
   /// show up to viewers.
   ///
-  /// `isUserInputRequired`: Does the user need to enter information when
-  /// redeeming the reward.
-  ///
-  /// `isMaxPerStreamEnabled`: Whether a maximum per stream is enabled. Required
-  /// when any value of `maxPerStream` is included.
-  ///
-  /// `maxPerStream`: The maximum number per stream if enabled. Required when
-  /// any value of `isMaxPerStreamEnabled` is included.
-  ///
-  /// `isMaxPerUserPerStreamEnabled`: Whether a maximum per user per stream is
-  /// enabled. Required when any value of `maxPerUserPerStream` is included.
+  /// `maxPerStream`: The maximum number per stream if enabled. The minimum
+  /// value is 1.
   ///
   /// `maxPerUserPerStream`: The maximum number per user per stream if enabled.
-  /// Required when any value of `isMaxPerUserPerStreamEnabled` is included.
+  /// The minimum value is 1.
   ///
-  /// `isGlobalCooldownEnabled`: Whether a global cooldown is enabled. Required
-  /// when any value of `globalCooldownSeconds` is included.
-  ///
-  /// `globalCooldownSeconds`: The global cooldown in seconds if enabled.
-  /// Required when any value of `isGlobalCooldownEnabled` is included.
+  /// `globalCooldownSeconds`: The global cooldown in seconds if enabled. The
+  /// minimum value is 1; however, for it to be shown in the Twitch UX, the
+  /// minimum value is 60.
   ///
   /// `isPaused`: Is the reward currently paused, if true viewers cannot redeem.
   ///
@@ -915,99 +904,43 @@ class TwitchClient {
   /// [TwitchRewardRedemptionStatus.unfulfilled] status.
   Future<CustomRewardResponse> updateCustomReward({
     required String broadcasterId,
-    required String id,
+    required String rewardId,
     String? title,
     String? prompt,
-    int? cost,
+    int cost = 0,
     String? backgroundColor,
     bool? isEnabled,
-    bool? isUserInputRequired,
-    bool? isMaxPerStreamEnabled,
-    int? maxPerStream,
-    bool? isMaxPerUserPerStreamEnabled,
-    int? maxPerUserPerStream,
-    bool? isGlobalCooldownEnabled,
-    int? globalCooldownSeconds,
+    int maxPerStream = 0,
+    int maxPerUserPerStream = 0,
+    int globalCooldownSeconds = 0,
     bool? isPaused,
     bool? shouldRedemptionsSkipRequestQueue,
   }) async {
-    assert(cost == null || cost >= 0);
-    assert(
-      isMaxPerStreamEnabled == null ||
-          !isMaxPerStreamEnabled ||
-          maxPerStream != null,
-      'Required when any value of maxPerStream is included.',
-    );
-    assert(
-      maxPerStream == null ||
-          (maxPerStream >= 0 &&
-              isMaxPerStreamEnabled != null &&
-              isMaxPerStreamEnabled),
-      'Required when any value of isMaxPerStreamEnabled is included.',
-    );
-    assert(
-      isMaxPerUserPerStreamEnabled == null ||
-          !isMaxPerUserPerStreamEnabled ||
-          maxPerUserPerStream != null,
-    );
-    assert(
-      maxPerUserPerStream == null ||
-          (maxPerUserPerStream >= 0 &&
-              isMaxPerUserPerStreamEnabled != null &&
-              isMaxPerUserPerStreamEnabled),
-      'Required when any value of isMaxPerUserPerStreamEnabled is included.',
-    );
-    assert(
-      isGlobalCooldownEnabled == null ||
-          !isGlobalCooldownEnabled ||
-          globalCooldownSeconds != null,
-      'Required when any value of globalCooldownSeconds is included.',
-    );
-    assert(
-      globalCooldownSeconds == null ||
-          (globalCooldownSeconds >= 0 &&
-              isGlobalCooldownEnabled != null &&
-              isGlobalCooldownEnabled),
-      'Required when any value of isGlobalCooldownEnabled is included.',
-    );
-
-    final queryParameters = <String, String?>{
+    final queryParameters = <String, String>{
       'broadcaster_id': broadcasterId,
-      'id': id,
+      'id': rewardId,
     };
 
-    final body = <String, dynamic>{};
-    if (title != null) body['title'] = title;
-    if (prompt != null) body['prompt'] = prompt;
-    if (cost != null) body['cost'] = cost.toString();
-    if (backgroundColor != null) body['background_color'] = backgroundColor;
-    if (isEnabled != null) body['is_enabled'] = isEnabled;
-    if (isUserInputRequired != null) {
-      body['is_user_input_required'] = isUserInputRequired;
-    }
-    if (isMaxPerStreamEnabled != null) {
-      body['is_max_per_stream_enabled'] = isMaxPerStreamEnabled;
-    }
-    if (maxPerStream != null) {
-      body['max_per_stream'] = maxPerStream.toString();
-    }
-    if (isMaxPerUserPerStreamEnabled != null) {
-      body['is_max_per_user_per_stream_enabled'] = isMaxPerUserPerStreamEnabled;
-    }
-    if (maxPerUserPerStream != null) {
-      body['max_per_user_per_stream'] = maxPerUserPerStream.toString();
-    }
-    if (isGlobalCooldownEnabled != null) {
-      body['is_global_cooldown_enabled'] = isGlobalCooldownEnabled;
-    }
-    if (globalCooldownSeconds != null) {
-      body['global_cooldown_seconds'] = globalCooldownSeconds.toString();
-    }
-    if (isPaused != null) body['is_paused'] = isPaused;
-    if (shouldRedemptionsSkipRequestQueue != null) {
-      body['should_redemptions_skip_request_queue'] =
-          shouldRedemptionsSkipRequestQueue;
-    }
+    final body = <String, dynamic>{
+      if (title != null) 'title': title,
+      if (prompt != null) 'prompt': prompt,
+      if (cost > 0) 'cost': cost.toString(),
+      if (backgroundColor != null) 'background_color': backgroundColor,
+      if (isEnabled != null) 'is_enabled': isEnabled,
+      if (prompt != null) 'is_user_input_required': true,
+      if (maxPerStream > 0) 'is_max_per_stream_enabled': true,
+      if (maxPerStream > 0) 'max_per_stream': maxPerStream.toString(),
+      if (maxPerUserPerStream > 0) 'is_max_per_user_per_stream_enabled': true,
+      if (maxPerUserPerStream > 0)
+        'max_per_user_per_stream': maxPerUserPerStream.toString(),
+      if (globalCooldownSeconds > 0) 'is_global_cooldown_enabled': true,
+      if (globalCooldownSeconds > 0)
+        'global_cooldown_seconds': globalCooldownSeconds.toString(),
+      if (isPaused != null) 'is_paused': isPaused,
+      if (shouldRedemptionsSkipRequestQueue != null)
+        'should_redemptions_skip_request_queue':
+            shouldRedemptionsSkipRequestQueue,
+    };
 
     final data = await twitchHttpClient.patchCall<Map<String, dynamic>>(
       ['channel_points', 'custom_rewards'],
