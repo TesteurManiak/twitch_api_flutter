@@ -972,7 +972,7 @@ class TwitchClient {
   /// [TwitchRewardRedemptionStatus.canceled]. Updating to
   /// [TwitchRewardRedemptionStatus.canceled] will refund the user their Channel
   /// Points.
-  Future<TwitchResponse<TwitchCustomRewardRedemption>> updateRedemptionStatus({
+  Future<CustomRewardRedemptionResponse> updateRedemptionStatus({
     required List<String> ids,
     required String broadcasterId,
     required String rewardId,
@@ -995,7 +995,7 @@ class TwitchClient {
         'reward_id': rewardId,
       },
     );
-    return TwitchResponse.customRewardRedemption(data);
+    return CustomRewardRedemptionResponse.fromJson(data);
   }
 
   /// Gets all emotes that the specified Twitch channel created. Broadcasters

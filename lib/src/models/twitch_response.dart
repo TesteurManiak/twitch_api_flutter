@@ -29,13 +29,8 @@ class TwitchResponse<T> {
     this.dateRange,
   });
 
-  @Deprecated('Use CustomRewardRedemptionResponse instead')
-  factory TwitchResponse.customRewardRedemption(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: _parseObjects(json, TwitchCustomRewardRedemption.fromJson),
-      );
-
   /// Constructor for request containing [TwitchStreamInfo].
+  @Deprecated('Use TwitchResponse.streamsInfo instead')
   factory TwitchResponse.streamsInfo(Map<String, dynamic> json) =>
       TwitchResponse(
         data: _parseObjects(json, TwitchStreamInfo.fromJson),
@@ -127,7 +122,7 @@ class UsersResponse with _$UsersResponse {
       _$UsersResponseFromJson(json);
 }
 
-/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-users-follows
+/// Specs: https://dev.twitch.tv/docs/api/reference/#get-users-follows
 @Freezed(toJson: false, fromJson: true)
 class UsersFollowsResponse with _$UsersFollowsResponse {
   const factory UsersFollowsResponse({
@@ -145,7 +140,7 @@ class UsersFollowsResponse with _$UsersFollowsResponse {
       _$UsersFollowsResponseFromJson(json);
 }
 
-/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-top-games
+/// Specs: https://dev.twitch.tv/docs/api/reference/#get-top-games
 @Freezed(toJson: false, fromJson: true)
 class TopGamesResponse with _$TopGamesResponse {
   const factory TopGamesResponse({
@@ -160,7 +155,7 @@ class TopGamesResponse with _$TopGamesResponse {
       _$TopGamesResponseFromJson(json);
 }
 
-/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-games
+/// Specs: https://dev.twitch.tv/docs/api/reference/#get-games
 @Freezed(toJson: false, fromJson: true)
 class GamesResponse with _$GamesResponse {
   const factory GamesResponse({
@@ -172,7 +167,7 @@ class GamesResponse with _$GamesResponse {
       _$GamesResponseFromJson(json);
 }
 
-/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-channel-information
+/// Specs: https://dev.twitch.tv/docs/api/reference/#get-channel-information
 @Freezed(toJson: false, fromJson: true)
 class ChannelInformationResponse with _$ChannelInformationResponse {
   const factory ChannelInformationResponse({
@@ -184,7 +179,7 @@ class ChannelInformationResponse with _$ChannelInformationResponse {
       _$ChannelInformationResponseFromJson(json);
 }
 
-/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#search-categories
+/// Specs: https://dev.twitch.tv/docs/api/reference/#search-categories
 @Freezed(toJson: false, fromJson: true)
 class SearchCategoriesResponse with _$SearchCategoriesResponse {
   const factory SearchCategoriesResponse({
@@ -196,7 +191,7 @@ class SearchCategoriesResponse with _$SearchCategoriesResponse {
       _$SearchCategoriesResponseFromJson(json);
 }
 
-/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#search-channels
+/// Specs: https://dev.twitch.tv/docs/api/reference/#search-channels
 @Freezed(toJson: false, fromJson: true)
 class SearchChannelsResponse with _$SearchChannelsResponse {
   const factory SearchChannelsResponse({
@@ -211,7 +206,7 @@ class SearchChannelsResponse with _$SearchChannelsResponse {
       _$SearchChannelsResponseFromJson(json);
 }
 
-/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-streams
+/// Specs: https://dev.twitch.tv/docs/api/reference/#get-streams
 @Freezed(toJson: false, fromJson: true)
 class StreamsResponse with _$StreamsResponse {
   const factory StreamsResponse({
@@ -226,7 +221,7 @@ class StreamsResponse with _$StreamsResponse {
       _$StreamsResponseFromJson(json);
 }
 
-/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-broadcaster-subscriptions
+/// Specs: https://dev.twitch.tv/docs/api/reference/#get-broadcaster-subscriptions
 @Freezed(toJson: false, fromJson: true)
 class BroadcasterSubscriptionsResponse with _$BroadcasterSubscriptionsResponse {
   const factory BroadcasterSubscriptionsResponse({
@@ -265,7 +260,7 @@ class CheermotesResponse with _$CheermotesResponse {
       _$CheermotesResponseFromJson(json);
 }
 
-/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-extension-transactions
+/// Specs: https://dev.twitch.tv/docs/api/reference/#get-extension-transactions
 @Freezed(toJson: false, fromJson: true)
 class ExtensionTransactionsResponse with _$ExtensionTransactionsResponse {
   const factory ExtensionTransactionsResponse({
@@ -328,7 +323,7 @@ class EmoteSetsResponse with _$EmoteSetsResponse {
       _$EmoteSetsResponseFromJson(json);
 }
 
-/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-channel-editors
+/// Specs: https://dev.twitch.tv/docs/api/reference/#get-channel-editors
 @Freezed(toJson: false, fromJson: true)
 class ChannelEditorsResponse with _$ChannelEditorsResponse {
   const factory ChannelEditorsResponse({

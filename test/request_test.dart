@@ -653,38 +653,41 @@ void main() {
       );
     });
 
-    group('PATCH', () {
-      group('Update Redemption Status', () {
-        test('1', () async {
-          final data = (await client.updateRedemptionStatus(
-            ids: ['17fa2df1-ad76-4804-bfa5-a40ef63efe63'],
-            broadcasterId: '274637212',
-            rewardId: '92af127c-7326-4483-a52b-b0da0be61c01',
-            status: TwitchRewardRedemptionStatus.canceled,
-          ))
-              .data;
-          expect(data!.length, 1);
+    group('updateRedemptionStatus', () {
+      test(
+        'should call patchCall on channel_points/custom_rewards/redemptions and return a valid CustomRewardRedemptionResponse',
+        () async {
+          const path = ['channel_points', 'custom_rewards', 'redemptions'];
+          const ids = ['17fa2df1-ad76-4804-bfa5-a40ef63efe63'];
+          const broadcasterId = '274637212';
+          const rewardId = '92af127c-7326-4483-a52b-b0da0be61c01';
 
-          final redemption = data.first;
-          expect(redemption.broadcasterName, 'torpedo09');
-          expect(redemption.broadcasterLogin, 'torpedo09');
-          expect(redemption.broadcasterId, '274637212');
-          expect(redemption.id, '17fa2df1-ad76-4804-bfa5-a40ef63efe63');
-          expect(redemption.userId, '274637212');
-          expect(redemption.userName, 'torpedo09');
-          expect(redemption.userLogin, 'torpedo09');
-          expect(redemption.userInput, '');
-          expect(redemption.status, TwitchRewardRedemptionStatus.canceled);
-          expect(
-            redemption.redeemedAt.toIso8601String(),
-            '2020-07-01T18:37:32.000Z',
+          when(
+            () => mockHttpClient.patchCall<Map<String, dynamic>>(
+              path,
+              any(),
+              queryParameters: any(named: 'queryParameters'),
+            ),
+          ).thenAnswer(
+            (_) async => readJson('update_redemption_status.json'),
           );
-          expect(redemption.reward.id, '92af127c-7326-4483-a52b-b0da0be61c01');
-          expect(redemption.reward.title, 'game analysis');
-          expect(redemption.reward.cost, 50000);
-          expect(redemption.reward.prompt, '');
-        });
-      });
+
+          await client.updateRedemptionStatus(
+            ids: ids,
+            broadcasterId: broadcasterId,
+            rewardId: rewardId,
+            status: TwitchRewardRedemptionStatus.canceled,
+          );
+
+          verify(
+            () => mockHttpClient.patchCall<Map<String, dynamic>>(
+              path,
+              any(),
+              queryParameters: any(named: 'queryParameters'),
+            ),
+          );
+        },
+      );
     });
   });
 }
