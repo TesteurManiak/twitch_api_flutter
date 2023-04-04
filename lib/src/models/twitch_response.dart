@@ -8,41 +8,6 @@ import 'package:twitch_api/twitch_api.dart';
 part 'twitch_response.freezed.dart';
 part 'twitch_response.g.dart';
 
-typedef TwitchModelParser = dynamic Function(Map<String, dynamic> json);
-
-List<T> _parseObjects<T>(
-  Map<String, dynamic> json,
-  TwitchModelParser parser,
-) {
-  return (json['data'] as Iterable)
-      .cast<Map<String, dynamic>>()
-      .map<T>((e) => parser(e) as T)
-      .toList();
-}
-
-/// Generic class for Twitch's API response using pagination.
-class TwitchResponse<T> {
-  TwitchResponse({
-    this.data,
-    this.pagination,
-    this.total,
-    this.dateRange,
-  });
-
-  /// Constructor for request containing [TwitchStreamInfo].
-  @Deprecated('Use TwitchResponse.streamsInfo instead')
-  factory TwitchResponse.streamsInfo(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: _parseObjects(json, TwitchStreamInfo.fromJson),
-        pagination: json['pagination'] as Map<String, dynamic>?,
-      );
-
-  final List<T>? data;
-  final Map<String, dynamic>? pagination;
-  final int? total;
-  final TwitchDateRange? dateRange;
-}
-
 /// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#start-commercial
 @Freezed(toJson: false, fromJson: true)
 class StartCommercialResponse with _$StartCommercialResponse {
