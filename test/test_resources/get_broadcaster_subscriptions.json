@@ -18,5 +18,6 @@
     "pagination": {
         "cursor": "xxxx"
     },
-    "total": 13
+    "total": 13,
+    "points": 13
 }

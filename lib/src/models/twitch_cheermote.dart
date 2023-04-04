@@ -1,48 +1,35 @@
-import '../extensions/string_extensions.dart' show StringModifier;
-import 'twitch_cheermote_tier.dart';
-import 'twitch_cheermote_type.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class TwitchCheermote {
-  /// The string used to Cheer that precedes the Bits amount.
-  final String prefix;
+import 'package:twitch_api/src/models/twitch_cheermote_tier.dart';
+import 'package:twitch_api/src/models/twitch_cheermote_type.dart';
 
-  /// An array of Cheermotes with their metadata.
-  final List<TwitchCheermoteTier> tiers;
+part 'twitch_cheermote.freezed.dart';
+part 'twitch_cheermote.g.dart';
 
-  /// Shows whether the emote is `globalFirstParty`, `globalThirdParty`,
-  /// `channelCustom`, `displayOnly`, or `sponsored`.
-  final TwitchCheermoteType type;
+@freezed
+class TwitchCheermote with _$TwitchCheermote {
+  const factory TwitchCheermote({
+    /// The string used to Cheer that precedes the Bits amount.
+    required String prefix,
 
-  /// Order of the emotes as shown in the bits card, in ascending order.
-  final int order;
+    /// An array of Cheermotes with their metadata.
+    required List<TwitchCheermoteTier> tiers,
 
-  /// The data when this Cheermote was last updated.
-  final DateTime lastUpdated;
+    /// Shows whether the emote is `globalFirstParty`, `globalThirdParty`,
+    /// `channelCustom`, `displayOnly`, or `sponsored`.
+    required TwitchCheermoteType type,
 
-  /// Indicates whether or not this emote provides a charity contribution match
-  /// during charity campaigns.
-  final bool isCharitable;
+    /// Order of the emotes as shown in the bits card, in ascending order.
+    required int order,
 
-  TwitchCheermote({
-    required this.prefix,
-    required this.tiers,
-    required this.type,
-    required this.order,
-    required this.lastUpdated,
-    required this.isCharitable,
-  });
+    /// The data when this Cheermote was last updated.
+    @JsonKey(name: 'last_updated') required DateTime lastUpdated,
+
+    /// Indicates whether or not this emote provides a charity contribution match
+    /// during charity campaigns.
+    @JsonKey(name: 'is_charitable') required bool isCharitable,
+  }) = _TwitchCheermote;
 
   factory TwitchCheermote.fromJson(Map<String, dynamic> json) =>
-      TwitchCheermote(
-        prefix: json['prefix'] as String,
-        tiers: (json['tiers'] as Iterable)
-            .map<TwitchCheermoteTier>(
-              (e) => TwitchCheermoteTier.fromJson(e as Map<String, dynamic>),
-            )
-            .toList(),
-        type: json['type'].toString().toCheermoteType(),
-        order: json['order'] as int,
-        lastUpdated: DateTime.parse(json['last_updated'] as String),
-        isCharitable: json['is_charitable'] as bool,
-      );
+      _$TwitchCheermoteFromJson(json);
 }

@@ -10,13 +10,13 @@ void main() {
   group('getGlobalEmotes', () {
     test('1', () async {
       final response = await client.getGlobalEmotes();
-      expect(response.data?.length, 1);
+      expect(response.data.length, 1);
       expect(
         response.template,
         'https://static-cdn.jtvnw.net/emoticons/v2/{{id}}/{{format}}/{{theme_mode}}/{{scale}}',
       );
 
-      final emote = response.data!.first;
+      final emote = response.data.first;
       expect(emote.id, '196892');
       expect(emote.name, 'TwitchUnity');
       expect(emote.format, [TwitchEmoteFormat.static]);

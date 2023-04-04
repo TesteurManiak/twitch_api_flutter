@@ -1,125 +1,93 @@
-import '../extensions/string_extensions.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-enum TwitchExtensionTransactionProductType { bitsInExtension }
+part 'twitch_extension_transaction.freezed.dart';
+part 'twitch_extension_transaction.g.dart';
 
-class _Cost {
-  /// Number of Bits required to acquire the product.
-  final int amount;
-
-  /// Always the string “Bits”.
-  final String type;
-
-  _Cost({required this.amount, required this.type});
-
-  factory _Cost.fromJson(Map<String, dynamic> json) => _Cost(
-        amount: json['amount'] as int,
-        type: json['type'] as String,
-      );
+enum TwitchExtensionTransactionProductType {
+  @JsonValue('BITS_IN_EXTENSION')
+  bitsInExtension,
 }
 
-class _ProductData {
-  /// Unique identifier for the product across the extension.
-  final String sku;
+@freezed
+class Cost with _$Cost {
+  const factory Cost({
+    /// Number of Bits required to acquire the product.
+    required int amount,
 
-  /// Object representing the cost to acquire the product.
-  final _Cost cost;
+    /// Always the string “Bits”.
+    required String type,
+  }) = _Cost;
 
-  /// Display Name of the product.
-  final String displayName;
-
-  /// Flag used to indicate if the product is in development.
-  final bool inDevelopment;
-
-  _ProductData({
-    required this.sku,
-    required this.cost,
-    required this.displayName,
-    required this.inDevelopment,
-  });
-
-  factory _ProductData.fromJson(Map<String, dynamic> json) => _ProductData(
-        sku: json['sku'] as String,
-        cost: _Cost.fromJson(json['cost'] as Map<String, dynamic>),
-        displayName: json['displayName'] as String,
-        inDevelopment: json['inDevelopment'] as bool,
-      );
+  factory Cost.fromJson(Map<String, dynamic> json) => _$CostFromJson(json);
 }
 
-class TwitchExtensionTransaction {
-  /// Unique identifier of the Bits in Extensions Transaction.
-  final String id;
+@freezed
+class ProductData with _$ProductData {
+  const factory ProductData({
+    /// Unique identifier for the product across the extension.
+    required String sku,
 
-  /// UTC timestamp when this transaction occurred.
-  final DateTime timestamp;
+    /// Object representing the cost to acquire the product.
+    required Cost cost,
 
-  /// Twitch User ID of the channel the transaction occurred on.
-  final String broadcasterId;
+    /// Display Name of the product.
+    required String displayName,
 
-  /// Login name of the broadcaster.
-  final String broadcasterLogin;
+    /// Flag used to indicate if the product is in development.
+    required bool inDevelopment,
+  }) = _ProductData;
 
-  /// Twitch Display Name of the broadcaster.
-  final String broadcasterName;
+  factory ProductData.fromJson(Map<String, dynamic> json) =>
+      _$ProductDataFromJson(json);
+}
 
-  /// Twitch User ID of the user who generated the transaction.
-  final String userId;
+@freezed
+class TwitchExtensionTransaction with _$TwitchExtensionTransaction {
+  const factory TwitchExtensionTransaction({
+    /// Unique identifier of the Bits in Extensions Transaction.
+    required String id,
 
-  /// Login name of the user who generated the transaction.
-  final String userLogin;
+    /// UTC timestamp when this transaction occurred.
+    required DateTime timestamp,
 
-  /// Twitch Display Name of the user who generated the transaction.
-  final String userName;
+    /// Twitch User ID of the channel the transaction occurred on.
+    @JsonKey(name: 'broadcaster_id') required String broadcasterId,
 
-  /// Enum of the product type. Currently only
-  /// `TwitchExtensionTransactionProductType.bitsInExtension`.
-  final TwitchExtensionTransactionProductType productType;
+    /// Login name of the broadcaster.
+    @JsonKey(name: 'broadcaster_login') required String broadcasterLogin,
 
-  /// Object representing the product acquired, as it looked at the time of the
-  /// transaction.
-  final _ProductData productData;
+    /// Twitch Display Name of the broadcaster.
+    @JsonKey(name: 'broadcaster_name') required String broadcasterName,
 
-  /// Set this field to twitch.ext + your extension ID.
-  final String? domain;
+    /// Twitch User ID of the user who generated the transaction.
+    @JsonKey(name: 'user_id') required String userId,
 
-  /// Flag that denotes whether or not the data was sent over the extension
-  /// pubsub to all instances of the extension.
-  final bool? broadcast;
+    /// Login name of the user who generated the transaction.
+    @JsonKey(name: 'user_login') required String userLogin,
 
-  /// Always empty since only unexpired products can be purchased.
-  final String? expiration;
+    /// Twitch Display Name of the user who generated the transaction.
+    @JsonKey(name: 'user_name') required String userName,
 
-  TwitchExtensionTransaction({
-    required this.id,
-    required this.timestamp,
-    required this.broadcasterId,
-    required this.broadcasterLogin,
-    required this.broadcasterName,
-    required this.userId,
-    required this.userLogin,
-    required this.userName,
-    required this.productType,
-    required this.productData,
-    this.domain,
-    this.broadcast,
-    this.expiration,
-  });
+    /// Enum of the product type. Currently only
+    /// `TwitchExtensionTransactionProductType.bitsInExtension`.
+    @JsonKey(name: 'product_type')
+        required TwitchExtensionTransactionProductType productType,
+
+    /// Object representing the product acquired, as it looked at the time of the
+    /// transaction.
+    @JsonKey(name: 'product_data') required ProductData productData,
+
+    /// Set this field to twitch.ext + your extension ID.
+    String? domain,
+
+    /// Flag that denotes whether or not the data was sent over the extension
+    /// pubsub to all instances of the extension.
+    bool? broadcast,
+
+    /// Always empty since only unexpired products can be purchased.
+    String? expiration,
+  }) = _TwitchExtensionTransaction;
 
   factory TwitchExtensionTransaction.fromJson(Map<String, dynamic> json) =>
-      TwitchExtensionTransaction(
-        id: json['id'] as String,
-        timestamp: DateTime.parse(json['timestamp'] as String),
-        broadcasterId: json['broadcaster_id'] as String,
-        broadcasterLogin: json['broadcaster_login'] as String,
-        broadcasterName: json['broadcaster_name'] as String,
-        userId: json['user_id'] as String,
-        userLogin: json['user_login'] as String,
-        userName: json['user_name'] as String,
-        productType:
-            (json['product_type'] as String).toTransactionProductType(),
-        productData:
-            _ProductData.fromJson(json['product_data'] as Map<String, dynamic>),
-        domain: json['domain'] as String?,
-        broadcast: json['broadcast'] as bool?,
-        expiration: json['expiration'] as String?,
-      );
+      _$TwitchExtensionTransactionFromJson(json);
 }

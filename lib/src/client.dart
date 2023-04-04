@@ -1,16 +1,24 @@
 import 'dart:async';
 
-import '../twitch_api.dart';
-import 'errors/exceptions.dart';
-import 'extensions/enum_extensions.dart';
-import 'models/twitch_channel_editor.dart';
-import 'models/twitch_chat_badge.dart';
-import 'models/twitch_chat_settings.dart';
-import 'models/twitch_game_analytic.dart';
-import 'models/twitch_start_commercial.dart';
-import 'providers/twitch_dio_provider.dart';
+import 'package:twitch_api/src/models/twitch_chat_badge.dart';
+import 'package:twitch_api/src/models/twitch_chat_settings.dart';
+import 'package:twitch_api/src/providers/twitch_dio_client.dart';
+import 'package:twitch_api/twitch_api.dart';
 
 class TwitchClient {
+  /// By default the `twitchHttpClient` will be a [TwitchDioClient].
+  TwitchClient({
+    required this.clientId,
+    required this.redirectUri,
+    TwitchHttpClient? twitchHttpClient,
+    TwitchToken? token,
+  }) : twitchHttpClient =
+            twitchHttpClient ?? TwitchDioClient(clientId: clientId) {
+    if (token != null) {
+      initializeToken(token);
+    }
+  }
+
   static const basePath = 'helix';
   static const oauthPath = 'oauth2';
   static const authPath = 'authorize';
@@ -24,25 +32,20 @@ class TwitchClient {
 
   /// Return the authorization Uri for the Twitch API.
   ///
-  /// ### Code Sample
-  ///
   /// ```dart
   /// final client = TwitchClient(
   ///   clientId: '<your client id>',
   ///   redirectUri: '<your redirect uri>',
   /// );
-  /// print(client.authorizeUri([]));
-  /// ```
   ///
-  /// ### Output
-  ///
-  /// ```url
-  /// https://id.twitch.tv/oauth2/authorize?client_id=<your client id>&redirect_uri=<your redirect uri>&response_type=token&scope=viewing_activity_read
+  /// // https://id.twitch.tv/oauth2/authorize?client_id=<your client id>&redirect_uri=<your redirect uri>&response_type=token&scope=viewing_activity_read
+  /// client.authorizeUri([]);
   /// ```
   Uri authorizeUri(List<TwitchApiScope> scopes) {
     final scopesSet = <String>{}
-      ..add('viewing_activity_read')
-      ..addAll(scopes.map((e) => e.string).toSet());
+      ..add(TwitchApiScope.viewingActivityRead.string)
+      ..addAll(scopes.map((e) => e.string));
+
     return oauth2Url.replace(
       pathSegments: <String>[oauthPath, authPath],
       queryParameters: {
@@ -53,25 +56,6 @@ class TwitchClient {
       },
     );
   }
-
-  /// By default the `twitchHttpClient` will be a [TwitchDioProvider].
-  TwitchClient({
-    required this.clientId,
-    required this.redirectUri,
-    TwitchHttpClient? twitchHttpClient,
-    TwitchToken? token,
-  }) : twitchHttpClient =
-            twitchHttpClient ?? TwitchDioProvider(clientId: clientId) {
-    if (token != null) {
-      initializeToken(token);
-    }
-  }
-
-  @Deprecated('Use [twitchHttpClient.twitchToken]')
-  TwitchToken? get accessToken => twitchHttpClient.twitchToken;
-
-  @Deprecated('Use [twitchHttpClient.validateToken()]')
-  Future<TwitchToken?> validateToken() => twitchHttpClient.validateToken();
 
   /// Method to initialize the token the first time after connection.
   ///
@@ -87,21 +71,20 @@ class TwitchClient {
   ///
   /// `length`: Desired length of the commercial in seconds. Valid options are
   /// `30, 60, 90, 120, 150, 180`.
-  Future<TwitchResponse<TwitchStartCommercial>> startCommercial({
+  Future<StartCommercialResponse> startCommercial({
     required String broadcasterId,
     required int length,
   }) async {
-    assert(broadcasterId == twitchHttpClient.twitchToken?.userId);
     assert(length >= 30 && length <= 180 && length % 30 == 0);
-    try {
-      final data = await twitchHttpClient.postCall<Map<String, dynamic>>(
-        ['channels', 'commercial'],
-        {'broadcaster_id': broadcasterId, 'length': length.toString()},
-      );
-      return TwitchResponse.startCommercial(data);
-    } catch (e) {
-      throw TwitchStartCommercialException(e.toString());
-    }
+
+    final data = await twitchHttpClient.postCall<Map<String, dynamic>>(
+      ['channels', 'commercial'],
+      {
+        'broadcaster_id': broadcasterId,
+        'length': length.toString(),
+      },
+    );
+    return StartCommercialResponse.fromJson(data);
   }
 
   /// Gets a URL that Extension developers can use to download analytics reports
@@ -147,7 +130,7 @@ class TwitchClient {
   /// has no affect on the response as there is only one report type. If
   /// additional types were added, using this field would return only the URL
   /// for the specified report. Limit: 1. Valid values: `"overview_v2"`.
-  Future<TwitchResponse<TwitchExtensionAnalytic>> getExtensionAnalytics({
+  Future<ExtensionAnalyticsResponse> getExtensionAnalytics({
     String? after,
     String? endedAt,
     String? extensionId,
@@ -161,24 +144,22 @@ class TwitchClient {
     );
     assert(first < 101 && first > 0);
 
-    final queryParameters = <String, String?>{'first': first.toString()};
-    if (after != null) queryParameters['after'] = after;
-    if (endedAt != null && startedAt != null) {
-      queryParameters['ended_at'] = endedAt;
-      queryParameters['started_at'] = startedAt;
-    }
-    if (extensionId != null) queryParameters['extension_id'] = extensionId;
-    if (type != null) queryParameters['type'] = type;
+    final queryParameters = <String, String>{
+      'first': first.toString(),
+      if (after != null) 'after': after,
+      if (endedAt != null && startedAt != null) ...{
+        'ended_at': endedAt,
+        'started_at': startedAt,
+      },
+      if (extensionId != null) 'extension_id': extensionId,
+      if (type != null) 'type': type,
+    };
 
-    try {
-      final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
-        ['analytics', 'extensions'],
-        queryParameters: queryParameters,
-      );
-      return TwitchResponse<TwitchExtensionAnalytic>.extensionAnalytics(data);
-    } catch (e) {
-      throw TwitchGetExtensionAnalyticsException(e.toString());
-    }
+    final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
+      ['analytics', 'extensions'],
+      queryParameters: queryParameters,
+    );
+    return ExtensionAnalyticsResponse.fromJson(data);
   }
 
   /// Gets a URL that game developers can use to download analytics reports
@@ -191,7 +172,7 @@ class TwitchClient {
   /// only to queries without `gameId`. If a `gameId` is specified, it supersedes
   /// any cursor/offset combinations. The cursor value specified here is from
   /// the `pagination` response field of a prior query.
-  Future<TwitchResponse<TwitchGameAnalytic>> getGameAnalytics({
+  Future<GameAnalyticsResponse> getGameAnalytics({
     String? after,
     String? endedAt,
     int first = 20,
@@ -205,20 +186,22 @@ class TwitchClient {
     );
     assert(first < 101 && first > 0);
 
-    final queryParameters = <String, String?>{'first': first.toString()};
-    if (after != null && gameId == null) queryParameters['after'] = after;
-    if (endedAt != null && startedAt != null) {
-      queryParameters['ended_at'] = endedAt;
-      queryParameters['started_at'] = startedAt;
-    }
-    if (gameId != null) queryParameters['game_id'] = gameId;
-    if (type != null) queryParameters['type'] = type;
+    final queryParameters = <String, String?>{
+      'first': first.toString(),
+      if (after != null && gameId == null) 'after': after,
+      if (endedAt != null && startedAt != null) ...{
+        'ended_at': endedAt,
+        'started_at': startedAt,
+      },
+      if (gameId != null) 'game_id': gameId,
+      if (type != null) 'type': type,
+    };
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['analytics', 'games'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse<TwitchGameAnalytic>.gameAnalytics(data);
+    return GameAnalyticsResponse.fromJson(data);
   }
 
   /// Gets a ranked list of Bits leaderboard information for an authorized
@@ -242,7 +225,7 @@ class TwitchClient {
   /// specified by `userId`. If `userId` is not provided, the endpoint returns
   /// the Bits leaderboard data across top users (subject to the value of
   /// `count`).
-  Future<TwitchResponse<TwitchBitsLeaderboard>> getBitsLeaderboard({
+  Future<BitsLeaderboardResponse> getBitsLeaderboard({
     int count = 10,
     TwitchTimePeriod period = TwitchTimePeriod.all,
     String? startedAt,
@@ -250,18 +233,18 @@ class TwitchClient {
   }) async {
     assert(count > 0 && count < 101);
 
-    final queryParameters = <String, String?>{
+    final queryParameters = <String, String>{
       'count': count.toString(),
-      'period': period.string,
+      'period': period.name,
+      if (startedAt != null) 'started_at': startedAt,
+      if (userId != null) 'user_id': userId,
     };
-    if (startedAt != null) queryParameters['started_at'] = startedAt;
-    if (userId != null) queryParameters['user_id'] = userId;
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['bits', 'leaderboard'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.bitsLeaderboard(data);
+    return BitsLeaderboardResponse.fromJson(data);
   }
 
   /// Gets information about one or more specified Twitch users. Users are
@@ -278,21 +261,27 @@ class TwitchClient {
   /// Note: The limit of 100 IDs and login names is the total limit. You can
   /// request, for example, 50 of each or 100 of one of them. You cannot request
   /// 100 of both.
-  Future<TwitchResponse<TwitchUser>> getUsers({
+  Future<UsersResponse> getUsers({
     List<String> ids = const [],
     List<String> logins = const [],
   }) async {
-    assert(ids.length < 101);
-    assert(logins.length < 101);
-    assert(ids.length + logins.length < 101);
+    assert(ids.length < 101, 'You can only request 100 ids at a time');
+    assert(logins.length < 101, 'You can only request 100 logins at a time');
+    assert(
+      (ids.length + logins.length) < 101,
+      'You can only request 100 ids or logins at a time',
+    );
 
-    final queryParameters = <String, String?>{};
-    if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
-    if (logins.isNotEmpty) queryParameters['login'] = logins.join(',');
+    final queryParameters = <String, String>{
+      if (ids.isNotEmpty) 'id': ids.join(','),
+      if (logins.isNotEmpty) 'login': logins.join(','),
+    };
 
-    final data = await twitchHttpClient
-        .getCall(['users'], queryParameters: queryParameters);
-    return TwitchResponse.users(data as Map<String, dynamic>);
+    final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
+      ['users'],
+      queryParameters: queryParameters,
+    );
+    return UsersResponse.fromJson(data);
   }
 
   /// Gets information on follow relationships between two Twitch users. This
@@ -301,7 +290,7 @@ class TwitchClient {
   /// in order, most recent follow first.
   ///
   /// At minimum, `fromId` or `toId` must be provided for a query to be valid.
-  Future<TwitchResponse<TwitchUserFollow>> getUsersFollows({
+  Future<UsersFollowsResponse> getUsersFollows({
     String? after,
     int first = 20,
     String? fromId,
@@ -313,36 +302,40 @@ class TwitchClient {
       'At minimum, fromId or toId must be provided for a query to be valid.',
     );
 
-    final queryParameters = <String, String?>{'first': first.toString()};
-    if (after != null) queryParameters['after'] = after;
-    if (fromId != null) queryParameters['from_id'] = fromId;
-    if (toId != null) queryParameters['to_id'] = toId;
+    final queryParameters = <String, String>{
+      'first': first.toString(),
+      if (after != null) 'after': after,
+      if (fromId != null) 'from_id': fromId,
+      if (toId != null) 'to_id': toId,
+    };
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['users', 'follows'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.usersFollows(data);
+    return UsersFollowsResponse.fromJson(data);
   }
 
   /// Gets games sorted by number of current viewers on Twitch, most popular
   /// first.
-  Future<TwitchResponse<TwitchGame>> getTopGames({
+  Future<TopGamesResponse> getTopGames({
     String? after,
     String? before,
     int first = 20,
   }) async {
     assert(first < 101 && first > 0);
 
-    final queryParameters = <String, String?>{'first': first.toString()};
-    if (after != null) queryParameters['after'] = after;
-    if (before != null) queryParameters['before'] = before;
+    final queryParameters = <String, String>{
+      'first': first.toString(),
+      if (after != null) 'after': after,
+      if (before != null) 'before': before,
+    };
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['games', 'top'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.games(data);
+    return TopGamesResponse.fromJson(data);
   }
 
   /// Gets game information by game ID or name.
@@ -355,34 +348,37 @@ class TwitchClient {
   /// “Pokemon” will not return a list of Pokemon games; instead, query any
   /// specific Pokemon games in which you are interested. At most 100 name
   /// values can be specified.
-  Future<TwitchResponse<TwitchGame>> getGames({
+  Future<GamesResponse> getGames({
     List<String> ids = const [],
     List<String> names = const [],
   }) async {
-    assert((ids.isNotEmpty) || (names.isNotEmpty));
+    assert(ids.isNotEmpty || names.isNotEmpty);
     assert(ids.length < 101);
     assert(names.length < 101);
 
-    final queryParameters = <String, String?>{};
-    if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
-    if (names.isNotEmpty) queryParameters['name'] = names.join(',');
+    final queryParameters = <String, String>{
+      if (ids.isNotEmpty) 'id': ids.join(','),
+      if (names.isNotEmpty) 'name': names.join(','),
+    };
 
-    final data = await twitchHttpClient
-        .getCall(['games'], queryParameters: queryParameters);
-    return TwitchResponse.games(data as Map<String, dynamic>);
+    final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
+      ['games'],
+      queryParameters: queryParameters,
+    );
+    return GamesResponse.fromJson(data);
   }
 
   /// Gets channel information for users.
   ///
   /// [broadcasterId]: ID of the channel to be updated.
-  Future<TwitchResponse<TwitchChannelInfo>> getChannelInformations(
+  Future<ChannelInformationResponse> getChannelInformations(
     String broadcasterId,
   ) async {
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['channels'],
       queryParameters: {'broadcaster_id': broadcasterId},
     );
-    return TwitchResponse.channelInformations(data);
+    return ChannelInformationResponse.fromJson(data);
   }
 
   /// Returns a list of games or categories that match the query via name either
@@ -396,23 +392,25 @@ class TwitchClient {
   /// fetching the next set of results, in a multi-page response. The cursor
   /// value specified here is from the `pagination` response field of a prior
   /// query.
-  Future<TwitchResponse<TwitchGame>> searchCategories({
+  Future<SearchCategoriesResponse> searchCategories({
     required String query,
     int first = 20,
     String? after,
   }) async {
+    assert(query.isNotEmpty);
     assert(first > 0 && first < 101);
 
-    final queryParameters = <String, String?>{
+    final queryParameters = <String, String>{
       'query': query,
       'first': first.toString(),
+      if (after != null) 'after': after,
     };
-    if (after != null) queryParameters['after'] = after;
+
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['search', 'categories'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.games(data);
+    return SearchCategoriesResponse.fromJson(data);
   }
 
   /// Returns a list of channels (users who have streamed within the past 6
@@ -430,7 +428,7 @@ class TwitchClient {
   /// `pagination` response field of a prior query.
   ///
   /// `liveOnly`: Filter results for live streams only. Default: `false`
-  Future<TwitchResponse<TwitchSearchChannel>> searchChannels({
+  Future<SearchChannelsResponse> searchChannels({
     required String query,
     int first = 20,
     String? after,
@@ -438,18 +436,18 @@ class TwitchClient {
   }) async {
     assert(first > 0 && first < 101);
 
-    final queryParameters = <String, String?>{
+    final queryParameters = <String, String>{
       'query': query,
       'first': first.toString(),
       'live_only': liveOnly.toString(),
+      if (after != null) 'after': after,
     };
-    if (after != null && after.isNotEmpty) queryParameters['after'] = after;
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['search', 'channels'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse<TwitchSearchChannel>.searchChannels(data);
+    return SearchChannelsResponse.fromJson(data);
   }
 
   /// Gets information about active streams. Streams are returned sorted by
@@ -480,7 +478,7 @@ class TwitchClient {
   ///
   /// `userLogins`: Returns streams broadcast by one or more specified user
   /// login names. You can specify up to 100 names.
-  Future<TwitchResponse<TwitchStreamInfo>> getStreams({
+  Future<StreamsResponse> getStreams({
     String? after,
     String? before,
     int first = 20,
@@ -495,23 +493,21 @@ class TwitchClient {
     assert(userIds.length < 101);
     assert(userLogins.length < 101);
 
-    final queryParameters = <String, String?>{'first': first.toString()};
-    if (after != null && after.isNotEmpty) queryParameters['after'] = after;
-    if (before != null && before.isNotEmpty) queryParameters['before'] = before;
-    if (gameIds.isNotEmpty) queryParameters['game_id'] = gameIds.join(',');
-    if (languages.isNotEmpty) {
-      queryParameters['languages'] = languages.join(',');
-    }
-    if (userIds.isNotEmpty) queryParameters['user_id'] = userIds.join(',');
-    if (userLogins.isNotEmpty) {
-      queryParameters['user_login'] = userLogins.join(',');
-    }
+    final queryParameters = <String, String>{
+      'first': first.toString(),
+      if (after != null) 'after': after,
+      if (before != null) 'before': before,
+      if (gameIds.isNotEmpty) 'game_id': gameIds.join(','),
+      if (languages.isNotEmpty) 'language': languages.join(','),
+      if (userIds.isNotEmpty) 'user_id': userIds.join(','),
+      if (userLogins.isNotEmpty) 'user_login': userLogins.join(','),
+    };
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['streams'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.streamsInfo(data);
+    return StreamsResponse.fromJson(data);
   }
 
   /// Get all of a broadcaster’s subscriptions.
@@ -528,8 +524,8 @@ class TwitchClient {
   /// a prior query.
   ///
   /// [first]: Maximum number of objects to return. Maximum: 100. Default: 20.
-  Future<TwitchResponse<TwitchBroadcasterSubscription>>
-      getBroadcasterSubscriptions({
+  Future<BroadcasterSubscriptionsResponse> getBroadcasterSubscriptions({
+    required String broadcasterId,
     List<String> userIds = const [],
     String? after,
     int first = 20,
@@ -537,19 +533,18 @@ class TwitchClient {
     assert(first > 0 && first < 101);
     assert(userIds.length < 101);
 
-    final queryParameters = <String, String?>{
-      'broadcaster_id': twitchHttpClient.twitchToken?.userId,
+    final queryParameters = <String, String>{
+      'broadcaster_id': broadcasterId,
       'first': first.toString(),
+      if (userIds.isNotEmpty) 'user_id': userIds.join(','),
+      if (after != null) 'after': after,
     };
-    if (userIds.isNotEmpty) queryParameters['user_id'] = userIds.join(',');
-    if (after != null) queryParameters['after'] = after;
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['subscriptions'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse<
-        TwitchBroadcasterSubscription>.broadcasterSubscriptions(data);
+    return BroadcasterSubscriptionsResponse.fromJson(data);
   }
 
   /// Retrieves the list of available Cheermotes, animated emotes to which
@@ -558,18 +553,17 @@ class TwitchClient {
   ///
   /// `broadcasterId`: ID for the broadcaster who might own specialized
   /// Cheermotes.
-  Future<TwitchResponse<TwitchCheermote>> getCheermotes({
+  Future<CheermotesResponse> getCheermotes({
     String? broadcasterId,
   }) async {
-    final queryParameters = <String, String?>{};
-    if (broadcasterId != null) {
-      queryParameters['broadcaster_id'] = broadcasterId;
-    }
+    final queryParameters = <String, String>{
+      if (broadcasterId != null) 'broadcaster_id': broadcasterId,
+    };
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['bits', 'cheermotes'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.cheermotes(data);
+    return CheermotesResponse.fromJson(data);
   }
 
   /// Allows extension back end servers to fetch a list of transactions that
@@ -588,7 +582,7 @@ class TwitchClient {
   /// to queries without ID. If an ID is specified, it supersedes the cursor.
   ///
   /// `first`: Maximum number of objects to return. Maximum: 100. Default: 20
-  Future<TwitchResponse<TwitchExtensionTransaction>> getExtensionTransaction({
+  Future<ExtensionTransactionsResponse> getExtensionTransactions({
     required String extensionId,
     String? id,
     String? after,
@@ -596,18 +590,18 @@ class TwitchClient {
   }) async {
     assert(first > 0 && first < 101);
 
-    final queryParameters = <String, String?>{
+    final queryParameters = <String, String>{
       'extension_id': extensionId,
       'first': first.toString(),
+      if (id != null) 'id': id,
+      if (after != null) 'after': after,
     };
-    if (id != null) queryParameters['id'] = id;
-    if (after != null) queryParameters['after'] = after;
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['extensions', 'transactions'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.extensionTransaction(data);
+    return ExtensionTransactionsResponse.fromJson(data);
   }
 
   /// Modifies channel information for users.
@@ -644,21 +638,24 @@ class TwitchClient {
           delay != null,
       'At least one optional parameter must be provided.',
     );
-    if (broadcasterLanguage != null) {
-      assert(broadcasterLanguage == 'other' || broadcasterLanguage.length == 2);
-    }
-    if (title != null) {
-      assert(title.isNotEmpty, 'The title must not be an empty string.');
-    }
-    if (delay != null) assert(delay > 0);
+    assert(
+      broadcasterLanguage == null ||
+          broadcasterLanguage == 'other' ||
+          broadcasterLanguage.length == 2,
+    );
+    assert(
+      title == null || title.isNotEmpty,
+      'The title must not be an empty string.',
+    );
+    assert(delay == null || delay > 0);
 
-    final data = <String, dynamic>{};
-    if (gameId != null) data['game_id'] = gameId;
-    if (broadcasterLanguage != null) {
-      data['broadcaster_language'] = broadcasterLanguage;
-    }
-    if (title != null) data['title'] = title;
-    if (delay != null) data['delay'] = delay;
+    final data = <String, Object>{
+      if (gameId != null) 'game_id': gameId,
+      if (broadcasterLanguage != null)
+        'broadcaster_language': broadcasterLanguage,
+      if (title != null) 'title': title,
+      if (delay != null) 'delay': delay,
+    };
 
     return twitchHttpClient.patchCall(
       ['channels'],
@@ -672,14 +669,14 @@ class TwitchClient {
   /// Required scope: [TwitchApiScope.channelReadEditors]
   ///
   /// `broadcasterId`: Broadcaster’s user ID associated with the channel.
-  Future<TwitchResponse<TwitchChannelEditor>> getChannelEditors({
+  Future<ChannelEditorsResponse> getChannelEditors({
     required String broadcasterId,
   }) async {
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['channels', 'editors'],
       queryParameters: {'broadcaster_id': broadcasterId},
     );
-    return TwitchResponse.channelEditor(data);
+    return ChannelEditorsResponse.fromJson(data);
   }
 
   /// Creates a Custom Reward on a channel.
@@ -709,7 +706,8 @@ class TwitchClient {
   /// [TwitchRewardRedemptionStatus.fulfilled] status immediately when redeemed
   /// and skip the request queue instead of the normal
   /// [TwitchRewardRedemptionStatus.unfulfilled] status.
-  Future<TwitchResponse<TwitchCustomReward>> createCustomRewards({
+  Future<CustomRewardResponse> createCustomRewards({
+    required String broadcasterId,
     required String title,
     required int cost,
     String? prompt,
@@ -724,7 +722,7 @@ class TwitchClient {
     final isMaxPerStreamEnabled = maxPerStream != null;
     final isMaxPerUserPerStreamEnabled = maxPerUserPerStream != null;
     final isGlobalCooldownEnabled = globalCooldownSeconds != null;
-    final body = <String, dynamic>{
+    final body = <String, Object>{
       'title': title,
       'cost': cost,
       'is_enabled': isEnabled,
@@ -733,39 +731,41 @@ class TwitchClient {
       'is_max_per_user_per_stream_enabled': isMaxPerUserPerStreamEnabled,
       'is_global_cooldown_enabled': isGlobalCooldownEnabled,
       'should_redemptions_skip_request_queue': shouldRedemptionsSkipQueue,
+      if (prompt != null) 'prompt': prompt,
+      if (backgroundColor != null) 'background_color': backgroundColor,
+      if (maxPerStream != null) 'max_per_stream': maxPerStream,
+      if (maxPerUserPerStream != null)
+        'max_per_user_per_stream': maxPerUserPerStream,
+      if (globalCooldownSeconds != null)
+        'global_cooldown_seconds': globalCooldownSeconds,
     };
-    if (prompt != null) body['prompt'] = prompt;
-    if (backgroundColor != null) body['background_color'] = backgroundColor;
-    if (maxPerStream != null) body['max_per_stream'] = maxPerStream;
-    if (maxPerUserPerStream != null) {
-      body['max_per_user_per_stream'] = maxPerUserPerStream;
-    }
-    if (globalCooldownSeconds != null) {
-      body['global_cooldown_seconds'] = globalCooldownSeconds;
-    }
+
     final data = await twitchHttpClient.postCall<Map<String, dynamic>>(
       ['channel_points', 'custom_rewards'],
       body,
-      queryParameters: <String, String?>{
-        'broadcaster_id': twitchHttpClient.twitchToken?.userId
+      queryParameters: <String, String>{
+        'broadcaster_id': broadcasterId,
       },
     );
-    return TwitchResponse.customReward(data);
+    return CustomRewardResponse.fromJson(data);
   }
 
   /// Deletes a Custom Reward on a channel.
   ///
-  /// `id`: ID of the Custom Reward to delete, must match a Custom Reward on
-  /// `broadcasterId`’s channel.
-  Future<String> deleteCustomReward({required String id}) async {
+  /// `rewardId`: ID of the Custom Reward to delete, must match a Custom Reward
+  /// on [broadcasterId]’s channel.
+  Future<String?> deleteCustomReward({
+    required String broadcasterId,
+    required String rewardId,
+  }) async {
     final data = await twitchHttpClient.deleteCall<String>(
       ['channel_points', 'custom_rewards'],
-      queryParameters: <String, String?>{
-        'broadcaster_id': twitchHttpClient.twitchToken?.userId,
-        'id': id,
+      queryParameters: <String, String>{
+        'broadcaster_id': broadcasterId,
+        'id': rewardId,
       },
     );
-    return data!;
+    return data;
   }
 
   /// Returns a list of Custom Reward objects for the Custom Rewards on a channel.
@@ -777,23 +777,24 @@ class TwitchClient {
   ///
   /// `onlyManageableRewards`: When set to true, only returns Custom Rewards that
   /// the calling `clientId` can manage. Default: false.
-  Future<TwitchResponse<TwitchCustomReward>> getCustomRewards({
+  Future<CustomRewardResponse> getCustomRewards({
+    required String broadcasterId,
     List<String> ids = const [],
     bool onlyManageableRewards = false,
   }) async {
     assert(ids.length <= 50, 'ids.length cannot exceed 50');
 
-    final queryParameters = <String, String?>{
-      'broadcaster_id': twitchHttpClient.twitchToken?.userId,
+    final queryParameters = <String, String>{
+      'broadcaster_id': broadcasterId,
       'only_manageable_rewards': onlyManageableRewards.toString(),
+      if (ids.isNotEmpty) 'id': ids.join(','),
     };
-    if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['channel_points', 'custom_rewards'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.customReward(data);
+    return CustomRewardResponse.fromJson(data);
   }
 
   /// Returns Custom Reward Redemption objects for a Custom Reward on a channel
@@ -827,8 +828,8 @@ class TwitchClient {
   ///
   /// `first`: Number of results to be returned when getting the paginated
   /// Custom Reward Redemption objects for a reward. Limit: 50.
-  Future<TwitchResponse<TwitchCustomRewardRedemption>>
-      getCustomRewardRedemptions({
+  Future<CustomRewardRedemptionResponse> getCustomRewardRedemptions({
+    required String broadcasterId,
     required String rewardId,
     List<String> ids = const [],
     TwitchRewardRedemptionStatus? status,
@@ -843,21 +844,21 @@ class TwitchClient {
     );
     assert(first <= 50 && first >= 0, 'first cannot exceed 50');
 
-    final queryParameters = <String, String?>{
-      'broadcaster_id': twitchHttpClient.twitchToken?.userId,
+    final queryParameters = <String, String>{
+      'broadcaster_id': broadcasterId,
       'reward_id': rewardId,
-      'sort': sort.string,
+      'sort': sort.name.toUpperCase(),
       'first': first.toString(),
+      if (ids.isNotEmpty) 'id': ids.join(','),
+      if (status != null) 'status': status.name.toUpperCase(),
+      if (after != null) 'after': after,
     };
-    if (ids.isNotEmpty) queryParameters['id'] = ids.join(',');
-    if (status != null) queryParameters['status'] = status.string;
-    if (after != null) queryParameters['after'] = after;
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['channel_points', 'custom_rewards', 'redemptions'],
       queryParameters: queryParameters,
     );
-    return TwitchResponse.customRewardRedemption(data);
+    return CustomRewardRedemptionResponse.fromJson(data);
   }
 
   /// Updates a Custom Reward created on a channel.
@@ -877,7 +878,7 @@ class TwitchClient {
   ///
   /// `prompt`: The prompt for the viewer when they are redeeming the reward.
   ///
-  /// `cost`: The cost of the reward.
+  /// `cost`: The cost of the reward in channel points. The minimum is 1 point.
   ///
   /// `backgroundColor`: Custom background color for the reward as a hexadecimal
   /// value. Example: `#00E5CB`.
@@ -885,26 +886,15 @@ class TwitchClient {
   /// `isEnabled`: Is the reward currently enabled, if false the reward won’t
   /// show up to viewers.
   ///
-  /// `isUserInputRequired`: Does the user need to enter information when
-  /// redeeming the reward.
-  ///
-  /// `isMaxPerStreamEnabled`: Whether a maximum per stream is enabled. Required
-  /// when any value of `maxPerStream` is included.
-  ///
-  /// `maxPerStream`: The maximum number per stream if enabled. Required when
-  /// any value of `isMaxPerStreamEnabled` is included.
-  ///
-  /// `isMaxPerUserPerStreamEnabled`: Whether a maximum per user per stream is
-  /// enabled. Required when any value of `maxPerUserPerStream` is included.
+  /// `maxPerStream`: The maximum number per stream if enabled. The minimum
+  /// value is 1.
   ///
   /// `maxPerUserPerStream`: The maximum number per user per stream if enabled.
-  /// Required when any value of `isMaxPerUserPerStreamEnabled` is included.
+  /// The minimum value is 1.
   ///
-  /// `isGlobalCooldownEnabled`: Whether a global cooldown is enabled. Required
-  /// when any value of `globalCooldownSeconds` is included.
-  ///
-  /// `globalCooldownSeconds`: The global cooldown in seconds if enabled.
-  /// Required when any value of `isGlobalCooldownEnabled` is included.
+  /// `globalCooldownSeconds`: The global cooldown in seconds if enabled. The
+  /// minimum value is 1; however, for it to be shown in the Twitch UX, the
+  /// minimum value is 60.
   ///
   /// `isPaused`: Is the reward currently paused, if true viewers cannot redeem.
   ///
@@ -912,101 +902,45 @@ class TwitchClient {
   /// [TwitchRewardRedemptionStatus.fulfilled] status immediately when redeemed
   /// and skip the request queue instead of the normal
   /// [TwitchRewardRedemptionStatus.unfulfilled] status.
-  Future<TwitchResponse<TwitchCustomReward>> updateCustomReward({
+  Future<CustomRewardResponse> updateCustomReward({
     required String broadcasterId,
-    required String id,
+    required String rewardId,
     String? title,
     String? prompt,
-    int? cost,
+    int cost = 0,
     String? backgroundColor,
     bool? isEnabled,
-    bool? isUserInputRequired,
-    bool? isMaxPerStreamEnabled,
-    int? maxPerStream,
-    bool? isMaxPerUserPerStreamEnabled,
-    int? maxPerUserPerStream,
-    bool? isGlobalCooldownEnabled,
-    int? globalCooldownSeconds,
+    int maxPerStream = 0,
+    int maxPerUserPerStream = 0,
+    int globalCooldownSeconds = 0,
     bool? isPaused,
     bool? shouldRedemptionsSkipRequestQueue,
   }) async {
-    assert(cost == null || cost >= 0);
-    assert(
-      isMaxPerStreamEnabled == null ||
-          !isMaxPerStreamEnabled ||
-          maxPerStream != null,
-      'Required when any value of maxPerStream is included.',
-    );
-    assert(
-      maxPerStream == null ||
-          (maxPerStream >= 0 &&
-              isMaxPerStreamEnabled != null &&
-              isMaxPerStreamEnabled),
-      'Required when any value of isMaxPerStreamEnabled is included.',
-    );
-    assert(
-      isMaxPerUserPerStreamEnabled == null ||
-          !isMaxPerUserPerStreamEnabled ||
-          maxPerUserPerStream != null,
-    );
-    assert(
-      maxPerUserPerStream == null ||
-          (maxPerUserPerStream >= 0 &&
-              isMaxPerUserPerStreamEnabled != null &&
-              isMaxPerUserPerStreamEnabled),
-      'Required when any value of isMaxPerUserPerStreamEnabled is included.',
-    );
-    assert(
-      isGlobalCooldownEnabled == null ||
-          !isGlobalCooldownEnabled ||
-          globalCooldownSeconds != null,
-      'Required when any value of globalCooldownSeconds is included.',
-    );
-    assert(
-      globalCooldownSeconds == null ||
-          (globalCooldownSeconds >= 0 &&
-              isGlobalCooldownEnabled != null &&
-              isGlobalCooldownEnabled),
-      'Required when any value of isGlobalCooldownEnabled is included.',
-    );
-
-    final queryParameters = <String, String?>{
+    final queryParameters = <String, String>{
       'broadcaster_id': broadcasterId,
-      'id': id,
+      'id': rewardId,
     };
 
-    final body = <String, dynamic>{};
-    if (title != null) body['title'] = title;
-    if (prompt != null) body['prompt'] = prompt;
-    if (cost != null) body['cost'] = cost.toString();
-    if (backgroundColor != null) body['background_color'] = backgroundColor;
-    if (isEnabled != null) body['is_enabled'] = isEnabled;
-    if (isUserInputRequired != null) {
-      body['is_user_input_required'] = isUserInputRequired;
-    }
-    if (isMaxPerStreamEnabled != null) {
-      body['is_max_per_stream_enabled'] = isMaxPerStreamEnabled;
-    }
-    if (maxPerStream != null) {
-      body['max_per_stream'] = maxPerStream.toString();
-    }
-    if (isMaxPerUserPerStreamEnabled != null) {
-      body['is_max_per_user_per_stream_enabled'] = isMaxPerUserPerStreamEnabled;
-    }
-    if (maxPerUserPerStream != null) {
-      body['max_per_user_per_stream'] = maxPerUserPerStream.toString();
-    }
-    if (isGlobalCooldownEnabled != null) {
-      body['is_global_cooldown_enabled'] = isGlobalCooldownEnabled;
-    }
-    if (globalCooldownSeconds != null) {
-      body['global_cooldown_seconds'] = globalCooldownSeconds.toString();
-    }
-    if (isPaused != null) body['is_paused'] = isPaused;
-    if (shouldRedemptionsSkipRequestQueue != null) {
-      body['should_redemptions_skip_request_queue'] =
-          shouldRedemptionsSkipRequestQueue;
-    }
+    final body = <String, dynamic>{
+      if (title != null) 'title': title,
+      if (prompt != null) 'prompt': prompt,
+      if (cost > 0) 'cost': cost.toString(),
+      if (backgroundColor != null) 'background_color': backgroundColor,
+      if (isEnabled != null) 'is_enabled': isEnabled,
+      if (prompt != null) 'is_user_input_required': true,
+      if (maxPerStream > 0) 'is_max_per_stream_enabled': true,
+      if (maxPerStream > 0) 'max_per_stream': maxPerStream.toString(),
+      if (maxPerUserPerStream > 0) 'is_max_per_user_per_stream_enabled': true,
+      if (maxPerUserPerStream > 0)
+        'max_per_user_per_stream': maxPerUserPerStream.toString(),
+      if (globalCooldownSeconds > 0) 'is_global_cooldown_enabled': true,
+      if (globalCooldownSeconds > 0)
+        'global_cooldown_seconds': globalCooldownSeconds.toString(),
+      if (isPaused != null) 'is_paused': isPaused,
+      if (shouldRedemptionsSkipRequestQueue != null)
+        'should_redemptions_skip_request_queue':
+            shouldRedemptionsSkipRequestQueue,
+    };
 
     final data = await twitchHttpClient.patchCall<Map<String, dynamic>>(
       ['channel_points', 'custom_rewards'],
@@ -1014,7 +948,7 @@ class TwitchClient {
       queryParameters: queryParameters,
     );
 
-    return TwitchResponse.customReward(data);
+    return CustomRewardResponse.fromJson(data);
   }
 
   /// Updates the status of Custom Reward Redemption objects on a channel that
@@ -1038,7 +972,7 @@ class TwitchClient {
   /// [TwitchRewardRedemptionStatus.canceled]. Updating to
   /// [TwitchRewardRedemptionStatus.canceled] will refund the user their Channel
   /// Points.
-  Future<TwitchResponse<TwitchCustomRewardRedemption>> updateRedemptionStatus({
+  Future<CustomRewardRedemptionResponse> updateRedemptionStatus({
     required List<String> ids,
     required String broadcasterId,
     required String rewardId,
@@ -1049,7 +983,9 @@ class TwitchClient {
       status == TwitchRewardRedemptionStatus.fulfilled ||
           status == TwitchRewardRedemptionStatus.canceled,
     );
-    final body = <String, dynamic>{'status': status.string};
+    final body = <String, dynamic>{
+      'status': status.name.toUpperCase(),
+    };
     final data = await twitchHttpClient.patchCall<Map<String, dynamic>>(
       ['channel_points', 'custom_rewards', 'redemptions'],
       body,
@@ -1059,7 +995,7 @@ class TwitchClient {
         'reward_id': rewardId,
       },
     );
-    return TwitchResponse.customRewardRedemption(data);
+    return CustomRewardRedemptionResponse.fromJson(data);
   }
 
   /// Gets all emotes that the specified Twitch channel created. Broadcasters

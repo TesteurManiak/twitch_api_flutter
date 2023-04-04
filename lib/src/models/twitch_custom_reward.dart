@@ -1,201 +1,139 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'twitch_custom_reward.freezed.dart';
+part 'twitch_custom_reward.g.dart';
+
 /// Set of custom images.
-class TwitchCustomRewardImage {
-  /// 1x image size
-  final String url1x;
+@freezed
+class TwitchCustomRewardImage with _$TwitchCustomRewardImage {
+  const factory TwitchCustomRewardImage({
+    /// 1x image size
+    @JsonKey(name: 'url_1x') required String url1x,
 
-  /// 2x image size
-  final String url2x;
+    /// 2x image size
+    @JsonKey(name: 'url_2x') required String url2x,
 
-  /// 4x image size
-  final String url4x;
-
-  TwitchCustomRewardImage({
-    required this.url1x,
-    required this.url2x,
-    required this.url4x,
-  });
+    /// 4x image size
+    @JsonKey(name: 'url_4x') required String url4x,
+  }) = _TwitchCustomRewardImage;
 
   factory TwitchCustomRewardImage.fromJson(Map<String, dynamic> json) =>
-      TwitchCustomRewardImage(
-        url1x: json['url_1x'] as String,
-        url2x: json['url_2x'] as String,
-        url4x: json['url_4x'] as String,
-      );
+      _$TwitchCustomRewardImageFromJson(json);
 }
 
-class TwitchMaxPerStream {
-  final bool isEnabled;
-  final int maxPerStream;
-
-  TwitchMaxPerStream({required this.isEnabled, required this.maxPerStream});
+@freezed
+class TwitchMaxPerStream with _$TwitchMaxPerStream {
+  const factory TwitchMaxPerStream({
+    @JsonKey(name: 'is_enabled') required bool isEnabled,
+    @JsonKey(name: 'max_per_stream') required int maxPerStream,
+  }) = _TwitchMaxPerStream;
 
   factory TwitchMaxPerStream.fromJson(Map<String, dynamic> json) =>
-      TwitchMaxPerStream(
-        isEnabled: json['is_enabled'] as bool,
-        maxPerStream: json['max_per_stream'] as int,
-      );
+      _$TwitchMaxPerStreamFromJson(json);
 }
 
-class TwitchMaxPerUserPerStreamSetting {
-  final bool isEnabled;
-  final int maxPerUserPerStream;
-
-  TwitchMaxPerUserPerStreamSetting({
-    required this.isEnabled,
-    required this.maxPerUserPerStream,
-  });
+@freezed
+class TwitchMaxPerUserPerStreamSetting with _$TwitchMaxPerUserPerStreamSetting {
+  const factory TwitchMaxPerUserPerStreamSetting({
+    @JsonKey(name: 'is_enabled') required bool isEnabled,
+    @JsonKey(name: 'max_per_user_per_stream') required int maxPerUserPerStream,
+  }) = _TwitchMaxPerUserPerStreamSetting;
 
   factory TwitchMaxPerUserPerStreamSetting.fromJson(
     Map<String, dynamic> json,
   ) =>
-      TwitchMaxPerUserPerStreamSetting(
-        isEnabled: json['is_enabled'] as bool,
-        maxPerUserPerStream: json['max_per_user_per_stream'] as int,
-      );
+      _$TwitchMaxPerUserPerStreamSettingFromJson(json);
 }
 
-class TwitchGlobalCooldownSetting {
-  final bool isEnabled;
-  final int globalCooldownSeconds;
-
-  TwitchGlobalCooldownSetting({
-    required this.isEnabled,
-    required this.globalCooldownSeconds,
-  });
+@freezed
+class TwitchGlobalCooldownSetting with _$TwitchGlobalCooldownSetting {
+  const factory TwitchGlobalCooldownSetting({
+    @JsonKey(name: 'is_enabled') required bool isEnabled,
+    @JsonKey(name: 'global_cooldown_seconds')
+        required int globalCooldownSeconds,
+  }) = _TwitchGlobalCooldownSetting;
 
   factory TwitchGlobalCooldownSetting.fromJson(Map<String, dynamic> json) =>
-      TwitchGlobalCooldownSetting(
-        isEnabled: json['is_enabled'] as bool,
-        globalCooldownSeconds: json['global_cooldown_seconds'] as int,
-      );
+      _$TwitchGlobalCooldownSettingFromJson(json);
 }
 
-class TwitchCustomReward {
-  /// ID of the channel the reward is for.
-  final String broadcasterName;
+@freezed
+class TwitchCustomReward with _$TwitchCustomReward {
+  const factory TwitchCustomReward({
+    /// ID of the channel the reward is for.
+    @JsonKey(name: 'broadcaster_name') required String broadcasterName,
 
-  /// Broadcaster’s user login name.
-  final String? broadcasterLogin;
+    /// Broadcaster’s user login name.
+    @JsonKey(name: 'broadcaster_login') required String? broadcasterLogin,
 
-  /// Display name of the channel the reward is for.
-  final String broadcasterId;
+    /// Display name of the channel the reward is for.
+    @JsonKey(name: 'broadcaster_id') required String broadcasterId,
 
-  /// ID of the reward.
-  final String id;
+    /// ID of the reward.
+    required String id,
 
-  /// Set of custom images of 1x, 2x and 4x sizes for the reward can be null if
-  /// no images have been uploaded.
-  final TwitchCustomRewardImage? image;
+    /// Set of custom images of 1x, 2x and 4x sizes for the reward can be null if
+    /// no images have been uploaded.
+    required TwitchCustomRewardImage? image,
 
-  /// Custom background color for the reward. Format: Hex with # prefix.
-  /// Example: `#00E5CB`.
-  final String backgroundColor;
+    /// Custom background color for the reward. Format: Hex with # prefix.
+    /// Example: `#00E5CB`.
+    @JsonKey(name: 'background_color') required String backgroundColor,
 
-  /// Is the reward currently enabled, if false the reward won’t show up to
-  /// viewers.
-  final bool isEnabled;
+    /// Is the reward currently enabled, if false the reward won’t show up to
+    /// viewers.
+    @JsonKey(name: 'is_enabled') required bool isEnabled,
 
-  /// The cost of the reward.
-  final int cost;
+    /// The cost of the reward.
+    required int cost,
 
-  /// The title of the reward.
-  final String title;
+    /// The title of the reward.
+    required String title,
 
-  /// The prompt for the viewer when they are redeeming the reward.
-  final String prompt;
+    /// The prompt for the viewer when they are redeeming the reward.
+    required String prompt,
 
-  /// Does the user need to enter information when redeeming the reward.
-  final bool isUserInputRequired;
+    /// Does the user need to enter information when redeeming the reward.
+    @JsonKey(name: 'is_user_input_required') required bool isUserInputRequired,
 
-  /// Whether a maximum per stream is enabled and what the maximum is.
-  final TwitchMaxPerStream maxPerStreamSetting;
+    /// Whether a maximum per stream is enabled and what the maximum is.
+    @JsonKey(name: 'max_per_stream_setting')
+        required TwitchMaxPerStream maxPerStreamSetting,
 
-  /// Whether a maximum per user per stream is enabled and what the maximum is.
-  final TwitchMaxPerUserPerStreamSetting maxPerUserPerStreamSetting;
+    /// Whether a maximum per user per stream is enabled and what the maximum is.
+    @JsonKey(name: 'max_per_user_per_stream_setting')
+        required TwitchMaxPerUserPerStreamSetting maxPerUserPerStreamSetting,
 
-  /// Whether a cooldown is enabled and what the cooldown is.
-  final TwitchGlobalCooldownSetting globalCooldownSetting;
+    /// Whether a cooldown is enabled and what the cooldown is.
+    @JsonKey(name: 'global_cooldown_setting')
+        required TwitchGlobalCooldownSetting globalCooldownSetting,
 
-  /// Is the reward currently paused, if true viewers can’t redeem.
-  final bool isPaused;
+    /// Is the reward currently paused, if true viewers can’t redeem.
+    @JsonKey(name: 'is_paused') required bool isPaused,
 
-  /// Is the reward currently in stock, if false viewers can’t redeem.
-  final bool isInStock;
+    /// Is the reward currently in stock, if false viewers can’t redeem.
+    @JsonKey(name: 'is_in_stock') required bool isInStock,
 
-  /// Set of default images of 1x, 2x and 4x sizes for the reward.
-  final TwitchCustomRewardImage defaultImage;
+    /// Set of default images of 1x, 2x and 4x sizes for the reward.
+    @JsonKey(name: 'default_image')
+        required TwitchCustomRewardImage defaultImage,
 
-  /// Should redemptions be set to FULFILLED status immediately when redeemed
-  /// and skip the request queue instead of the normal UNFULFILLED status.
-  final bool shouldRedemptionsSkipRequestQueue;
+    /// Should redemptions be set to FULFILLED status immediately when redeemed
+    /// and skip the request queue instead of the normal UNFULFILLED status.
+    @JsonKey(name: 'should_redemptions_skip_request_queue')
+        required bool shouldRedemptionsSkipRequestQueue,
 
-  /// The number of redemptions redeemed during the current live stream. Counts
-  /// against the max_per_stream_setting limit. Null if the broadcasters stream
-  /// isn’t live or max_per_stream_setting isn’t enabled.
-  final int? redemptionsRedeemedCurrentStream;
+    /// The number of redemptions redeemed during the current live stream. Counts
+    /// against the max_per_stream_setting limit. Null if the broadcasters stream
+    /// isn’t live or max_per_stream_setting isn’t enabled.
+    @JsonKey(name: 'redemptions_redeemed_current_stream')
+        required int? redemptionsRedeemedCurrentStream,
 
-  /// Timestamp of the cooldown expiration. Null if the reward isn’t on
-  /// cooldown.
-  final String? cooldownExpiresAt;
-
-  TwitchCustomReward({
-    required this.broadcasterName,
-    required this.broadcasterLogin,
-    required this.broadcasterId,
-    required this.id,
-    required this.image,
-    required this.backgroundColor,
-    required this.isEnabled,
-    required this.cost,
-    required this.title,
-    required this.prompt,
-    required this.isUserInputRequired,
-    required this.maxPerStreamSetting,
-    required this.maxPerUserPerStreamSetting,
-    required this.globalCooldownSetting,
-    required this.isPaused,
-    required this.isInStock,
-    required this.defaultImage,
-    required this.shouldRedemptionsSkipRequestQueue,
-    required this.redemptionsRedeemedCurrentStream,
-    required this.cooldownExpiresAt,
-  });
+    /// Timestamp of the cooldown expiration. Null if the reward isn’t on
+    /// cooldown.
+    @JsonKey(name: 'cooldown_expires_at') required String? cooldownExpiresAt,
+  }) = _TwitchCustomReward;
 
   factory TwitchCustomReward.fromJson(Map<String, dynamic> json) =>
-      TwitchCustomReward(
-        broadcasterName: json['broadcaster_name'] as String,
-        broadcasterLogin: json['broadcaster_login'] as String?,
-        broadcasterId: json['broadcaster_id'] as String,
-        id: json['id'] as String,
-        image: json['image'] != null
-            ? TwitchCustomRewardImage.fromJson(
-                json['image'] as Map<String, dynamic>,
-              )
-            : null,
-        backgroundColor: json['background_color'] as String,
-        isEnabled: json['is_enabled'] as bool,
-        cost: json['cost'] as int,
-        title: json['title'] as String,
-        prompt: json['prompt'] as String,
-        isUserInputRequired: json['is_user_input_required'] as bool,
-        maxPerStreamSetting: TwitchMaxPerStream.fromJson(
-          json['max_per_stream_setting'] as Map<String, dynamic>,
-        ),
-        maxPerUserPerStreamSetting: TwitchMaxPerUserPerStreamSetting.fromJson(
-          json['max_per_user_per_stream_setting'] as Map<String, dynamic>,
-        ),
-        globalCooldownSetting: TwitchGlobalCooldownSetting.fromJson(
-          json['global_cooldown_setting'] as Map<String, dynamic>,
-        ),
-        isPaused: json['is_paused'] as bool,
-        isInStock: json['is_in_stock'] as bool,
-        defaultImage: TwitchCustomRewardImage.fromJson(
-          json['default_image'] as Map<String, dynamic>,
-        ),
-        shouldRedemptionsSkipRequestQueue:
-            json['should_redemptions_skip_request_queue'] as bool,
-        redemptionsRedeemedCurrentStream:
-            json['redemptions_redeemed_current_stream'] as int?,
-        cooldownExpiresAt: json['cooldown_expires_at'] as String?,
-      );
+      _$TwitchCustomRewardFromJson(json);
 }

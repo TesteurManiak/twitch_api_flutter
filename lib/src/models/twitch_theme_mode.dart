@@ -1,14 +1,8 @@
-enum TwitchThemeMode { dark, light }
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-extension TwitchThemeModeExtension on String {
-  TwitchThemeMode toTwitchThemeMode() {
-    switch (this) {
-      case 'dark':
-        return TwitchThemeMode.dark;
-      case 'light':
-        return TwitchThemeMode.light;
-      default:
-        throw Exception('Invalid TwitchThemeMode: $this');
-    }
-  }
+enum TwitchThemeMode {
+  @JsonValue('dark')
+  dark,
+  @JsonValue('light')
+  light,
 }

@@ -1,11 +1,11 @@
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 import 'package:test/test.dart';
-import 'package:twitch_api/src/providers/twitch_dio_provider.dart';
+import 'package:twitch_api/src/providers/twitch_dio_client.dart';
 import 'package:twitch_api/twitch_api.dart';
 
 void main() {
   group('TwitchDioProvider', () {
-    final dioProvider = TwitchDioProvider(clientId: '');
+    final dioProvider = TwitchDioClient(clientId: '');
 
     DioAdapter(dio: dioProvider.dio)
       ..onGet(
@@ -76,30 +76,30 @@ void main() {
 
     test('getCall', () async {
       final response =
-          await dioProvider.getCall(['test']) as Map<String, dynamic>;
+          await dioProvider.getCall<Map<String, dynamic>>(['test']);
       expect(response['message'], 'Success!');
     });
 
     test('postCall', () async {
-      final response = await dioProvider.postCall(
+      final response = await dioProvider.postCall<Map<String, dynamic>>(
         ['test'],
         {'data': 'test'},
-      ) as Map<String, dynamic>;
+      );
       expect(response['message'], 'Success!');
     });
 
     test('patchCall', () async {
-      final response = await dioProvider.patchCall(
+      final response = await dioProvider.patchCall<Map<String, dynamic>>(
         ['test'],
         {'data': 'test'},
-      ) as Map<String, dynamic>;
+      );
       expect(response['message'], 'Success!');
     });
 
     test('deleteCall', () async {
       final response =
-          await dioProvider.deleteCall(['test']) as Map<String, dynamic>;
-      expect(response['message'], 'Success!');
+          await dioProvider.deleteCall<Map<String, dynamic>>(['test']);
+      expect(response?['message'], 'Success!');
     });
   });
 }

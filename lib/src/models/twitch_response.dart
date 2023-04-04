@@ -1,188 +1,327 @@
-import '../../twitch_api.dart';
-import 'twitch_channel_editor.dart';
-import 'twitch_emotes.dart';
-import 'twitch_game_analytic.dart';
-import 'twitch_start_commercial.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:twitch_api/src/models/twitch_channel_editor.dart';
+import 'package:twitch_api/src/models/twitch_emotes.dart';
+import 'package:twitch_api/src/models/twitch_game_analytic.dart';
+import 'package:twitch_api/src/models/twitch_start_commercial.dart';
+import 'package:twitch_api/twitch_api.dart';
 
-typedef TwitchModelParser = dynamic Function(Map<String, dynamic> json);
+part 'twitch_response.freezed.dart';
+part 'twitch_response.g.dart';
 
-List<T> _parseObjects<T>(
-  Map<String, dynamic> json,
-  TwitchModelParser parser,
-) {
-  return (json['data'] as Iterable)
-      .cast<Map<String, dynamic>>()
-      .map<T>((e) => parser(e) as T)
-      .toList();
+/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#start-commercial
+@Freezed(toJson: false, fromJson: true)
+class StartCommercialResponse with _$StartCommercialResponse {
+  const factory StartCommercialResponse({
+    /// {@template twitchResponse.data}
+    /// List of data from the response parsed into an object.
+    /// {@endtemplate}
+    required List<TwitchStartCommercial> data,
+  }) = _StartCommercialResponse;
+
+  factory StartCommercialResponse.fromJson(Map<String, dynamic> json) =>
+      _$StartCommercialResponseFromJson(json);
 }
 
-/// Generic class for Twitch's API response using pagination.
-class TwitchResponse<T> {
-  /// List of data from the response parsed into an object.
-  final List<T>? data;
+/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-extension-analytics
+@Freezed(toJson: false, fromJson: true)
+class ExtensionAnalyticsResponse with _$ExtensionAnalyticsResponse {
+  const factory ExtensionAnalyticsResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchExtensionAnalytic> data,
 
-  /// A cursor value, to be used in a subsequent request to specify the starting
-  /// point of the next set of results.
-  final Map<String, dynamic>? pagination;
+    /// {@template twitchResponse.pagination}
+    /// A cursor value, to be used in a subsequent request to specify the
+    /// starting point of the next set of results.
+    /// {@endtemplate}
+    required Map<String, dynamic>? pagination,
+  }) = _ExtensionAnalyticsResponse;
 
-  /// Total number of results returned.
-  final int? total;
-
-  /// Date range of the returned data.
-  final TwitchDateRange? dateRange;
-
-  TwitchResponse({
-    this.data,
-    this.pagination,
-    this.total,
-    this.dateRange,
-  });
-
-  /// Constructor for request containing [TwitchSearchChannel].
-  factory TwitchResponse.searchChannels(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: _parseObjects(json, TwitchSearchChannel.fromJson),
-        pagination: json['pagination'] as Map<String, dynamic>?,
-      );
-
-  /// Constructor for request containing [TwitchExtentsionAnalytic].
-  factory TwitchResponse.extensionAnalytics(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: _parseObjects(json, TwitchExtensionAnalytic.fromJson),
-        pagination: json['pagination'] as Map<String, dynamic>?,
-      );
-
-  /// Constructor for request containing [TwitchGameAnalytic].
-  factory TwitchResponse.gameAnalytics(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: _parseObjects(json, TwitchGameAnalytic.fromJson),
-        pagination: json['pagination'] as Map<String, dynamic>?,
-      );
-
-  /// Constructor for request containing [TwitchStreamInfo].
-  factory TwitchResponse.streamsInfo(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: _parseObjects(json, TwitchStreamInfo.fromJson),
-        pagination: json['pagination'] as Map<String, dynamic>?,
-      );
-
-  /// Constructor for request containing [TwitchBroadcasterSubscription].
-  factory TwitchResponse.broadcasterSubscriptions(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: _parseObjects(json, TwitchBroadcasterSubscription.fromJson),
-        pagination: json['pagination'] as Map<String, dynamic>?,
-        total: json['total'] as int,
-      );
-
-  /// Constructor for request containing [TwitchBitsLeaderboard].
-  factory TwitchResponse.bitsLeaderboard(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: _parseObjects(json, TwitchBitsLeaderboard.fromJson),
-        dateRange: TwitchDateRange.fromJson(
-          json['date_range'] as Map<String, dynamic>,
-        ),
-        total: json['total'] as int,
-      );
-
-  /// Constructor for request containing [TwitchStartCommercial].
-  factory TwitchResponse.startCommercial(Map<String, dynamic> json) =>
-      TwitchResponse(data: _parseObjects(json, TwitchStartCommercial.fromJson));
-
-  /// Constructor for request containing [TwitchUser].
-  factory TwitchResponse.users(Map<String, dynamic> json) => TwitchResponse(
-        data: _parseObjects(json, TwitchUser.fromJson),
-      );
-
-  /// Constructor for request containing [TwitchUserFollow].
-  factory TwitchResponse.usersFollows(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: _parseObjects(json, TwitchUserFollow.fromJson),
-        pagination: json['pagination'] as Map<String, dynamic>?,
-        total: json['total'] as int,
-      );
-
-  /// Constructor for request containing [TwitchGame].
-  factory TwitchResponse.games(Map<String, dynamic> json) => TwitchResponse(
-        data: _parseObjects(json, TwitchGame.fromJson),
-        pagination: json['pagination'] as Map<String, dynamic>?,
-      );
-
-  /// Constructor for request containing [TwitchChannelInfo].
-  factory TwitchResponse.channelInformations(Map<String, dynamic> json) =>
-      TwitchResponse(data: _parseObjects(json, TwitchChannelInfo.fromJson));
-
-  /// Constructor for request containing [TwitchCheermote].
-  factory TwitchResponse.cheermotes(Map<String, dynamic> json) =>
-      TwitchResponse(data: _parseObjects(json, TwitchCheermote.fromJson));
-
-  /// Constructor for request containing [TwitchExtensionTransaction].
-  factory TwitchResponse.extensionTransaction(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: _parseObjects(json, TwitchExtensionTransaction.fromJson),
-      );
-
-  factory TwitchResponse.channelEditor(Map<String, dynamic> json) =>
-      TwitchResponse(data: _parseObjects(json, TwitchChannelEditor.fromJson));
-
-  factory TwitchResponse.customReward(Map<String, dynamic> json) =>
-      TwitchResponse(data: _parseObjects(json, TwitchCustomReward.fromJson));
-
-  factory TwitchResponse.customRewardRedemption(Map<String, dynamic> json) =>
-      TwitchResponse(
-        data: _parseObjects(json, TwitchCustomRewardRedemption.fromJson),
-      );
+  factory ExtensionAnalyticsResponse.fromJson(Map<String, dynamic> json) =>
+      _$ExtensionAnalyticsResponseFromJson(json);
 }
 
-class ChannelEmotesResponse extends TwitchResponse<TwitchEmotes> {
-  /// {@template channel_template}
-  /// A templated URL. Use the values from id, format, scale, and theme_mode to
-  /// replace the like-named placeholder strings in the templated URL to create
-  /// a CDN (content delivery network) URL that you use to fetch the emote. For
-  /// information about what the template looks like and how to use it to fetch
-  /// emotes, see [Emote CDN URL format](https://dev.twitch.tv/docs/irc/emotes#cdn-template).
-  /// {@endtemplate}
-  final String template;
+/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-game-analytics
+@Freezed(toJson: false, fromJson: true)
+class GameAnalyticsResponse with _$GameAnalyticsResponse {
+  const factory GameAnalyticsResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchGameAnalytic> data,
 
-  ChannelEmotesResponse({
+    /// {@macro twitchResponse.pagination}
+    required Map<String, dynamic>? pagination,
+  }) = _GameAnalyticsResponse;
+
+  factory GameAnalyticsResponse.fromJson(Map<String, dynamic> json) =>
+      _$GameAnalyticsResponseFromJson(json);
+}
+
+/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-bits-leaderboard
+@Freezed(toJson: false, fromJson: true)
+class BitsLeaderboardResponse with _$BitsLeaderboardResponse {
+  const factory BitsLeaderboardResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchBitsLeaderboard> data,
+
+    /// {@macro twitchResponse.dateRange}
+    @JsonKey(name: 'date_range') required TwitchDateRange dateRange,
+
+    /// {@template twitchResponse.total}
+    /// Total number of results returned.
+    /// {@endtemplate}
+    required int total,
+  }) = _BitsLeaderboardResponse;
+
+  factory BitsLeaderboardResponse.fromJson(Map<String, dynamic> json) =>
+      _$BitsLeaderboardResponseFromJson(json);
+}
+
+/// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-users
+@Freezed(toJson: false, fromJson: true)
+class UsersResponse with _$UsersResponse {
+  const factory UsersResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchUser> data,
+  }) = _UsersResponse;
+
+  factory UsersResponse.fromJson(Map<String, dynamic> json) =>
+      _$UsersResponseFromJson(json);
+}
+
+/// Specs: https://dev.twitch.tv/docs/api/reference/#get-users-follows
+@Freezed(toJson: false, fromJson: true)
+class UsersFollowsResponse with _$UsersFollowsResponse {
+  const factory UsersFollowsResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchUserFollow> data,
+
+    /// {@macro twitchResponse.pagination}
+    required Map<String, dynamic>? pagination,
+
+    /// {@macro twitchResponse.total}
+    required int total,
+  }) = _UsersFollowsResponse;
+
+  factory UsersFollowsResponse.fromJson(Map<String, dynamic> json) =>
+      _$UsersFollowsResponseFromJson(json);
+}
+
+/// Specs: https://dev.twitch.tv/docs/api/reference/#get-top-games
+@Freezed(toJson: false, fromJson: true)
+class TopGamesResponse with _$TopGamesResponse {
+  const factory TopGamesResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchGame> data,
+
+    /// {@macro twitchResponse.pagination}
+    required Map<String, dynamic>? pagination,
+  }) = _TopGamesResponse;
+
+  factory TopGamesResponse.fromJson(Map<String, dynamic> json) =>
+      _$TopGamesResponseFromJson(json);
+}
+
+/// Specs: https://dev.twitch.tv/docs/api/reference/#get-games
+@Freezed(toJson: false, fromJson: true)
+class GamesResponse with _$GamesResponse {
+  const factory GamesResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchGame> data,
+  }) = _GamesResponse;
+
+  factory GamesResponse.fromJson(Map<String, dynamic> json) =>
+      _$GamesResponseFromJson(json);
+}
+
+/// Specs: https://dev.twitch.tv/docs/api/reference/#get-channel-information
+@Freezed(toJson: false, fromJson: true)
+class ChannelInformationResponse with _$ChannelInformationResponse {
+  const factory ChannelInformationResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchChannelInfo> data,
+  }) = _ChannelInformationResponse;
+
+  factory ChannelInformationResponse.fromJson(Map<String, dynamic> json) =>
+      _$ChannelInformationResponseFromJson(json);
+}
+
+/// Specs: https://dev.twitch.tv/docs/api/reference/#search-categories
+@Freezed(toJson: false, fromJson: true)
+class SearchCategoriesResponse with _$SearchCategoriesResponse {
+  const factory SearchCategoriesResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchGame> data,
+  }) = _SearchCategoriesResponse;
+
+  factory SearchCategoriesResponse.fromJson(Map<String, dynamic> json) =>
+      _$SearchCategoriesResponseFromJson(json);
+}
+
+/// Specs: https://dev.twitch.tv/docs/api/reference/#search-channels
+@Freezed(toJson: false, fromJson: true)
+class SearchChannelsResponse with _$SearchChannelsResponse {
+  const factory SearchChannelsResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchSearchChannel> data,
+
+    /// {@macro twitchResponse.pagination}
+    required Map<String, dynamic>? pagination,
+  }) = _SearchChannelsResponse;
+
+  factory SearchChannelsResponse.fromJson(Map<String, dynamic> json) =>
+      _$SearchChannelsResponseFromJson(json);
+}
+
+/// Specs: https://dev.twitch.tv/docs/api/reference/#get-streams
+@Freezed(toJson: false, fromJson: true)
+class StreamsResponse with _$StreamsResponse {
+  const factory StreamsResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchStreamInfo> data,
+
+    /// {@macro twitchResponse.pagination}
+    required Map<String, dynamic>? pagination,
+  }) = _StreamsResponse;
+
+  factory StreamsResponse.fromJson(Map<String, dynamic> json) =>
+      _$StreamsResponseFromJson(json);
+}
+
+/// Specs: https://dev.twitch.tv/docs/api/reference/#get-broadcaster-subscriptions
+@Freezed(toJson: false, fromJson: true)
+class BroadcasterSubscriptionsResponse with _$BroadcasterSubscriptionsResponse {
+  const factory BroadcasterSubscriptionsResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchBroadcasterSubscription> data,
+
+    /// {@macro twitchResponse.pagination}
+    required Map<String, dynamic>? pagination,
+
+    /// {@macro twitchResponse.total}
+    required int total,
+
+    /// The current number of subscriber points earned by this broadcaster.
+    /// Points are based on the subscription tier of each user that subscribes
+    /// to this broadcaster. For example, a Tier 1 subscription is worth 1
+    /// point, Tier 2 is worth 2 points, and Tier 3 is worth 6 points. The
+    /// number of points determines the number of emote slots that are unlocked
+    /// for the broadcaster (see [Subscriber Emote Slots](https://help.twitch.tv/s/article/subscriber-emote-guide?language=en_US#emoteslots)).
+    required int points,
+  }) = _BroadcasterSubscriptionsResponse;
+
+  factory BroadcasterSubscriptionsResponse.fromJson(
+    Map<String, dynamic> json,
+  ) =>
+      _$BroadcasterSubscriptionsResponseFromJson(json);
+}
+
+@Freezed(toJson: false, fromJson: true)
+class CheermotesResponse with _$CheermotesResponse {
+  const factory CheermotesResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchCheermote> data,
+  }) = _CheermotesResponse;
+
+  factory CheermotesResponse.fromJson(Map<String, dynamic> json) =>
+      _$CheermotesResponseFromJson(json);
+}
+
+/// Specs: https://dev.twitch.tv/docs/api/reference/#get-extension-transactions
+@Freezed(toJson: false, fromJson: true)
+class ExtensionTransactionsResponse with _$ExtensionTransactionsResponse {
+  const factory ExtensionTransactionsResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchExtensionTransaction> data,
+
+    /// {@macro twitchResponse.pagination}
+    required Map<String, dynamic>? pagination,
+  }) = _ExtensionTransactionsResponse;
+
+  factory ExtensionTransactionsResponse.fromJson(Map<String, dynamic> json) =>
+      _$ExtensionTransactionsResponseFromJson(json);
+}
+
+@Freezed(toJson: false, fromJson: true)
+class ChannelEmotesResponse with _$ChannelEmotesResponse {
+  const factory ChannelEmotesResponse({
+    /// {@macro twitchResponse.data}
     required List<TwitchEmotes> data,
-    required this.template,
-  }) : super(data: data);
+
+    /// {@template twitchResponse.template}
+    /// A templated URL. Use the values from id, format, scale, and theme_mode to
+    /// replace the like-named placeholder strings in the templated URL to create
+    /// a CDN (content delivery network) URL that you use to fetch the emote. For
+    /// information about what the template looks like and how to use it to fetch
+    /// emotes, see [Emote CDN URL format](https://dev.twitch.tv/docs/irc/emotes#cdn-template).
+    /// {@endtemplate}
+    required String template,
+  }) = _ChannelEmotesResponse;
 
   factory ChannelEmotesResponse.fromJson(Map<String, dynamic> json) =>
-      ChannelEmotesResponse(
-        data: _parseObjects(json, TwitchEmotes.fromJson),
-        template: json['template'] as String,
-      );
+      _$ChannelEmotesResponseFromJson(json);
 }
 
-class ChannelGlobalEmotesResponse extends TwitchResponse<TwitchGlobalEmotes> {
-  /// {@macro channel_template}
-  final String template;
-
-  ChannelGlobalEmotesResponse({
+@Freezed(toJson: false, fromJson: true)
+class ChannelGlobalEmotesResponse with _$ChannelGlobalEmotesResponse {
+  const factory ChannelGlobalEmotesResponse({
+    /// {@macro twitchResponse.data}
     required List<TwitchGlobalEmotes> data,
-    required this.template,
-  }) : super(data: data);
+
+    /// {@macro twitchResponse.template}
+    required String template,
+  }) = _ChannelGlobalEmotesResponse;
 
   factory ChannelGlobalEmotesResponse.fromJson(Map<String, dynamic> json) =>
-      ChannelGlobalEmotesResponse(
-        data: _parseObjects(json, TwitchGlobalEmotes.fromJson),
-        template: json['template'] as String,
-      );
+      _$ChannelGlobalEmotesResponseFromJson(json);
 }
 
-class EmoteSetsResponse extends TwitchResponse<TwitchEmoteSets> {
-  /// {@macro channel_template}
-  final String template;
-
-  EmoteSetsResponse({
+@Freezed(toJson: false, fromJson: true)
+class EmoteSetsResponse with _$EmoteSetsResponse {
+  const factory EmoteSetsResponse({
+    /// {@macro twitchResponse.data}
     required List<TwitchEmoteSets> data,
-    required this.template,
-  }) : super(data: data);
+
+    /// {@macro twitchResponse.template}
+    required String template,
+  }) = _EmoteSetsResponse;
 
   factory EmoteSetsResponse.fromJson(Map<String, dynamic> json) =>
-      EmoteSetsResponse(
-        data: _parseObjects(json, TwitchEmoteSets.fromJson),
-        template: json['template'] as String,
-      );
+      _$EmoteSetsResponseFromJson(json);
+}
+
+/// Specs: https://dev.twitch.tv/docs/api/reference/#get-channel-editors
+@Freezed(toJson: false, fromJson: true)
+class ChannelEditorsResponse with _$ChannelEditorsResponse {
+  const factory ChannelEditorsResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchChannelEditor> data,
+  }) = _ChannelEditorsResponse;
+
+  factory ChannelEditorsResponse.fromJson(Map<String, dynamic> json) =>
+      _$ChannelEditorsResponseFromJson(json);
+}
+
+/// Specs: https://dev.twitch.tv/docs/api/reference/#get-custom-reward
+@Freezed(toJson: false, fromJson: true)
+class CustomRewardResponse with _$CustomRewardResponse {
+  const factory CustomRewardResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchCustomReward> data,
+  }) = _CustomRewardResponse;
+
+  factory CustomRewardResponse.fromJson(Map<String, dynamic> json) =>
+      _$CustomRewardResponseFromJson(json);
+}
+
+@Freezed(toJson: false, fromJson: true)
+class CustomRewardRedemptionResponse with _$CustomRewardRedemptionResponse {
+  const factory CustomRewardRedemptionResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchCustomRewardRedemption> data,
+
+    /// {@macro twitchResponse.pagination}
+    required Map<String, dynamic>? pagination,
+  }) = _CustomRewardRedemptionResponse;
+
+  factory CustomRewardRedemptionResponse.fromJson(Map<String, dynamic> json) =>
+      _$CustomRewardRedemptionResponseFromJson(json);
 }

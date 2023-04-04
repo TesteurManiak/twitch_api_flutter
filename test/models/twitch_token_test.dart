@@ -5,7 +5,7 @@ void main() {
   group('TwitchToken', () {
     group('isValid', () {
       test('expiresIn is equal to 0', () {
-        final token = TwitchToken(
+        const token = TwitchToken(
           token: 'token',
           scope: '',
           tokenType: '',
@@ -14,7 +14,7 @@ void main() {
       });
 
       test('expiresIn is superior to 0', () {
-        final token = TwitchToken(
+        const token = TwitchToken(
           token: 'token',
           scope: '',
           tokenType: '',
@@ -56,7 +56,7 @@ void main() {
 
     group('copyWith', () {
       test('clientId', () {
-        TwitchToken token = TwitchToken(
+        TwitchToken token = const TwitchToken(
           token: '',
           scope: '',
           tokenType: '',
@@ -68,7 +68,7 @@ void main() {
       });
 
       test('login', () {
-        TwitchToken token = TwitchToken(
+        TwitchToken token = const TwitchToken(
           token: '',
           scope: '',
           tokenType: '',
@@ -80,19 +80,19 @@ void main() {
       });
 
       test('scopes', () {
-        TwitchToken token = TwitchToken(
+        TwitchToken token = const TwitchToken(
           token: '',
           scope: '',
           tokenType: '',
           scopes: [],
         );
-        expect(token.scopes, []);
+        expect(token.scopes, <String>[]);
         token = token.copyWith(scopes: ['test']);
         expect(token.scopes, ['test']);
       });
 
       test('userId', () {
-        TwitchToken token = TwitchToken(
+        TwitchToken token = const TwitchToken(
           token: '',
           scope: '',
           tokenType: '',
@@ -104,7 +104,7 @@ void main() {
       });
 
       test('expiresIn', () {
-        TwitchToken token = TwitchToken(
+        TwitchToken token = const TwitchToken(
           token: '',
           scope: '',
           tokenType: '',

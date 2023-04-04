@@ -1,17 +1,20 @@
-class TwitchDateRange {
-  /// Report start date/time. Note this may differ from (be later than) the
-  /// `startedAt` value in the request; the response value is the date when data
-  /// for the extension is available.
-  final String startedAt;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  /// Report end date/time.
-  final String endedAt;
+part 'twitch_date_range.freezed.dart';
+part 'twitch_date_range.g.dart';
 
-  TwitchDateRange({required this.endedAt, required this.startedAt});
+@freezed
+class TwitchDateRange with _$TwitchDateRange {
+  const factory TwitchDateRange({
+    /// Report end date/time.
+    @JsonKey(name: 'ended_at') required String endedAt,
+
+    /// Report start date/time. Note this may differ from (be later than) the
+    /// `startedAt` value in the request; the response value is the date when
+    /// data for the extension is available.
+    @JsonKey(name: 'started_at') required String startedAt,
+  }) = _TwitchDateRange;
 
   factory TwitchDateRange.fromJson(Map<String, dynamic> json) =>
-      TwitchDateRange(
-        endedAt: json['ended_at'] as String,
-        startedAt: json['started_at'] as String,
-      );
+      _$TwitchDateRangeFromJson(json);
 }

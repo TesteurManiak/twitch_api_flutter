@@ -1,32 +1,25 @@
-import 'twitch_date_range.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:twitch_api/src/models/twitch_date_range.dart';
 
-class TwitchExtensionAnalytic {
-  final TwitchDateRange dateRange;
+part 'twitch_extension_analytic.freezed.dart';
+part 'twitch_extension_analytic.g.dart';
 
-  /// ID of the extension whose analytics data is being provided.
-  final String extensionId;
+@freezed
+class TwitchExtensionAnalytic with _$TwitchExtensionAnalytic {
+  const factory TwitchExtensionAnalytic({
+    @JsonKey(name: 'date_range') required TwitchDateRange dateRange,
 
-  /// Type of report.
-  final String type;
+    /// ID of the extension whose analytics data is being provided.
+    @JsonKey(name: 'extension_id') required String extensionId,
 
-  /// URL to the downloadable CSV file containing analytics data. Valid for 5
-  /// minutes.
-  final String url;
+    /// Type of report.
+    required String type,
 
-  TwitchExtensionAnalytic({
-    required this.dateRange,
-    required this.extensionId,
-    required this.type,
-    required this.url,
-  });
+    /// URL to the downloadable CSV file containing analytics data. Valid for 5
+    /// minutes.
+    @JsonKey(name: 'URL') required String url,
+  }) = _TwitchExtensionAnalytic;
 
   factory TwitchExtensionAnalytic.fromJson(Map<String, dynamic> json) =>
-      TwitchExtensionAnalytic(
-        dateRange: TwitchDateRange.fromJson(
-          json['date_range'] as Map<String, dynamic>,
-        ),
-        extensionId: json['extension_id'] as String,
-        type: json['type'] as String,
-        url: json['URL'] as String,
-      );
+      _$TwitchExtensionAnalyticFromJson(json);
 }

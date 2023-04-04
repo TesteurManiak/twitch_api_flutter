@@ -1,69 +1,55 @@
-class _CheermoteImageSet {
-  final Map<String, String> animated;
-  final Map<String, String> staticImgs;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  _CheermoteImageSet({required this.animated, required this.staticImgs});
+part 'twitch_cheermote_tier.freezed.dart';
+part 'twitch_cheermote_tier.g.dart';
 
-  factory _CheermoteImageSet.fromJson(Map<String, dynamic> json) =>
-      _CheermoteImageSet(
-        animated: Map<String, String>.from(json['animated'] as Map),
-        staticImgs: Map<String, String>.from(json['static'] as Map),
-      );
+@freezed
+class CheermoteImageSet with _$CheermoteImageSet {
+  const factory CheermoteImageSet({
+    required Map<String, String> animated,
+    @JsonKey(name: 'static') required Map<String, String> staticImgs,
+  }) = _CheermoteImageSet;
+
+  factory CheermoteImageSet.fromJson(Map<String, dynamic> json) =>
+      _$CheermoteImageSetFromJson(json);
 }
 
-class _CheermoteImage {
-  final _CheermoteImageSet light;
-  final _CheermoteImageSet dark;
+@freezed
+class CheermoteImage with _$CheermoteImage {
+  const factory CheermoteImage({
+    required CheermoteImageSet light,
+    required CheermoteImageSet dark,
+  }) = _CheermoteImage;
 
-  _CheermoteImage({required this.light, required this.dark});
-
-  factory _CheermoteImage.fromJson(Map<String, dynamic> json) =>
-      _CheermoteImage(
-        light:
-            _CheermoteImageSet.fromJson(json['light'] as Map<String, dynamic>),
-        dark: _CheermoteImageSet.fromJson(json['dark'] as Map<String, dynamic>),
-      );
+  factory CheermoteImage.fromJson(Map<String, dynamic> json) =>
+      _$CheermoteImageFromJson(json);
 }
 
-class TwitchCheermoteTier {
-  /// Minimum number of bits needed to be used to hit the given tier of emote.
-  final int minBits;
+@freezed
+class TwitchCheermoteTier with _$TwitchCheermoteTier {
+  const factory TwitchCheermoteTier({
+    /// Minimum number of bits needed to be used to hit the given tier of emote.
+    @JsonKey(name: 'min_bits') required int minBits,
 
-  /// ID of the emote tier. Possible tiers are: 1,100,500,1000,5000, 10k, or
-  /// 100k.
-  final String id;
+    /// ID of the emote tier. Possible tiers are: 1,100,500,1000,5000, 10k, or
+    /// 100k.
+    required String id,
 
-  /// Hex code for the color associated with the bits of that tier. Grey,
-  /// Purple, Teal, Blue, or Red color to match the base bit type.
-  final String color;
+    /// Hex code for the color associated with the bits of that tier. Grey,
+    /// Purple, Teal, Blue, or Red color to match the base bit type.
+    required String color,
 
-  /// Structure containing both animated and static image sets, sorted by light
-  /// and dark.
-  final _CheermoteImage images;
+    /// Structure containing both animated and static image sets, sorted by light
+    /// and dark.
+    required CheermoteImage images,
 
-  /// Indicates whether or not emote information is accessible to users.
-  final bool canCheer;
+    /// Indicates whether or not emote information is accessible to users.
+    @JsonKey(name: 'can_cheer') required bool canCheer,
 
-  /// Indicates whether or not we hide the emote from the bits card.
-  final bool showInBitsCard;
-
-  TwitchCheermoteTier({
-    required this.minBits,
-    required this.id,
-    required this.color,
-    required this.images,
-    required this.canCheer,
-    required this.showInBitsCard,
-  });
+    /// Indicates whether or not we hide the emote from the bits card.
+    @JsonKey(name: 'show_in_bits_card') required bool showInBitsCard,
+  }) = _TwitchCheermoteTier;
 
   factory TwitchCheermoteTier.fromJson(Map<String, dynamic> json) =>
-      TwitchCheermoteTier(
-        minBits: json['min_bits'] as int,
-        id: json['id'] as String,
-        color: json['color'] as String,
-        images:
-            _CheermoteImage.fromJson(json['images'] as Map<String, dynamic>),
-        canCheer: json['can_cheer'] as bool,
-        showInBitsCard: json['show_in_bits_card'] as bool,
-      );
+      _$TwitchCheermoteTierFromJson(json);
 }
