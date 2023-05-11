@@ -1,6 +1,7 @@
-## [X.0.X]
+## [0.7.0]
 
 * Refactored the package using `freezed` and `json_serializable`
+* Upgraded dependencies to support Dart 3
 
 ## [0.6.1]
 
