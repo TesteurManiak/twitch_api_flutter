@@ -32,7 +32,7 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -136,6 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 method: 'startCommercial',
                 data: error.toString(),
               );
+              return error;
             }),
             child: const Text('Start Commercial'),
           ),
@@ -147,6 +148,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 method: 'getExtensionAnalytics',
                 data: error.toString(),
               );
+              return error;
             }),
             child: const Text('Get Extension Analytics'),
           ),
@@ -158,6 +160,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 method: 'getGameAnalytics',
                 data: error.toString(),
               );
+              return error;
             }),
             child: const Text('Get Games Analytics'),
           ),
@@ -174,8 +177,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () => _twitchClient.getUsers(ids: ['44322889']).then(
               (value) => _displayDataAlert(
-                method: value.data?.first.displayName,
-                data: value.data?.first.description,
+                method: value.data.first.displayName,
+                data: value.data.first.description,
               ),
             ),
             child: const Text('Get User Dallas from id'),
@@ -185,7 +188,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   (value) => _displayDataAlert(
                     method: 'Top Games',
                     data: value.data
-                        ?.map<String>((e) => e.name)
+                        .map<String>((e) => e.name)
                         .toList()
                         .join('\n'),
                   ),
@@ -195,8 +198,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () => _twitchClient.getGames(names: ['Fortnite']).then(
               (value) => _displayDataAlert(
-                method: value.data?.first.name,
-                data: value.data?.first.getBoxArtUrl(),
+                method: value.data.first.name,
+                data: value.data.first.getBoxArtUrl(),
                 isImg: true,
               ),
             ),
@@ -206,8 +209,8 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () =>
                 _twitchClient.getChannelInformations('44445592').then(
                       (value) => _displayDataAlert(
-                        method: value.data?.first.broadcasterName,
-                        data: value.data?.first.title,
+                        method: value.data.first.broadcasterName,
+                        data: value.data.first.title,
                       ),
                     ),
             child: const Text('Get Pokimane Channel Info'),
@@ -216,13 +219,13 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () =>
                 _twitchClient.getStreams(userLogins: ['auronplay']).then(
               (value) => _displayDataAlert(
-                method: (value.data?.isNotEmpty ?? false)
-                    ? value.data?.first.userLogin
+                method: (value.data.isNotEmpty)
+                    ? value.data.first.userLogin
                     : 'getStreams',
                 data:
-                    'Viewers: ${(value.data?.isNotEmpty ?? false) ? value.data?.first.viewerCount : "No data"}',
-                isOnline: (value.data?.isNotEmpty ?? false)
-                    ? value.data?.first.type == TwitchStreamType.live
+                    'Viewers: ${(value.data.isNotEmpty) ? value.data.first.viewerCount : "No data"}',
+                isOnline: (value.data.isNotEmpty)
+                    ? value.data.first.type == TwitchStreamType.live
                     : false,
               ),
             ),
@@ -233,10 +236,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 _twitchClient.searchChannels(query: 'loserfruit').then(
               (value) {
                 _displayDataAlert(
-                  method: value.data?.first.displayName,
-                  data: value.data?.first.thumbnailUrl,
+                  method: value.data.first.displayName,
+                  data: value.data.first.thumbnailUrl,
                   isImg: true,
-                  isOnline: value.data?.first.isLive,
+                  isOnline: value.data.first.isLive,
                 );
               },
             ),
@@ -245,27 +248,34 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () => _twitchClient.searchCategories(query: 'fort').then(
                   (value) => _displayDataAlert(
-                    method: value.data?.first.name,
-                    data: value.data?.first.getBoxArtUrl(),
+                    method: value.data.first.name,
+                    data: value.data.first.getBoxArtUrl(),
                     isImg: true,
                   ),
                 ),
             child: const Text('Search "fort" Category'),
           ),
           ElevatedButton(
-            onPressed: () => _twitchClient.getBroadcasterSubscriptions().then(
-                  (value) => _displayDataAlert(
-                    method: value.data?.first.userName,
-                    data: value.data?.first.tier,
-                  ),
-                ),
+            onPressed: () {
+              final id = _twitchClient.twitchHttpClient.twitchToken?.userId;
+              if (id != null) {
+                _twitchClient
+                    .getBroadcasterSubscriptions(broadcasterId: id)
+                    .then(
+                      (value) => _displayDataAlert(
+                        method: value.data.first.userName,
+                        data: value.data.first.tier,
+                      ),
+                    );
+              }
+            },
             child: const Text('Get Broadcaster Subscriptions'),
           ),
           ElevatedButton(
             onPressed: () => _twitchClient.getBitsLeaderboard().then(
                   (value) => _displayDataAlert(
-                    method: value.data?.first.userName,
-                    data: value.data?.first.score.toString(),
+                    method: value.data.first.userName,
+                    data: value.data.first.score.toString(),
                   ),
                 ),
             child: const Text('Get Bits Leaderboard'),
@@ -273,8 +283,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () => _twitchClient.getCheermotes().then(
                   (value) => _displayDataAlert(
-                    method: value.data?.first.prefix,
-                    data: value.data?.first.tiers
+                    method: value.data.first.prefix,
+                    data: value.data.first.tiers
                         .map((e) => e.id)
                         .toList()
                         .toString(),
@@ -298,17 +308,22 @@ class _MyHomePageState extends State<MyHomePage> {
                 )
                 .then(
                   (value) => _displayDataAlert(
-                    method: 'You have ${value.data?.length} editors',
-                    data: value.data?.map<String>((e) => e.userName).join(', '),
+                    method: 'You have ${value.data.length} editors',
+                    data: value.data.map<String>((e) => e.userName).join(', '),
                   ),
                 ),
             child: const Text('Get your channel editors'),
           ),
           ElevatedButton(
-            onPressed: () => _twitchClient.getCustomRewards().then(
+            onPressed: () => _twitchClient
+                .getCustomRewards(
+                  broadcasterId:
+                      _twitchClient.twitchHttpClient.twitchToken?.userId ?? '',
+                )
+                .then(
                   (value) => _displayDataAlert(
                     method: 'Get Custom Rewards',
-                    data: value.data?.map<String>((e) => e.title).join(', '),
+                    data: value.data.map<String>((e) => e.title).join(', '),
                   ),
                 ),
             child: const Text('Get custom rewards'),

@@ -7,7 +7,7 @@ name: Dart
 
 on:
   push:
-    branches: [main, dev]
+    branches: [dev]
   pull_request:
     branches: [main, dev]
 
@@ -24,9 +24,6 @@ jobs:
         working-directory: ./lib
       - name: Run tests
         run: flutter test --coverage
-      - name: Build sample APK
-        working-directory: ./example
-        run: flutter build apk --release
       - name: Collect and report coverage
         uses: coverallsapp/github-action@v1.1.2
         with:

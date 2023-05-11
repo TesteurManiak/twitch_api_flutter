@@ -1,33 +1,27 @@
-class TwitchBitsLeaderboard {
-  /// ID of the user (viewer) in the leaderboard entry.
-  final String userId;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  /// User login name.
-  final String userLogin;
+part 'twitch_bits_leaderboard.freezed.dart';
+part 'twitch_bits_leaderboard.g.dart';
 
-  /// Display name corresponding to `userId`.
-  final String userName;
+@freezed
+class TwitchBitsLeaderboard with _$TwitchBitsLeaderboard {
+  const factory TwitchBitsLeaderboard({
+    /// ID of the user (viewer) in the leaderboard entry.
+    @JsonKey(name: 'user_id') required String userId,
 
-  /// Leaderboard rank of the user.
-  final int rank;
+    /// User login name.
+    @JsonKey(name: 'user_login') required String userLogin,
 
-  /// Leaderboard score (number of Bits) of the user.
-  final int score;
+    /// Display name corresponding to `userId`.
+    @JsonKey(name: 'user_name') required String userName,
 
-  TwitchBitsLeaderboard({
-    required this.userId,
-    required this.userLogin,
-    required this.userName,
-    required this.rank,
-    required this.score,
-  });
+    /// Leaderboard rank of the user.
+    required int rank,
+
+    /// Leaderboard score (number of Bits) of the user.
+    required int score,
+  }) = _TwitchBitsLeaderboard;
 
   factory TwitchBitsLeaderboard.fromJson(Map<String, dynamic> json) =>
-      TwitchBitsLeaderboard(
-        userId: json['user_id'] as String,
-        userLogin: json['user_login'] as String,
-        userName: json['user_name'] as String,
-        rank: json['rank'] as int,
-        score: json['score'] as int,
-      );
+      _$TwitchBitsLeaderboardFromJson(json);
 }

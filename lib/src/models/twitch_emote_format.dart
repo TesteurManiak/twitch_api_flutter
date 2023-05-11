@@ -1,14 +1,8 @@
-enum TwitchEmoteFormat { animated, static }
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-extension TwitchEmoteFormatExtension on String {
-  TwitchEmoteFormat toTwitchEmoteFormat() {
-    switch (this) {
-      case 'animated':
-        return TwitchEmoteFormat.animated;
-      case 'static':
-        return TwitchEmoteFormat.static;
-      default:
-        throw Exception('Unknown TwitchEmoteFormat: $this');
-    }
-  }
+enum TwitchEmoteFormat {
+  @JsonValue('animated')
+  animated,
+  @JsonValue('static')
+  static,
 }

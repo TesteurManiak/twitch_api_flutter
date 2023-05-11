@@ -1,171 +1,132 @@
-import 'twitch_custom_reward.dart';
-import 'twitch_emote_format.dart';
-import 'twitch_emote_type.dart';
-import 'twitch_theme_mode.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:twitch_api/src/models/twitch_custom_reward.dart';
+import 'package:twitch_api/src/models/twitch_emote_format.dart';
+import 'package:twitch_api/src/models/twitch_emote_type.dart';
+import 'package:twitch_api/src/models/twitch_theme_mode.dart';
 
-class TwitchGlobalEmotes {
-  /// An ID that identifies the emote.
-  final String id;
+part 'twitch_emotes.freezed.dart';
+part 'twitch_emotes.g.dart';
 
-  /// The name of the emote. This is the name that viewers type in the chat
-  /// window to get the emote to appear.
-  final String name;
+@freezed
+class TwitchGlobalEmotes with _$TwitchGlobalEmotes {
+  const factory TwitchGlobalEmotes({
+    /// {@template twitchEmotes.id}
+    /// An ID that identifies the emote.
+    /// {@endtemplate}
+    required String id,
 
-  /// Contains the image URLs for the emote. These image URLs will always
-  /// provide a static (i.e., non-animated) emote image with a light background.
-  /// NOTE: The preference is for you to use the templated URL in the template
-  /// field to fetch the image instead of using these URLs.
-  final TwitchCustomRewardImage images;
+    /// {@template twitchEmotes.name}
+    /// The name of the emote. This is the name that viewers type in the chat
+    /// window to get the emote to appear.
+    /// {@endtemplate}
+    required String name,
 
-  /// The formats that the emote is available in. For example, if the emote is
-  /// available only as a static PNG, the array contains only
-  /// [TwitchEmoteFormat.static]. But if it’s available as a static PNG and an
-  /// animated GIF, the array contains [TwitchEmoteFormat.static] and
-  /// [TwitchEmoteFormat.animated].
-  final List<TwitchEmoteFormat> format;
+    /// {@template twitchEmotes.images}
+    /// Contains the image URLs for the emote. These image URLs will always
+    /// provide a static (i.e., non-animated) emote image with a light
+    /// background.
+    /// NOTE: The preference is for you to use the templated URL in the template
+    /// field to fetch the image instead of using these URLs.
+    /// {@endtemplate}
+    required TwitchCustomRewardImage images,
 
-  /// The sizes that the emote is available in. For example, if the emote is
-  /// available in small and medium sizes, the array contains `1.0` and `2.0`.
-  final List<String> scale;
+    /// {@template twitchEmotes.format}
+    /// The formats that the emote is available in. For example, if the emote is
+    /// available only as a static PNG, the array contains only
+    /// [TwitchEmoteFormat.static]. But if it’s available as a static PNG and an
+    /// animated GIF, the array contains [TwitchEmoteFormat.static] and
+    /// [TwitchEmoteFormat.animated].
+    /// {@endtemplate}
+    required List<TwitchEmoteFormat> format,
 
-  /// The background themes that the emote is available in.
-  final List<TwitchThemeMode> themeMode;
+    /// {@template twitchEmotes.scale}
+    /// The sizes that the emote is available in. For example, if the emote is
+    /// available in small and medium sizes, the array contains `1.0` and `2.0`.
+    /// {@endtemplate}
+    required List<String> scale,
 
-  TwitchGlobalEmotes({
-    required this.id,
-    required this.name,
-    required this.images,
-    required this.format,
-    required this.scale,
-    required this.themeMode,
-  });
+    /// {@template twitchEmotes.themeMode}
+    /// The background themes that the emote is available in.
+    /// {@endtemplate}
+    @JsonKey(name: 'theme_mode') required List<TwitchThemeMode> themeMode,
+  }) = _TwitchGlobalEmotes;
 
-  factory TwitchGlobalEmotes.fromJson(Map<String, dynamic> json) {
-    return TwitchGlobalEmotes(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      images: TwitchCustomRewardImage.fromJson(
-        json['images'] as Map<String, dynamic>,
-      ),
-      format: (json['format'] as Iterable)
-          .cast<String>()
-          .map<TwitchEmoteFormat>((e) => e.toTwitchEmoteFormat())
-          .toList(),
-      scale: (json['scale'] as Iterable).cast<String>().toList(),
-      themeMode: (json['theme_mode'] as Iterable)
-          .cast<String>()
-          .map<TwitchThemeMode>((e) => e.toTwitchThemeMode())
-          .toList(),
-    );
-  }
+  factory TwitchGlobalEmotes.fromJson(Map<String, dynamic> json) =>
+      _$TwitchGlobalEmotesFromJson(json);
 }
 
-class TwitchEmotes extends TwitchGlobalEmotes {
-  /// The subscriber tier at which the emote is unlocked. This field contains
-  /// the tier information only if [emoteType] is set to
-  /// [TwitchEmoteType.subscriptions], otherwise, it’s an empty string.
-  final String tier;
-
-  /// {@template twitch_emote_type}
-  /// The type of emote.
-  /// {@endtemplate}
-  final TwitchEmoteType emoteType;
-
-  /// {@template twitch_emote_set_id}
-  /// An ID that identifies the emote set that the emote belongs to.
-  /// {@endtemplate}
-  final String emoteSetId;
-
-  TwitchEmotes({
+@freezed
+class TwitchEmotes with _$TwitchEmotes {
+  const factory TwitchEmotes({
+    /// {@macro twitchEmotes.id}
     required String id,
-    required String name,
-    required TwitchCustomRewardImage images,
-    required this.tier,
-    required this.emoteType,
-    required this.emoteSetId,
-    required List<TwitchEmoteFormat> format,
-    required List<String> scale,
-    required List<TwitchThemeMode> themeMode,
-  }) : super(
-          id: id,
-          name: name,
-          images: images,
-          format: format,
-          scale: scale,
-          themeMode: themeMode,
-        );
 
-  factory TwitchEmotes.fromJson(Map<String, dynamic> json) {
-    return TwitchEmotes(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      images: TwitchCustomRewardImage.fromJson(
-        json['images'] as Map<String, dynamic>,
-      ),
-      tier: json['tier'] as String,
-      emoteType: (json['emote_type'] as String).toTwitchEmoteType(),
-      emoteSetId: json['emote_set_id'] as String,
-      format: (json['format'] as Iterable)
-          .cast<String>()
-          .map<TwitchEmoteFormat>((e) => e.toTwitchEmoteFormat())
-          .toList(),
-      scale: (json['scale'] as Iterable).cast<String>().toList(),
-      themeMode: (json['theme_mode'] as Iterable)
-          .cast<String>()
-          .map<TwitchThemeMode>((e) => e.toTwitchThemeMode())
-          .toList(),
-    );
-  }
+    /// {@macro twitchEmotes.name}
+    required String name,
+
+    /// {@macro twitchEmotes.images}
+    required TwitchCustomRewardImage images,
+
+    /// The subscriber tier at which the emote is unlocked. This field contains
+    /// the tier information only if [emoteType] is set to
+    /// [TwitchEmoteType.subscriptions], otherwise, it’s an empty string.
+    required String tier,
+
+    /// {@template twitchEmotes.emoteType}
+    /// The type of emote.
+    /// {@endtemplate}
+    @JsonKey(name: 'emote_type') required TwitchEmoteType emoteType,
+
+    /// {@template twitchEmotes.emoteSetId}
+    /// An ID that identifies the emote set that the emote belongs to.
+    /// {@endtemplate}
+    @JsonKey(name: 'emote_set_id') required String emoteSetId,
+
+    /// {@macro twitchEmotes.format}
+    required List<TwitchEmoteFormat> format,
+
+    /// {@macro twitchEmotes.scale}
+    required List<String> scale,
+
+    /// {@macro twitchEmotes.themeMode}
+    @JsonKey(name: 'theme_mode') required List<TwitchThemeMode> themeMode,
+  }) = _TwitchEmotes;
+
+  factory TwitchEmotes.fromJson(Map<String, dynamic> json) =>
+      _$TwitchEmotesFromJson(json);
 }
 
-class TwitchEmoteSets extends TwitchGlobalEmotes {
-  /// {@macro twitch_emote_type}
-  final TwitchEmoteType emoteType;
-
-  /// {@macro twitch_emote_set_id}
-  final String emoteSetId;
-
-  /// The ID of the broadcaster who owns the emote.
-  final String ownerId;
-
-  TwitchEmoteSets({
+@freezed
+class TwitchEmoteSets with _$TwitchEmoteSets {
+  const factory TwitchEmoteSets({
+    /// {@macro twitchEmotes.id}
     required String id,
-    required String name,
-    required TwitchCustomRewardImage images,
-    required this.emoteType,
-    required this.emoteSetId,
-    required this.ownerId,
-    required List<TwitchEmoteFormat> format,
-    required List<String> scale,
-    required List<TwitchThemeMode> themeMode,
-  }) : super(
-          id: id,
-          name: name,
-          images: images,
-          format: format,
-          scale: scale,
-          themeMode: themeMode,
-        );
 
-  factory TwitchEmoteSets.fromJson(Map<String, dynamic> json) {
-    return TwitchEmoteSets(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      images: TwitchCustomRewardImage.fromJson(
-        json['images'] as Map<String, dynamic>,
-      ),
-      emoteType: (json['emote_type'] as String).toTwitchEmoteType(),
-      emoteSetId: json['emote_set_id'] as String,
-      ownerId: json['owner_id'] as String,
-      format: (json['format'] as Iterable)
-          .cast<String>()
-          .map<TwitchEmoteFormat>((e) => e.toTwitchEmoteFormat())
-          .toList(),
-      scale: (json['scale'] as Iterable).cast<String>().toList(),
-      themeMode: (json['theme_mode'] as Iterable)
-          .cast<String>()
-          .map<TwitchThemeMode>((e) => e.toTwitchThemeMode())
-          .toList(),
-    );
-  }
+    /// {@macro twitchEmotes.name}
+    required String name,
+
+    /// {@macro twitchEmotes.images}
+    required TwitchCustomRewardImage images,
+
+    /// {@macro twitchEmotes.emoteType}
+    @JsonKey(name: 'emote_type') required TwitchEmoteType emoteType,
+
+    /// {@macro twitchEmotes.emoteSetId}
+    @JsonKey(name: 'emote_set_id') required String emoteSetId,
+
+    /// The ID of the broadcaster who owns the emote.
+    @JsonKey(name: 'owner_id') required String ownerId,
+
+    /// {@macro twitchEmotes.format}
+    required List<TwitchEmoteFormat> format,
+
+    /// {@macro twitchEmotes.scale}
+    required List<String> scale,
+
+    /// {@macro twitchEmotes.themeMode}
+    @JsonKey(name: 'theme_mode') required List<TwitchThemeMode> themeMode,
+  }) = _TwitchEmoteSets;
+
+  factory TwitchEmoteSets.fromJson(Map<String, dynamic> json) =>
+      _$TwitchEmoteSetsFromJson(json);
 }
