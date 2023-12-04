@@ -181,26 +181,26 @@ packages:
     dependency: transitive
     description:
       name: custom_lint
-      sha256: "837821e4619c167fd5a547b03bb2fc6be7e65b800ec75528848429705c31ceba"
+      sha256: "198ec6b8e084d22f508a76556c9afcfb71706ad3f42b083fe0ee923351a96d90"
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.3"
+    version: "0.5.7"
   custom_lint_builder:
     dependency: transitive
     description:
       name: custom_lint_builder
-      sha256: "3537d50202568994a6f42b1f2953aed6292fc5ecf83e45237af73f64aff2be72"
+      sha256: dfcfa987d2bd9d0ba751ef4bdef0f6c1aa0062f2a67fe716fd5f3f8b709d6418
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.3"
+    version: "0.5.7"
   custom_lint_core:
     dependency: transitive
     description:
       name: custom_lint_core
-      sha256: "3bdebdd52a42b4d6e5be9cd833ad1ecfbbc23e1020ca537060e54085497aea9c"
+      sha256: f84c3fe2f27ef3b8831953e477e59d4a29c2952623f9eac450d7b40d9cdd94cc
       url: "https://pub.dev"
     source: hosted
-    version: "0.5.3"
+    version: "0.5.7"
   dart_style:
     dependency: transitive
     description:
@@ -285,10 +285,10 @@ packages:
     dependency: transitive
     description:
       name: hotreloader
-      sha256: "728c0613556c1d153f7e7f4a367cffacc3f5a677d7f6497a1c2b35add4e6dacf"
+      sha256: "94ee21a60ea2836500799f3af035dc3212b1562027f1e0031c14e087f0231449"
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.6"
+    version: "4.1.0"
   http_mock_adapter:
     dependency: "direct dev"
     description:
@@ -389,10 +389,10 @@ packages:
     dependency: "direct dev"
     description:
       name: mocktail
-      sha256: "9503969a7c2c78c7292022c70c0289ed6241df7a9ba720010c0b215af29a5a58"
+      sha256: bac151b31e4ed78bd59ab89aa4c0928f297b1180186d5daf03734519e5f596c1
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "1.0.1"
   node_preamble:
     dependency: transitive
     description:
@@ -629,10 +629,10 @@ packages:
     dependency: transitive
     description:
       name: watcher
-      sha256: "6a7f46926b01ce81bfc339da6a7f20afbe7733eff9846f6d6a5466aa4c6667c0"
+      sha256: "3d2ad6751b3c16cf07c7fca317a1413b3f26530319181b37e3b9039b84fc01d8"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.2"
+    version: "1.1.0"
   web_socket_channel:
     dependency: transitive
     description:
