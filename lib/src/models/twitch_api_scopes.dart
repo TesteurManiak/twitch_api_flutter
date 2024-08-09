@@ -10,8 +10,8 @@ enum TwitchApiScope {
   channelReadRedemptions('channel:read:redemptions'),
   channelReadSubscriptions('channel:read:subscriptions'),
   moderatorReadChatSettings('moderator:read:chat_settings'),
-  userReadEmail('user:read:email');
-  clipsEdit('clips:edit')
+  userReadEmail('user:read:email'),
+  clipsEdit('clips:edit');
 
   const TwitchApiScope(this.string);
 
