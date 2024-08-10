@@ -1121,6 +1121,9 @@ class TwitchClient {
     return (data['data'] as Iterable).cast<Map<String, dynamic>>().map<TwitchChatSettings>(TwitchChatSettings.fromJson).toList();
   }
 
+  /// Get refresh token from the authorization code fetched with authorizeCodeUri method
+  ///
+  /// clientSecret must be passed to TwitchClient class
   Future<TwitchTokenRefresh> getRefreshToken() async {
     assert(clientSecret.isNotEmpty, "Client secret must be initialized in TwitchClient object");
     assert(twitchHttpClient.twitchCode?.code.isNotEmpty ?? false, "Twitch authorization code must be initialized, look at authorizeCodeUri method");
@@ -1134,6 +1137,23 @@ class TwitchClient {
         'grant_type': 'authorization_code',
         'redirect_uri': redirectUri,
       },
+    );
+    return TwitchTokenRefresh.fromJson(data);
+  }
+
+  /// Refresh a token
+  ///
+  /// clientSecret must be passed to TwitchClient class
+  /// `refreshToken` required
+  ///
+  /// documentation : https://dev.twitch.tv/docs/authentication/refresh-tokens/
+  Future<TwitchTokenRefresh> refreshToken({required String refreshToken}) async {
+    assert(clientSecret.isNotEmpty, "Client secret must be initialized in TwitchClient object");
+    assert(refreshToken.isNotEmpty, "Refresh token can't be empty");
+
+    final data = await twitchHttpClient.postCallRefreshToken<Map<String, dynamic>>(
+      [oauthPath, 'token'],
+      {'client_id': clientId, 'client_secret': clientSecret, 'refresh_token': refreshToken, 'grant_type': 'refresh_token', "token_type": "bearer"},
     );
     return TwitchTokenRefresh.fromJson(data);
   }
