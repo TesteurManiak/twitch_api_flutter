@@ -12,7 +12,7 @@ part of 'twitch_search_channel.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TwitchSearchChannel _$TwitchSearchChannelFromJson(Map<String, dynamic> json) {
   return _TwitchSearchChannel.fromJson(json);
@@ -169,11 +169,11 @@ class _$TwitchSearchChannelCopyWithImpl<$Res, $Val extends TwitchSearchChannel>
 }
 
 /// @nodoc
-abstract class _$$_TwitchSearchChannelCopyWith<$Res>
+abstract class _$$TwitchSearchChannelImplCopyWith<$Res>
     implements $TwitchSearchChannelCopyWith<$Res> {
-  factory _$$_TwitchSearchChannelCopyWith(_$_TwitchSearchChannel value,
-          $Res Function(_$_TwitchSearchChannel) then) =
-      __$$_TwitchSearchChannelCopyWithImpl<$Res>;
+  factory _$$TwitchSearchChannelImplCopyWith(_$TwitchSearchChannelImpl value,
+          $Res Function(_$TwitchSearchChannelImpl) then) =
+      __$$TwitchSearchChannelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -191,11 +191,11 @@ abstract class _$$_TwitchSearchChannelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchSearchChannelCopyWithImpl<$Res>
-    extends _$TwitchSearchChannelCopyWithImpl<$Res, _$_TwitchSearchChannel>
-    implements _$$_TwitchSearchChannelCopyWith<$Res> {
-  __$$_TwitchSearchChannelCopyWithImpl(_$_TwitchSearchChannel _value,
-      $Res Function(_$_TwitchSearchChannel) _then)
+class __$$TwitchSearchChannelImplCopyWithImpl<$Res>
+    extends _$TwitchSearchChannelCopyWithImpl<$Res, _$TwitchSearchChannelImpl>
+    implements _$$TwitchSearchChannelImplCopyWith<$Res> {
+  __$$TwitchSearchChannelImplCopyWithImpl(_$TwitchSearchChannelImpl _value,
+      $Res Function(_$TwitchSearchChannelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -213,7 +213,7 @@ class __$$_TwitchSearchChannelCopyWithImpl<$Res>
     Object? startedAt = freezed,
     Object? tagIds = null,
   }) {
-    return _then(_$_TwitchSearchChannel(
+    return _then(_$TwitchSearchChannelImpl(
       gameId: null == gameId
           ? _value.gameId
           : gameId // ignore: cast_nullable_to_non_nullable
@@ -264,8 +264,8 @@ class __$$_TwitchSearchChannelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchSearchChannel implements _TwitchSearchChannel {
-  const _$_TwitchSearchChannel(
+class _$TwitchSearchChannelImpl implements _TwitchSearchChannel {
+  const _$TwitchSearchChannelImpl(
       {@JsonKey(name: 'game_id') required this.gameId,
       @JsonKey(name: 'game_name') required this.gameName,
       required this.id,
@@ -279,8 +279,8 @@ class _$_TwitchSearchChannel implements _TwitchSearchChannel {
       @JsonKey(name: 'tag_ids') required final List<String> tagIds})
       : _tagIds = tagIds;
 
-  factory _$_TwitchSearchChannel.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchSearchChannelFromJson(json);
+  factory _$TwitchSearchChannelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchSearchChannelImplFromJson(json);
 
   /// ID of the game being played on the stream
   @override
@@ -356,10 +356,10 @@ class _$_TwitchSearchChannel implements _TwitchSearchChannel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchSearchChannel &&
+            other is _$TwitchSearchChannelImpl &&
             (identical(other.gameId, gameId) || other.gameId == gameId) &&
             (identical(other.gameName, gameName) ||
                 other.gameName == gameName) &&
@@ -398,13 +398,13 @@ class _$_TwitchSearchChannel implements _TwitchSearchChannel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchSearchChannelCopyWith<_$_TwitchSearchChannel> get copyWith =>
-      __$$_TwitchSearchChannelCopyWithImpl<_$_TwitchSearchChannel>(
+  _$$TwitchSearchChannelImplCopyWith<_$TwitchSearchChannelImpl> get copyWith =>
+      __$$TwitchSearchChannelImplCopyWithImpl<_$TwitchSearchChannelImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchSearchChannelToJson(
+    return _$$TwitchSearchChannelImplToJson(
       this,
     );
   }
@@ -412,29 +412,23 @@ class _$_TwitchSearchChannel implements _TwitchSearchChannel {
 
 abstract class _TwitchSearchChannel implements TwitchSearchChannel {
   const factory _TwitchSearchChannel(
-      {@JsonKey(name: 'game_id')
-          required final String gameId,
-      @JsonKey(name: 'game_name')
-          required final String gameName,
-      required final String id,
-      @JsonKey(name: 'broadcaster_login')
+          {@JsonKey(name: 'game_id') required final String gameId,
+          @JsonKey(name: 'game_name') required final String gameName,
+          required final String id,
+          @JsonKey(name: 'broadcaster_login')
           required final String broadcasterLogin,
-      @JsonKey(name: 'display_name')
-          required final String displayName,
-      @JsonKey(name: 'broadcaster_language')
+          @JsonKey(name: 'display_name') required final String displayName,
+          @JsonKey(name: 'broadcaster_language')
           required final String broadcasterLanguage,
-      required final String title,
-      @JsonKey(name: 'thumbnail_url')
-          required final String thumbnailUrl,
-      @JsonKey(name: 'is_live')
-          required final bool isLive,
-      @JsonKey(name: 'started_at')
-          final DateTime? startedAt,
-      @JsonKey(name: 'tag_ids')
-          required final List<String> tagIds}) = _$_TwitchSearchChannel;
+          required final String title,
+          @JsonKey(name: 'thumbnail_url') required final String thumbnailUrl,
+          @JsonKey(name: 'is_live') required final bool isLive,
+          @JsonKey(name: 'started_at') final DateTime? startedAt,
+          @JsonKey(name: 'tag_ids') required final List<String> tagIds}) =
+      _$TwitchSearchChannelImpl;
 
   factory _TwitchSearchChannel.fromJson(Map<String, dynamic> json) =
-      _$_TwitchSearchChannel.fromJson;
+      _$TwitchSearchChannelImpl.fromJson;
 
   @override
 
@@ -497,6 +491,6 @@ abstract class _TwitchSearchChannel implements TwitchSearchChannel {
   List<String> get tagIds;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchSearchChannelCopyWith<_$_TwitchSearchChannel> get copyWith =>
+  _$$TwitchSearchChannelImplCopyWith<_$TwitchSearchChannelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

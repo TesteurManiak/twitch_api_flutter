@@ -6,16 +6,16 @@ part of 'twitch_start_commercial.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TwitchStartCommercial _$$_TwitchStartCommercialFromJson(
+_$TwitchStartCommercialImpl _$$TwitchStartCommercialImplFromJson(
         Map<String, dynamic> json) =>
-    _$_TwitchStartCommercial(
-      length: json['length'] as int,
+    _$TwitchStartCommercialImpl(
+      length: (json['length'] as num).toInt(),
       message: json['message'] as String,
-      retryAfter: json['retry_after'] as int,
+      retryAfter: (json['retry_after'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$_TwitchStartCommercialToJson(
-        _$_TwitchStartCommercial instance) =>
+Map<String, dynamic> _$$TwitchStartCommercialImplToJson(
+        _$TwitchStartCommercialImpl instance) =>
     <String, dynamic>{
       'length': instance.length,
       'message': instance.message,

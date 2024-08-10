@@ -12,7 +12,7 @@ part of 'twitch_stream_info.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TwitchStreamInfo _$TwitchStreamInfoFromJson(Map<String, dynamic> json) {
   return _TwitchStreamInfo.fromJson(json);
@@ -194,11 +194,11 @@ class _$TwitchStreamInfoCopyWithImpl<$Res, $Val extends TwitchStreamInfo>
 }
 
 /// @nodoc
-abstract class _$$_TwitchStreamInfoCopyWith<$Res>
+abstract class _$$TwitchStreamInfoImplCopyWith<$Res>
     implements $TwitchStreamInfoCopyWith<$Res> {
-  factory _$$_TwitchStreamInfoCopyWith(
-          _$_TwitchStreamInfo value, $Res Function(_$_TwitchStreamInfo) then) =
-      __$$_TwitchStreamInfoCopyWithImpl<$Res>;
+  factory _$$TwitchStreamInfoImplCopyWith(_$TwitchStreamInfoImpl value,
+          $Res Function(_$TwitchStreamInfoImpl) then) =
+      __$$TwitchStreamInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -219,11 +219,11 @@ abstract class _$$_TwitchStreamInfoCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchStreamInfoCopyWithImpl<$Res>
-    extends _$TwitchStreamInfoCopyWithImpl<$Res, _$_TwitchStreamInfo>
-    implements _$$_TwitchStreamInfoCopyWith<$Res> {
-  __$$_TwitchStreamInfoCopyWithImpl(
-      _$_TwitchStreamInfo _value, $Res Function(_$_TwitchStreamInfo) _then)
+class __$$TwitchStreamInfoImplCopyWithImpl<$Res>
+    extends _$TwitchStreamInfoCopyWithImpl<$Res, _$TwitchStreamInfoImpl>
+    implements _$$TwitchStreamInfoImplCopyWith<$Res> {
+  __$$TwitchStreamInfoImplCopyWithImpl(_$TwitchStreamInfoImpl _value,
+      $Res Function(_$TwitchStreamInfoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -244,7 +244,7 @@ class __$$_TwitchStreamInfoCopyWithImpl<$Res>
     Object? tagIds = freezed,
     Object? isMature = null,
   }) {
-    return _then(_$_TwitchStreamInfo(
+    return _then(_$TwitchStreamInfoImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -307,8 +307,8 @@ class __$$_TwitchStreamInfoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchStreamInfo implements _TwitchStreamInfo {
-  const _$_TwitchStreamInfo(
+class _$TwitchStreamInfoImpl implements _TwitchStreamInfo {
+  const _$TwitchStreamInfoImpl(
       {required this.id,
       @JsonKey(name: 'user_id') required this.userId,
       @JsonKey(name: 'user_login') required this.userLogin,
@@ -325,8 +325,8 @@ class _$_TwitchStreamInfo implements _TwitchStreamInfo {
       @JsonKey(name: 'is_mature') required this.isMature})
       : _tagIds = tagIds;
 
-  factory _$_TwitchStreamInfo.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchStreamInfoFromJson(json);
+  factory _$TwitchStreamInfoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchStreamInfoImplFromJson(json);
 
   /// Stream ID.
   @override
@@ -413,10 +413,10 @@ class _$_TwitchStreamInfo implements _TwitchStreamInfo {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchStreamInfo &&
+            other is _$TwitchStreamInfoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.userLogin, userLogin) ||
@@ -463,12 +463,13 @@ class _$_TwitchStreamInfo implements _TwitchStreamInfo {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchStreamInfoCopyWith<_$_TwitchStreamInfo> get copyWith =>
-      __$$_TwitchStreamInfoCopyWithImpl<_$_TwitchStreamInfo>(this, _$identity);
+  _$$TwitchStreamInfoImplCopyWith<_$TwitchStreamInfoImpl> get copyWith =>
+      __$$TwitchStreamInfoImplCopyWithImpl<_$TwitchStreamInfoImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchStreamInfoToJson(
+    return _$$TwitchStreamInfoImplToJson(
       this,
     );
   }
@@ -490,10 +491,10 @@ abstract class _TwitchStreamInfo implements TwitchStreamInfo {
           @JsonKey(name: 'thumbnail_url') required final String thumbnailUrl,
           @JsonKey(name: 'tag_ids') required final List<String>? tagIds,
           @JsonKey(name: 'is_mature') required final bool isMature}) =
-      _$_TwitchStreamInfo;
+      _$TwitchStreamInfoImpl;
 
   factory _TwitchStreamInfo.fromJson(Map<String, dynamic> json) =
-      _$_TwitchStreamInfo.fromJson;
+      _$TwitchStreamInfoImpl.fromJson;
 
   @override
 
@@ -566,6 +567,6 @@ abstract class _TwitchStreamInfo implements TwitchStreamInfo {
   bool get isMature;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchStreamInfoCopyWith<_$_TwitchStreamInfo> get copyWith =>
+  _$$TwitchStreamInfoImplCopyWith<_$TwitchStreamInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

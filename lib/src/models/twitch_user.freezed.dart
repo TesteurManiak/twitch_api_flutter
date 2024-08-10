@@ -12,7 +12,7 @@ part of 'twitch_user.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TwitchUser _$TwitchUserFromJson(Map<String, dynamic> json) {
   return _TwitchUser.fromJson(json);
@@ -141,11 +141,11 @@ class _$TwitchUserCopyWithImpl<$Res, $Val extends TwitchUser>
 }
 
 /// @nodoc
-abstract class _$$_TwitchUserCopyWith<$Res>
+abstract class _$$TwitchUserImplCopyWith<$Res>
     implements $TwitchUserCopyWith<$Res> {
-  factory _$$_TwitchUserCopyWith(
-          _$_TwitchUser value, $Res Function(_$_TwitchUser) then) =
-      __$$_TwitchUserCopyWithImpl<$Res>;
+  factory _$$TwitchUserImplCopyWith(
+          _$TwitchUserImpl value, $Res Function(_$TwitchUserImpl) then) =
+      __$$TwitchUserImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -163,11 +163,11 @@ abstract class _$$_TwitchUserCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchUserCopyWithImpl<$Res>
-    extends _$TwitchUserCopyWithImpl<$Res, _$_TwitchUser>
-    implements _$$_TwitchUserCopyWith<$Res> {
-  __$$_TwitchUserCopyWithImpl(
-      _$_TwitchUser _value, $Res Function(_$_TwitchUser) _then)
+class __$$TwitchUserImplCopyWithImpl<$Res>
+    extends _$TwitchUserCopyWithImpl<$Res, _$TwitchUserImpl>
+    implements _$$TwitchUserImplCopyWith<$Res> {
+  __$$TwitchUserImplCopyWithImpl(
+      _$TwitchUserImpl _value, $Res Function(_$TwitchUserImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -185,7 +185,7 @@ class __$$_TwitchUserCopyWithImpl<$Res>
     Object? email = freezed,
     Object? createdAt = null,
   }) {
-    return _then(_$_TwitchUser(
+    return _then(_$TwitchUserImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -236,8 +236,8 @@ class __$$_TwitchUserCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchUser implements _TwitchUser {
-  const _$_TwitchUser(
+class _$TwitchUserImpl implements _TwitchUser {
+  const _$TwitchUserImpl(
       {required this.id,
       required this.login,
       @JsonKey(name: 'display_name') required this.displayName,
@@ -250,8 +250,8 @@ class _$_TwitchUser implements _TwitchUser {
       @JsonKey(name: 'email') required this.email,
       @JsonKey(name: 'created_at') required this.createdAt});
 
-  factory _$_TwitchUser.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchUserFromJson(json);
+  factory _$TwitchUserImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchUserImplFromJson(json);
 
   @override
   final String id;
@@ -289,10 +289,10 @@ class _$_TwitchUser implements _TwitchUser {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchUser &&
+            other is _$TwitchUserImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.login, login) || other.login == login) &&
             (identical(other.displayName, displayName) ||
@@ -332,12 +332,12 @@ class _$_TwitchUser implements _TwitchUser {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchUserCopyWith<_$_TwitchUser> get copyWith =>
-      __$$_TwitchUserCopyWithImpl<_$_TwitchUser>(this, _$identity);
+  _$$TwitchUserImplCopyWith<_$TwitchUserImpl> get copyWith =>
+      __$$TwitchUserImplCopyWithImpl<_$TwitchUserImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchUserToJson(
+    return _$$TwitchUserImplToJson(
       this,
     );
   }
@@ -347,25 +347,20 @@ abstract class _TwitchUser implements TwitchUser {
   const factory _TwitchUser(
       {required final String id,
       required final String login,
-      @JsonKey(name: 'display_name')
-          required final String displayName,
+      @JsonKey(name: 'display_name') required final String displayName,
       required final String type,
       @JsonKey(name: 'broadcaster_type')
-          required final TwitchBroadcasterType broadcasterType,
+      required final TwitchBroadcasterType broadcasterType,
       required final String description,
-      @JsonKey(name: 'profile_image_url')
-          required final String profileImageUrl,
-      @JsonKey(name: 'offline_image_url')
-          required final String offlineImageUrl,
-      @JsonKey(name: 'view_count')
-          required final int viewCount,
-      @JsonKey(name: 'email')
-          required final String? email,
+      @JsonKey(name: 'profile_image_url') required final String profileImageUrl,
+      @JsonKey(name: 'offline_image_url') required final String offlineImageUrl,
+      @JsonKey(name: 'view_count') required final int viewCount,
+      @JsonKey(name: 'email') required final String? email,
       @JsonKey(name: 'created_at')
-          required final String createdAt}) = _$_TwitchUser;
+      required final String createdAt}) = _$TwitchUserImpl;
 
   factory _TwitchUser.fromJson(Map<String, dynamic> json) =
-      _$_TwitchUser.fromJson;
+      _$TwitchUserImpl.fromJson;
 
   @override
   String get id;
@@ -398,6 +393,6 @@ abstract class _TwitchUser implements TwitchUser {
   String get createdAt;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchUserCopyWith<_$_TwitchUser> get copyWith =>
+  _$$TwitchUserImplCopyWith<_$TwitchUserImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

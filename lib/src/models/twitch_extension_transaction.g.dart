@@ -6,25 +6,26 @@ part of 'twitch_extension_transaction.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Cost _$$_CostFromJson(Map<String, dynamic> json) => _$_Cost(
-      amount: json['amount'] as int,
+_$CostImpl _$$CostImplFromJson(Map<String, dynamic> json) => _$CostImpl(
+      amount: (json['amount'] as num).toInt(),
       type: json['type'] as String,
     );
 
-Map<String, dynamic> _$$_CostToJson(_$_Cost instance) => <String, dynamic>{
+Map<String, dynamic> _$$CostImplToJson(_$CostImpl instance) =>
+    <String, dynamic>{
       'amount': instance.amount,
       'type': instance.type,
     };
 
-_$_ProductData _$$_ProductDataFromJson(Map<String, dynamic> json) =>
-    _$_ProductData(
+_$ProductDataImpl _$$ProductDataImplFromJson(Map<String, dynamic> json) =>
+    _$ProductDataImpl(
       sku: json['sku'] as String,
       cost: Cost.fromJson(json['cost'] as Map<String, dynamic>),
       displayName: json['displayName'] as String,
       inDevelopment: json['inDevelopment'] as bool,
     );
 
-Map<String, dynamic> _$$_ProductDataToJson(_$_ProductData instance) =>
+Map<String, dynamic> _$$ProductDataImplToJson(_$ProductDataImpl instance) =>
     <String, dynamic>{
       'sku': instance.sku,
       'cost': instance.cost,
@@ -32,9 +33,9 @@ Map<String, dynamic> _$$_ProductDataToJson(_$_ProductData instance) =>
       'inDevelopment': instance.inDevelopment,
     };
 
-_$_TwitchExtensionTransaction _$$_TwitchExtensionTransactionFromJson(
+_$TwitchExtensionTransactionImpl _$$TwitchExtensionTransactionImplFromJson(
         Map<String, dynamic> json) =>
-    _$_TwitchExtensionTransaction(
+    _$TwitchExtensionTransactionImpl(
       id: json['id'] as String,
       timestamp: DateTime.parse(json['timestamp'] as String),
       broadcasterId: json['broadcaster_id'] as String,
@@ -52,8 +53,8 @@ _$_TwitchExtensionTransaction _$$_TwitchExtensionTransactionFromJson(
       expiration: json['expiration'] as String?,
     );
 
-Map<String, dynamic> _$$_TwitchExtensionTransactionToJson(
-        _$_TwitchExtensionTransaction instance) =>
+Map<String, dynamic> _$$TwitchExtensionTransactionImplToJson(
+        _$TwitchExtensionTransactionImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'timestamp': instance.timestamp.toIso8601String(),

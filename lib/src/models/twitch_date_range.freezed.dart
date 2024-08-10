@@ -12,7 +12,7 @@ part of 'twitch_date_range.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TwitchDateRange _$TwitchDateRangeFromJson(Map<String, dynamic> json) {
   return _TwitchDateRange.fromJson(json);
@@ -77,11 +77,11 @@ class _$TwitchDateRangeCopyWithImpl<$Res, $Val extends TwitchDateRange>
 }
 
 /// @nodoc
-abstract class _$$_TwitchDateRangeCopyWith<$Res>
+abstract class _$$TwitchDateRangeImplCopyWith<$Res>
     implements $TwitchDateRangeCopyWith<$Res> {
-  factory _$$_TwitchDateRangeCopyWith(
-          _$_TwitchDateRange value, $Res Function(_$_TwitchDateRange) then) =
-      __$$_TwitchDateRangeCopyWithImpl<$Res>;
+  factory _$$TwitchDateRangeImplCopyWith(_$TwitchDateRangeImpl value,
+          $Res Function(_$TwitchDateRangeImpl) then) =
+      __$$TwitchDateRangeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -90,11 +90,11 @@ abstract class _$$_TwitchDateRangeCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchDateRangeCopyWithImpl<$Res>
-    extends _$TwitchDateRangeCopyWithImpl<$Res, _$_TwitchDateRange>
-    implements _$$_TwitchDateRangeCopyWith<$Res> {
-  __$$_TwitchDateRangeCopyWithImpl(
-      _$_TwitchDateRange _value, $Res Function(_$_TwitchDateRange) _then)
+class __$$TwitchDateRangeImplCopyWithImpl<$Res>
+    extends _$TwitchDateRangeCopyWithImpl<$Res, _$TwitchDateRangeImpl>
+    implements _$$TwitchDateRangeImplCopyWith<$Res> {
+  __$$TwitchDateRangeImplCopyWithImpl(
+      _$TwitchDateRangeImpl _value, $Res Function(_$TwitchDateRangeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -103,7 +103,7 @@ class __$$_TwitchDateRangeCopyWithImpl<$Res>
     Object? endedAt = null,
     Object? startedAt = null,
   }) {
-    return _then(_$_TwitchDateRange(
+    return _then(_$TwitchDateRangeImpl(
       endedAt: null == endedAt
           ? _value.endedAt
           : endedAt // ignore: cast_nullable_to_non_nullable
@@ -118,13 +118,13 @@ class __$$_TwitchDateRangeCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchDateRange implements _TwitchDateRange {
-  const _$_TwitchDateRange(
+class _$TwitchDateRangeImpl implements _TwitchDateRange {
+  const _$TwitchDateRangeImpl(
       {@JsonKey(name: 'ended_at') required this.endedAt,
       @JsonKey(name: 'started_at') required this.startedAt});
 
-  factory _$_TwitchDateRange.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchDateRangeFromJson(json);
+  factory _$TwitchDateRangeImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchDateRangeImplFromJson(json);
 
   /// Report end date/time.
   @override
@@ -144,10 +144,10 @@ class _$_TwitchDateRange implements _TwitchDateRange {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchDateRange &&
+            other is _$TwitchDateRangeImpl &&
             (identical(other.endedAt, endedAt) || other.endedAt == endedAt) &&
             (identical(other.startedAt, startedAt) ||
                 other.startedAt == startedAt));
@@ -160,12 +160,13 @@ class _$_TwitchDateRange implements _TwitchDateRange {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchDateRangeCopyWith<_$_TwitchDateRange> get copyWith =>
-      __$$_TwitchDateRangeCopyWithImpl<_$_TwitchDateRange>(this, _$identity);
+  _$$TwitchDateRangeImplCopyWith<_$TwitchDateRangeImpl> get copyWith =>
+      __$$TwitchDateRangeImplCopyWithImpl<_$TwitchDateRangeImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchDateRangeToJson(
+    return _$$TwitchDateRangeImplToJson(
       this,
     );
   }
@@ -175,10 +176,10 @@ abstract class _TwitchDateRange implements TwitchDateRange {
   const factory _TwitchDateRange(
           {@JsonKey(name: 'ended_at') required final String endedAt,
           @JsonKey(name: 'started_at') required final String startedAt}) =
-      _$_TwitchDateRange;
+      _$TwitchDateRangeImpl;
 
   factory _TwitchDateRange.fromJson(Map<String, dynamic> json) =
-      _$_TwitchDateRange.fromJson;
+      _$TwitchDateRangeImpl.fromJson;
 
   @override
 
@@ -194,6 +195,6 @@ abstract class _TwitchDateRange implements TwitchDateRange {
   String get startedAt;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchDateRangeCopyWith<_$_TwitchDateRange> get copyWith =>
+  _$$TwitchDateRangeImplCopyWith<_$TwitchDateRangeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -6,17 +6,17 @@ part of 'twitch_custom_reward_redemption.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TwitchRedemptionRewardInfo _$$_TwitchRedemptionRewardInfoFromJson(
+_$TwitchRedemptionRewardInfoImpl _$$TwitchRedemptionRewardInfoImplFromJson(
         Map<String, dynamic> json) =>
-    _$_TwitchRedemptionRewardInfo(
+    _$TwitchRedemptionRewardInfoImpl(
       id: json['id'] as String,
       title: json['title'] as String,
       prompt: json['prompt'] as String,
-      cost: json['cost'] as int,
+      cost: (json['cost'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$_TwitchRedemptionRewardInfoToJson(
-        _$_TwitchRedemptionRewardInfo instance) =>
+Map<String, dynamic> _$$TwitchRedemptionRewardInfoImplToJson(
+        _$TwitchRedemptionRewardInfoImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'title': instance.title,
@@ -24,9 +24,9 @@ Map<String, dynamic> _$$_TwitchRedemptionRewardInfoToJson(
       'cost': instance.cost,
     };
 
-_$_TwitchCustomRewardRedemption _$$_TwitchCustomRewardRedemptionFromJson(
+_$TwitchCustomRewardRedemptionImpl _$$TwitchCustomRewardRedemptionImplFromJson(
         Map<String, dynamic> json) =>
-    _$_TwitchCustomRewardRedemption(
+    _$TwitchCustomRewardRedemptionImpl(
       broadcasterId: json['broadcaster_id'] as String,
       broadcasterLogin: json['broadcaster_login'] as String,
       broadcasterName: json['broadcaster_name'] as String,
@@ -42,8 +42,8 @@ _$_TwitchCustomRewardRedemption _$$_TwitchCustomRewardRedemptionFromJson(
       redeemedAt: DateTime.parse(json['redeemed_at'] as String),
     );
 
-Map<String, dynamic> _$$_TwitchCustomRewardRedemptionToJson(
-        _$_TwitchCustomRewardRedemption instance) =>
+Map<String, dynamic> _$$TwitchCustomRewardRedemptionImplToJson(
+        _$TwitchCustomRewardRedemptionImpl instance) =>
     <String, dynamic>{
       'broadcaster_id': instance.broadcasterId,
       'broadcaster_login': instance.broadcasterLogin,

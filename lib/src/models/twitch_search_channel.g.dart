@@ -6,9 +6,9 @@ part of 'twitch_search_channel.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TwitchSearchChannel _$$_TwitchSearchChannelFromJson(
+_$TwitchSearchChannelImpl _$$TwitchSearchChannelImplFromJson(
         Map<String, dynamic> json) =>
-    _$_TwitchSearchChannel(
+    _$TwitchSearchChannelImpl(
       gameId: json['game_id'] as String,
       gameName: json['game_name'] as String,
       id: json['id'] as String,
@@ -25,8 +25,8 @@ _$_TwitchSearchChannel _$$_TwitchSearchChannelFromJson(
           (json['tag_ids'] as List<dynamic>).map((e) => e as String).toList(),
     );
 
-Map<String, dynamic> _$$_TwitchSearchChannelToJson(
-        _$_TwitchSearchChannel instance) =>
+Map<String, dynamic> _$$TwitchSearchChannelImplToJson(
+        _$TwitchSearchChannelImpl instance) =>
     <String, dynamic>{
       'game_id': instance.gameId,
       'game_name': instance.gameName,

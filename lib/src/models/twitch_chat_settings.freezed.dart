@@ -12,7 +12,7 @@ part of 'twitch_chat_settings.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TwitchChatSettings _$TwitchChatSettingsFromJson(Map<String, dynamic> json) {
   return _TwitchChatSettings.fromJson(json);
@@ -125,28 +125,18 @@ abstract class $TwitchChatSettingsCopyWith<$Res> {
       _$TwitchChatSettingsCopyWithImpl<$Res, TwitchChatSettings>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'broadcaster_id')
-          String broadcasterId,
-      @JsonKey(name: 'emote_mode')
-          bool emoteMode,
-      @JsonKey(name: 'follower_mode')
-          bool followerMode,
-      @JsonKey(name: 'follower_mode_duration')
-          int? followerModeDuration,
-      @JsonKey(name: 'moderator_id')
-          String? moderatorId,
-      @JsonKey(name: 'non_moderator_chat_delay')
-          bool nonModeratorChatDelay,
+      {@JsonKey(name: 'broadcaster_id') String broadcasterId,
+      @JsonKey(name: 'emote_mode') bool emoteMode,
+      @JsonKey(name: 'follower_mode') bool followerMode,
+      @JsonKey(name: 'follower_mode_duration') int? followerModeDuration,
+      @JsonKey(name: 'moderator_id') String? moderatorId,
+      @JsonKey(name: 'non_moderator_chat_delay') bool nonModeratorChatDelay,
       @JsonKey(name: 'non_moderator_chat_delay_duration')
-          int? nonModeratorChatDelayDuration,
-      @JsonKey(name: 'slow_mode')
-          bool slowMode,
-      @JsonKey(name: 'slow_mode_wait_time')
-          int? slowModeWaitTime,
-      @JsonKey(name: 'subscriber_mode')
-          bool subscriberMode,
-      @JsonKey(name: 'unique_chat_mode')
-          bool uniqueChatMode});
+      int? nonModeratorChatDelayDuration,
+      @JsonKey(name: 'slow_mode') bool slowMode,
+      @JsonKey(name: 'slow_mode_wait_time') int? slowModeWaitTime,
+      @JsonKey(name: 'subscriber_mode') bool subscriberMode,
+      @JsonKey(name: 'unique_chat_mode') bool uniqueChatMode});
 }
 
 /// @nodoc
@@ -224,44 +214,34 @@ class _$TwitchChatSettingsCopyWithImpl<$Res, $Val extends TwitchChatSettings>
 }
 
 /// @nodoc
-abstract class _$$_TwitchChatSettingsCopyWith<$Res>
+abstract class _$$TwitchChatSettingsImplCopyWith<$Res>
     implements $TwitchChatSettingsCopyWith<$Res> {
-  factory _$$_TwitchChatSettingsCopyWith(_$_TwitchChatSettings value,
-          $Res Function(_$_TwitchChatSettings) then) =
-      __$$_TwitchChatSettingsCopyWithImpl<$Res>;
+  factory _$$TwitchChatSettingsImplCopyWith(_$TwitchChatSettingsImpl value,
+          $Res Function(_$TwitchChatSettingsImpl) then) =
+      __$$TwitchChatSettingsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'broadcaster_id')
-          String broadcasterId,
-      @JsonKey(name: 'emote_mode')
-          bool emoteMode,
-      @JsonKey(name: 'follower_mode')
-          bool followerMode,
-      @JsonKey(name: 'follower_mode_duration')
-          int? followerModeDuration,
-      @JsonKey(name: 'moderator_id')
-          String? moderatorId,
-      @JsonKey(name: 'non_moderator_chat_delay')
-          bool nonModeratorChatDelay,
+      {@JsonKey(name: 'broadcaster_id') String broadcasterId,
+      @JsonKey(name: 'emote_mode') bool emoteMode,
+      @JsonKey(name: 'follower_mode') bool followerMode,
+      @JsonKey(name: 'follower_mode_duration') int? followerModeDuration,
+      @JsonKey(name: 'moderator_id') String? moderatorId,
+      @JsonKey(name: 'non_moderator_chat_delay') bool nonModeratorChatDelay,
       @JsonKey(name: 'non_moderator_chat_delay_duration')
-          int? nonModeratorChatDelayDuration,
-      @JsonKey(name: 'slow_mode')
-          bool slowMode,
-      @JsonKey(name: 'slow_mode_wait_time')
-          int? slowModeWaitTime,
-      @JsonKey(name: 'subscriber_mode')
-          bool subscriberMode,
-      @JsonKey(name: 'unique_chat_mode')
-          bool uniqueChatMode});
+      int? nonModeratorChatDelayDuration,
+      @JsonKey(name: 'slow_mode') bool slowMode,
+      @JsonKey(name: 'slow_mode_wait_time') int? slowModeWaitTime,
+      @JsonKey(name: 'subscriber_mode') bool subscriberMode,
+      @JsonKey(name: 'unique_chat_mode') bool uniqueChatMode});
 }
 
 /// @nodoc
-class __$$_TwitchChatSettingsCopyWithImpl<$Res>
-    extends _$TwitchChatSettingsCopyWithImpl<$Res, _$_TwitchChatSettings>
-    implements _$$_TwitchChatSettingsCopyWith<$Res> {
-  __$$_TwitchChatSettingsCopyWithImpl(
-      _$_TwitchChatSettings _value, $Res Function(_$_TwitchChatSettings) _then)
+class __$$TwitchChatSettingsImplCopyWithImpl<$Res>
+    extends _$TwitchChatSettingsCopyWithImpl<$Res, _$TwitchChatSettingsImpl>
+    implements _$$TwitchChatSettingsImplCopyWith<$Res> {
+  __$$TwitchChatSettingsImplCopyWithImpl(_$TwitchChatSettingsImpl _value,
+      $Res Function(_$TwitchChatSettingsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -279,7 +259,7 @@ class __$$_TwitchChatSettingsCopyWithImpl<$Res>
     Object? subscriberMode = null,
     Object? uniqueChatMode = null,
   }) {
-    return _then(_$_TwitchChatSettings(
+    return _then(_$TwitchChatSettingsImpl(
       broadcasterId: null == broadcasterId
           ? _value.broadcasterId
           : broadcasterId // ignore: cast_nullable_to_non_nullable
@@ -330,33 +310,25 @@ class __$$_TwitchChatSettingsCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchChatSettings implements _TwitchChatSettings {
-  const _$_TwitchChatSettings(
-      {@JsonKey(name: 'broadcaster_id')
-          required this.broadcasterId,
-      @JsonKey(name: 'emote_mode')
-          required this.emoteMode,
-      @JsonKey(name: 'follower_mode')
-          required this.followerMode,
+class _$TwitchChatSettingsImpl implements _TwitchChatSettings {
+  const _$TwitchChatSettingsImpl(
+      {@JsonKey(name: 'broadcaster_id') required this.broadcasterId,
+      @JsonKey(name: 'emote_mode') required this.emoteMode,
+      @JsonKey(name: 'follower_mode') required this.followerMode,
       @JsonKey(name: 'follower_mode_duration')
-          required this.followerModeDuration,
-      @JsonKey(name: 'moderator_id')
-          required this.moderatorId,
+      required this.followerModeDuration,
+      @JsonKey(name: 'moderator_id') required this.moderatorId,
       @JsonKey(name: 'non_moderator_chat_delay')
-          required this.nonModeratorChatDelay,
+      required this.nonModeratorChatDelay,
       @JsonKey(name: 'non_moderator_chat_delay_duration')
-          required this.nonModeratorChatDelayDuration,
-      @JsonKey(name: 'slow_mode')
-          required this.slowMode,
-      @JsonKey(name: 'slow_mode_wait_time')
-          required this.slowModeWaitTime,
-      @JsonKey(name: 'subscriber_mode')
-          required this.subscriberMode,
-      @JsonKey(name: 'unique_chat_mode')
-          required this.uniqueChatMode});
+      required this.nonModeratorChatDelayDuration,
+      @JsonKey(name: 'slow_mode') required this.slowMode,
+      @JsonKey(name: 'slow_mode_wait_time') required this.slowModeWaitTime,
+      @JsonKey(name: 'subscriber_mode') required this.subscriberMode,
+      @JsonKey(name: 'unique_chat_mode') required this.uniqueChatMode});
 
-  factory _$_TwitchChatSettings.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchChatSettingsFromJson(json);
+  factory _$TwitchChatSettingsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchChatSettingsImplFromJson(json);
 
   /// The ID of the broadcaster specified in the request.
   @override
@@ -467,10 +439,10 @@ class _$_TwitchChatSettings implements _TwitchChatSettings {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchChatSettings &&
+            other is _$TwitchChatSettingsImpl &&
             (identical(other.broadcasterId, broadcasterId) ||
                 other.broadcasterId == broadcasterId) &&
             (identical(other.emoteMode, emoteMode) ||
@@ -516,13 +488,13 @@ class _$_TwitchChatSettings implements _TwitchChatSettings {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchChatSettingsCopyWith<_$_TwitchChatSettings> get copyWith =>
-      __$$_TwitchChatSettingsCopyWithImpl<_$_TwitchChatSettings>(
+  _$$TwitchChatSettingsImplCopyWith<_$TwitchChatSettingsImpl> get copyWith =>
+      __$$TwitchChatSettingsImplCopyWithImpl<_$TwitchChatSettingsImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchChatSettingsToJson(
+    return _$$TwitchChatSettingsImplToJson(
       this,
     );
   }
@@ -530,31 +502,25 @@ class _$_TwitchChatSettings implements _TwitchChatSettings {
 
 abstract class _TwitchChatSettings implements TwitchChatSettings {
   const factory _TwitchChatSettings(
-      {@JsonKey(name: 'broadcaster_id')
-          required final String broadcasterId,
-      @JsonKey(name: 'emote_mode')
-          required final bool emoteMode,
-      @JsonKey(name: 'follower_mode')
-          required final bool followerMode,
+      {@JsonKey(name: 'broadcaster_id') required final String broadcasterId,
+      @JsonKey(name: 'emote_mode') required final bool emoteMode,
+      @JsonKey(name: 'follower_mode') required final bool followerMode,
       @JsonKey(name: 'follower_mode_duration')
-          required final int? followerModeDuration,
-      @JsonKey(name: 'moderator_id')
-          required final String? moderatorId,
+      required final int? followerModeDuration,
+      @JsonKey(name: 'moderator_id') required final String? moderatorId,
       @JsonKey(name: 'non_moderator_chat_delay')
-          required final bool nonModeratorChatDelay,
+      required final bool nonModeratorChatDelay,
       @JsonKey(name: 'non_moderator_chat_delay_duration')
-          required final int? nonModeratorChatDelayDuration,
-      @JsonKey(name: 'slow_mode')
-          required final bool slowMode,
+      required final int? nonModeratorChatDelayDuration,
+      @JsonKey(name: 'slow_mode') required final bool slowMode,
       @JsonKey(name: 'slow_mode_wait_time')
-          required final int? slowModeWaitTime,
-      @JsonKey(name: 'subscriber_mode')
-          required final bool subscriberMode,
+      required final int? slowModeWaitTime,
+      @JsonKey(name: 'subscriber_mode') required final bool subscriberMode,
       @JsonKey(name: 'unique_chat_mode')
-          required final bool uniqueChatMode}) = _$_TwitchChatSettings;
+      required final bool uniqueChatMode}) = _$TwitchChatSettingsImpl;
 
   factory _TwitchChatSettings.fromJson(Map<String, dynamic> json) =
-      _$_TwitchChatSettings.fromJson;
+      _$TwitchChatSettingsImpl.fromJson;
 
   @override
 
@@ -661,6 +627,6 @@ abstract class _TwitchChatSettings implements TwitchChatSettings {
   bool get uniqueChatMode;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchChatSettingsCopyWith<_$_TwitchChatSettings> get copyWith =>
+  _$$TwitchChatSettingsImplCopyWith<_$TwitchChatSettingsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

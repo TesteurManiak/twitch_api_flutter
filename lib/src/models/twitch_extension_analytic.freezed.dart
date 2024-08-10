@@ -12,7 +12,7 @@ part of 'twitch_extension_analytic.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TwitchExtensionAnalytic _$TwitchExtensionAnalyticFromJson(
     Map<String, dynamic> json) {
@@ -106,11 +106,12 @@ class _$TwitchExtensionAnalyticCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TwitchExtensionAnalyticCopyWith<$Res>
+abstract class _$$TwitchExtensionAnalyticImplCopyWith<$Res>
     implements $TwitchExtensionAnalyticCopyWith<$Res> {
-  factory _$$_TwitchExtensionAnalyticCopyWith(_$_TwitchExtensionAnalytic value,
-          $Res Function(_$_TwitchExtensionAnalytic) then) =
-      __$$_TwitchExtensionAnalyticCopyWithImpl<$Res>;
+  factory _$$TwitchExtensionAnalyticImplCopyWith(
+          _$TwitchExtensionAnalyticImpl value,
+          $Res Function(_$TwitchExtensionAnalyticImpl) then) =
+      __$$TwitchExtensionAnalyticImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -124,12 +125,13 @@ abstract class _$$_TwitchExtensionAnalyticCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchExtensionAnalyticCopyWithImpl<$Res>
+class __$$TwitchExtensionAnalyticImplCopyWithImpl<$Res>
     extends _$TwitchExtensionAnalyticCopyWithImpl<$Res,
-        _$_TwitchExtensionAnalytic>
-    implements _$$_TwitchExtensionAnalyticCopyWith<$Res> {
-  __$$_TwitchExtensionAnalyticCopyWithImpl(_$_TwitchExtensionAnalytic _value,
-      $Res Function(_$_TwitchExtensionAnalytic) _then)
+        _$TwitchExtensionAnalyticImpl>
+    implements _$$TwitchExtensionAnalyticImplCopyWith<$Res> {
+  __$$TwitchExtensionAnalyticImplCopyWithImpl(
+      _$TwitchExtensionAnalyticImpl _value,
+      $Res Function(_$TwitchExtensionAnalyticImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -140,7 +142,7 @@ class __$$_TwitchExtensionAnalyticCopyWithImpl<$Res>
     Object? type = null,
     Object? url = null,
   }) {
-    return _then(_$_TwitchExtensionAnalytic(
+    return _then(_$TwitchExtensionAnalyticImpl(
       dateRange: null == dateRange
           ? _value.dateRange
           : dateRange // ignore: cast_nullable_to_non_nullable
@@ -163,15 +165,15 @@ class __$$_TwitchExtensionAnalyticCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchExtensionAnalytic implements _TwitchExtensionAnalytic {
-  const _$_TwitchExtensionAnalytic(
+class _$TwitchExtensionAnalyticImpl implements _TwitchExtensionAnalytic {
+  const _$TwitchExtensionAnalyticImpl(
       {@JsonKey(name: 'date_range') required this.dateRange,
       @JsonKey(name: 'extension_id') required this.extensionId,
       required this.type,
       @JsonKey(name: 'URL') required this.url});
 
-  factory _$_TwitchExtensionAnalytic.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchExtensionAnalyticFromJson(json);
+  factory _$TwitchExtensionAnalyticImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchExtensionAnalyticImplFromJson(json);
 
   @override
   @JsonKey(name: 'date_range')
@@ -198,10 +200,10 @@ class _$_TwitchExtensionAnalytic implements _TwitchExtensionAnalytic {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchExtensionAnalytic &&
+            other is _$TwitchExtensionAnalyticImpl &&
             (identical(other.dateRange, dateRange) ||
                 other.dateRange == dateRange) &&
             (identical(other.extensionId, extensionId) ||
@@ -218,14 +220,13 @@ class _$_TwitchExtensionAnalytic implements _TwitchExtensionAnalytic {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchExtensionAnalyticCopyWith<_$_TwitchExtensionAnalytic>
-      get copyWith =>
-          __$$_TwitchExtensionAnalyticCopyWithImpl<_$_TwitchExtensionAnalytic>(
-              this, _$identity);
+  _$$TwitchExtensionAnalyticImplCopyWith<_$TwitchExtensionAnalyticImpl>
+      get copyWith => __$$TwitchExtensionAnalyticImplCopyWithImpl<
+          _$TwitchExtensionAnalyticImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchExtensionAnalyticToJson(
+    return _$$TwitchExtensionAnalyticImplToJson(
       this,
     );
   }
@@ -233,16 +234,14 @@ class _$_TwitchExtensionAnalytic implements _TwitchExtensionAnalytic {
 
 abstract class _TwitchExtensionAnalytic implements TwitchExtensionAnalytic {
   const factory _TwitchExtensionAnalytic(
-      {@JsonKey(name: 'date_range')
-          required final TwitchDateRange dateRange,
-      @JsonKey(name: 'extension_id')
-          required final String extensionId,
+      {@JsonKey(name: 'date_range') required final TwitchDateRange dateRange,
+      @JsonKey(name: 'extension_id') required final String extensionId,
       required final String type,
       @JsonKey(name: 'URL')
-          required final String url}) = _$_TwitchExtensionAnalytic;
+      required final String url}) = _$TwitchExtensionAnalyticImpl;
 
   factory _TwitchExtensionAnalytic.fromJson(Map<String, dynamic> json) =
-      _$_TwitchExtensionAnalytic.fromJson;
+      _$TwitchExtensionAnalyticImpl.fromJson;
 
   @override
   @JsonKey(name: 'date_range')
@@ -264,6 +263,6 @@ abstract class _TwitchExtensionAnalytic implements TwitchExtensionAnalytic {
   String get url;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchExtensionAnalyticCopyWith<_$_TwitchExtensionAnalytic>
+  _$$TwitchExtensionAnalyticImplCopyWith<_$TwitchExtensionAnalyticImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

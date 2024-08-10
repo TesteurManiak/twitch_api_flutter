@@ -12,7 +12,7 @@ part of 'twitch_custom_reward.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TwitchCustomRewardImage _$TwitchCustomRewardImageFromJson(
     Map<String, dynamic> json) {
@@ -87,11 +87,12 @@ class _$TwitchCustomRewardImageCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TwitchCustomRewardImageCopyWith<$Res>
+abstract class _$$TwitchCustomRewardImageImplCopyWith<$Res>
     implements $TwitchCustomRewardImageCopyWith<$Res> {
-  factory _$$_TwitchCustomRewardImageCopyWith(_$_TwitchCustomRewardImage value,
-          $Res Function(_$_TwitchCustomRewardImage) then) =
-      __$$_TwitchCustomRewardImageCopyWithImpl<$Res>;
+  factory _$$TwitchCustomRewardImageImplCopyWith(
+          _$TwitchCustomRewardImageImpl value,
+          $Res Function(_$TwitchCustomRewardImageImpl) then) =
+      __$$TwitchCustomRewardImageImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -101,12 +102,13 @@ abstract class _$$_TwitchCustomRewardImageCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchCustomRewardImageCopyWithImpl<$Res>
+class __$$TwitchCustomRewardImageImplCopyWithImpl<$Res>
     extends _$TwitchCustomRewardImageCopyWithImpl<$Res,
-        _$_TwitchCustomRewardImage>
-    implements _$$_TwitchCustomRewardImageCopyWith<$Res> {
-  __$$_TwitchCustomRewardImageCopyWithImpl(_$_TwitchCustomRewardImage _value,
-      $Res Function(_$_TwitchCustomRewardImage) _then)
+        _$TwitchCustomRewardImageImpl>
+    implements _$$TwitchCustomRewardImageImplCopyWith<$Res> {
+  __$$TwitchCustomRewardImageImplCopyWithImpl(
+      _$TwitchCustomRewardImageImpl _value,
+      $Res Function(_$TwitchCustomRewardImageImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -116,7 +118,7 @@ class __$$_TwitchCustomRewardImageCopyWithImpl<$Res>
     Object? url2x = null,
     Object? url4x = null,
   }) {
-    return _then(_$_TwitchCustomRewardImage(
+    return _then(_$TwitchCustomRewardImageImpl(
       url1x: null == url1x
           ? _value.url1x
           : url1x // ignore: cast_nullable_to_non_nullable
@@ -135,14 +137,14 @@ class __$$_TwitchCustomRewardImageCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchCustomRewardImage implements _TwitchCustomRewardImage {
-  const _$_TwitchCustomRewardImage(
+class _$TwitchCustomRewardImageImpl implements _TwitchCustomRewardImage {
+  const _$TwitchCustomRewardImageImpl(
       {@JsonKey(name: 'url_1x') required this.url1x,
       @JsonKey(name: 'url_2x') required this.url2x,
       @JsonKey(name: 'url_4x') required this.url4x});
 
-  factory _$_TwitchCustomRewardImage.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchCustomRewardImageFromJson(json);
+  factory _$TwitchCustomRewardImageImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchCustomRewardImageImplFromJson(json);
 
   /// 1x image size
   @override
@@ -165,10 +167,10 @@ class _$_TwitchCustomRewardImage implements _TwitchCustomRewardImage {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchCustomRewardImage &&
+            other is _$TwitchCustomRewardImageImpl &&
             (identical(other.url1x, url1x) || other.url1x == url1x) &&
             (identical(other.url2x, url2x) || other.url2x == url2x) &&
             (identical(other.url4x, url4x) || other.url4x == url4x));
@@ -181,14 +183,13 @@ class _$_TwitchCustomRewardImage implements _TwitchCustomRewardImage {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchCustomRewardImageCopyWith<_$_TwitchCustomRewardImage>
-      get copyWith =>
-          __$$_TwitchCustomRewardImageCopyWithImpl<_$_TwitchCustomRewardImage>(
-              this, _$identity);
+  _$$TwitchCustomRewardImageImplCopyWith<_$TwitchCustomRewardImageImpl>
+      get copyWith => __$$TwitchCustomRewardImageImplCopyWithImpl<
+          _$TwitchCustomRewardImageImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchCustomRewardImageToJson(
+    return _$$TwitchCustomRewardImageImplToJson(
       this,
     );
   }
@@ -199,10 +200,10 @@ abstract class _TwitchCustomRewardImage implements TwitchCustomRewardImage {
           {@JsonKey(name: 'url_1x') required final String url1x,
           @JsonKey(name: 'url_2x') required final String url2x,
           @JsonKey(name: 'url_4x') required final String url4x}) =
-      _$_TwitchCustomRewardImage;
+      _$TwitchCustomRewardImageImpl;
 
   factory _TwitchCustomRewardImage.fromJson(Map<String, dynamic> json) =
-      _$_TwitchCustomRewardImage.fromJson;
+      _$TwitchCustomRewardImageImpl.fromJson;
 
   @override
 
@@ -221,7 +222,7 @@ abstract class _TwitchCustomRewardImage implements TwitchCustomRewardImage {
   String get url4x;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchCustomRewardImageCopyWith<_$_TwitchCustomRewardImage>
+  _$$TwitchCustomRewardImageImplCopyWith<_$TwitchCustomRewardImageImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -283,11 +284,11 @@ class _$TwitchMaxPerStreamCopyWithImpl<$Res, $Val extends TwitchMaxPerStream>
 }
 
 /// @nodoc
-abstract class _$$_TwitchMaxPerStreamCopyWith<$Res>
+abstract class _$$TwitchMaxPerStreamImplCopyWith<$Res>
     implements $TwitchMaxPerStreamCopyWith<$Res> {
-  factory _$$_TwitchMaxPerStreamCopyWith(_$_TwitchMaxPerStream value,
-          $Res Function(_$_TwitchMaxPerStream) then) =
-      __$$_TwitchMaxPerStreamCopyWithImpl<$Res>;
+  factory _$$TwitchMaxPerStreamImplCopyWith(_$TwitchMaxPerStreamImpl value,
+          $Res Function(_$TwitchMaxPerStreamImpl) then) =
+      __$$TwitchMaxPerStreamImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -296,11 +297,11 @@ abstract class _$$_TwitchMaxPerStreamCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchMaxPerStreamCopyWithImpl<$Res>
-    extends _$TwitchMaxPerStreamCopyWithImpl<$Res, _$_TwitchMaxPerStream>
-    implements _$$_TwitchMaxPerStreamCopyWith<$Res> {
-  __$$_TwitchMaxPerStreamCopyWithImpl(
-      _$_TwitchMaxPerStream _value, $Res Function(_$_TwitchMaxPerStream) _then)
+class __$$TwitchMaxPerStreamImplCopyWithImpl<$Res>
+    extends _$TwitchMaxPerStreamCopyWithImpl<$Res, _$TwitchMaxPerStreamImpl>
+    implements _$$TwitchMaxPerStreamImplCopyWith<$Res> {
+  __$$TwitchMaxPerStreamImplCopyWithImpl(_$TwitchMaxPerStreamImpl _value,
+      $Res Function(_$TwitchMaxPerStreamImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -309,7 +310,7 @@ class __$$_TwitchMaxPerStreamCopyWithImpl<$Res>
     Object? isEnabled = null,
     Object? maxPerStream = null,
   }) {
-    return _then(_$_TwitchMaxPerStream(
+    return _then(_$TwitchMaxPerStreamImpl(
       isEnabled: null == isEnabled
           ? _value.isEnabled
           : isEnabled // ignore: cast_nullable_to_non_nullable
@@ -324,13 +325,13 @@ class __$$_TwitchMaxPerStreamCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchMaxPerStream implements _TwitchMaxPerStream {
-  const _$_TwitchMaxPerStream(
+class _$TwitchMaxPerStreamImpl implements _TwitchMaxPerStream {
+  const _$TwitchMaxPerStreamImpl(
       {@JsonKey(name: 'is_enabled') required this.isEnabled,
       @JsonKey(name: 'max_per_stream') required this.maxPerStream});
 
-  factory _$_TwitchMaxPerStream.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchMaxPerStreamFromJson(json);
+  factory _$TwitchMaxPerStreamImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchMaxPerStreamImplFromJson(json);
 
   @override
   @JsonKey(name: 'is_enabled')
@@ -345,10 +346,10 @@ class _$_TwitchMaxPerStream implements _TwitchMaxPerStream {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchMaxPerStream &&
+            other is _$TwitchMaxPerStreamImpl &&
             (identical(other.isEnabled, isEnabled) ||
                 other.isEnabled == isEnabled) &&
             (identical(other.maxPerStream, maxPerStream) ||
@@ -362,13 +363,13 @@ class _$_TwitchMaxPerStream implements _TwitchMaxPerStream {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchMaxPerStreamCopyWith<_$_TwitchMaxPerStream> get copyWith =>
-      __$$_TwitchMaxPerStreamCopyWithImpl<_$_TwitchMaxPerStream>(
+  _$$TwitchMaxPerStreamImplCopyWith<_$TwitchMaxPerStreamImpl> get copyWith =>
+      __$$TwitchMaxPerStreamImplCopyWithImpl<_$TwitchMaxPerStreamImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchMaxPerStreamToJson(
+    return _$$TwitchMaxPerStreamImplToJson(
       this,
     );
   }
@@ -378,10 +379,10 @@ abstract class _TwitchMaxPerStream implements TwitchMaxPerStream {
   const factory _TwitchMaxPerStream(
           {@JsonKey(name: 'is_enabled') required final bool isEnabled,
           @JsonKey(name: 'max_per_stream') required final int maxPerStream}) =
-      _$_TwitchMaxPerStream;
+      _$TwitchMaxPerStreamImpl;
 
   factory _TwitchMaxPerStream.fromJson(Map<String, dynamic> json) =
-      _$_TwitchMaxPerStream.fromJson;
+      _$TwitchMaxPerStreamImpl.fromJson;
 
   @override
   @JsonKey(name: 'is_enabled')
@@ -391,7 +392,7 @@ abstract class _TwitchMaxPerStream implements TwitchMaxPerStream {
   int get maxPerStream;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchMaxPerStreamCopyWith<_$_TwitchMaxPerStream> get copyWith =>
+  _$$TwitchMaxPerStreamImplCopyWith<_$TwitchMaxPerStreamImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -457,12 +458,12 @@ class _$TwitchMaxPerUserPerStreamSettingCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TwitchMaxPerUserPerStreamSettingCopyWith<$Res>
+abstract class _$$TwitchMaxPerUserPerStreamSettingImplCopyWith<$Res>
     implements $TwitchMaxPerUserPerStreamSettingCopyWith<$Res> {
-  factory _$$_TwitchMaxPerUserPerStreamSettingCopyWith(
-          _$_TwitchMaxPerUserPerStreamSetting value,
-          $Res Function(_$_TwitchMaxPerUserPerStreamSetting) then) =
-      __$$_TwitchMaxPerUserPerStreamSettingCopyWithImpl<$Res>;
+  factory _$$TwitchMaxPerUserPerStreamSettingImplCopyWith(
+          _$TwitchMaxPerUserPerStreamSettingImpl value,
+          $Res Function(_$TwitchMaxPerUserPerStreamSettingImpl) then) =
+      __$$TwitchMaxPerUserPerStreamSettingImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -471,13 +472,13 @@ abstract class _$$_TwitchMaxPerUserPerStreamSettingCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchMaxPerUserPerStreamSettingCopyWithImpl<$Res>
+class __$$TwitchMaxPerUserPerStreamSettingImplCopyWithImpl<$Res>
     extends _$TwitchMaxPerUserPerStreamSettingCopyWithImpl<$Res,
-        _$_TwitchMaxPerUserPerStreamSetting>
-    implements _$$_TwitchMaxPerUserPerStreamSettingCopyWith<$Res> {
-  __$$_TwitchMaxPerUserPerStreamSettingCopyWithImpl(
-      _$_TwitchMaxPerUserPerStreamSetting _value,
-      $Res Function(_$_TwitchMaxPerUserPerStreamSetting) _then)
+        _$TwitchMaxPerUserPerStreamSettingImpl>
+    implements _$$TwitchMaxPerUserPerStreamSettingImplCopyWith<$Res> {
+  __$$TwitchMaxPerUserPerStreamSettingImplCopyWithImpl(
+      _$TwitchMaxPerUserPerStreamSettingImpl _value,
+      $Res Function(_$TwitchMaxPerUserPerStreamSettingImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -486,7 +487,7 @@ class __$$_TwitchMaxPerUserPerStreamSettingCopyWithImpl<$Res>
     Object? isEnabled = null,
     Object? maxPerUserPerStream = null,
   }) {
-    return _then(_$_TwitchMaxPerUserPerStreamSetting(
+    return _then(_$TwitchMaxPerUserPerStreamSettingImpl(
       isEnabled: null == isEnabled
           ? _value.isEnabled
           : isEnabled // ignore: cast_nullable_to_non_nullable
@@ -501,17 +502,16 @@ class __$$_TwitchMaxPerUserPerStreamSettingCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchMaxPerUserPerStreamSetting
+class _$TwitchMaxPerUserPerStreamSettingImpl
     implements _TwitchMaxPerUserPerStreamSetting {
-  const _$_TwitchMaxPerUserPerStreamSetting(
-      {@JsonKey(name: 'is_enabled')
-          required this.isEnabled,
+  const _$TwitchMaxPerUserPerStreamSettingImpl(
+      {@JsonKey(name: 'is_enabled') required this.isEnabled,
       @JsonKey(name: 'max_per_user_per_stream')
-          required this.maxPerUserPerStream});
+      required this.maxPerUserPerStream});
 
-  factory _$_TwitchMaxPerUserPerStreamSetting.fromJson(
+  factory _$TwitchMaxPerUserPerStreamSettingImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_TwitchMaxPerUserPerStreamSettingFromJson(json);
+      _$$TwitchMaxPerUserPerStreamSettingImplFromJson(json);
 
   @override
   @JsonKey(name: 'is_enabled')
@@ -526,10 +526,10 @@ class _$_TwitchMaxPerUserPerStreamSetting
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchMaxPerUserPerStreamSetting &&
+            other is _$TwitchMaxPerUserPerStreamSettingImpl &&
             (identical(other.isEnabled, isEnabled) ||
                 other.isEnabled == isEnabled) &&
             (identical(other.maxPerUserPerStream, maxPerUserPerStream) ||
@@ -543,14 +543,14 @@ class _$_TwitchMaxPerUserPerStreamSetting
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchMaxPerUserPerStreamSettingCopyWith<
-          _$_TwitchMaxPerUserPerStreamSetting>
-      get copyWith => __$$_TwitchMaxPerUserPerStreamSettingCopyWithImpl<
-          _$_TwitchMaxPerUserPerStreamSetting>(this, _$identity);
+  _$$TwitchMaxPerUserPerStreamSettingImplCopyWith<
+          _$TwitchMaxPerUserPerStreamSettingImpl>
+      get copyWith => __$$TwitchMaxPerUserPerStreamSettingImplCopyWithImpl<
+          _$TwitchMaxPerUserPerStreamSettingImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchMaxPerUserPerStreamSettingToJson(
+    return _$$TwitchMaxPerUserPerStreamSettingImplToJson(
       this,
     );
   }
@@ -559,14 +559,14 @@ class _$_TwitchMaxPerUserPerStreamSetting
 abstract class _TwitchMaxPerUserPerStreamSetting
     implements TwitchMaxPerUserPerStreamSetting {
   const factory _TwitchMaxPerUserPerStreamSetting(
-          {@JsonKey(name: 'is_enabled')
-              required final bool isEnabled,
+          {@JsonKey(name: 'is_enabled') required final bool isEnabled,
           @JsonKey(name: 'max_per_user_per_stream')
-              required final int maxPerUserPerStream}) =
-      _$_TwitchMaxPerUserPerStreamSetting;
+          required final int maxPerUserPerStream}) =
+      _$TwitchMaxPerUserPerStreamSettingImpl;
 
   factory _TwitchMaxPerUserPerStreamSetting.fromJson(
-      Map<String, dynamic> json) = _$_TwitchMaxPerUserPerStreamSetting.fromJson;
+          Map<String, dynamic> json) =
+      _$TwitchMaxPerUserPerStreamSettingImpl.fromJson;
 
   @override
   @JsonKey(name: 'is_enabled')
@@ -576,8 +576,8 @@ abstract class _TwitchMaxPerUserPerStreamSetting
   int get maxPerUserPerStream;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchMaxPerUserPerStreamSettingCopyWith<
-          _$_TwitchMaxPerUserPerStreamSetting>
+  _$$TwitchMaxPerUserPerStreamSettingImplCopyWith<
+          _$TwitchMaxPerUserPerStreamSettingImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -643,12 +643,12 @@ class _$TwitchGlobalCooldownSettingCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TwitchGlobalCooldownSettingCopyWith<$Res>
+abstract class _$$TwitchGlobalCooldownSettingImplCopyWith<$Res>
     implements $TwitchGlobalCooldownSettingCopyWith<$Res> {
-  factory _$$_TwitchGlobalCooldownSettingCopyWith(
-          _$_TwitchGlobalCooldownSetting value,
-          $Res Function(_$_TwitchGlobalCooldownSetting) then) =
-      __$$_TwitchGlobalCooldownSettingCopyWithImpl<$Res>;
+  factory _$$TwitchGlobalCooldownSettingImplCopyWith(
+          _$TwitchGlobalCooldownSettingImpl value,
+          $Res Function(_$TwitchGlobalCooldownSettingImpl) then) =
+      __$$TwitchGlobalCooldownSettingImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -657,13 +657,13 @@ abstract class _$$_TwitchGlobalCooldownSettingCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchGlobalCooldownSettingCopyWithImpl<$Res>
+class __$$TwitchGlobalCooldownSettingImplCopyWithImpl<$Res>
     extends _$TwitchGlobalCooldownSettingCopyWithImpl<$Res,
-        _$_TwitchGlobalCooldownSetting>
-    implements _$$_TwitchGlobalCooldownSettingCopyWith<$Res> {
-  __$$_TwitchGlobalCooldownSettingCopyWithImpl(
-      _$_TwitchGlobalCooldownSetting _value,
-      $Res Function(_$_TwitchGlobalCooldownSetting) _then)
+        _$TwitchGlobalCooldownSettingImpl>
+    implements _$$TwitchGlobalCooldownSettingImplCopyWith<$Res> {
+  __$$TwitchGlobalCooldownSettingImplCopyWithImpl(
+      _$TwitchGlobalCooldownSettingImpl _value,
+      $Res Function(_$TwitchGlobalCooldownSettingImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -672,7 +672,7 @@ class __$$_TwitchGlobalCooldownSettingCopyWithImpl<$Res>
     Object? isEnabled = null,
     Object? globalCooldownSeconds = null,
   }) {
-    return _then(_$_TwitchGlobalCooldownSetting(
+    return _then(_$TwitchGlobalCooldownSettingImpl(
       isEnabled: null == isEnabled
           ? _value.isEnabled
           : isEnabled // ignore: cast_nullable_to_non_nullable
@@ -687,15 +687,16 @@ class __$$_TwitchGlobalCooldownSettingCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchGlobalCooldownSetting implements _TwitchGlobalCooldownSetting {
-  const _$_TwitchGlobalCooldownSetting(
-      {@JsonKey(name: 'is_enabled')
-          required this.isEnabled,
+class _$TwitchGlobalCooldownSettingImpl
+    implements _TwitchGlobalCooldownSetting {
+  const _$TwitchGlobalCooldownSettingImpl(
+      {@JsonKey(name: 'is_enabled') required this.isEnabled,
       @JsonKey(name: 'global_cooldown_seconds')
-          required this.globalCooldownSeconds});
+      required this.globalCooldownSeconds});
 
-  factory _$_TwitchGlobalCooldownSetting.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchGlobalCooldownSettingFromJson(json);
+  factory _$TwitchGlobalCooldownSettingImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$TwitchGlobalCooldownSettingImplFromJson(json);
 
   @override
   @JsonKey(name: 'is_enabled')
@@ -710,10 +711,10 @@ class _$_TwitchGlobalCooldownSetting implements _TwitchGlobalCooldownSetting {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchGlobalCooldownSetting &&
+            other is _$TwitchGlobalCooldownSettingImpl &&
             (identical(other.isEnabled, isEnabled) ||
                 other.isEnabled == isEnabled) &&
             (identical(other.globalCooldownSeconds, globalCooldownSeconds) ||
@@ -728,13 +729,13 @@ class _$_TwitchGlobalCooldownSetting implements _TwitchGlobalCooldownSetting {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchGlobalCooldownSettingCopyWith<_$_TwitchGlobalCooldownSetting>
-      get copyWith => __$$_TwitchGlobalCooldownSettingCopyWithImpl<
-          _$_TwitchGlobalCooldownSetting>(this, _$identity);
+  _$$TwitchGlobalCooldownSettingImplCopyWith<_$TwitchGlobalCooldownSettingImpl>
+      get copyWith => __$$TwitchGlobalCooldownSettingImplCopyWithImpl<
+          _$TwitchGlobalCooldownSettingImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchGlobalCooldownSettingToJson(
+    return _$$TwitchGlobalCooldownSettingImplToJson(
       this,
     );
   }
@@ -743,14 +744,13 @@ class _$_TwitchGlobalCooldownSetting implements _TwitchGlobalCooldownSetting {
 abstract class _TwitchGlobalCooldownSetting
     implements TwitchGlobalCooldownSetting {
   const factory _TwitchGlobalCooldownSetting(
-          {@JsonKey(name: 'is_enabled')
-              required final bool isEnabled,
+          {@JsonKey(name: 'is_enabled') required final bool isEnabled,
           @JsonKey(name: 'global_cooldown_seconds')
-              required final int globalCooldownSeconds}) =
-      _$_TwitchGlobalCooldownSetting;
+          required final int globalCooldownSeconds}) =
+      _$TwitchGlobalCooldownSettingImpl;
 
   factory _TwitchGlobalCooldownSetting.fromJson(Map<String, dynamic> json) =
-      _$_TwitchGlobalCooldownSetting.fromJson;
+      _$TwitchGlobalCooldownSettingImpl.fromJson;
 
   @override
   @JsonKey(name: 'is_enabled')
@@ -760,7 +760,7 @@ abstract class _TwitchGlobalCooldownSetting
   int get globalCooldownSeconds;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchGlobalCooldownSettingCopyWith<_$_TwitchGlobalCooldownSetting>
+  _$$TwitchGlobalCooldownSettingImplCopyWith<_$TwitchGlobalCooldownSettingImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -871,41 +871,31 @@ abstract class $TwitchCustomRewardCopyWith<$Res> {
       _$TwitchCustomRewardCopyWithImpl<$Res, TwitchCustomReward>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'broadcaster_name')
-          String broadcasterName,
-      @JsonKey(name: 'broadcaster_login')
-          String? broadcasterLogin,
-      @JsonKey(name: 'broadcaster_id')
-          String broadcasterId,
+      {@JsonKey(name: 'broadcaster_name') String broadcasterName,
+      @JsonKey(name: 'broadcaster_login') String? broadcasterLogin,
+      @JsonKey(name: 'broadcaster_id') String broadcasterId,
       String id,
       TwitchCustomRewardImage? image,
-      @JsonKey(name: 'background_color')
-          String backgroundColor,
-      @JsonKey(name: 'is_enabled')
-          bool isEnabled,
+      @JsonKey(name: 'background_color') String backgroundColor,
+      @JsonKey(name: 'is_enabled') bool isEnabled,
       int cost,
       String title,
       String prompt,
-      @JsonKey(name: 'is_user_input_required')
-          bool isUserInputRequired,
+      @JsonKey(name: 'is_user_input_required') bool isUserInputRequired,
       @JsonKey(name: 'max_per_stream_setting')
-          TwitchMaxPerStream maxPerStreamSetting,
+      TwitchMaxPerStream maxPerStreamSetting,
       @JsonKey(name: 'max_per_user_per_stream_setting')
-          TwitchMaxPerUserPerStreamSetting maxPerUserPerStreamSetting,
+      TwitchMaxPerUserPerStreamSetting maxPerUserPerStreamSetting,
       @JsonKey(name: 'global_cooldown_setting')
-          TwitchGlobalCooldownSetting globalCooldownSetting,
-      @JsonKey(name: 'is_paused')
-          bool isPaused,
-      @JsonKey(name: 'is_in_stock')
-          bool isInStock,
-      @JsonKey(name: 'default_image')
-          TwitchCustomRewardImage defaultImage,
+      TwitchGlobalCooldownSetting globalCooldownSetting,
+      @JsonKey(name: 'is_paused') bool isPaused,
+      @JsonKey(name: 'is_in_stock') bool isInStock,
+      @JsonKey(name: 'default_image') TwitchCustomRewardImage defaultImage,
       @JsonKey(name: 'should_redemptions_skip_request_queue')
-          bool shouldRedemptionsSkipRequestQueue,
+      bool shouldRedemptionsSkipRequestQueue,
       @JsonKey(name: 'redemptions_redeemed_current_stream')
-          int? redemptionsRedeemedCurrentStream,
-      @JsonKey(name: 'cooldown_expires_at')
-          String? cooldownExpiresAt});
+      int? redemptionsRedeemedCurrentStream,
+      @JsonKey(name: 'cooldown_expires_at') String? cooldownExpiresAt});
 
   $TwitchCustomRewardImageCopyWith<$Res>? get image;
   $TwitchMaxPerStreamCopyWith<$Res> get maxPerStreamSetting;
@@ -1085,49 +1075,39 @@ class _$TwitchCustomRewardCopyWithImpl<$Res, $Val extends TwitchCustomReward>
 }
 
 /// @nodoc
-abstract class _$$_TwitchCustomRewardCopyWith<$Res>
+abstract class _$$TwitchCustomRewardImplCopyWith<$Res>
     implements $TwitchCustomRewardCopyWith<$Res> {
-  factory _$$_TwitchCustomRewardCopyWith(_$_TwitchCustomReward value,
-          $Res Function(_$_TwitchCustomReward) then) =
-      __$$_TwitchCustomRewardCopyWithImpl<$Res>;
+  factory _$$TwitchCustomRewardImplCopyWith(_$TwitchCustomRewardImpl value,
+          $Res Function(_$TwitchCustomRewardImpl) then) =
+      __$$TwitchCustomRewardImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'broadcaster_name')
-          String broadcasterName,
-      @JsonKey(name: 'broadcaster_login')
-          String? broadcasterLogin,
-      @JsonKey(name: 'broadcaster_id')
-          String broadcasterId,
+      {@JsonKey(name: 'broadcaster_name') String broadcasterName,
+      @JsonKey(name: 'broadcaster_login') String? broadcasterLogin,
+      @JsonKey(name: 'broadcaster_id') String broadcasterId,
       String id,
       TwitchCustomRewardImage? image,
-      @JsonKey(name: 'background_color')
-          String backgroundColor,
-      @JsonKey(name: 'is_enabled')
-          bool isEnabled,
+      @JsonKey(name: 'background_color') String backgroundColor,
+      @JsonKey(name: 'is_enabled') bool isEnabled,
       int cost,
       String title,
       String prompt,
-      @JsonKey(name: 'is_user_input_required')
-          bool isUserInputRequired,
+      @JsonKey(name: 'is_user_input_required') bool isUserInputRequired,
       @JsonKey(name: 'max_per_stream_setting')
-          TwitchMaxPerStream maxPerStreamSetting,
+      TwitchMaxPerStream maxPerStreamSetting,
       @JsonKey(name: 'max_per_user_per_stream_setting')
-          TwitchMaxPerUserPerStreamSetting maxPerUserPerStreamSetting,
+      TwitchMaxPerUserPerStreamSetting maxPerUserPerStreamSetting,
       @JsonKey(name: 'global_cooldown_setting')
-          TwitchGlobalCooldownSetting globalCooldownSetting,
-      @JsonKey(name: 'is_paused')
-          bool isPaused,
-      @JsonKey(name: 'is_in_stock')
-          bool isInStock,
-      @JsonKey(name: 'default_image')
-          TwitchCustomRewardImage defaultImage,
+      TwitchGlobalCooldownSetting globalCooldownSetting,
+      @JsonKey(name: 'is_paused') bool isPaused,
+      @JsonKey(name: 'is_in_stock') bool isInStock,
+      @JsonKey(name: 'default_image') TwitchCustomRewardImage defaultImage,
       @JsonKey(name: 'should_redemptions_skip_request_queue')
-          bool shouldRedemptionsSkipRequestQueue,
+      bool shouldRedemptionsSkipRequestQueue,
       @JsonKey(name: 'redemptions_redeemed_current_stream')
-          int? redemptionsRedeemedCurrentStream,
-      @JsonKey(name: 'cooldown_expires_at')
-          String? cooldownExpiresAt});
+      int? redemptionsRedeemedCurrentStream,
+      @JsonKey(name: 'cooldown_expires_at') String? cooldownExpiresAt});
 
   @override
   $TwitchCustomRewardImageCopyWith<$Res>? get image;
@@ -1143,11 +1123,11 @@ abstract class _$$_TwitchCustomRewardCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchCustomRewardCopyWithImpl<$Res>
-    extends _$TwitchCustomRewardCopyWithImpl<$Res, _$_TwitchCustomReward>
-    implements _$$_TwitchCustomRewardCopyWith<$Res> {
-  __$$_TwitchCustomRewardCopyWithImpl(
-      _$_TwitchCustomReward _value, $Res Function(_$_TwitchCustomReward) _then)
+class __$$TwitchCustomRewardImplCopyWithImpl<$Res>
+    extends _$TwitchCustomRewardCopyWithImpl<$Res, _$TwitchCustomRewardImpl>
+    implements _$$TwitchCustomRewardImplCopyWith<$Res> {
+  __$$TwitchCustomRewardImplCopyWithImpl(_$TwitchCustomRewardImpl _value,
+      $Res Function(_$TwitchCustomRewardImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1174,7 +1154,7 @@ class __$$_TwitchCustomRewardCopyWithImpl<$Res>
     Object? redemptionsRedeemedCurrentStream = freezed,
     Object? cooldownExpiresAt = freezed,
   }) {
-    return _then(_$_TwitchCustomReward(
+    return _then(_$TwitchCustomRewardImpl(
       broadcasterName: null == broadcasterName
           ? _value.broadcasterName
           : broadcasterName // ignore: cast_nullable_to_non_nullable
@@ -1263,46 +1243,37 @@ class __$$_TwitchCustomRewardCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchCustomReward implements _TwitchCustomReward {
-  const _$_TwitchCustomReward(
-      {@JsonKey(name: 'broadcaster_name')
-          required this.broadcasterName,
-      @JsonKey(name: 'broadcaster_login')
-          required this.broadcasterLogin,
-      @JsonKey(name: 'broadcaster_id')
-          required this.broadcasterId,
+class _$TwitchCustomRewardImpl implements _TwitchCustomReward {
+  const _$TwitchCustomRewardImpl(
+      {@JsonKey(name: 'broadcaster_name') required this.broadcasterName,
+      @JsonKey(name: 'broadcaster_login') required this.broadcasterLogin,
+      @JsonKey(name: 'broadcaster_id') required this.broadcasterId,
       required this.id,
       required this.image,
-      @JsonKey(name: 'background_color')
-          required this.backgroundColor,
-      @JsonKey(name: 'is_enabled')
-          required this.isEnabled,
+      @JsonKey(name: 'background_color') required this.backgroundColor,
+      @JsonKey(name: 'is_enabled') required this.isEnabled,
       required this.cost,
       required this.title,
       required this.prompt,
       @JsonKey(name: 'is_user_input_required')
-          required this.isUserInputRequired,
+      required this.isUserInputRequired,
       @JsonKey(name: 'max_per_stream_setting')
-          required this.maxPerStreamSetting,
+      required this.maxPerStreamSetting,
       @JsonKey(name: 'max_per_user_per_stream_setting')
-          required this.maxPerUserPerStreamSetting,
+      required this.maxPerUserPerStreamSetting,
       @JsonKey(name: 'global_cooldown_setting')
-          required this.globalCooldownSetting,
-      @JsonKey(name: 'is_paused')
-          required this.isPaused,
-      @JsonKey(name: 'is_in_stock')
-          required this.isInStock,
-      @JsonKey(name: 'default_image')
-          required this.defaultImage,
+      required this.globalCooldownSetting,
+      @JsonKey(name: 'is_paused') required this.isPaused,
+      @JsonKey(name: 'is_in_stock') required this.isInStock,
+      @JsonKey(name: 'default_image') required this.defaultImage,
       @JsonKey(name: 'should_redemptions_skip_request_queue')
-          required this.shouldRedemptionsSkipRequestQueue,
+      required this.shouldRedemptionsSkipRequestQueue,
       @JsonKey(name: 'redemptions_redeemed_current_stream')
-          required this.redemptionsRedeemedCurrentStream,
-      @JsonKey(name: 'cooldown_expires_at')
-          required this.cooldownExpiresAt});
+      required this.redemptionsRedeemedCurrentStream,
+      @JsonKey(name: 'cooldown_expires_at') required this.cooldownExpiresAt});
 
-  factory _$_TwitchCustomReward.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchCustomRewardFromJson(json);
+  factory _$TwitchCustomRewardImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchCustomRewardImplFromJson(json);
 
   /// ID of the channel the reward is for.
   @override
@@ -1412,10 +1383,10 @@ class _$_TwitchCustomReward implements _TwitchCustomReward {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchCustomReward &&
+            other is _$TwitchCustomRewardImpl &&
             (identical(other.broadcasterName, broadcasterName) ||
                 other.broadcasterName == broadcasterName) &&
             (identical(other.broadcasterLogin, broadcasterLogin) ||
@@ -1488,13 +1459,13 @@ class _$_TwitchCustomReward implements _TwitchCustomReward {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchCustomRewardCopyWith<_$_TwitchCustomReward> get copyWith =>
-      __$$_TwitchCustomRewardCopyWithImpl<_$_TwitchCustomReward>(
+  _$$TwitchCustomRewardImplCopyWith<_$TwitchCustomRewardImpl> get copyWith =>
+      __$$TwitchCustomRewardImplCopyWithImpl<_$TwitchCustomRewardImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchCustomRewardToJson(
+    return _$$TwitchCustomRewardImplToJson(
       this,
     );
   }
@@ -1502,45 +1473,39 @@ class _$_TwitchCustomReward implements _TwitchCustomReward {
 
 abstract class _TwitchCustomReward implements TwitchCustomReward {
   const factory _TwitchCustomReward(
-      {@JsonKey(name: 'broadcaster_name')
-          required final String broadcasterName,
+      {@JsonKey(name: 'broadcaster_name') required final String broadcasterName,
       @JsonKey(name: 'broadcaster_login')
-          required final String? broadcasterLogin,
-      @JsonKey(name: 'broadcaster_id')
-          required final String broadcasterId,
+      required final String? broadcasterLogin,
+      @JsonKey(name: 'broadcaster_id') required final String broadcasterId,
       required final String id,
       required final TwitchCustomRewardImage? image,
-      @JsonKey(name: 'background_color')
-          required final String backgroundColor,
-      @JsonKey(name: 'is_enabled')
-          required final bool isEnabled,
+      @JsonKey(name: 'background_color') required final String backgroundColor,
+      @JsonKey(name: 'is_enabled') required final bool isEnabled,
       required final int cost,
       required final String title,
       required final String prompt,
       @JsonKey(name: 'is_user_input_required')
-          required final bool isUserInputRequired,
+      required final bool isUserInputRequired,
       @JsonKey(name: 'max_per_stream_setting')
-          required final TwitchMaxPerStream maxPerStreamSetting,
+      required final TwitchMaxPerStream maxPerStreamSetting,
       @JsonKey(name: 'max_per_user_per_stream_setting')
-          required final TwitchMaxPerUserPerStreamSetting
-              maxPerUserPerStreamSetting,
+      required final TwitchMaxPerUserPerStreamSetting
+          maxPerUserPerStreamSetting,
       @JsonKey(name: 'global_cooldown_setting')
-          required final TwitchGlobalCooldownSetting globalCooldownSetting,
-      @JsonKey(name: 'is_paused')
-          required final bool isPaused,
-      @JsonKey(name: 'is_in_stock')
-          required final bool isInStock,
+      required final TwitchGlobalCooldownSetting globalCooldownSetting,
+      @JsonKey(name: 'is_paused') required final bool isPaused,
+      @JsonKey(name: 'is_in_stock') required final bool isInStock,
       @JsonKey(name: 'default_image')
-          required final TwitchCustomRewardImage defaultImage,
+      required final TwitchCustomRewardImage defaultImage,
       @JsonKey(name: 'should_redemptions_skip_request_queue')
-          required final bool shouldRedemptionsSkipRequestQueue,
+      required final bool shouldRedemptionsSkipRequestQueue,
       @JsonKey(name: 'redemptions_redeemed_current_stream')
-          required final int? redemptionsRedeemedCurrentStream,
+      required final int? redemptionsRedeemedCurrentStream,
       @JsonKey(name: 'cooldown_expires_at')
-          required final String? cooldownExpiresAt}) = _$_TwitchCustomReward;
+      required final String? cooldownExpiresAt}) = _$TwitchCustomRewardImpl;
 
   factory _TwitchCustomReward.fromJson(Map<String, dynamic> json) =
-      _$_TwitchCustomReward.fromJson;
+      _$TwitchCustomRewardImpl.fromJson;
 
   @override
 
@@ -1646,6 +1611,6 @@ abstract class _TwitchCustomReward implements TwitchCustomReward {
   String? get cooldownExpiresAt;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchCustomRewardCopyWith<_$_TwitchCustomReward> get copyWith =>
+  _$$TwitchCustomRewardImplCopyWith<_$TwitchCustomRewardImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,7 +12,7 @@ part of 'twitch_emotes.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TwitchGlobalEmotes _$TwitchGlobalEmotesFromJson(Map<String, dynamic> json) {
   return _TwitchGlobalEmotes.fromJson(json);
@@ -142,11 +142,11 @@ class _$TwitchGlobalEmotesCopyWithImpl<$Res, $Val extends TwitchGlobalEmotes>
 }
 
 /// @nodoc
-abstract class _$$_TwitchGlobalEmotesCopyWith<$Res>
+abstract class _$$TwitchGlobalEmotesImplCopyWith<$Res>
     implements $TwitchGlobalEmotesCopyWith<$Res> {
-  factory _$$_TwitchGlobalEmotesCopyWith(_$_TwitchGlobalEmotes value,
-          $Res Function(_$_TwitchGlobalEmotes) then) =
-      __$$_TwitchGlobalEmotesCopyWithImpl<$Res>;
+  factory _$$TwitchGlobalEmotesImplCopyWith(_$TwitchGlobalEmotesImpl value,
+          $Res Function(_$TwitchGlobalEmotesImpl) then) =
+      __$$TwitchGlobalEmotesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -162,11 +162,11 @@ abstract class _$$_TwitchGlobalEmotesCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchGlobalEmotesCopyWithImpl<$Res>
-    extends _$TwitchGlobalEmotesCopyWithImpl<$Res, _$_TwitchGlobalEmotes>
-    implements _$$_TwitchGlobalEmotesCopyWith<$Res> {
-  __$$_TwitchGlobalEmotesCopyWithImpl(
-      _$_TwitchGlobalEmotes _value, $Res Function(_$_TwitchGlobalEmotes) _then)
+class __$$TwitchGlobalEmotesImplCopyWithImpl<$Res>
+    extends _$TwitchGlobalEmotesCopyWithImpl<$Res, _$TwitchGlobalEmotesImpl>
+    implements _$$TwitchGlobalEmotesImplCopyWith<$Res> {
+  __$$TwitchGlobalEmotesImplCopyWithImpl(_$TwitchGlobalEmotesImpl _value,
+      $Res Function(_$TwitchGlobalEmotesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -179,7 +179,7 @@ class __$$_TwitchGlobalEmotesCopyWithImpl<$Res>
     Object? scale = null,
     Object? themeMode = null,
   }) {
-    return _then(_$_TwitchGlobalEmotes(
+    return _then(_$TwitchGlobalEmotesImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -210,21 +210,21 @@ class __$$_TwitchGlobalEmotesCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchGlobalEmotes implements _TwitchGlobalEmotes {
-  const _$_TwitchGlobalEmotes(
+class _$TwitchGlobalEmotesImpl implements _TwitchGlobalEmotes {
+  const _$TwitchGlobalEmotesImpl(
       {required this.id,
       required this.name,
       required this.images,
       required final List<TwitchEmoteFormat> format,
       required final List<String> scale,
       @JsonKey(name: 'theme_mode')
-          required final List<TwitchThemeMode> themeMode})
+      required final List<TwitchThemeMode> themeMode})
       : _format = format,
         _scale = scale,
         _themeMode = themeMode;
 
-  factory _$_TwitchGlobalEmotes.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchGlobalEmotesFromJson(json);
+  factory _$TwitchGlobalEmotesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchGlobalEmotesImplFromJson(json);
 
   /// {@template twitchEmotes.id}
   /// An ID that identifies the emote.
@@ -311,10 +311,10 @@ class _$_TwitchGlobalEmotes implements _TwitchGlobalEmotes {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchGlobalEmotes &&
+            other is _$TwitchGlobalEmotesImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.images, images) || other.images == images) &&
@@ -338,13 +338,13 @@ class _$_TwitchGlobalEmotes implements _TwitchGlobalEmotes {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchGlobalEmotesCopyWith<_$_TwitchGlobalEmotes> get copyWith =>
-      __$$_TwitchGlobalEmotesCopyWithImpl<_$_TwitchGlobalEmotes>(
+  _$$TwitchGlobalEmotesImplCopyWith<_$TwitchGlobalEmotesImpl> get copyWith =>
+      __$$TwitchGlobalEmotesImplCopyWithImpl<_$TwitchGlobalEmotesImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchGlobalEmotesToJson(
+    return _$$TwitchGlobalEmotesImplToJson(
       this,
     );
   }
@@ -358,11 +358,11 @@ abstract class _TwitchGlobalEmotes implements TwitchGlobalEmotes {
           required final List<TwitchEmoteFormat> format,
           required final List<String> scale,
           @JsonKey(name: 'theme_mode')
-              required final List<TwitchThemeMode> themeMode}) =
-      _$_TwitchGlobalEmotes;
+          required final List<TwitchThemeMode> themeMode}) =
+      _$TwitchGlobalEmotesImpl;
 
   factory _TwitchGlobalEmotes.fromJson(Map<String, dynamic> json) =
-      _$_TwitchGlobalEmotes.fromJson;
+      _$TwitchGlobalEmotesImpl.fromJson;
 
   @override
 
@@ -413,7 +413,7 @@ abstract class _TwitchGlobalEmotes implements TwitchGlobalEmotes {
   List<TwitchThemeMode> get themeMode;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchGlobalEmotesCopyWith<_$_TwitchGlobalEmotes> get copyWith =>
+  _$$TwitchGlobalEmotesImplCopyWith<_$TwitchGlobalEmotesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -558,11 +558,11 @@ class _$TwitchEmotesCopyWithImpl<$Res, $Val extends TwitchEmotes>
 }
 
 /// @nodoc
-abstract class _$$_TwitchEmotesCopyWith<$Res>
+abstract class _$$TwitchEmotesImplCopyWith<$Res>
     implements $TwitchEmotesCopyWith<$Res> {
-  factory _$$_TwitchEmotesCopyWith(
-          _$_TwitchEmotes value, $Res Function(_$_TwitchEmotes) then) =
-      __$$_TwitchEmotesCopyWithImpl<$Res>;
+  factory _$$TwitchEmotesImplCopyWith(
+          _$TwitchEmotesImpl value, $Res Function(_$TwitchEmotesImpl) then) =
+      __$$TwitchEmotesImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -581,11 +581,11 @@ abstract class _$$_TwitchEmotesCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchEmotesCopyWithImpl<$Res>
-    extends _$TwitchEmotesCopyWithImpl<$Res, _$_TwitchEmotes>
-    implements _$$_TwitchEmotesCopyWith<$Res> {
-  __$$_TwitchEmotesCopyWithImpl(
-      _$_TwitchEmotes _value, $Res Function(_$_TwitchEmotes) _then)
+class __$$TwitchEmotesImplCopyWithImpl<$Res>
+    extends _$TwitchEmotesCopyWithImpl<$Res, _$TwitchEmotesImpl>
+    implements _$$TwitchEmotesImplCopyWith<$Res> {
+  __$$TwitchEmotesImplCopyWithImpl(
+      _$TwitchEmotesImpl _value, $Res Function(_$TwitchEmotesImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -601,7 +601,7 @@ class __$$_TwitchEmotesCopyWithImpl<$Res>
     Object? scale = null,
     Object? themeMode = null,
   }) {
-    return _then(_$_TwitchEmotes(
+    return _then(_$TwitchEmotesImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -644,26 +644,24 @@ class __$$_TwitchEmotesCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchEmotes implements _TwitchEmotes {
-  const _$_TwitchEmotes(
+class _$TwitchEmotesImpl implements _TwitchEmotes {
+  const _$TwitchEmotesImpl(
       {required this.id,
       required this.name,
       required this.images,
       required this.tier,
-      @JsonKey(name: 'emote_type')
-          required this.emoteType,
-      @JsonKey(name: 'emote_set_id')
-          required this.emoteSetId,
+      @JsonKey(name: 'emote_type') required this.emoteType,
+      @JsonKey(name: 'emote_set_id') required this.emoteSetId,
       required final List<TwitchEmoteFormat> format,
       required final List<String> scale,
       @JsonKey(name: 'theme_mode')
-          required final List<TwitchThemeMode> themeMode})
+      required final List<TwitchThemeMode> themeMode})
       : _format = format,
         _scale = scale,
         _themeMode = themeMode;
 
-  factory _$_TwitchEmotes.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchEmotesFromJson(json);
+  factory _$TwitchEmotesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchEmotesImplFromJson(json);
 
   /// {@macro twitchEmotes.id}
   @override
@@ -737,10 +735,10 @@ class _$_TwitchEmotes implements _TwitchEmotes {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchEmotes &&
+            other is _$TwitchEmotesImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.images, images) || other.images == images) &&
@@ -772,12 +770,12 @@ class _$_TwitchEmotes implements _TwitchEmotes {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchEmotesCopyWith<_$_TwitchEmotes> get copyWith =>
-      __$$_TwitchEmotesCopyWithImpl<_$_TwitchEmotes>(this, _$identity);
+  _$$TwitchEmotesImplCopyWith<_$TwitchEmotesImpl> get copyWith =>
+      __$$TwitchEmotesImplCopyWithImpl<_$TwitchEmotesImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchEmotesToJson(
+    return _$$TwitchEmotesImplToJson(
       this,
     );
   }
@@ -789,17 +787,15 @@ abstract class _TwitchEmotes implements TwitchEmotes {
       required final String name,
       required final TwitchCustomRewardImage images,
       required final String tier,
-      @JsonKey(name: 'emote_type')
-          required final TwitchEmoteType emoteType,
-      @JsonKey(name: 'emote_set_id')
-          required final String emoteSetId,
+      @JsonKey(name: 'emote_type') required final TwitchEmoteType emoteType,
+      @JsonKey(name: 'emote_set_id') required final String emoteSetId,
       required final List<TwitchEmoteFormat> format,
       required final List<String> scale,
       @JsonKey(name: 'theme_mode')
-          required final List<TwitchThemeMode> themeMode}) = _$_TwitchEmotes;
+      required final List<TwitchThemeMode> themeMode}) = _$TwitchEmotesImpl;
 
   factory _TwitchEmotes.fromJson(Map<String, dynamic> json) =
-      _$_TwitchEmotes.fromJson;
+      _$TwitchEmotesImpl.fromJson;
 
   @override
 
@@ -848,7 +844,7 @@ abstract class _TwitchEmotes implements TwitchEmotes {
   List<TwitchThemeMode> get themeMode;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchEmotesCopyWith<_$_TwitchEmotes> get copyWith =>
+  _$$TwitchEmotesImplCopyWith<_$TwitchEmotesImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -988,11 +984,11 @@ class _$TwitchEmoteSetsCopyWithImpl<$Res, $Val extends TwitchEmoteSets>
 }
 
 /// @nodoc
-abstract class _$$_TwitchEmoteSetsCopyWith<$Res>
+abstract class _$$TwitchEmoteSetsImplCopyWith<$Res>
     implements $TwitchEmoteSetsCopyWith<$Res> {
-  factory _$$_TwitchEmoteSetsCopyWith(
-          _$_TwitchEmoteSets value, $Res Function(_$_TwitchEmoteSets) then) =
-      __$$_TwitchEmoteSetsCopyWithImpl<$Res>;
+  factory _$$TwitchEmoteSetsImplCopyWith(_$TwitchEmoteSetsImpl value,
+          $Res Function(_$TwitchEmoteSetsImpl) then) =
+      __$$TwitchEmoteSetsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1011,11 +1007,11 @@ abstract class _$$_TwitchEmoteSetsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchEmoteSetsCopyWithImpl<$Res>
-    extends _$TwitchEmoteSetsCopyWithImpl<$Res, _$_TwitchEmoteSets>
-    implements _$$_TwitchEmoteSetsCopyWith<$Res> {
-  __$$_TwitchEmoteSetsCopyWithImpl(
-      _$_TwitchEmoteSets _value, $Res Function(_$_TwitchEmoteSets) _then)
+class __$$TwitchEmoteSetsImplCopyWithImpl<$Res>
+    extends _$TwitchEmoteSetsCopyWithImpl<$Res, _$TwitchEmoteSetsImpl>
+    implements _$$TwitchEmoteSetsImplCopyWith<$Res> {
+  __$$TwitchEmoteSetsImplCopyWithImpl(
+      _$TwitchEmoteSetsImpl _value, $Res Function(_$TwitchEmoteSetsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1031,7 +1027,7 @@ class __$$_TwitchEmoteSetsCopyWithImpl<$Res>
     Object? scale = null,
     Object? themeMode = null,
   }) {
-    return _then(_$_TwitchEmoteSets(
+    return _then(_$TwitchEmoteSetsImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1074,27 +1070,24 @@ class __$$_TwitchEmoteSetsCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchEmoteSets implements _TwitchEmoteSets {
-  const _$_TwitchEmoteSets(
+class _$TwitchEmoteSetsImpl implements _TwitchEmoteSets {
+  const _$TwitchEmoteSetsImpl(
       {required this.id,
       required this.name,
       required this.images,
-      @JsonKey(name: 'emote_type')
-          required this.emoteType,
-      @JsonKey(name: 'emote_set_id')
-          required this.emoteSetId,
-      @JsonKey(name: 'owner_id')
-          required this.ownerId,
+      @JsonKey(name: 'emote_type') required this.emoteType,
+      @JsonKey(name: 'emote_set_id') required this.emoteSetId,
+      @JsonKey(name: 'owner_id') required this.ownerId,
       required final List<TwitchEmoteFormat> format,
       required final List<String> scale,
       @JsonKey(name: 'theme_mode')
-          required final List<TwitchThemeMode> themeMode})
+      required final List<TwitchThemeMode> themeMode})
       : _format = format,
         _scale = scale,
         _themeMode = themeMode;
 
-  factory _$_TwitchEmoteSets.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchEmoteSetsFromJson(json);
+  factory _$TwitchEmoteSetsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchEmoteSetsImplFromJson(json);
 
   /// {@macro twitchEmotes.id}
   @override
@@ -1163,10 +1156,10 @@ class _$_TwitchEmoteSets implements _TwitchEmoteSets {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchEmoteSets &&
+            other is _$TwitchEmoteSetsImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.images, images) || other.images == images) &&
@@ -1198,12 +1191,13 @@ class _$_TwitchEmoteSets implements _TwitchEmoteSets {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchEmoteSetsCopyWith<_$_TwitchEmoteSets> get copyWith =>
-      __$$_TwitchEmoteSetsCopyWithImpl<_$_TwitchEmoteSets>(this, _$identity);
+  _$$TwitchEmoteSetsImplCopyWith<_$TwitchEmoteSetsImpl> get copyWith =>
+      __$$TwitchEmoteSetsImplCopyWithImpl<_$TwitchEmoteSetsImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchEmoteSetsToJson(
+    return _$$TwitchEmoteSetsImplToJson(
       this,
     );
   }
@@ -1214,19 +1208,16 @@ abstract class _TwitchEmoteSets implements TwitchEmoteSets {
       {required final String id,
       required final String name,
       required final TwitchCustomRewardImage images,
-      @JsonKey(name: 'emote_type')
-          required final TwitchEmoteType emoteType,
-      @JsonKey(name: 'emote_set_id')
-          required final String emoteSetId,
-      @JsonKey(name: 'owner_id')
-          required final String ownerId,
+      @JsonKey(name: 'emote_type') required final TwitchEmoteType emoteType,
+      @JsonKey(name: 'emote_set_id') required final String emoteSetId,
+      @JsonKey(name: 'owner_id') required final String ownerId,
       required final List<TwitchEmoteFormat> format,
       required final List<String> scale,
       @JsonKey(name: 'theme_mode')
-          required final List<TwitchThemeMode> themeMode}) = _$_TwitchEmoteSets;
+      required final List<TwitchThemeMode> themeMode}) = _$TwitchEmoteSetsImpl;
 
   factory _TwitchEmoteSets.fromJson(Map<String, dynamic> json) =
-      _$_TwitchEmoteSets.fromJson;
+      _$TwitchEmoteSetsImpl.fromJson;
 
   @override
 
@@ -1270,6 +1261,6 @@ abstract class _TwitchEmoteSets implements TwitchEmoteSets {
   List<TwitchThemeMode> get themeMode;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchEmoteSetsCopyWith<_$_TwitchEmoteSets> get copyWith =>
+  _$$TwitchEmoteSetsImplCopyWith<_$TwitchEmoteSetsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,7 +12,7 @@ part of 'twitch_game.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TwitchGame _$TwitchGameFromJson(Map<String, dynamic> json) {
   return _TwitchGame.fromJson(json);
@@ -81,11 +81,11 @@ class _$TwitchGameCopyWithImpl<$Res, $Val extends TwitchGame>
 }
 
 /// @nodoc
-abstract class _$$_TwitchGameCopyWith<$Res>
+abstract class _$$TwitchGameImplCopyWith<$Res>
     implements $TwitchGameCopyWith<$Res> {
-  factory _$$_TwitchGameCopyWith(
-          _$_TwitchGame value, $Res Function(_$_TwitchGame) then) =
-      __$$_TwitchGameCopyWithImpl<$Res>;
+  factory _$$TwitchGameImplCopyWith(
+          _$TwitchGameImpl value, $Res Function(_$TwitchGameImpl) then) =
+      __$$TwitchGameImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -93,11 +93,11 @@ abstract class _$$_TwitchGameCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchGameCopyWithImpl<$Res>
-    extends _$TwitchGameCopyWithImpl<$Res, _$_TwitchGame>
-    implements _$$_TwitchGameCopyWith<$Res> {
-  __$$_TwitchGameCopyWithImpl(
-      _$_TwitchGame _value, $Res Function(_$_TwitchGame) _then)
+class __$$TwitchGameImplCopyWithImpl<$Res>
+    extends _$TwitchGameCopyWithImpl<$Res, _$TwitchGameImpl>
+    implements _$$TwitchGameImplCopyWith<$Res> {
+  __$$TwitchGameImplCopyWithImpl(
+      _$TwitchGameImpl _value, $Res Function(_$TwitchGameImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -107,7 +107,7 @@ class __$$_TwitchGameCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
   }) {
-    return _then(_$_TwitchGame(
+    return _then(_$TwitchGameImpl(
       boxArtUrl: null == boxArtUrl
           ? _value.boxArtUrl
           : boxArtUrl // ignore: cast_nullable_to_non_nullable
@@ -126,15 +126,15 @@ class __$$_TwitchGameCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchGame extends _TwitchGame {
-  const _$_TwitchGame(
+class _$TwitchGameImpl extends _TwitchGame {
+  const _$TwitchGameImpl(
       {@JsonKey(name: 'box_art_url') required this.boxArtUrl,
       required this.id,
       required this.name})
       : super._();
 
-  factory _$_TwitchGame.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchGameFromJson(json);
+  factory _$TwitchGameImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchGameImplFromJson(json);
 
   /// Template URL for the game’s box art.
   @override
@@ -155,10 +155,10 @@ class _$_TwitchGame extends _TwitchGame {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchGame &&
+            other is _$TwitchGameImpl &&
             (identical(other.boxArtUrl, boxArtUrl) ||
                 other.boxArtUrl == boxArtUrl) &&
             (identical(other.id, id) || other.id == id) &&
@@ -172,12 +172,12 @@ class _$_TwitchGame extends _TwitchGame {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchGameCopyWith<_$_TwitchGame> get copyWith =>
-      __$$_TwitchGameCopyWithImpl<_$_TwitchGame>(this, _$identity);
+  _$$TwitchGameImplCopyWith<_$TwitchGameImpl> get copyWith =>
+      __$$TwitchGameImplCopyWithImpl<_$TwitchGameImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchGameToJson(
+    return _$$TwitchGameImplToJson(
       this,
     );
   }
@@ -187,11 +187,11 @@ abstract class _TwitchGame extends TwitchGame {
   const factory _TwitchGame(
       {@JsonKey(name: 'box_art_url') required final String boxArtUrl,
       required final String id,
-      required final String name}) = _$_TwitchGame;
+      required final String name}) = _$TwitchGameImpl;
   const _TwitchGame._() : super._();
 
   factory _TwitchGame.fromJson(Map<String, dynamic> json) =
-      _$_TwitchGame.fromJson;
+      _$TwitchGameImpl.fromJson;
 
   @override
 
@@ -208,6 +208,6 @@ abstract class _TwitchGame extends TwitchGame {
   String get name;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchGameCopyWith<_$_TwitchGame> get copyWith =>
+  _$$TwitchGameImplCopyWith<_$TwitchGameImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

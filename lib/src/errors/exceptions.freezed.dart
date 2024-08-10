@@ -12,7 +12,7 @@ part of 'exceptions.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$TwitchApiException {
@@ -57,22 +57,22 @@ class _$TwitchApiExceptionCopyWithImpl<$Res, $Val extends TwitchApiException>
 }
 
 /// @nodoc
-abstract class _$$_TwitchApiExceptionCopyWith<$Res>
+abstract class _$$TwitchApiExceptionImplCopyWith<$Res>
     implements $TwitchApiExceptionCopyWith<$Res> {
-  factory _$$_TwitchApiExceptionCopyWith(_$_TwitchApiException value,
-          $Res Function(_$_TwitchApiException) then) =
-      __$$_TwitchApiExceptionCopyWithImpl<$Res>;
+  factory _$$TwitchApiExceptionImplCopyWith(_$TwitchApiExceptionImpl value,
+          $Res Function(_$TwitchApiExceptionImpl) then) =
+      __$$TwitchApiExceptionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String msg});
 }
 
 /// @nodoc
-class __$$_TwitchApiExceptionCopyWithImpl<$Res>
-    extends _$TwitchApiExceptionCopyWithImpl<$Res, _$_TwitchApiException>
-    implements _$$_TwitchApiExceptionCopyWith<$Res> {
-  __$$_TwitchApiExceptionCopyWithImpl(
-      _$_TwitchApiException _value, $Res Function(_$_TwitchApiException) _then)
+class __$$TwitchApiExceptionImplCopyWithImpl<$Res>
+    extends _$TwitchApiExceptionCopyWithImpl<$Res, _$TwitchApiExceptionImpl>
+    implements _$$TwitchApiExceptionImplCopyWith<$Res> {
+  __$$TwitchApiExceptionImplCopyWithImpl(_$TwitchApiExceptionImpl _value,
+      $Res Function(_$TwitchApiExceptionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -80,7 +80,7 @@ class __$$_TwitchApiExceptionCopyWithImpl<$Res>
   $Res call({
     Object? msg = null,
   }) {
-    return _then(_$_TwitchApiException(
+    return _then(_$TwitchApiExceptionImpl(
       msg: null == msg
           ? _value.msg
           : msg // ignore: cast_nullable_to_non_nullable
@@ -91,8 +91,8 @@ class __$$_TwitchApiExceptionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TwitchApiException implements _TwitchApiException {
-  const _$_TwitchApiException({required this.msg});
+class _$TwitchApiExceptionImpl implements _TwitchApiException {
+  const _$TwitchApiExceptionImpl({required this.msg});
 
   @override
   final String msg;
@@ -103,10 +103,10 @@ class _$_TwitchApiException implements _TwitchApiException {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchApiException &&
+            other is _$TwitchApiExceptionImpl &&
             (identical(other.msg, msg) || other.msg == msg));
   }
 
@@ -116,19 +116,19 @@ class _$_TwitchApiException implements _TwitchApiException {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchApiExceptionCopyWith<_$_TwitchApiException> get copyWith =>
-      __$$_TwitchApiExceptionCopyWithImpl<_$_TwitchApiException>(
+  _$$TwitchApiExceptionImplCopyWith<_$TwitchApiExceptionImpl> get copyWith =>
+      __$$TwitchApiExceptionImplCopyWithImpl<_$TwitchApiExceptionImpl>(
           this, _$identity);
 }
 
 abstract class _TwitchApiException implements TwitchApiException {
   const factory _TwitchApiException({required final String msg}) =
-      _$_TwitchApiException;
+      _$TwitchApiExceptionImpl;
 
   @override
   String get msg;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchApiExceptionCopyWith<_$_TwitchApiException> get copyWith =>
+  _$$TwitchApiExceptionImplCopyWith<_$TwitchApiExceptionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

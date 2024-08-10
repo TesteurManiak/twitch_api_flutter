@@ -6,9 +6,9 @@ part of 'twitch_extension_analytic.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TwitchExtensionAnalytic _$$_TwitchExtensionAnalyticFromJson(
+_$TwitchExtensionAnalyticImpl _$$TwitchExtensionAnalyticImplFromJson(
         Map<String, dynamic> json) =>
-    _$_TwitchExtensionAnalytic(
+    _$TwitchExtensionAnalyticImpl(
       dateRange:
           TwitchDateRange.fromJson(json['date_range'] as Map<String, dynamic>),
       extensionId: json['extension_id'] as String,
@@ -16,8 +16,8 @@ _$_TwitchExtensionAnalytic _$$_TwitchExtensionAnalyticFromJson(
       url: json['URL'] as String,
     );
 
-Map<String, dynamic> _$$_TwitchExtensionAnalyticToJson(
-        _$_TwitchExtensionAnalytic instance) =>
+Map<String, dynamic> _$$TwitchExtensionAnalyticImplToJson(
+        _$TwitchExtensionAnalyticImpl instance) =>
     <String, dynamic>{
       'date_range': instance.dateRange,
       'extension_id': instance.extensionId,

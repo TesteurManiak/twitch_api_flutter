@@ -12,7 +12,7 @@ part of 'twitch_channel_editor.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TwitchChannelEditor _$TwitchChannelEditorFromJson(Map<String, dynamic> json) {
   return _TwitchChannelEditor.fromJson(json);
@@ -85,11 +85,11 @@ class _$TwitchChannelEditorCopyWithImpl<$Res, $Val extends TwitchChannelEditor>
 }
 
 /// @nodoc
-abstract class _$$_TwitchChannelEditorCopyWith<$Res>
+abstract class _$$TwitchChannelEditorImplCopyWith<$Res>
     implements $TwitchChannelEditorCopyWith<$Res> {
-  factory _$$_TwitchChannelEditorCopyWith(_$_TwitchChannelEditor value,
-          $Res Function(_$_TwitchChannelEditor) then) =
-      __$$_TwitchChannelEditorCopyWithImpl<$Res>;
+  factory _$$TwitchChannelEditorImplCopyWith(_$TwitchChannelEditorImpl value,
+          $Res Function(_$TwitchChannelEditorImpl) then) =
+      __$$TwitchChannelEditorImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -99,11 +99,11 @@ abstract class _$$_TwitchChannelEditorCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchChannelEditorCopyWithImpl<$Res>
-    extends _$TwitchChannelEditorCopyWithImpl<$Res, _$_TwitchChannelEditor>
-    implements _$$_TwitchChannelEditorCopyWith<$Res> {
-  __$$_TwitchChannelEditorCopyWithImpl(_$_TwitchChannelEditor _value,
-      $Res Function(_$_TwitchChannelEditor) _then)
+class __$$TwitchChannelEditorImplCopyWithImpl<$Res>
+    extends _$TwitchChannelEditorCopyWithImpl<$Res, _$TwitchChannelEditorImpl>
+    implements _$$TwitchChannelEditorImplCopyWith<$Res> {
+  __$$TwitchChannelEditorImplCopyWithImpl(_$TwitchChannelEditorImpl _value,
+      $Res Function(_$TwitchChannelEditorImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -113,7 +113,7 @@ class __$$_TwitchChannelEditorCopyWithImpl<$Res>
     Object? userName = null,
     Object? createdAt = null,
   }) {
-    return _then(_$_TwitchChannelEditor(
+    return _then(_$TwitchChannelEditorImpl(
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -132,14 +132,14 @@ class __$$_TwitchChannelEditorCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchChannelEditor implements _TwitchChannelEditor {
-  const _$_TwitchChannelEditor(
+class _$TwitchChannelEditorImpl implements _TwitchChannelEditor {
+  const _$TwitchChannelEditorImpl(
       {@JsonKey(name: 'user_id') required this.userId,
       @JsonKey(name: 'user_name') required this.userName,
       @JsonKey(name: 'created_at') required this.createdAt});
 
-  factory _$_TwitchChannelEditor.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchChannelEditorFromJson(json);
+  factory _$TwitchChannelEditorImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchChannelEditorImplFromJson(json);
 
   /// User ID of the editor.
   @override
@@ -162,10 +162,10 @@ class _$_TwitchChannelEditor implements _TwitchChannelEditor {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchChannelEditor &&
+            other is _$TwitchChannelEditorImpl &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.userName, userName) ||
                 other.userName == userName) &&
@@ -180,13 +180,13 @@ class _$_TwitchChannelEditor implements _TwitchChannelEditor {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchChannelEditorCopyWith<_$_TwitchChannelEditor> get copyWith =>
-      __$$_TwitchChannelEditorCopyWithImpl<_$_TwitchChannelEditor>(
+  _$$TwitchChannelEditorImplCopyWith<_$TwitchChannelEditorImpl> get copyWith =>
+      __$$TwitchChannelEditorImplCopyWithImpl<_$TwitchChannelEditorImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchChannelEditorToJson(
+    return _$$TwitchChannelEditorImplToJson(
       this,
     );
   }
@@ -197,10 +197,10 @@ abstract class _TwitchChannelEditor implements TwitchChannelEditor {
           {@JsonKey(name: 'user_id') required final String userId,
           @JsonKey(name: 'user_name') required final String userName,
           @JsonKey(name: 'created_at') required final DateTime createdAt}) =
-      _$_TwitchChannelEditor;
+      _$TwitchChannelEditorImpl;
 
   factory _TwitchChannelEditor.fromJson(Map<String, dynamic> json) =
-      _$_TwitchChannelEditor.fromJson;
+      _$TwitchChannelEditorImpl.fromJson;
 
   @override
 
@@ -219,6 +219,6 @@ abstract class _TwitchChannelEditor implements TwitchChannelEditor {
   DateTime get createdAt;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchChannelEditorCopyWith<_$_TwitchChannelEditor> get copyWith =>
+  _$$TwitchChannelEditorImplCopyWith<_$TwitchChannelEditorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

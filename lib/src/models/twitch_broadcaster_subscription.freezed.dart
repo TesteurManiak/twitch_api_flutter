@@ -12,7 +12,7 @@ part of 'twitch_broadcaster_subscription.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TwitchBroadcasterSubscription _$TwitchBroadcasterSubscriptionFromJson(
     Map<String, dynamic> json) {
@@ -182,12 +182,12 @@ class _$TwitchBroadcasterSubscriptionCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TwitchBroadcasterSubscriptionCopyWith<$Res>
+abstract class _$$TwitchBroadcasterSubscriptionImplCopyWith<$Res>
     implements $TwitchBroadcasterSubscriptionCopyWith<$Res> {
-  factory _$$_TwitchBroadcasterSubscriptionCopyWith(
-          _$_TwitchBroadcasterSubscription value,
-          $Res Function(_$_TwitchBroadcasterSubscription) then) =
-      __$$_TwitchBroadcasterSubscriptionCopyWithImpl<$Res>;
+  factory _$$TwitchBroadcasterSubscriptionImplCopyWith(
+          _$TwitchBroadcasterSubscriptionImpl value,
+          $Res Function(_$TwitchBroadcasterSubscriptionImpl) then) =
+      __$$TwitchBroadcasterSubscriptionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -206,13 +206,13 @@ abstract class _$$_TwitchBroadcasterSubscriptionCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchBroadcasterSubscriptionCopyWithImpl<$Res>
+class __$$TwitchBroadcasterSubscriptionImplCopyWithImpl<$Res>
     extends _$TwitchBroadcasterSubscriptionCopyWithImpl<$Res,
-        _$_TwitchBroadcasterSubscription>
-    implements _$$_TwitchBroadcasterSubscriptionCopyWith<$Res> {
-  __$$_TwitchBroadcasterSubscriptionCopyWithImpl(
-      _$_TwitchBroadcasterSubscription _value,
-      $Res Function(_$_TwitchBroadcasterSubscription) _then)
+        _$TwitchBroadcasterSubscriptionImpl>
+    implements _$$TwitchBroadcasterSubscriptionImplCopyWith<$Res> {
+  __$$TwitchBroadcasterSubscriptionImplCopyWithImpl(
+      _$TwitchBroadcasterSubscriptionImpl _value,
+      $Res Function(_$TwitchBroadcasterSubscriptionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -231,7 +231,7 @@ class __$$_TwitchBroadcasterSubscriptionCopyWithImpl<$Res>
     Object? userName = null,
     Object? userLogin = null,
   }) {
-    return _then(_$_TwitchBroadcasterSubscription(
+    return _then(_$TwitchBroadcasterSubscriptionImpl(
       broadcasterId: null == broadcasterId
           ? _value.broadcasterId
           : broadcasterId // ignore: cast_nullable_to_non_nullable
@@ -286,9 +286,9 @@ class __$$_TwitchBroadcasterSubscriptionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchBroadcasterSubscription
+class _$TwitchBroadcasterSubscriptionImpl
     implements _TwitchBroadcasterSubscription {
-  const _$_TwitchBroadcasterSubscription(
+  const _$TwitchBroadcasterSubscriptionImpl(
       {@JsonKey(name: 'broadcaster_id') required this.broadcasterId,
       @JsonKey(name: 'broadcaster_login') required this.broadcasterLogin,
       @JsonKey(name: 'broadcaster_name') required this.broadcasterName,
@@ -302,9 +302,9 @@ class _$_TwitchBroadcasterSubscription
       @JsonKey(name: 'user_name') required this.userName,
       @JsonKey(name: 'user_login') required this.userLogin});
 
-  factory _$_TwitchBroadcasterSubscription.fromJson(
+  factory _$TwitchBroadcasterSubscriptionImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_TwitchBroadcasterSubscriptionFromJson(json);
+      _$$TwitchBroadcasterSubscriptionImplFromJson(json);
 
   /// User ID of the broadcaster.
   @override
@@ -375,10 +375,10 @@ class _$_TwitchBroadcasterSubscription
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchBroadcasterSubscription &&
+            other is _$TwitchBroadcasterSubscriptionImpl &&
             (identical(other.broadcasterId, broadcasterId) ||
                 other.broadcasterId == broadcasterId) &&
             (identical(other.broadcasterLogin, broadcasterLogin) ||
@@ -422,13 +422,14 @@ class _$_TwitchBroadcasterSubscription
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchBroadcasterSubscriptionCopyWith<_$_TwitchBroadcasterSubscription>
-      get copyWith => __$$_TwitchBroadcasterSubscriptionCopyWithImpl<
-          _$_TwitchBroadcasterSubscription>(this, _$identity);
+  _$$TwitchBroadcasterSubscriptionImplCopyWith<
+          _$TwitchBroadcasterSubscriptionImpl>
+      get copyWith => __$$TwitchBroadcasterSubscriptionImplCopyWithImpl<
+          _$TwitchBroadcasterSubscriptionImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchBroadcasterSubscriptionToJson(
+    return _$$TwitchBroadcasterSubscriptionImplToJson(
       this,
     );
   }
@@ -437,32 +438,23 @@ class _$_TwitchBroadcasterSubscription
 abstract class _TwitchBroadcasterSubscription
     implements TwitchBroadcasterSubscription {
   const factory _TwitchBroadcasterSubscription(
-      {@JsonKey(name: 'broadcaster_id')
-          required final String broadcasterId,
+      {@JsonKey(name: 'broadcaster_id') required final String broadcasterId,
       @JsonKey(name: 'broadcaster_login')
-          required final String broadcasterLogin,
-      @JsonKey(name: 'broadcaster_name')
-          required final String broadcasterName,
-      @JsonKey(name: 'gifter_id')
-          required final String gifterId,
-      @JsonKey(name: 'gifter_login')
-          required final String gifterLogin,
-      @JsonKey(name: 'gifter_name')
-          required final String gifterName,
-      @JsonKey(name: 'is_gift')
-          required final bool isGift,
-      @JsonKey(name: 'plan_name')
-          required final String planName,
+      required final String broadcasterLogin,
+      @JsonKey(name: 'broadcaster_name') required final String broadcasterName,
+      @JsonKey(name: 'gifter_id') required final String gifterId,
+      @JsonKey(name: 'gifter_login') required final String gifterLogin,
+      @JsonKey(name: 'gifter_name') required final String gifterName,
+      @JsonKey(name: 'is_gift') required final bool isGift,
+      @JsonKey(name: 'plan_name') required final String planName,
       required final String tier,
-      @JsonKey(name: 'user_id')
-          required final String userId,
-      @JsonKey(name: 'user_name')
-          required final String userName,
+      @JsonKey(name: 'user_id') required final String userId,
+      @JsonKey(name: 'user_name') required final String userName,
       @JsonKey(name: 'user_login')
-          required final String userLogin}) = _$_TwitchBroadcasterSubscription;
+      required final String userLogin}) = _$TwitchBroadcasterSubscriptionImpl;
 
   factory _TwitchBroadcasterSubscription.fromJson(Map<String, dynamic> json) =
-      _$_TwitchBroadcasterSubscription.fromJson;
+      _$TwitchBroadcasterSubscriptionImpl.fromJson;
 
   @override
 
@@ -529,6 +521,7 @@ abstract class _TwitchBroadcasterSubscription
   String get userLogin;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchBroadcasterSubscriptionCopyWith<_$_TwitchBroadcasterSubscription>
+  _$$TwitchBroadcasterSubscriptionImplCopyWith<
+          _$TwitchBroadcasterSubscriptionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

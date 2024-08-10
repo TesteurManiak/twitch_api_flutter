@@ -6,9 +6,9 @@ part of 'twitch_emotes.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TwitchGlobalEmotes _$$_TwitchGlobalEmotesFromJson(
+_$TwitchGlobalEmotesImpl _$$TwitchGlobalEmotesImplFromJson(
         Map<String, dynamic> json) =>
-    _$_TwitchGlobalEmotes(
+    _$TwitchGlobalEmotesImpl(
       id: json['id'] as String,
       name: json['name'] as String,
       images: TwitchCustomRewardImage.fromJson(
@@ -22,8 +22,8 @@ _$_TwitchGlobalEmotes _$$_TwitchGlobalEmotesFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$_TwitchGlobalEmotesToJson(
-        _$_TwitchGlobalEmotes instance) =>
+Map<String, dynamic> _$$TwitchGlobalEmotesImplToJson(
+        _$TwitchGlobalEmotesImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
@@ -45,8 +45,8 @@ const _$TwitchThemeModeEnumMap = {
   TwitchThemeMode.light: 'light',
 };
 
-_$_TwitchEmotes _$$_TwitchEmotesFromJson(Map<String, dynamic> json) =>
-    _$_TwitchEmotes(
+_$TwitchEmotesImpl _$$TwitchEmotesImplFromJson(Map<String, dynamic> json) =>
+    _$TwitchEmotesImpl(
       id: json['id'] as String,
       name: json['name'] as String,
       images: TwitchCustomRewardImage.fromJson(
@@ -63,7 +63,7 @@ _$_TwitchEmotes _$$_TwitchEmotesFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$_TwitchEmotesToJson(_$_TwitchEmotes instance) =>
+Map<String, dynamic> _$$TwitchEmotesImplToJson(_$TwitchEmotesImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
@@ -84,8 +84,9 @@ const _$TwitchEmoteTypeEnumMap = {
   TwitchEmoteType.subscriptions: 'subscriptions',
 };
 
-_$_TwitchEmoteSets _$$_TwitchEmoteSetsFromJson(Map<String, dynamic> json) =>
-    _$_TwitchEmoteSets(
+_$TwitchEmoteSetsImpl _$$TwitchEmoteSetsImplFromJson(
+        Map<String, dynamic> json) =>
+    _$TwitchEmoteSetsImpl(
       id: json['id'] as String,
       name: json['name'] as String,
       images: TwitchCustomRewardImage.fromJson(
@@ -102,7 +103,8 @@ _$_TwitchEmoteSets _$$_TwitchEmoteSetsFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$_TwitchEmoteSetsToJson(_$_TwitchEmoteSets instance) =>
+Map<String, dynamic> _$$TwitchEmoteSetsImplToJson(
+        _$TwitchEmoteSetsImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,

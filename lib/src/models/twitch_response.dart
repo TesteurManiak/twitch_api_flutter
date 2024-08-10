@@ -3,6 +3,7 @@ import 'package:twitch_api/src/models/twitch_channel_editor.dart';
 import 'package:twitch_api/src/models/twitch_emotes.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/models/twitch_start_commercial.dart';
+import 'package:twitch_api/src/models/twitch_token_refresh.dart';
 import 'package:twitch_api/twitch_api.dart';
 
 part 'twitch_response.freezed.dart';
@@ -18,8 +19,7 @@ class StartCommercialResponse with _$StartCommercialResponse {
     required List<TwitchStartCommercial> data,
   }) = _StartCommercialResponse;
 
-  factory StartCommercialResponse.fromJson(Map<String, dynamic> json) =>
-      _$StartCommercialResponseFromJson(json);
+  factory StartCommercialResponse.fromJson(Map<String, dynamic> json) => _$StartCommercialResponseFromJson(json);
 }
 
 /// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-extension-analytics
@@ -36,8 +36,7 @@ class ExtensionAnalyticsResponse with _$ExtensionAnalyticsResponse {
     required Map<String, dynamic>? pagination,
   }) = _ExtensionAnalyticsResponse;
 
-  factory ExtensionAnalyticsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ExtensionAnalyticsResponseFromJson(json);
+  factory ExtensionAnalyticsResponse.fromJson(Map<String, dynamic> json) => _$ExtensionAnalyticsResponseFromJson(json);
 }
 
 /// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-game-analytics
@@ -51,8 +50,7 @@ class GameAnalyticsResponse with _$GameAnalyticsResponse {
     required Map<String, dynamic>? pagination,
   }) = _GameAnalyticsResponse;
 
-  factory GameAnalyticsResponse.fromJson(Map<String, dynamic> json) =>
-      _$GameAnalyticsResponseFromJson(json);
+  factory GameAnalyticsResponse.fromJson(Map<String, dynamic> json) => _$GameAnalyticsResponseFromJson(json);
 }
 
 /// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-bits-leaderboard
@@ -71,8 +69,7 @@ class BitsLeaderboardResponse with _$BitsLeaderboardResponse {
     required int total,
   }) = _BitsLeaderboardResponse;
 
-  factory BitsLeaderboardResponse.fromJson(Map<String, dynamic> json) =>
-      _$BitsLeaderboardResponseFromJson(json);
+  factory BitsLeaderboardResponse.fromJson(Map<String, dynamic> json) => _$BitsLeaderboardResponseFromJson(json);
 }
 
 /// Full specs can be found at: https://dev.twitch.tv/docs/api/reference/#get-users
@@ -83,8 +80,7 @@ class UsersResponse with _$UsersResponse {
     required List<TwitchUser> data,
   }) = _UsersResponse;
 
-  factory UsersResponse.fromJson(Map<String, dynamic> json) =>
-      _$UsersResponseFromJson(json);
+  factory UsersResponse.fromJson(Map<String, dynamic> json) => _$UsersResponseFromJson(json);
 }
 
 /// Specs: https://dev.twitch.tv/docs/api/reference/#get-users-follows
@@ -101,8 +97,7 @@ class UsersFollowsResponse with _$UsersFollowsResponse {
     required int total,
   }) = _UsersFollowsResponse;
 
-  factory UsersFollowsResponse.fromJson(Map<String, dynamic> json) =>
-      _$UsersFollowsResponseFromJson(json);
+  factory UsersFollowsResponse.fromJson(Map<String, dynamic> json) => _$UsersFollowsResponseFromJson(json);
 }
 
 /// Specs: https://dev.twitch.tv/docs/api/reference/#get-top-games
@@ -116,8 +111,7 @@ class TopGamesResponse with _$TopGamesResponse {
     required Map<String, dynamic>? pagination,
   }) = _TopGamesResponse;
 
-  factory TopGamesResponse.fromJson(Map<String, dynamic> json) =>
-      _$TopGamesResponseFromJson(json);
+  factory TopGamesResponse.fromJson(Map<String, dynamic> json) => _$TopGamesResponseFromJson(json);
 }
 
 /// Specs: https://dev.twitch.tv/docs/api/reference/#get-games
@@ -128,8 +122,7 @@ class GamesResponse with _$GamesResponse {
     required List<TwitchGame> data,
   }) = _GamesResponse;
 
-  factory GamesResponse.fromJson(Map<String, dynamic> json) =>
-      _$GamesResponseFromJson(json);
+  factory GamesResponse.fromJson(Map<String, dynamic> json) => _$GamesResponseFromJson(json);
 }
 
 /// Specs: https://dev.twitch.tv/docs/api/reference/#get-channel-information
@@ -140,8 +133,7 @@ class ChannelInformationResponse with _$ChannelInformationResponse {
     required List<TwitchChannelInfo> data,
   }) = _ChannelInformationResponse;
 
-  factory ChannelInformationResponse.fromJson(Map<String, dynamic> json) =>
-      _$ChannelInformationResponseFromJson(json);
+  factory ChannelInformationResponse.fromJson(Map<String, dynamic> json) => _$ChannelInformationResponseFromJson(json);
 }
 
 /// Specs: https://dev.twitch.tv/docs/api/reference/#search-categories
@@ -152,8 +144,7 @@ class SearchCategoriesResponse with _$SearchCategoriesResponse {
     required List<TwitchGame> data,
   }) = _SearchCategoriesResponse;
 
-  factory SearchCategoriesResponse.fromJson(Map<String, dynamic> json) =>
-      _$SearchCategoriesResponseFromJson(json);
+  factory SearchCategoriesResponse.fromJson(Map<String, dynamic> json) => _$SearchCategoriesResponseFromJson(json);
 }
 
 /// Specs: https://dev.twitch.tv/docs/api/reference/#search-channels
@@ -167,8 +158,7 @@ class SearchChannelsResponse with _$SearchChannelsResponse {
     required Map<String, dynamic>? pagination,
   }) = _SearchChannelsResponse;
 
-  factory SearchChannelsResponse.fromJson(Map<String, dynamic> json) =>
-      _$SearchChannelsResponseFromJson(json);
+  factory SearchChannelsResponse.fromJson(Map<String, dynamic> json) => _$SearchChannelsResponseFromJson(json);
 }
 
 /// Specs: https://dev.twitch.tv/docs/api/reference/#get-streams
@@ -182,8 +172,7 @@ class StreamsResponse with _$StreamsResponse {
     required Map<String, dynamic>? pagination,
   }) = _StreamsResponse;
 
-  factory StreamsResponse.fromJson(Map<String, dynamic> json) =>
-      _$StreamsResponseFromJson(json);
+  factory StreamsResponse.fromJson(Map<String, dynamic> json) => _$StreamsResponseFromJson(json);
 }
 
 /// Specs: https://dev.twitch.tv/docs/api/reference/#get-broadcaster-subscriptions
@@ -221,8 +210,7 @@ class CheermotesResponse with _$CheermotesResponse {
     required List<TwitchCheermote> data,
   }) = _CheermotesResponse;
 
-  factory CheermotesResponse.fromJson(Map<String, dynamic> json) =>
-      _$CheermotesResponseFromJson(json);
+  factory CheermotesResponse.fromJson(Map<String, dynamic> json) => _$CheermotesResponseFromJson(json);
 }
 
 /// Specs: https://dev.twitch.tv/docs/api/reference/#get-extension-transactions
@@ -236,8 +224,7 @@ class ExtensionTransactionsResponse with _$ExtensionTransactionsResponse {
     required Map<String, dynamic>? pagination,
   }) = _ExtensionTransactionsResponse;
 
-  factory ExtensionTransactionsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ExtensionTransactionsResponseFromJson(json);
+  factory ExtensionTransactionsResponse.fromJson(Map<String, dynamic> json) => _$ExtensionTransactionsResponseFromJson(json);
 }
 
 @Freezed(toJson: false, fromJson: true)
@@ -256,8 +243,7 @@ class ChannelEmotesResponse with _$ChannelEmotesResponse {
     required String template,
   }) = _ChannelEmotesResponse;
 
-  factory ChannelEmotesResponse.fromJson(Map<String, dynamic> json) =>
-      _$ChannelEmotesResponseFromJson(json);
+  factory ChannelEmotesResponse.fromJson(Map<String, dynamic> json) => _$ChannelEmotesResponseFromJson(json);
 }
 
 @Freezed(toJson: false, fromJson: true)
@@ -270,8 +256,7 @@ class ChannelGlobalEmotesResponse with _$ChannelGlobalEmotesResponse {
     required String template,
   }) = _ChannelGlobalEmotesResponse;
 
-  factory ChannelGlobalEmotesResponse.fromJson(Map<String, dynamic> json) =>
-      _$ChannelGlobalEmotesResponseFromJson(json);
+  factory ChannelGlobalEmotesResponse.fromJson(Map<String, dynamic> json) => _$ChannelGlobalEmotesResponseFromJson(json);
 }
 
 @Freezed(toJson: false, fromJson: true)
@@ -284,8 +269,7 @@ class EmoteSetsResponse with _$EmoteSetsResponse {
     required String template,
   }) = _EmoteSetsResponse;
 
-  factory EmoteSetsResponse.fromJson(Map<String, dynamic> json) =>
-      _$EmoteSetsResponseFromJson(json);
+  factory EmoteSetsResponse.fromJson(Map<String, dynamic> json) => _$EmoteSetsResponseFromJson(json);
 }
 
 /// Specs: https://dev.twitch.tv/docs/api/reference/#get-channel-editors
@@ -296,8 +280,7 @@ class ChannelEditorsResponse with _$ChannelEditorsResponse {
     required List<TwitchChannelEditor> data,
   }) = _ChannelEditorsResponse;
 
-  factory ChannelEditorsResponse.fromJson(Map<String, dynamic> json) =>
-      _$ChannelEditorsResponseFromJson(json);
+  factory ChannelEditorsResponse.fromJson(Map<String, dynamic> json) => _$ChannelEditorsResponseFromJson(json);
 }
 
 /// Specs: https://dev.twitch.tv/docs/api/reference/#get-custom-reward
@@ -308,8 +291,7 @@ class CustomRewardResponse with _$CustomRewardResponse {
     required List<TwitchCustomReward> data,
   }) = _CustomRewardResponse;
 
-  factory CustomRewardResponse.fromJson(Map<String, dynamic> json) =>
-      _$CustomRewardResponseFromJson(json);
+  factory CustomRewardResponse.fromJson(Map<String, dynamic> json) => _$CustomRewardResponseFromJson(json);
 }
 
 @Freezed(toJson: false, fromJson: true)
@@ -322,6 +304,18 @@ class CustomRewardRedemptionResponse with _$CustomRewardRedemptionResponse {
     required Map<String, dynamic>? pagination,
   }) = _CustomRewardRedemptionResponse;
 
-  factory CustomRewardRedemptionResponse.fromJson(Map<String, dynamic> json) =>
-      _$CustomRewardRedemptionResponseFromJson(json);
+  factory CustomRewardRedemptionResponse.fromJson(Map<String, dynamic> json) => _$CustomRewardRedemptionResponseFromJson(json);
+}
+
+@Freezed(toJson: false, fromJson: true)
+class TwitchTokenRefreshResponse with _$TwitchTokenRefreshResponse {
+  const factory TwitchTokenRefreshResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchTokenRefresh> data,
+
+    /// {@macro twitchResponse.pagination}
+    required Map<String, dynamic>? pagination,
+  }) = _TwitchTokenRefreshResponse;
+
+  factory TwitchTokenRefreshResponse.fromJson(Map<String, dynamic> json) => _$TwitchTokenRefreshResponseFromJson(json);
 }

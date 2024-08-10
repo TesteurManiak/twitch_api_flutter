@@ -12,7 +12,7 @@ part of 'twitch_user_follow.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TwitchUserFollow _$TwitchUserFollowFromJson(Map<String, dynamic> json) {
   return _TwitchUserFollow.fromJson(json);
@@ -125,11 +125,11 @@ class _$TwitchUserFollowCopyWithImpl<$Res, $Val extends TwitchUserFollow>
 }
 
 /// @nodoc
-abstract class _$$_TwitchUserFollowCopyWith<$Res>
+abstract class _$$TwitchUserFollowImplCopyWith<$Res>
     implements $TwitchUserFollowCopyWith<$Res> {
-  factory _$$_TwitchUserFollowCopyWith(
-          _$_TwitchUserFollow value, $Res Function(_$_TwitchUserFollow) then) =
-      __$$_TwitchUserFollowCopyWithImpl<$Res>;
+  factory _$$TwitchUserFollowImplCopyWith(_$TwitchUserFollowImpl value,
+          $Res Function(_$TwitchUserFollowImpl) then) =
+      __$$TwitchUserFollowImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -143,11 +143,11 @@ abstract class _$$_TwitchUserFollowCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchUserFollowCopyWithImpl<$Res>
-    extends _$TwitchUserFollowCopyWithImpl<$Res, _$_TwitchUserFollow>
-    implements _$$_TwitchUserFollowCopyWith<$Res> {
-  __$$_TwitchUserFollowCopyWithImpl(
-      _$_TwitchUserFollow _value, $Res Function(_$_TwitchUserFollow) _then)
+class __$$TwitchUserFollowImplCopyWithImpl<$Res>
+    extends _$TwitchUserFollowCopyWithImpl<$Res, _$TwitchUserFollowImpl>
+    implements _$$TwitchUserFollowImplCopyWith<$Res> {
+  __$$TwitchUserFollowImplCopyWithImpl(_$TwitchUserFollowImpl _value,
+      $Res Function(_$TwitchUserFollowImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -161,7 +161,7 @@ class __$$_TwitchUserFollowCopyWithImpl<$Res>
     Object? toLogin = freezed,
     Object? toName = null,
   }) {
-    return _then(_$_TwitchUserFollow(
+    return _then(_$TwitchUserFollowImpl(
       followedAt: null == followedAt
           ? _value.followedAt
           : followedAt // ignore: cast_nullable_to_non_nullable
@@ -196,8 +196,8 @@ class __$$_TwitchUserFollowCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchUserFollow implements _TwitchUserFollow {
-  const _$_TwitchUserFollow(
+class _$TwitchUserFollowImpl implements _TwitchUserFollow {
+  const _$TwitchUserFollowImpl(
       {@JsonKey(name: 'followed_at') required this.followedAt,
       @JsonKey(name: 'from_id') required this.fromId,
       @JsonKey(name: 'from_login') required this.fromLogin,
@@ -206,8 +206,8 @@ class _$_TwitchUserFollow implements _TwitchUserFollow {
       @JsonKey(name: 'to_login') required this.toLogin,
       @JsonKey(name: 'to_name') required this.toName});
 
-  factory _$_TwitchUserFollow.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchUserFollowFromJson(json);
+  factory _$TwitchUserFollowImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchUserFollowImplFromJson(json);
 
   /// Date and time when the [fromId] user followed the [toId] user.
   @override
@@ -250,10 +250,10 @@ class _$_TwitchUserFollow implements _TwitchUserFollow {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchUserFollow &&
+            other is _$TwitchUserFollowImpl &&
             (identical(other.followedAt, followedAt) ||
                 other.followedAt == followedAt) &&
             (identical(other.fromId, fromId) || other.fromId == fromId) &&
@@ -274,12 +274,13 @@ class _$_TwitchUserFollow implements _TwitchUserFollow {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchUserFollowCopyWith<_$_TwitchUserFollow> get copyWith =>
-      __$$_TwitchUserFollowCopyWithImpl<_$_TwitchUserFollow>(this, _$identity);
+  _$$TwitchUserFollowImplCopyWith<_$TwitchUserFollowImpl> get copyWith =>
+      __$$TwitchUserFollowImplCopyWithImpl<_$TwitchUserFollowImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchUserFollowToJson(
+    return _$$TwitchUserFollowImplToJson(
       this,
     );
   }
@@ -294,10 +295,10 @@ abstract class _TwitchUserFollow implements TwitchUserFollow {
           @JsonKey(name: 'to_id') required final String toId,
           @JsonKey(name: 'to_login') required final String? toLogin,
           @JsonKey(name: 'to_name') required final String toName}) =
-      _$_TwitchUserFollow;
+      _$TwitchUserFollowImpl;
 
   factory _TwitchUserFollow.fromJson(Map<String, dynamic> json) =
-      _$_TwitchUserFollow.fromJson;
+      _$TwitchUserFollowImpl.fromJson;
 
   @override
 
@@ -336,6 +337,6 @@ abstract class _TwitchUserFollow implements TwitchUserFollow {
   String get toName;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchUserFollowCopyWith<_$_TwitchUserFollow> get copyWith =>
+  _$$TwitchUserFollowImplCopyWith<_$TwitchUserFollowImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

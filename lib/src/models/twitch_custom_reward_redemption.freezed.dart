@@ -12,7 +12,7 @@ part of 'twitch_custom_reward_redemption.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TwitchRedemptionRewardInfo _$TwitchRedemptionRewardInfoFromJson(
     Map<String, dynamic> json) {
@@ -83,25 +83,25 @@ class _$TwitchRedemptionRewardInfoCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TwitchRedemptionRewardInfoCopyWith<$Res>
+abstract class _$$TwitchRedemptionRewardInfoImplCopyWith<$Res>
     implements $TwitchRedemptionRewardInfoCopyWith<$Res> {
-  factory _$$_TwitchRedemptionRewardInfoCopyWith(
-          _$_TwitchRedemptionRewardInfo value,
-          $Res Function(_$_TwitchRedemptionRewardInfo) then) =
-      __$$_TwitchRedemptionRewardInfoCopyWithImpl<$Res>;
+  factory _$$TwitchRedemptionRewardInfoImplCopyWith(
+          _$TwitchRedemptionRewardInfoImpl value,
+          $Res Function(_$TwitchRedemptionRewardInfoImpl) then) =
+      __$$TwitchRedemptionRewardInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, String title, String prompt, int cost});
 }
 
 /// @nodoc
-class __$$_TwitchRedemptionRewardInfoCopyWithImpl<$Res>
+class __$$TwitchRedemptionRewardInfoImplCopyWithImpl<$Res>
     extends _$TwitchRedemptionRewardInfoCopyWithImpl<$Res,
-        _$_TwitchRedemptionRewardInfo>
-    implements _$$_TwitchRedemptionRewardInfoCopyWith<$Res> {
-  __$$_TwitchRedemptionRewardInfoCopyWithImpl(
-      _$_TwitchRedemptionRewardInfo _value,
-      $Res Function(_$_TwitchRedemptionRewardInfo) _then)
+        _$TwitchRedemptionRewardInfoImpl>
+    implements _$$TwitchRedemptionRewardInfoImplCopyWith<$Res> {
+  __$$TwitchRedemptionRewardInfoImplCopyWithImpl(
+      _$TwitchRedemptionRewardInfoImpl _value,
+      $Res Function(_$TwitchRedemptionRewardInfoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -112,7 +112,7 @@ class __$$_TwitchRedemptionRewardInfoCopyWithImpl<$Res>
     Object? prompt = null,
     Object? cost = null,
   }) {
-    return _then(_$_TwitchRedemptionRewardInfo(
+    return _then(_$TwitchRedemptionRewardInfoImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -135,15 +135,16 @@ class __$$_TwitchRedemptionRewardInfoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchRedemptionRewardInfo implements _TwitchRedemptionRewardInfo {
-  const _$_TwitchRedemptionRewardInfo(
+class _$TwitchRedemptionRewardInfoImpl implements _TwitchRedemptionRewardInfo {
+  const _$TwitchRedemptionRewardInfoImpl(
       {required this.id,
       required this.title,
       required this.prompt,
       required this.cost});
 
-  factory _$_TwitchRedemptionRewardInfo.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchRedemptionRewardInfoFromJson(json);
+  factory _$TwitchRedemptionRewardInfoImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$TwitchRedemptionRewardInfoImplFromJson(json);
 
   @override
   final String id;
@@ -160,10 +161,10 @@ class _$_TwitchRedemptionRewardInfo implements _TwitchRedemptionRewardInfo {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchRedemptionRewardInfo &&
+            other is _$TwitchRedemptionRewardInfoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.prompt, prompt) || other.prompt == prompt) &&
@@ -177,13 +178,13 @@ class _$_TwitchRedemptionRewardInfo implements _TwitchRedemptionRewardInfo {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchRedemptionRewardInfoCopyWith<_$_TwitchRedemptionRewardInfo>
-      get copyWith => __$$_TwitchRedemptionRewardInfoCopyWithImpl<
-          _$_TwitchRedemptionRewardInfo>(this, _$identity);
+  _$$TwitchRedemptionRewardInfoImplCopyWith<_$TwitchRedemptionRewardInfoImpl>
+      get copyWith => __$$TwitchRedemptionRewardInfoImplCopyWithImpl<
+          _$TwitchRedemptionRewardInfoImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchRedemptionRewardInfoToJson(
+    return _$$TwitchRedemptionRewardInfoImplToJson(
       this,
     );
   }
@@ -195,10 +196,10 @@ abstract class _TwitchRedemptionRewardInfo
       {required final String id,
       required final String title,
       required final String prompt,
-      required final int cost}) = _$_TwitchRedemptionRewardInfo;
+      required final int cost}) = _$TwitchRedemptionRewardInfoImpl;
 
   factory _TwitchRedemptionRewardInfo.fromJson(Map<String, dynamic> json) =
-      _$_TwitchRedemptionRewardInfo.fromJson;
+      _$TwitchRedemptionRewardInfoImpl.fromJson;
 
   @override
   String get id;
@@ -210,7 +211,7 @@ abstract class _TwitchRedemptionRewardInfo
   int get cost;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchRedemptionRewardInfoCopyWith<_$_TwitchRedemptionRewardInfo>
+  _$$TwitchRedemptionRewardInfoImplCopyWith<_$TwitchRedemptionRewardInfoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -377,12 +378,12 @@ class _$TwitchCustomRewardRedemptionCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TwitchCustomRewardRedemptionCopyWith<$Res>
+abstract class _$$TwitchCustomRewardRedemptionImplCopyWith<$Res>
     implements $TwitchCustomRewardRedemptionCopyWith<$Res> {
-  factory _$$_TwitchCustomRewardRedemptionCopyWith(
-          _$_TwitchCustomRewardRedemption value,
-          $Res Function(_$_TwitchCustomRewardRedemption) then) =
-      __$$_TwitchCustomRewardRedemptionCopyWithImpl<$Res>;
+  factory _$$TwitchCustomRewardRedemptionImplCopyWith(
+          _$TwitchCustomRewardRedemptionImpl value,
+          $Res Function(_$TwitchCustomRewardRedemptionImpl) then) =
+      __$$TwitchCustomRewardRedemptionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -403,13 +404,13 @@ abstract class _$$_TwitchCustomRewardRedemptionCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchCustomRewardRedemptionCopyWithImpl<$Res>
+class __$$TwitchCustomRewardRedemptionImplCopyWithImpl<$Res>
     extends _$TwitchCustomRewardRedemptionCopyWithImpl<$Res,
-        _$_TwitchCustomRewardRedemption>
-    implements _$$_TwitchCustomRewardRedemptionCopyWith<$Res> {
-  __$$_TwitchCustomRewardRedemptionCopyWithImpl(
-      _$_TwitchCustomRewardRedemption _value,
-      $Res Function(_$_TwitchCustomRewardRedemption) _then)
+        _$TwitchCustomRewardRedemptionImpl>
+    implements _$$TwitchCustomRewardRedemptionImplCopyWith<$Res> {
+  __$$TwitchCustomRewardRedemptionImplCopyWithImpl(
+      _$TwitchCustomRewardRedemptionImpl _value,
+      $Res Function(_$TwitchCustomRewardRedemptionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -427,7 +428,7 @@ class __$$_TwitchCustomRewardRedemptionCopyWithImpl<$Res>
     Object? status = null,
     Object? redeemedAt = null,
   }) {
-    return _then(_$_TwitchCustomRewardRedemption(
+    return _then(_$TwitchCustomRewardRedemptionImpl(
       broadcasterId: null == broadcasterId
           ? _value.broadcasterId
           : broadcasterId // ignore: cast_nullable_to_non_nullable
@@ -478,8 +479,9 @@ class __$$_TwitchCustomRewardRedemptionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchCustomRewardRedemption implements _TwitchCustomRewardRedemption {
-  const _$_TwitchCustomRewardRedemption(
+class _$TwitchCustomRewardRedemptionImpl
+    implements _TwitchCustomRewardRedemption {
+  const _$TwitchCustomRewardRedemptionImpl(
       {@JsonKey(name: 'broadcaster_id') required this.broadcasterId,
       @JsonKey(name: 'broadcaster_login') required this.broadcasterLogin,
       @JsonKey(name: 'broadcaster_name') required this.broadcasterName,
@@ -492,8 +494,9 @@ class _$_TwitchCustomRewardRedemption implements _TwitchCustomRewardRedemption {
       required this.status,
       @JsonKey(name: 'redeemed_at') required this.redeemedAt});
 
-  factory _$_TwitchCustomRewardRedemption.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchCustomRewardRedemptionFromJson(json);
+  factory _$TwitchCustomRewardRedemptionImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$TwitchCustomRewardRedemptionImplFromJson(json);
 
   /// The id of the broadcaster that the reward belongs to.
   @override
@@ -554,10 +557,10 @@ class _$_TwitchCustomRewardRedemption implements _TwitchCustomRewardRedemption {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchCustomRewardRedemption &&
+            other is _$TwitchCustomRewardRedemptionImpl &&
             (identical(other.broadcasterId, broadcasterId) ||
                 other.broadcasterId == broadcasterId) &&
             (identical(other.broadcasterLogin, broadcasterLogin) ||
@@ -597,13 +600,14 @@ class _$_TwitchCustomRewardRedemption implements _TwitchCustomRewardRedemption {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchCustomRewardRedemptionCopyWith<_$_TwitchCustomRewardRedemption>
-      get copyWith => __$$_TwitchCustomRewardRedemptionCopyWithImpl<
-          _$_TwitchCustomRewardRedemption>(this, _$identity);
+  _$$TwitchCustomRewardRedemptionImplCopyWith<
+          _$TwitchCustomRewardRedemptionImpl>
+      get copyWith => __$$TwitchCustomRewardRedemptionImplCopyWithImpl<
+          _$TwitchCustomRewardRedemptionImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchCustomRewardRedemptionToJson(
+    return _$$TwitchCustomRewardRedemptionImplToJson(
       this,
     );
   }
@@ -612,29 +616,22 @@ class _$_TwitchCustomRewardRedemption implements _TwitchCustomRewardRedemption {
 abstract class _TwitchCustomRewardRedemption
     implements TwitchCustomRewardRedemption {
   const factory _TwitchCustomRewardRedemption(
-          {@JsonKey(name: 'broadcaster_id')
-              required final String broadcasterId,
-          @JsonKey(name: 'broadcaster_login')
-              required final String broadcasterLogin,
-          @JsonKey(name: 'broadcaster_name')
-              required final String broadcasterName,
-          required final String id,
-          @JsonKey(name: 'user_login')
-              required final String? userLogin,
-          @JsonKey(name: 'user_id')
-              required final String userId,
-          @JsonKey(name: 'user_name')
-              required final String userName,
-          required final TwitchRedemptionRewardInfo reward,
-          @JsonKey(name: 'user_input')
-              required final String userInput,
-          required final TwitchRewardRedemptionStatus status,
-          @JsonKey(name: 'redeemed_at')
-              required final DateTime redeemedAt}) =
-      _$_TwitchCustomRewardRedemption;
+      {@JsonKey(name: 'broadcaster_id') required final String broadcasterId,
+      @JsonKey(name: 'broadcaster_login')
+      required final String broadcasterLogin,
+      @JsonKey(name: 'broadcaster_name') required final String broadcasterName,
+      required final String id,
+      @JsonKey(name: 'user_login') required final String? userLogin,
+      @JsonKey(name: 'user_id') required final String userId,
+      @JsonKey(name: 'user_name') required final String userName,
+      required final TwitchRedemptionRewardInfo reward,
+      @JsonKey(name: 'user_input') required final String userInput,
+      required final TwitchRewardRedemptionStatus status,
+      @JsonKey(name: 'redeemed_at')
+      required final DateTime redeemedAt}) = _$TwitchCustomRewardRedemptionImpl;
 
   factory _TwitchCustomRewardRedemption.fromJson(Map<String, dynamic> json) =
-      _$_TwitchCustomRewardRedemption.fromJson;
+      _$TwitchCustomRewardRedemptionImpl.fromJson;
 
   @override
 
@@ -691,6 +688,7 @@ abstract class _TwitchCustomRewardRedemption
   DateTime get redeemedAt;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchCustomRewardRedemptionCopyWith<_$_TwitchCustomRewardRedemption>
+  _$$TwitchCustomRewardRedemptionImplCopyWith<
+          _$TwitchCustomRewardRedemptionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
