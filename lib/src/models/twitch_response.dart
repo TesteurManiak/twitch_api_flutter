@@ -3,7 +3,6 @@ import 'package:twitch_api/src/models/twitch_channel_editor.dart';
 import 'package:twitch_api/src/models/twitch_emotes.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/models/twitch_start_commercial.dart';
-import 'package:twitch_api/src/models/twitch_token_refresh.dart';
 import 'package:twitch_api/twitch_api.dart';
 
 part 'twitch_response.freezed.dart';
@@ -307,7 +306,7 @@ class CustomRewardRedemptionResponse with _$CustomRewardRedemptionResponse {
   factory CustomRewardRedemptionResponse.fromJson(Map<String, dynamic> json) => _$CustomRewardRedemptionResponseFromJson(json);
 }
 
-@Freezed(toJson: false, fromJson: true)
+@Freezed(toJson: false)
 class TwitchTokenRefreshResponse with _$TwitchTokenRefreshResponse {
   const factory TwitchTokenRefreshResponse({
     /// {@macro twitchResponse.data}

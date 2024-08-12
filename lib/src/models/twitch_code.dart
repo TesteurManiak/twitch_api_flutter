@@ -22,19 +22,13 @@ class TwitchCode with _$TwitchCode {
   }
 
   factory TwitchCode.fromUrl(String url) {
-    final content = url.split('/?').last;
-    final datas = content.split('&');
+    final uri = Uri.parse(url);
     return TwitchCode(
-      code: datas.firstWhere((e) => e.startsWith(_codeKey)).substring(_codeKey.length),
-      state: datas.firstWhere((e) => e.startsWith(_stateKey)).substring(_stateKey.length),
-      scope: datas.firstWhere((e) => e.startsWith(_scopeKey)).substring(_scopeKey.length),
+      code: uri.queryParameters[codeEntry]!,
+      state: uri.queryParameters[stateEntry]!,
+      scope: uri.queryParameters[scopeEntry]!,
     );
   }
-
-  const TwitchCode._();
-  static const _codeKey = 'code=';
-  static const _stateKey = 'state=';
-  static const _scopeKey = 'scope=';
 
   static const codeEntry = 'code';
   static const stateEntry = 'state';

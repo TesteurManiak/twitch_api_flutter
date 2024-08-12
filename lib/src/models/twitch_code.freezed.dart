@@ -124,14 +124,13 @@ class __$$TwitchCodeImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TwitchCodeImpl extends _TwitchCode {
+class _$TwitchCodeImpl implements _TwitchCode {
   const _$TwitchCodeImpl(
       {required this.code,
       required this.state,
       required this.scope,
       final List<String>? scopes})
-      : _scopes = scopes,
-        super._();
+      : _scopes = scopes;
 
   @override
   final String code;
@@ -176,13 +175,12 @@ class _$TwitchCodeImpl extends _TwitchCode {
       __$$TwitchCodeImplCopyWithImpl<_$TwitchCodeImpl>(this, _$identity);
 }
 
-abstract class _TwitchCode extends TwitchCode {
+abstract class _TwitchCode implements TwitchCode {
   const factory _TwitchCode(
       {required final String code,
       required final String state,
       required final String scope,
       final List<String>? scopes}) = _$TwitchCodeImpl;
-  const _TwitchCode._() : super._();
 
   @override
   String get code;
