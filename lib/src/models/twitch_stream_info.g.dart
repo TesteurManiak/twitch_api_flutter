@@ -6,8 +6,9 @@ part of 'twitch_stream_info.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TwitchStreamInfo _$$_TwitchStreamInfoFromJson(Map<String, dynamic> json) =>
-    _$_TwitchStreamInfo(
+_$TwitchStreamInfoImpl _$$TwitchStreamInfoImplFromJson(
+        Map<String, dynamic> json) =>
+    _$TwitchStreamInfoImpl(
       id: json['id'] as String,
       userId: json['user_id'] as String,
       userLogin: json['user_login'] as String,
@@ -16,7 +17,7 @@ _$_TwitchStreamInfo _$$_TwitchStreamInfoFromJson(Map<String, dynamic> json) =>
       gameName: json['game_name'] as String,
       type: $enumDecode(_$TwitchStreamTypeEnumMap, json['type']),
       title: json['title'] as String,
-      viewerCount: json['viewer_count'] as int,
+      viewerCount: (json['viewer_count'] as num).toInt(),
       startedAt: DateTime.parse(json['started_at'] as String),
       language: json['language'] as String,
       thumbnailUrl: json['thumbnail_url'] as String,
@@ -25,7 +26,8 @@ _$_TwitchStreamInfo _$$_TwitchStreamInfoFromJson(Map<String, dynamic> json) =>
       isMature: json['is_mature'] as bool,
     );
 
-Map<String, dynamic> _$$_TwitchStreamInfoToJson(_$_TwitchStreamInfo instance) =>
+Map<String, dynamic> _$$TwitchStreamInfoImplToJson(
+        _$TwitchStreamInfoImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'user_id': instance.userId,

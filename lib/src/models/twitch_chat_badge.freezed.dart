@@ -12,7 +12,7 @@ part of 'twitch_chat_badge.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TwitchChatBadge _$TwitchChatBadgeFromJson(Map<String, dynamic> json) {
   return _TwitchChatBadge.fromJson(json);
@@ -71,11 +71,11 @@ class _$TwitchChatBadgeCopyWithImpl<$Res, $Val extends TwitchChatBadge>
 }
 
 /// @nodoc
-abstract class _$$_TwitchChatBadgeCopyWith<$Res>
+abstract class _$$TwitchChatBadgeImplCopyWith<$Res>
     implements $TwitchChatBadgeCopyWith<$Res> {
-  factory _$$_TwitchChatBadgeCopyWith(
-          _$_TwitchChatBadge value, $Res Function(_$_TwitchChatBadge) then) =
-      __$$_TwitchChatBadgeCopyWithImpl<$Res>;
+  factory _$$TwitchChatBadgeImplCopyWith(_$TwitchChatBadgeImpl value,
+          $Res Function(_$TwitchChatBadgeImpl) then) =
+      __$$TwitchChatBadgeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -83,11 +83,11 @@ abstract class _$$_TwitchChatBadgeCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchChatBadgeCopyWithImpl<$Res>
-    extends _$TwitchChatBadgeCopyWithImpl<$Res, _$_TwitchChatBadge>
-    implements _$$_TwitchChatBadgeCopyWith<$Res> {
-  __$$_TwitchChatBadgeCopyWithImpl(
-      _$_TwitchChatBadge _value, $Res Function(_$_TwitchChatBadge) _then)
+class __$$TwitchChatBadgeImplCopyWithImpl<$Res>
+    extends _$TwitchChatBadgeCopyWithImpl<$Res, _$TwitchChatBadgeImpl>
+    implements _$$TwitchChatBadgeImplCopyWith<$Res> {
+  __$$TwitchChatBadgeImplCopyWithImpl(
+      _$TwitchChatBadgeImpl _value, $Res Function(_$TwitchChatBadgeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -96,7 +96,7 @@ class __$$_TwitchChatBadgeCopyWithImpl<$Res>
     Object? setId = null,
     Object? versions = null,
   }) {
-    return _then(_$_TwitchChatBadge(
+    return _then(_$TwitchChatBadgeImpl(
       setId: null == setId
           ? _value.setId
           : setId // ignore: cast_nullable_to_non_nullable
@@ -111,14 +111,14 @@ class __$$_TwitchChatBadgeCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchChatBadge implements _TwitchChatBadge {
-  const _$_TwitchChatBadge(
+class _$TwitchChatBadgeImpl implements _TwitchChatBadge {
+  const _$TwitchChatBadgeImpl(
       {@JsonKey(name: 'set_id') required this.setId,
       required final List<BadgeVersion> versions})
       : _versions = versions;
 
-  factory _$_TwitchChatBadge.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchChatBadgeFromJson(json);
+  factory _$TwitchChatBadgeImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchChatBadgeImplFromJson(json);
 
   /// ID for the chat badge set.
   @override
@@ -138,10 +138,10 @@ class _$_TwitchChatBadge implements _TwitchChatBadge {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchChatBadge &&
+            other is _$TwitchChatBadgeImpl &&
             (identical(other.setId, setId) || other.setId == setId) &&
             const DeepCollectionEquality().equals(other._versions, _versions));
   }
@@ -154,12 +154,13 @@ class _$_TwitchChatBadge implements _TwitchChatBadge {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchChatBadgeCopyWith<_$_TwitchChatBadge> get copyWith =>
-      __$$_TwitchChatBadgeCopyWithImpl<_$_TwitchChatBadge>(this, _$identity);
+  _$$TwitchChatBadgeImplCopyWith<_$TwitchChatBadgeImpl> get copyWith =>
+      __$$TwitchChatBadgeImplCopyWithImpl<_$TwitchChatBadgeImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchChatBadgeToJson(
+    return _$$TwitchChatBadgeImplToJson(
       this,
     );
   }
@@ -168,10 +169,10 @@ class _$_TwitchChatBadge implements _TwitchChatBadge {
 abstract class _TwitchChatBadge implements TwitchChatBadge {
   const factory _TwitchChatBadge(
       {@JsonKey(name: 'set_id') required final String setId,
-      required final List<BadgeVersion> versions}) = _$_TwitchChatBadge;
+      required final List<BadgeVersion> versions}) = _$TwitchChatBadgeImpl;
 
   factory _TwitchChatBadge.fromJson(Map<String, dynamic> json) =
-      _$_TwitchChatBadge.fromJson;
+      _$TwitchChatBadgeImpl.fromJson;
 
   @override
 
@@ -182,7 +183,7 @@ abstract class _TwitchChatBadge implements TwitchChatBadge {
   List<BadgeVersion> get versions;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchChatBadgeCopyWith<_$_TwitchChatBadge> get copyWith =>
+  _$$TwitchChatBadgeImplCopyWith<_$TwitchChatBadgeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -266,11 +267,11 @@ class _$BadgeVersionCopyWithImpl<$Res, $Val extends BadgeVersion>
 }
 
 /// @nodoc
-abstract class _$$_BadgeVersionCopyWith<$Res>
+abstract class _$$BadgeVersionImplCopyWith<$Res>
     implements $BadgeVersionCopyWith<$Res> {
-  factory _$$_BadgeVersionCopyWith(
-          _$_BadgeVersion value, $Res Function(_$_BadgeVersion) then) =
-      __$$_BadgeVersionCopyWithImpl<$Res>;
+  factory _$$BadgeVersionImplCopyWith(
+          _$BadgeVersionImpl value, $Res Function(_$BadgeVersionImpl) then) =
+      __$$BadgeVersionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -281,11 +282,11 @@ abstract class _$$_BadgeVersionCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_BadgeVersionCopyWithImpl<$Res>
-    extends _$BadgeVersionCopyWithImpl<$Res, _$_BadgeVersion>
-    implements _$$_BadgeVersionCopyWith<$Res> {
-  __$$_BadgeVersionCopyWithImpl(
-      _$_BadgeVersion _value, $Res Function(_$_BadgeVersion) _then)
+class __$$BadgeVersionImplCopyWithImpl<$Res>
+    extends _$BadgeVersionCopyWithImpl<$Res, _$BadgeVersionImpl>
+    implements _$$BadgeVersionImplCopyWith<$Res> {
+  __$$BadgeVersionImplCopyWithImpl(
+      _$BadgeVersionImpl _value, $Res Function(_$BadgeVersionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -296,7 +297,7 @@ class __$$_BadgeVersionCopyWithImpl<$Res>
     Object? mediumImageUrl = null,
     Object? largeImageUrl = null,
   }) {
-    return _then(_$_BadgeVersion(
+    return _then(_$BadgeVersionImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -319,15 +320,15 @@ class __$$_BadgeVersionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_BadgeVersion implements _BadgeVersion {
-  const _$_BadgeVersion(
+class _$BadgeVersionImpl implements _BadgeVersion {
+  const _$BadgeVersionImpl(
       {required this.id,
       @JsonKey(name: 'image_url_1x') required this.smallImageUrl,
       @JsonKey(name: 'image_url_2x') required this.mediumImageUrl,
       @JsonKey(name: 'image_url_4x') required this.largeImageUrl});
 
-  factory _$_BadgeVersion.fromJson(Map<String, dynamic> json) =>
-      _$$_BadgeVersionFromJson(json);
+  factory _$BadgeVersionImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BadgeVersionImplFromJson(json);
 
   /// ID of the chat badge version.
   @override
@@ -354,10 +355,10 @@ class _$_BadgeVersion implements _BadgeVersion {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BadgeVersion &&
+            other is _$BadgeVersionImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.smallImageUrl, smallImageUrl) ||
                 other.smallImageUrl == smallImageUrl) &&
@@ -375,12 +376,12 @@ class _$_BadgeVersion implements _BadgeVersion {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BadgeVersionCopyWith<_$_BadgeVersion> get copyWith =>
-      __$$_BadgeVersionCopyWithImpl<_$_BadgeVersion>(this, _$identity);
+  _$$BadgeVersionImplCopyWith<_$BadgeVersionImpl> get copyWith =>
+      __$$BadgeVersionImplCopyWithImpl<_$BadgeVersionImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BadgeVersionToJson(
+    return _$$BadgeVersionImplToJson(
       this,
     );
   }
@@ -392,10 +393,10 @@ abstract class _BadgeVersion implements BadgeVersion {
           @JsonKey(name: 'image_url_1x') required final String smallImageUrl,
           @JsonKey(name: 'image_url_2x') required final String mediumImageUrl,
           @JsonKey(name: 'image_url_4x') required final String largeImageUrl}) =
-      _$_BadgeVersion;
+      _$BadgeVersionImpl;
 
   factory _BadgeVersion.fromJson(Map<String, dynamic> json) =
-      _$_BadgeVersion.fromJson;
+      _$BadgeVersionImpl.fromJson;
 
   @override
 
@@ -418,6 +419,6 @@ abstract class _BadgeVersion implements BadgeVersion {
   String get largeImageUrl;
   @override
   @JsonKey(ignore: true)
-  _$$_BadgeVersionCopyWith<_$_BadgeVersion> get copyWith =>
+  _$$BadgeVersionImplCopyWith<_$BadgeVersionImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

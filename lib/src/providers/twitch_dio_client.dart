@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-
 import 'package:twitch_api/src/client.dart';
 import 'package:twitch_api/src/errors/exceptions.dart';
+import 'package:twitch_api/src/models/twitch_code.dart';
 import 'package:twitch_api/src/models/twitch_token.dart';
 import 'package:twitch_api/src/providers/twitch_http_client.dart';
 
@@ -14,9 +14,13 @@ class TwitchDioClient extends TwitchHttpClient {
   final String clientId;
 
   TwitchToken? _twitchToken;
+  TwitchCode? _twitchCode;
 
   @override
   TwitchToken? get twitchToken => _twitchToken;
+
+  @override
+  TwitchCode? get twitchCode => _twitchCode;
 
   @override
   Future<T> getCall<T>(
@@ -128,6 +132,9 @@ class TwitchDioClient extends TwitchHttpClient {
   void initializeToken(TwitchToken twitchToken) => _twitchToken = twitchToken;
 
   @override
+  void initializeCode(TwitchCode twitchCode) => _twitchCode = twitchCode;
+
+  @override
   Future<T?> deleteCall<T>(
     Iterable<String> pathSegments, {
     Map<String, dynamic> queryParameters = const {},
@@ -150,5 +157,22 @@ class TwitchDioClient extends TwitchHttpClient {
       return response.data;
     }
     return null;
+  }
+
+  @override
+  Future<T> postCallRefreshToken<T>(Iterable<String> pathSegments, Object data, {Map<String, dynamic> queryParameters = const {}}) async {
+    final options = Options(headers: {
+      'Content-Type': 'application/json',
+    });
+
+    final response = await dio.postUri<T>(
+      TwitchClient.oauth2Url.replace(
+        pathSegments: pathSegments,
+        queryParameters: queryParameters,
+      ),
+      options: options,
+      data: data,
+    );
+    return response.data!;
   }
 }

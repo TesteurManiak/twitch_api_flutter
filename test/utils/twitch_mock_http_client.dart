@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:twitch_api/src/models/twitch_code.dart';
 import 'package:twitch_api/src/models/twitch_token.dart';
 import 'package:twitch_api/src/providers/twitch_http_client.dart';
 
@@ -14,25 +15,21 @@ class TwitchMockHttpClient extends TwitchHttpClient {
     final path = pathSegments.join('/');
     switch (path) {
       case 'bits/cheermotes':
-        return jsonDecode(await readFileStringAsync('get_cheermotes.json'))
-            as T;
+        return jsonDecode(await readFileStringAsync('get_cheermotes.json')) as T;
       case 'streams':
         if (queryParameters['after'] ==
             'eyJiIjp7IkN1cnNvciI6ImV5SnpJam8zT0RNMk5TNDBORFF4TlRjMU1UY3hOU3dpWkNJNlptRnNjMlVzSW5RaU9uUnlkV1Y5In0sImEiOnsiQ3Vyc29yIjoiZXlKeklqb3hOVGs0TkM0MU56RXhNekExTVRZNU1ESXNJbVFpT21aaGJITmxMQ0owSWpwMGNuVmxmUT09In19') {
-          return jsonDecode(await readFileStringAsync('get_streams_2.json'))
-              as T;
+          return jsonDecode(await readFileStringAsync('get_streams_2.json')) as T;
         }
         return jsonDecode(await readFileStringAsync('get_streams_1.json')) as T;
       case 'channels/editors':
-        return jsonDecode(await readFileStringAsync('get_channel_editors.json'))
-            as T;
+        return jsonDecode(await readFileStringAsync('get_channel_editors.json')) as T;
       case 'channel_points/custom_rewards':
         if (queryParameters['only_manageable_rewards'] as String == 'true') {
           return jsonDecode(
             await readFileStringAsync('get_custom_rewards_2.json'),
           ) as T;
-        } else if (queryParameters['id'] ==
-            '92af127c-7326-4483-a52b-b0da0be61c01') {
+        } else if (queryParameters['id'] == '92af127c-7326-4483-a52b-b0da0be61c01') {
           return jsonDecode(
             await readFileStringAsync('get_custom_rewards_3.json'),
           ) as T;
@@ -61,8 +58,7 @@ class TwitchMockHttpClient extends TwitchHttpClient {
           await readFileStringAsync('get_extension_analytics.json'),
         ) as T;
       case 'analytics/games':
-        if (queryParameters['started_at'] != null &&
-            queryParameters['ended_at'] != null) {
+        if (queryParameters['started_at'] != null && queryParameters['ended_at'] != null) {
           return jsonDecode(
             await readFileStringAsync('get_game_analytics_1.json'),
           ) as T;
@@ -80,8 +76,7 @@ class TwitchMockHttpClient extends TwitchHttpClient {
       case 'games':
         return jsonDecode(await readFileStringAsync('get_games.json')) as T;
       case 'users/follows':
-        return jsonDecode(await readFileStringAsync('get_users_follows.json'))
-            as T;
+        return jsonDecode(await readFileStringAsync('get_users_follows.json')) as T;
       case 'games/top':
         return jsonDecode(await readFileStringAsync('get_top_games.json')) as T;
       case 'search/categories':
@@ -89,17 +84,13 @@ class TwitchMockHttpClient extends TwitchHttpClient {
           await readFileStringAsync('get_search_categories.json'),
         ) as T;
       case 'search/channels':
-        return jsonDecode(await readFileStringAsync('get_search_channels.json'))
-            as T;
+        return jsonDecode(await readFileStringAsync('get_search_channels.json')) as T;
       case 'chat/emotes':
-        return jsonDecode(await readFileStringAsync('get_channel_emotes.json'))
-            as T;
+        return jsonDecode(await readFileStringAsync('get_channel_emotes.json')) as T;
       case 'chat/emotes/global':
-        return jsonDecode(await readFileStringAsync('get_global_emotes.json'))
-            as T;
+        return jsonDecode(await readFileStringAsync('get_global_emotes.json')) as T;
       case 'chat/emotes/set':
-        return jsonDecode(await readFileStringAsync('get_emote_sets.json'))
-            as T;
+        return jsonDecode(await readFileStringAsync('get_emote_sets.json')) as T;
       case 'chat/badges':
         return jsonDecode(
           await readFileStringAsync('get_channel_chat_badges.json'),
@@ -109,8 +100,7 @@ class TwitchMockHttpClient extends TwitchHttpClient {
           await readFileStringAsync('get_global_chat_badges.json'),
         ) as T;
       case 'chat/settings':
-        return jsonDecode(await readFileStringAsync('get_chat_settings.json'))
-            as T;
+        return jsonDecode(await readFileStringAsync('get_chat_settings.json')) as T;
       default:
         throw Exception(
           'Bad Request: Query Parameter missing or invalid $path',
@@ -163,8 +153,7 @@ class TwitchMockHttpClient extends TwitchHttpClient {
           await readFileStringAsync('create_custom_rewards.json'),
         ) as T;
       case 'channels/commercial':
-        return jsonDecode(await readFileStringAsync('start_commercial.json'))
-            as T;
+        return jsonDecode(await readFileStringAsync('start_commercial.json')) as T;
       default:
         throw Exception('Bad Request: Query Parameter missing or invalid');
     }
@@ -193,4 +182,28 @@ class TwitchMockHttpClient extends TwitchHttpClient {
         throw Exception('Bad Request: Query Parameter missing or invalid');
     }
   }
+
+  @override
+  void initializeCode(_) {}
+
+  @override
+  Future<T> postCallRefreshToken<T>(
+    Iterable<String> pathSegments,
+    _, {
+    Map<String, dynamic> queryParameters = const {},
+  }) async {
+    switch (pathSegments.join('/')) {
+      case 'channel_points/custom_rewards':
+        return jsonDecode(
+          await readFileStringAsync('create_custom_rewards.json'),
+        ) as T;
+      case 'channels/commercial':
+        return jsonDecode(await readFileStringAsync('start_commercial.json')) as T;
+      default:
+        throw Exception('Bad Request: Query Parameter missing or invalid');
+    }
+  }
+
+  @override
+  TwitchCode? get twitchCode => const TwitchCode(code: '', state: '', scope: '');
 }

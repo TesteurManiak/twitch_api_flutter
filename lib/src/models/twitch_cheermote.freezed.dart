@@ -12,7 +12,7 @@ part of 'twitch_cheermote.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TwitchCheermote _$TwitchCheermoteFromJson(Map<String, dynamic> json) {
   return _TwitchCheermote.fromJson(json);
@@ -113,11 +113,11 @@ class _$TwitchCheermoteCopyWithImpl<$Res, $Val extends TwitchCheermote>
 }
 
 /// @nodoc
-abstract class _$$_TwitchCheermoteCopyWith<$Res>
+abstract class _$$TwitchCheermoteImplCopyWith<$Res>
     implements $TwitchCheermoteCopyWith<$Res> {
-  factory _$$_TwitchCheermoteCopyWith(
-          _$_TwitchCheermote value, $Res Function(_$_TwitchCheermote) then) =
-      __$$_TwitchCheermoteCopyWithImpl<$Res>;
+  factory _$$TwitchCheermoteImplCopyWith(_$TwitchCheermoteImpl value,
+          $Res Function(_$TwitchCheermoteImpl) then) =
+      __$$TwitchCheermoteImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -130,11 +130,11 @@ abstract class _$$_TwitchCheermoteCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchCheermoteCopyWithImpl<$Res>
-    extends _$TwitchCheermoteCopyWithImpl<$Res, _$_TwitchCheermote>
-    implements _$$_TwitchCheermoteCopyWith<$Res> {
-  __$$_TwitchCheermoteCopyWithImpl(
-      _$_TwitchCheermote _value, $Res Function(_$_TwitchCheermote) _then)
+class __$$TwitchCheermoteImplCopyWithImpl<$Res>
+    extends _$TwitchCheermoteCopyWithImpl<$Res, _$TwitchCheermoteImpl>
+    implements _$$TwitchCheermoteImplCopyWith<$Res> {
+  __$$TwitchCheermoteImplCopyWithImpl(
+      _$TwitchCheermoteImpl _value, $Res Function(_$TwitchCheermoteImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -147,7 +147,7 @@ class __$$_TwitchCheermoteCopyWithImpl<$Res>
     Object? lastUpdated = null,
     Object? isCharitable = null,
   }) {
-    return _then(_$_TwitchCheermote(
+    return _then(_$TwitchCheermoteImpl(
       prefix: null == prefix
           ? _value.prefix
           : prefix // ignore: cast_nullable_to_non_nullable
@@ -178,8 +178,8 @@ class __$$_TwitchCheermoteCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchCheermote implements _TwitchCheermote {
-  const _$_TwitchCheermote(
+class _$TwitchCheermoteImpl implements _TwitchCheermote {
+  const _$TwitchCheermoteImpl(
       {required this.prefix,
       required final List<TwitchCheermoteTier> tiers,
       required this.type,
@@ -188,8 +188,8 @@ class _$_TwitchCheermote implements _TwitchCheermote {
       @JsonKey(name: 'is_charitable') required this.isCharitable})
       : _tiers = tiers;
 
-  factory _$_TwitchCheermote.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchCheermoteFromJson(json);
+  factory _$TwitchCheermoteImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchCheermoteImplFromJson(json);
 
   /// The string used to Cheer that precedes the Bits amount.
   @override
@@ -232,10 +232,10 @@ class _$_TwitchCheermote implements _TwitchCheermote {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchCheermote &&
+            other is _$TwitchCheermoteImpl &&
             (identical(other.prefix, prefix) || other.prefix == prefix) &&
             const DeepCollectionEquality().equals(other._tiers, _tiers) &&
             (identical(other.type, type) || other.type == type) &&
@@ -260,12 +260,13 @@ class _$_TwitchCheermote implements _TwitchCheermote {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchCheermoteCopyWith<_$_TwitchCheermote> get copyWith =>
-      __$$_TwitchCheermoteCopyWithImpl<_$_TwitchCheermote>(this, _$identity);
+  _$$TwitchCheermoteImplCopyWith<_$TwitchCheermoteImpl> get copyWith =>
+      __$$TwitchCheermoteImplCopyWithImpl<_$TwitchCheermoteImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchCheermoteToJson(
+    return _$$TwitchCheermoteImplToJson(
       this,
     );
   }
@@ -279,10 +280,10 @@ abstract class _TwitchCheermote implements TwitchCheermote {
           required final int order,
           @JsonKey(name: 'last_updated') required final DateTime lastUpdated,
           @JsonKey(name: 'is_charitable') required final bool isCharitable}) =
-      _$_TwitchCheermote;
+      _$TwitchCheermoteImpl;
 
   factory _TwitchCheermote.fromJson(Map<String, dynamic> json) =
-      _$_TwitchCheermote.fromJson;
+      _$TwitchCheermoteImpl.fromJson;
 
   @override
 
@@ -314,6 +315,6 @@ abstract class _TwitchCheermote implements TwitchCheermote {
   bool get isCharitable;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchCheermoteCopyWith<_$_TwitchCheermote> get copyWith =>
+  _$$TwitchCheermoteImplCopyWith<_$TwitchCheermoteImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

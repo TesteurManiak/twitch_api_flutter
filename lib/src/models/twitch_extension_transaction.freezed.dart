@@ -12,7 +12,7 @@ part of 'twitch_extension_transaction.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Cost _$CostFromJson(Map<String, dynamic> json) {
   return _Cost.fromJson(json);
@@ -69,18 +69,20 @@ class _$CostCopyWithImpl<$Res, $Val extends Cost>
 }
 
 /// @nodoc
-abstract class _$$_CostCopyWith<$Res> implements $CostCopyWith<$Res> {
-  factory _$$_CostCopyWith(_$_Cost value, $Res Function(_$_Cost) then) =
-      __$$_CostCopyWithImpl<$Res>;
+abstract class _$$CostImplCopyWith<$Res> implements $CostCopyWith<$Res> {
+  factory _$$CostImplCopyWith(
+          _$CostImpl value, $Res Function(_$CostImpl) then) =
+      __$$CostImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int amount, String type});
 }
 
 /// @nodoc
-class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
-    implements _$$_CostCopyWith<$Res> {
-  __$$_CostCopyWithImpl(_$_Cost _value, $Res Function(_$_Cost) _then)
+class __$$CostImplCopyWithImpl<$Res>
+    extends _$CostCopyWithImpl<$Res, _$CostImpl>
+    implements _$$CostImplCopyWith<$Res> {
+  __$$CostImplCopyWithImpl(_$CostImpl _value, $Res Function(_$CostImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -89,7 +91,7 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
     Object? amount = null,
     Object? type = null,
   }) {
-    return _then(_$_Cost(
+    return _then(_$CostImpl(
       amount: null == amount
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -104,10 +106,11 @@ class __$$_CostCopyWithImpl<$Res> extends _$CostCopyWithImpl<$Res, _$_Cost>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Cost implements _Cost {
-  const _$_Cost({required this.amount, required this.type});
+class _$CostImpl implements _Cost {
+  const _$CostImpl({required this.amount, required this.type});
 
-  factory _$_Cost.fromJson(Map<String, dynamic> json) => _$$_CostFromJson(json);
+  factory _$CostImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CostImplFromJson(json);
 
   /// Number of Bits required to acquire the product.
   @override
@@ -123,10 +126,10 @@ class _$_Cost implements _Cost {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Cost &&
+            other is _$CostImpl &&
             (identical(other.amount, amount) || other.amount == amount) &&
             (identical(other.type, type) || other.type == type));
   }
@@ -138,12 +141,12 @@ class _$_Cost implements _Cost {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CostCopyWith<_$_Cost> get copyWith =>
-      __$$_CostCopyWithImpl<_$_Cost>(this, _$identity);
+  _$$CostImplCopyWith<_$CostImpl> get copyWith =>
+      __$$CostImplCopyWithImpl<_$CostImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CostToJson(
+    return _$$CostImplToJson(
       this,
     );
   }
@@ -151,9 +154,9 @@ class _$_Cost implements _Cost {
 
 abstract class _Cost implements Cost {
   const factory _Cost({required final int amount, required final String type}) =
-      _$_Cost;
+      _$CostImpl;
 
-  factory _Cost.fromJson(Map<String, dynamic> json) = _$_Cost.fromJson;
+  factory _Cost.fromJson(Map<String, dynamic> json) = _$CostImpl.fromJson;
 
   @override
 
@@ -165,7 +168,8 @@ abstract class _Cost implements Cost {
   String get type;
   @override
   @JsonKey(ignore: true)
-  _$$_CostCopyWith<_$_Cost> get copyWith => throw _privateConstructorUsedError;
+  _$$CostImplCopyWith<_$CostImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 ProductData _$ProductDataFromJson(Map<String, dynamic> json) {
@@ -251,11 +255,11 @@ class _$ProductDataCopyWithImpl<$Res, $Val extends ProductData>
 }
 
 /// @nodoc
-abstract class _$$_ProductDataCopyWith<$Res>
+abstract class _$$ProductDataImplCopyWith<$Res>
     implements $ProductDataCopyWith<$Res> {
-  factory _$$_ProductDataCopyWith(
-          _$_ProductData value, $Res Function(_$_ProductData) then) =
-      __$$_ProductDataCopyWithImpl<$Res>;
+  factory _$$ProductDataImplCopyWith(
+          _$ProductDataImpl value, $Res Function(_$ProductDataImpl) then) =
+      __$$ProductDataImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String sku, Cost cost, String displayName, bool inDevelopment});
@@ -265,11 +269,11 @@ abstract class _$$_ProductDataCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ProductDataCopyWithImpl<$Res>
-    extends _$ProductDataCopyWithImpl<$Res, _$_ProductData>
-    implements _$$_ProductDataCopyWith<$Res> {
-  __$$_ProductDataCopyWithImpl(
-      _$_ProductData _value, $Res Function(_$_ProductData) _then)
+class __$$ProductDataImplCopyWithImpl<$Res>
+    extends _$ProductDataCopyWithImpl<$Res, _$ProductDataImpl>
+    implements _$$ProductDataImplCopyWith<$Res> {
+  __$$ProductDataImplCopyWithImpl(
+      _$ProductDataImpl _value, $Res Function(_$ProductDataImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -280,7 +284,7 @@ class __$$_ProductDataCopyWithImpl<$Res>
     Object? displayName = null,
     Object? inDevelopment = null,
   }) {
-    return _then(_$_ProductData(
+    return _then(_$ProductDataImpl(
       sku: null == sku
           ? _value.sku
           : sku // ignore: cast_nullable_to_non_nullable
@@ -303,15 +307,15 @@ class __$$_ProductDataCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProductData implements _ProductData {
-  const _$_ProductData(
+class _$ProductDataImpl implements _ProductData {
+  const _$ProductDataImpl(
       {required this.sku,
       required this.cost,
       required this.displayName,
       required this.inDevelopment});
 
-  factory _$_ProductData.fromJson(Map<String, dynamic> json) =>
-      _$$_ProductDataFromJson(json);
+  factory _$ProductDataImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProductDataImplFromJson(json);
 
   /// Unique identifier for the product across the extension.
   @override
@@ -335,10 +339,10 @@ class _$_ProductData implements _ProductData {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProductData &&
+            other is _$ProductDataImpl &&
             (identical(other.sku, sku) || other.sku == sku) &&
             (identical(other.cost, cost) || other.cost == cost) &&
             (identical(other.displayName, displayName) ||
@@ -355,12 +359,12 @@ class _$_ProductData implements _ProductData {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProductDataCopyWith<_$_ProductData> get copyWith =>
-      __$$_ProductDataCopyWithImpl<_$_ProductData>(this, _$identity);
+  _$$ProductDataImplCopyWith<_$ProductDataImpl> get copyWith =>
+      __$$ProductDataImplCopyWithImpl<_$ProductDataImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProductDataToJson(
+    return _$$ProductDataImplToJson(
       this,
     );
   }
@@ -371,10 +375,10 @@ abstract class _ProductData implements ProductData {
       {required final String sku,
       required final Cost cost,
       required final String displayName,
-      required final bool inDevelopment}) = _$_ProductData;
+      required final bool inDevelopment}) = _$ProductDataImpl;
 
   factory _ProductData.fromJson(Map<String, dynamic> json) =
-      _$_ProductData.fromJson;
+      _$ProductDataImpl.fromJson;
 
   @override
 
@@ -394,7 +398,7 @@ abstract class _ProductData implements ProductData {
   bool get inDevelopment;
   @override
   @JsonKey(ignore: true)
-  _$$_ProductDataCopyWith<_$_ProductData> get copyWith =>
+  _$$ProductDataImplCopyWith<_$ProductDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -472,22 +476,15 @@ abstract class $TwitchExtensionTransactionCopyWith<$Res> {
   $Res call(
       {String id,
       DateTime timestamp,
-      @JsonKey(name: 'broadcaster_id')
-          String broadcasterId,
-      @JsonKey(name: 'broadcaster_login')
-          String broadcasterLogin,
-      @JsonKey(name: 'broadcaster_name')
-          String broadcasterName,
-      @JsonKey(name: 'user_id')
-          String userId,
-      @JsonKey(name: 'user_login')
-          String userLogin,
-      @JsonKey(name: 'user_name')
-          String userName,
+      @JsonKey(name: 'broadcaster_id') String broadcasterId,
+      @JsonKey(name: 'broadcaster_login') String broadcasterLogin,
+      @JsonKey(name: 'broadcaster_name') String broadcasterName,
+      @JsonKey(name: 'user_id') String userId,
+      @JsonKey(name: 'user_login') String userLogin,
+      @JsonKey(name: 'user_name') String userName,
       @JsonKey(name: 'product_type')
-          TwitchExtensionTransactionProductType productType,
-      @JsonKey(name: 'product_data')
-          ProductData productData,
+      TwitchExtensionTransactionProductType productType,
+      @JsonKey(name: 'product_data') ProductData productData,
       String? domain,
       bool? broadcast,
       String? expiration});
@@ -589,33 +586,26 @@ class _$TwitchExtensionTransactionCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TwitchExtensionTransactionCopyWith<$Res>
+abstract class _$$TwitchExtensionTransactionImplCopyWith<$Res>
     implements $TwitchExtensionTransactionCopyWith<$Res> {
-  factory _$$_TwitchExtensionTransactionCopyWith(
-          _$_TwitchExtensionTransaction value,
-          $Res Function(_$_TwitchExtensionTransaction) then) =
-      __$$_TwitchExtensionTransactionCopyWithImpl<$Res>;
+  factory _$$TwitchExtensionTransactionImplCopyWith(
+          _$TwitchExtensionTransactionImpl value,
+          $Res Function(_$TwitchExtensionTransactionImpl) then) =
+      __$$TwitchExtensionTransactionImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {String id,
       DateTime timestamp,
-      @JsonKey(name: 'broadcaster_id')
-          String broadcasterId,
-      @JsonKey(name: 'broadcaster_login')
-          String broadcasterLogin,
-      @JsonKey(name: 'broadcaster_name')
-          String broadcasterName,
-      @JsonKey(name: 'user_id')
-          String userId,
-      @JsonKey(name: 'user_login')
-          String userLogin,
-      @JsonKey(name: 'user_name')
-          String userName,
+      @JsonKey(name: 'broadcaster_id') String broadcasterId,
+      @JsonKey(name: 'broadcaster_login') String broadcasterLogin,
+      @JsonKey(name: 'broadcaster_name') String broadcasterName,
+      @JsonKey(name: 'user_id') String userId,
+      @JsonKey(name: 'user_login') String userLogin,
+      @JsonKey(name: 'user_name') String userName,
       @JsonKey(name: 'product_type')
-          TwitchExtensionTransactionProductType productType,
-      @JsonKey(name: 'product_data')
-          ProductData productData,
+      TwitchExtensionTransactionProductType productType,
+      @JsonKey(name: 'product_data') ProductData productData,
       String? domain,
       bool? broadcast,
       String? expiration});
@@ -625,13 +615,13 @@ abstract class _$$_TwitchExtensionTransactionCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchExtensionTransactionCopyWithImpl<$Res>
+class __$$TwitchExtensionTransactionImplCopyWithImpl<$Res>
     extends _$TwitchExtensionTransactionCopyWithImpl<$Res,
-        _$_TwitchExtensionTransaction>
-    implements _$$_TwitchExtensionTransactionCopyWith<$Res> {
-  __$$_TwitchExtensionTransactionCopyWithImpl(
-      _$_TwitchExtensionTransaction _value,
-      $Res Function(_$_TwitchExtensionTransaction) _then)
+        _$TwitchExtensionTransactionImpl>
+    implements _$$TwitchExtensionTransactionImplCopyWith<$Res> {
+  __$$TwitchExtensionTransactionImplCopyWithImpl(
+      _$TwitchExtensionTransactionImpl _value,
+      $Res Function(_$TwitchExtensionTransactionImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -651,7 +641,7 @@ class __$$_TwitchExtensionTransactionCopyWithImpl<$Res>
     Object? broadcast = freezed,
     Object? expiration = freezed,
   }) {
-    return _then(_$_TwitchExtensionTransaction(
+    return _then(_$TwitchExtensionTransactionImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -710,8 +700,8 @@ class __$$_TwitchExtensionTransactionCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchExtensionTransaction implements _TwitchExtensionTransaction {
-  const _$_TwitchExtensionTransaction(
+class _$TwitchExtensionTransactionImpl implements _TwitchExtensionTransaction {
+  const _$TwitchExtensionTransactionImpl(
       {required this.id,
       required this.timestamp,
       @JsonKey(name: 'broadcaster_id') required this.broadcasterId,
@@ -726,8 +716,9 @@ class _$_TwitchExtensionTransaction implements _TwitchExtensionTransaction {
       this.broadcast,
       this.expiration});
 
-  factory _$_TwitchExtensionTransaction.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchExtensionTransactionFromJson(json);
+  factory _$TwitchExtensionTransactionImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$TwitchExtensionTransactionImplFromJson(json);
 
   /// Unique identifier of the Bits in Extensions Transaction.
   @override
@@ -798,10 +789,10 @@ class _$_TwitchExtensionTransaction implements _TwitchExtensionTransaction {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchExtensionTransaction &&
+            other is _$TwitchExtensionTransactionImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.timestamp, timestamp) ||
                 other.timestamp == timestamp) &&
@@ -848,13 +839,13 @@ class _$_TwitchExtensionTransaction implements _TwitchExtensionTransaction {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchExtensionTransactionCopyWith<_$_TwitchExtensionTransaction>
-      get copyWith => __$$_TwitchExtensionTransactionCopyWithImpl<
-          _$_TwitchExtensionTransaction>(this, _$identity);
+  _$$TwitchExtensionTransactionImplCopyWith<_$TwitchExtensionTransactionImpl>
+      get copyWith => __$$TwitchExtensionTransactionImplCopyWithImpl<
+          _$TwitchExtensionTransactionImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchExtensionTransactionToJson(
+    return _$$TwitchExtensionTransactionImplToJson(
       this,
     );
   }
@@ -865,28 +856,22 @@ abstract class _TwitchExtensionTransaction
   const factory _TwitchExtensionTransaction(
       {required final String id,
       required final DateTime timestamp,
-      @JsonKey(name: 'broadcaster_id')
-          required final String broadcasterId,
+      @JsonKey(name: 'broadcaster_id') required final String broadcasterId,
       @JsonKey(name: 'broadcaster_login')
-          required final String broadcasterLogin,
-      @JsonKey(name: 'broadcaster_name')
-          required final String broadcasterName,
-      @JsonKey(name: 'user_id')
-          required final String userId,
-      @JsonKey(name: 'user_login')
-          required final String userLogin,
-      @JsonKey(name: 'user_name')
-          required final String userName,
+      required final String broadcasterLogin,
+      @JsonKey(name: 'broadcaster_name') required final String broadcasterName,
+      @JsonKey(name: 'user_id') required final String userId,
+      @JsonKey(name: 'user_login') required final String userLogin,
+      @JsonKey(name: 'user_name') required final String userName,
       @JsonKey(name: 'product_type')
-          required final TwitchExtensionTransactionProductType productType,
-      @JsonKey(name: 'product_data')
-          required final ProductData productData,
+      required final TwitchExtensionTransactionProductType productType,
+      @JsonKey(name: 'product_data') required final ProductData productData,
       final String? domain,
       final bool? broadcast,
-      final String? expiration}) = _$_TwitchExtensionTransaction;
+      final String? expiration}) = _$TwitchExtensionTransactionImpl;
 
   factory _TwitchExtensionTransaction.fromJson(Map<String, dynamic> json) =
-      _$_TwitchExtensionTransaction.fromJson;
+      _$TwitchExtensionTransactionImpl.fromJson;
 
   @override
 
@@ -953,6 +938,6 @@ abstract class _TwitchExtensionTransaction
   String? get expiration;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchExtensionTransactionCopyWith<_$_TwitchExtensionTransaction>
+  _$$TwitchExtensionTransactionImplCopyWith<_$TwitchExtensionTransactionImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

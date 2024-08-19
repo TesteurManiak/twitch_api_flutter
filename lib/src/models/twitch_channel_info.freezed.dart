@@ -12,7 +12,7 @@ part of 'twitch_channel_info.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TwitchChannelInfo _$TwitchChannelInfoFromJson(Map<String, dynamic> json) {
   return _TwitchChannelInfo.fromJson(json);
@@ -124,11 +124,11 @@ class _$TwitchChannelInfoCopyWithImpl<$Res, $Val extends TwitchChannelInfo>
 }
 
 /// @nodoc
-abstract class _$$_TwitchChannelInfoCopyWith<$Res>
+abstract class _$$TwitchChannelInfoImplCopyWith<$Res>
     implements $TwitchChannelInfoCopyWith<$Res> {
-  factory _$$_TwitchChannelInfoCopyWith(_$_TwitchChannelInfo value,
-          $Res Function(_$_TwitchChannelInfo) then) =
-      __$$_TwitchChannelInfoCopyWithImpl<$Res>;
+  factory _$$TwitchChannelInfoImplCopyWith(_$TwitchChannelInfoImpl value,
+          $Res Function(_$TwitchChannelInfoImpl) then) =
+      __$$TwitchChannelInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -142,11 +142,11 @@ abstract class _$$_TwitchChannelInfoCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchChannelInfoCopyWithImpl<$Res>
-    extends _$TwitchChannelInfoCopyWithImpl<$Res, _$_TwitchChannelInfo>
-    implements _$$_TwitchChannelInfoCopyWith<$Res> {
-  __$$_TwitchChannelInfoCopyWithImpl(
-      _$_TwitchChannelInfo _value, $Res Function(_$_TwitchChannelInfo) _then)
+class __$$TwitchChannelInfoImplCopyWithImpl<$Res>
+    extends _$TwitchChannelInfoCopyWithImpl<$Res, _$TwitchChannelInfoImpl>
+    implements _$$TwitchChannelInfoImplCopyWith<$Res> {
+  __$$TwitchChannelInfoImplCopyWithImpl(_$TwitchChannelInfoImpl _value,
+      $Res Function(_$TwitchChannelInfoImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -160,7 +160,7 @@ class __$$_TwitchChannelInfoCopyWithImpl<$Res>
     Object? title = null,
     Object? delay = null,
   }) {
-    return _then(_$_TwitchChannelInfo(
+    return _then(_$TwitchChannelInfoImpl(
       broadcasterId: null == broadcasterId
           ? _value.broadcasterId
           : broadcasterId // ignore: cast_nullable_to_non_nullable
@@ -195,8 +195,8 @@ class __$$_TwitchChannelInfoCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchChannelInfo implements _TwitchChannelInfo {
-  const _$_TwitchChannelInfo(
+class _$TwitchChannelInfoImpl implements _TwitchChannelInfo {
+  const _$TwitchChannelInfoImpl(
       {@JsonKey(name: 'broadcaster_id') required this.broadcasterId,
       @JsonKey(name: 'broadcaster_name') required this.broadcasterName,
       @JsonKey(name: 'game_name') required this.gameName,
@@ -205,8 +205,8 @@ class _$_TwitchChannelInfo implements _TwitchChannelInfo {
       required this.title,
       required this.delay});
 
-  factory _$_TwitchChannelInfo.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchChannelInfoFromJson(json);
+  factory _$TwitchChannelInfoImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchChannelInfoImplFromJson(json);
 
   /// Twitch User ID of this channel owner
   @override
@@ -248,10 +248,10 @@ class _$_TwitchChannelInfo implements _TwitchChannelInfo {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchChannelInfo &&
+            other is _$TwitchChannelInfoImpl &&
             (identical(other.broadcasterId, broadcasterId) ||
                 other.broadcasterId == broadcasterId) &&
             (identical(other.broadcasterName, broadcasterName) ||
@@ -273,13 +273,13 @@ class _$_TwitchChannelInfo implements _TwitchChannelInfo {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchChannelInfoCopyWith<_$_TwitchChannelInfo> get copyWith =>
-      __$$_TwitchChannelInfoCopyWithImpl<_$_TwitchChannelInfo>(
+  _$$TwitchChannelInfoImplCopyWith<_$TwitchChannelInfoImpl> get copyWith =>
+      __$$TwitchChannelInfoImplCopyWithImpl<_$TwitchChannelInfoImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchChannelInfoToJson(
+    return _$$TwitchChannelInfoImplToJson(
       this,
     );
   }
@@ -287,21 +287,17 @@ class _$_TwitchChannelInfo implements _TwitchChannelInfo {
 
 abstract class _TwitchChannelInfo implements TwitchChannelInfo {
   const factory _TwitchChannelInfo(
-      {@JsonKey(name: 'broadcaster_id')
-          required final String broadcasterId,
-      @JsonKey(name: 'broadcaster_name')
-          required final String broadcasterName,
-      @JsonKey(name: 'game_name')
-          required final String gameName,
-      @JsonKey(name: 'game_id')
-          required final String gameId,
+      {@JsonKey(name: 'broadcaster_id') required final String broadcasterId,
+      @JsonKey(name: 'broadcaster_name') required final String broadcasterName,
+      @JsonKey(name: 'game_name') required final String gameName,
+      @JsonKey(name: 'game_id') required final String gameId,
       @JsonKey(name: 'broadcaster_language')
-          required final String broadcasterLanguage,
+      required final String broadcasterLanguage,
       required final String title,
-      required final int delay}) = _$_TwitchChannelInfo;
+      required final int delay}) = _$TwitchChannelInfoImpl;
 
   factory _TwitchChannelInfo.fromJson(Map<String, dynamic> json) =
-      _$_TwitchChannelInfo.fromJson;
+      _$TwitchChannelInfoImpl.fromJson;
 
   @override
 
@@ -339,6 +335,6 @@ abstract class _TwitchChannelInfo implements TwitchChannelInfo {
   int get delay;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchChannelInfoCopyWith<_$_TwitchChannelInfo> get copyWith =>
+  _$$TwitchChannelInfoImplCopyWith<_$TwitchChannelInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,7 +12,7 @@ part of 'twitch_bits_leaderboard.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TwitchBitsLeaderboard _$TwitchBitsLeaderboardFromJson(
     Map<String, dynamic> json) {
@@ -105,11 +105,12 @@ class _$TwitchBitsLeaderboardCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TwitchBitsLeaderboardCopyWith<$Res>
+abstract class _$$TwitchBitsLeaderboardImplCopyWith<$Res>
     implements $TwitchBitsLeaderboardCopyWith<$Res> {
-  factory _$$_TwitchBitsLeaderboardCopyWith(_$_TwitchBitsLeaderboard value,
-          $Res Function(_$_TwitchBitsLeaderboard) then) =
-      __$$_TwitchBitsLeaderboardCopyWithImpl<$Res>;
+  factory _$$TwitchBitsLeaderboardImplCopyWith(
+          _$TwitchBitsLeaderboardImpl value,
+          $Res Function(_$TwitchBitsLeaderboardImpl) then) =
+      __$$TwitchBitsLeaderboardImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -121,11 +122,12 @@ abstract class _$$_TwitchBitsLeaderboardCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchBitsLeaderboardCopyWithImpl<$Res>
-    extends _$TwitchBitsLeaderboardCopyWithImpl<$Res, _$_TwitchBitsLeaderboard>
-    implements _$$_TwitchBitsLeaderboardCopyWith<$Res> {
-  __$$_TwitchBitsLeaderboardCopyWithImpl(_$_TwitchBitsLeaderboard _value,
-      $Res Function(_$_TwitchBitsLeaderboard) _then)
+class __$$TwitchBitsLeaderboardImplCopyWithImpl<$Res>
+    extends _$TwitchBitsLeaderboardCopyWithImpl<$Res,
+        _$TwitchBitsLeaderboardImpl>
+    implements _$$TwitchBitsLeaderboardImplCopyWith<$Res> {
+  __$$TwitchBitsLeaderboardImplCopyWithImpl(_$TwitchBitsLeaderboardImpl _value,
+      $Res Function(_$TwitchBitsLeaderboardImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -137,7 +139,7 @@ class __$$_TwitchBitsLeaderboardCopyWithImpl<$Res>
     Object? rank = null,
     Object? score = null,
   }) {
-    return _then(_$_TwitchBitsLeaderboard(
+    return _then(_$TwitchBitsLeaderboardImpl(
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -164,16 +166,16 @@ class __$$_TwitchBitsLeaderboardCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchBitsLeaderboard implements _TwitchBitsLeaderboard {
-  const _$_TwitchBitsLeaderboard(
+class _$TwitchBitsLeaderboardImpl implements _TwitchBitsLeaderboard {
+  const _$TwitchBitsLeaderboardImpl(
       {@JsonKey(name: 'user_id') required this.userId,
       @JsonKey(name: 'user_login') required this.userLogin,
       @JsonKey(name: 'user_name') required this.userName,
       required this.rank,
       required this.score});
 
-  factory _$_TwitchBitsLeaderboard.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchBitsLeaderboardFromJson(json);
+  factory _$TwitchBitsLeaderboardImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchBitsLeaderboardImplFromJson(json);
 
   /// ID of the user (viewer) in the leaderboard entry.
   @override
@@ -204,10 +206,10 @@ class _$_TwitchBitsLeaderboard implements _TwitchBitsLeaderboard {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchBitsLeaderboard &&
+            other is _$TwitchBitsLeaderboardImpl &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.userLogin, userLogin) ||
                 other.userLogin == userLogin) &&
@@ -225,13 +227,13 @@ class _$_TwitchBitsLeaderboard implements _TwitchBitsLeaderboard {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchBitsLeaderboardCopyWith<_$_TwitchBitsLeaderboard> get copyWith =>
-      __$$_TwitchBitsLeaderboardCopyWithImpl<_$_TwitchBitsLeaderboard>(
-          this, _$identity);
+  _$$TwitchBitsLeaderboardImplCopyWith<_$TwitchBitsLeaderboardImpl>
+      get copyWith => __$$TwitchBitsLeaderboardImplCopyWithImpl<
+          _$TwitchBitsLeaderboardImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchBitsLeaderboardToJson(
+    return _$$TwitchBitsLeaderboardImplToJson(
       this,
     );
   }
@@ -243,10 +245,10 @@ abstract class _TwitchBitsLeaderboard implements TwitchBitsLeaderboard {
       @JsonKey(name: 'user_login') required final String userLogin,
       @JsonKey(name: 'user_name') required final String userName,
       required final int rank,
-      required final int score}) = _$_TwitchBitsLeaderboard;
+      required final int score}) = _$TwitchBitsLeaderboardImpl;
 
   factory _TwitchBitsLeaderboard.fromJson(Map<String, dynamic> json) =
-      _$_TwitchBitsLeaderboard.fromJson;
+      _$TwitchBitsLeaderboardImpl.fromJson;
 
   @override
 
@@ -273,6 +275,6 @@ abstract class _TwitchBitsLeaderboard implements TwitchBitsLeaderboard {
   int get score;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchBitsLeaderboardCopyWith<_$_TwitchBitsLeaderboard> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$TwitchBitsLeaderboardImplCopyWith<_$TwitchBitsLeaderboardImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

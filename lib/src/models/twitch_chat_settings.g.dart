@@ -6,25 +6,25 @@ part of 'twitch_chat_settings.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TwitchChatSettings _$$_TwitchChatSettingsFromJson(
+_$TwitchChatSettingsImpl _$$TwitchChatSettingsImplFromJson(
         Map<String, dynamic> json) =>
-    _$_TwitchChatSettings(
+    _$TwitchChatSettingsImpl(
       broadcasterId: json['broadcaster_id'] as String,
       emoteMode: json['emote_mode'] as bool,
       followerMode: json['follower_mode'] as bool,
-      followerModeDuration: json['follower_mode_duration'] as int?,
+      followerModeDuration: (json['follower_mode_duration'] as num?)?.toInt(),
       moderatorId: json['moderator_id'] as String?,
       nonModeratorChatDelay: json['non_moderator_chat_delay'] as bool,
       nonModeratorChatDelayDuration:
-          json['non_moderator_chat_delay_duration'] as int?,
+          (json['non_moderator_chat_delay_duration'] as num?)?.toInt(),
       slowMode: json['slow_mode'] as bool,
-      slowModeWaitTime: json['slow_mode_wait_time'] as int?,
+      slowModeWaitTime: (json['slow_mode_wait_time'] as num?)?.toInt(),
       subscriberMode: json['subscriber_mode'] as bool,
       uniqueChatMode: json['unique_chat_mode'] as bool,
     );
 
-Map<String, dynamic> _$$_TwitchChatSettingsToJson(
-        _$_TwitchChatSettings instance) =>
+Map<String, dynamic> _$$TwitchChatSettingsImplToJson(
+        _$TwitchChatSettingsImpl instance) =>
     <String, dynamic>{
       'broadcaster_id': instance.broadcasterId,
       'emote_mode': instance.emoteMode,

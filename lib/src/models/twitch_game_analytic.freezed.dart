@@ -12,7 +12,7 @@ part of 'twitch_game_analytic.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TwitchGameAnalytic _$TwitchGameAnalyticFromJson(Map<String, dynamic> json) {
   return _TwitchGameAnalytic.fromJson(json);
@@ -97,11 +97,11 @@ class _$TwitchGameAnalyticCopyWithImpl<$Res, $Val extends TwitchGameAnalytic>
 }
 
 /// @nodoc
-abstract class _$$_TwitchGameAnalyticCopyWith<$Res>
+abstract class _$$TwitchGameAnalyticImplCopyWith<$Res>
     implements $TwitchGameAnalyticCopyWith<$Res> {
-  factory _$$_TwitchGameAnalyticCopyWith(_$_TwitchGameAnalytic value,
-          $Res Function(_$_TwitchGameAnalytic) then) =
-      __$$_TwitchGameAnalyticCopyWithImpl<$Res>;
+  factory _$$TwitchGameAnalyticImplCopyWith(_$TwitchGameAnalyticImpl value,
+          $Res Function(_$TwitchGameAnalyticImpl) then) =
+      __$$TwitchGameAnalyticImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -115,11 +115,11 @@ abstract class _$$_TwitchGameAnalyticCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchGameAnalyticCopyWithImpl<$Res>
-    extends _$TwitchGameAnalyticCopyWithImpl<$Res, _$_TwitchGameAnalytic>
-    implements _$$_TwitchGameAnalyticCopyWith<$Res> {
-  __$$_TwitchGameAnalyticCopyWithImpl(
-      _$_TwitchGameAnalytic _value, $Res Function(_$_TwitchGameAnalytic) _then)
+class __$$TwitchGameAnalyticImplCopyWithImpl<$Res>
+    extends _$TwitchGameAnalyticCopyWithImpl<$Res, _$TwitchGameAnalyticImpl>
+    implements _$$TwitchGameAnalyticImplCopyWith<$Res> {
+  __$$TwitchGameAnalyticImplCopyWithImpl(_$TwitchGameAnalyticImpl _value,
+      $Res Function(_$TwitchGameAnalyticImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -130,7 +130,7 @@ class __$$_TwitchGameAnalyticCopyWithImpl<$Res>
     Object? url = null,
     Object? dateRange = null,
   }) {
-    return _then(_$_TwitchGameAnalytic(
+    return _then(_$TwitchGameAnalyticImpl(
       gameId: null == gameId
           ? _value.gameId
           : gameId // ignore: cast_nullable_to_non_nullable
@@ -153,15 +153,15 @@ class __$$_TwitchGameAnalyticCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchGameAnalytic implements _TwitchGameAnalytic {
-  const _$_TwitchGameAnalytic(
+class _$TwitchGameAnalyticImpl implements _TwitchGameAnalytic {
+  const _$TwitchGameAnalyticImpl(
       {@JsonKey(name: 'game_id') required this.gameId,
       required this.type,
       @JsonKey(name: 'URL') required this.url,
       @JsonKey(name: 'date_range') required this.dateRange});
 
-  factory _$_TwitchGameAnalytic.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchGameAnalyticFromJson(json);
+  factory _$TwitchGameAnalyticImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchGameAnalyticImplFromJson(json);
 
   @override
   @JsonKey(name: 'game_id')
@@ -181,10 +181,10 @@ class _$_TwitchGameAnalytic implements _TwitchGameAnalytic {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchGameAnalytic &&
+            other is _$TwitchGameAnalyticImpl &&
             (identical(other.gameId, gameId) || other.gameId == gameId) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.url, url) || other.url == url) &&
@@ -199,13 +199,13 @@ class _$_TwitchGameAnalytic implements _TwitchGameAnalytic {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchGameAnalyticCopyWith<_$_TwitchGameAnalytic> get copyWith =>
-      __$$_TwitchGameAnalyticCopyWithImpl<_$_TwitchGameAnalytic>(
+  _$$TwitchGameAnalyticImplCopyWith<_$TwitchGameAnalyticImpl> get copyWith =>
+      __$$TwitchGameAnalyticImplCopyWithImpl<_$TwitchGameAnalyticImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchGameAnalyticToJson(
+    return _$$TwitchGameAnalyticImplToJson(
       this,
     );
   }
@@ -213,16 +213,14 @@ class _$_TwitchGameAnalytic implements _TwitchGameAnalytic {
 
 abstract class _TwitchGameAnalytic implements TwitchGameAnalytic {
   const factory _TwitchGameAnalytic(
-      {@JsonKey(name: 'game_id')
-          required final String gameId,
+      {@JsonKey(name: 'game_id') required final String gameId,
       required final String type,
-      @JsonKey(name: 'URL')
-          required final String url,
+      @JsonKey(name: 'URL') required final String url,
       @JsonKey(name: 'date_range')
-          required final TwitchDateRange dateRange}) = _$_TwitchGameAnalytic;
+      required final TwitchDateRange dateRange}) = _$TwitchGameAnalyticImpl;
 
   factory _TwitchGameAnalytic.fromJson(Map<String, dynamic> json) =
-      _$_TwitchGameAnalytic.fromJson;
+      _$TwitchGameAnalyticImpl.fromJson;
 
   @override
   @JsonKey(name: 'game_id')
@@ -237,6 +235,6 @@ abstract class _TwitchGameAnalytic implements TwitchGameAnalytic {
   TwitchDateRange get dateRange;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchGameAnalyticCopyWith<_$_TwitchGameAnalytic> get copyWith =>
+  _$$TwitchGameAnalyticImplCopyWith<_$TwitchGameAnalyticImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

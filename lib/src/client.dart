@@ -10,12 +10,16 @@ class TwitchClient {
   TwitchClient({
     required this.clientId,
     required this.redirectUri,
+    this.clientSecret = "",
     TwitchHttpClient? twitchHttpClient,
     TwitchToken? token,
-  }) : twitchHttpClient =
-            twitchHttpClient ?? TwitchDioClient(clientId: clientId) {
+    TwitchCode? code,
+  }) : twitchHttpClient = twitchHttpClient ?? TwitchDioClient(clientId: clientId) {
     if (token != null) {
       initializeToken(token);
+    }
+    if (code != null) {
+      initializeFromCode(code);
     }
   }
 
@@ -28,6 +32,7 @@ class TwitchClient {
 
   final String redirectUri;
   final String clientId;
+  final String clientSecret;
   final TwitchHttpClient twitchHttpClient;
 
   /// Return the authorization Uri for the Twitch API.
@@ -57,11 +62,49 @@ class TwitchClient {
     );
   }
 
+  /// Return the authorization Uri for the Twitch API.
+  ///
+  /// ```dart
+  /// final client = TwitchClient(
+  ///   clientId: '<your client id>',
+  ///   redirectUri: '<your redirect uri>',
+  /// );
+  ///  documentation : https://dev.twitch.tv/docs/authentication/getting-tokens-oauth/#authorization-code-grant-flow
+  /// // https://id.twitch.tv/oauth2/authorize?client_id=<your client id>&redirect_uri=<your redirect uri>&response_type=code&scope=viewing_activity_read&state=< unique identifier >
+  /// client.authorizeUri([]);
+  /// ```
+  Uri authorizeCodeUri(List<TwitchApiScope> scopes, String state) {
+    final scopesSet = <String>{}
+      ..add(TwitchApiScope.viewingActivityRead.string)
+      ..addAll(scopes.map((e) => e.string));
+
+    String actualState = state;
+    if (actualState.isEmpty) {
+      final int secondsSinceEpoch = DateTime.now().toUtc().millisecondsSinceEpoch ~/ 1000;
+      actualState = secondsSinceEpoch.toString();
+    }
+
+    return oauth2Url.replace(
+      pathSegments: <String>[oauthPath, authPath],
+      queryParameters: {
+        'response_type': 'code',
+        'client_id': clientId,
+        'redirect_uri': redirectUri,
+        'scope': scopesSet.join(' '),
+        'state': actualState,
+      },
+    );
+  }
+
   /// Method to initialize the token the first time after connection.
   ///
   /// [twitchToken]: Token obtained with the first connection.
-  void initializeToken(TwitchToken twitchToken) =>
-      twitchHttpClient.initializeToken(twitchToken);
+  void initializeToken(TwitchToken twitchToken) => twitchHttpClient.initializeToken(twitchToken);
+
+  /// Method to initialize the code the first time after connection.
+  ///
+  /// [twitchToken]: Token obtained with the first connection.
+  void initializeFromCode(TwitchCode twitchCode) => twitchHttpClient.initializeCode(twitchCode);
 
   /// Starts a commercial on a specified channel.
   ///
@@ -139,8 +182,7 @@ class TwitchClient {
     String? type,
   }) async {
     assert(
-      (endedAt == null && startedAt == null) ||
-          (endedAt != null && startedAt != null),
+      (endedAt == null && startedAt == null) || (endedAt != null && startedAt != null),
     );
     assert(first < 101 && first > 0);
 
@@ -181,8 +223,7 @@ class TwitchClient {
     String? type,
   }) async {
     assert(
-      (endedAt == null && startedAt == null) ||
-          (endedAt != null && startedAt != null),
+      (endedAt == null && startedAt == null) || (endedAt != null && startedAt != null),
     );
     assert(first < 101 && first > 0);
 
@@ -632,16 +673,11 @@ class TwitchClient {
     int? delay,
   }) {
     assert(
-      gameId != null ||
-          broadcasterLanguage != null ||
-          title != null ||
-          delay != null,
+      gameId != null || broadcasterLanguage != null || title != null || delay != null,
       'At least one optional parameter must be provided.',
     );
     assert(
-      broadcasterLanguage == null ||
-          broadcasterLanguage == 'other' ||
-          broadcasterLanguage.length == 2,
+      broadcasterLanguage == null || broadcasterLanguage == 'other' || broadcasterLanguage.length == 2,
     );
     assert(
       title == null || title.isNotEmpty,
@@ -651,8 +687,7 @@ class TwitchClient {
 
     final data = <String, Object>{
       if (gameId != null) 'game_id': gameId,
-      if (broadcasterLanguage != null)
-        'broadcaster_language': broadcasterLanguage,
+      if (broadcasterLanguage != null) 'broadcaster_language': broadcasterLanguage,
       if (title != null) 'title': title,
       if (delay != null) 'delay': delay,
     };
@@ -734,10 +769,8 @@ class TwitchClient {
       if (prompt != null) 'prompt': prompt,
       if (backgroundColor != null) 'background_color': backgroundColor,
       if (maxPerStream != null) 'max_per_stream': maxPerStream,
-      if (maxPerUserPerStream != null)
-        'max_per_user_per_stream': maxPerUserPerStream,
-      if (globalCooldownSeconds != null)
-        'global_cooldown_seconds': globalCooldownSeconds,
+      if (maxPerUserPerStream != null) 'max_per_user_per_stream': maxPerUserPerStream,
+      if (globalCooldownSeconds != null) 'global_cooldown_seconds': globalCooldownSeconds,
     };
 
     final data = await twitchHttpClient.postCall<Map<String, dynamic>>(
@@ -931,15 +964,11 @@ class TwitchClient {
       if (maxPerStream > 0) 'is_max_per_stream_enabled': true,
       if (maxPerStream > 0) 'max_per_stream': maxPerStream.toString(),
       if (maxPerUserPerStream > 0) 'is_max_per_user_per_stream_enabled': true,
-      if (maxPerUserPerStream > 0)
-        'max_per_user_per_stream': maxPerUserPerStream.toString(),
+      if (maxPerUserPerStream > 0) 'max_per_user_per_stream': maxPerUserPerStream.toString(),
       if (globalCooldownSeconds > 0) 'is_global_cooldown_enabled': true,
-      if (globalCooldownSeconds > 0)
-        'global_cooldown_seconds': globalCooldownSeconds.toString(),
+      if (globalCooldownSeconds > 0) 'global_cooldown_seconds': globalCooldownSeconds.toString(),
       if (isPaused != null) 'is_paused': isPaused,
-      if (shouldRedemptionsSkipRequestQueue != null)
-        'should_redemptions_skip_request_queue':
-            shouldRedemptionsSkipRequestQueue,
+      if (shouldRedemptionsSkipRequestQueue != null) 'should_redemptions_skip_request_queue': shouldRedemptionsSkipRequestQueue,
     };
 
     final data = await twitchHttpClient.patchCall<Map<String, dynamic>>(
@@ -980,8 +1009,7 @@ class TwitchClient {
   }) async {
     assert(ids.length <= 50 && ids.isNotEmpty);
     assert(
-      status == TwitchRewardRedemptionStatus.fulfilled ||
-          status == TwitchRewardRedemptionStatus.canceled,
+      status == TwitchRewardRedemptionStatus.fulfilled || status == TwitchRewardRedemptionStatus.canceled,
     );
     final body = <String, dynamic>{
       'status': status.name.toUpperCase(),
@@ -1053,10 +1081,7 @@ class TwitchClient {
       ['chat', 'badges'],
       queryParameters: <String, String>{'broadcaster_id': broadcasterId},
     );
-    return (data['data'] as Iterable)
-        .cast<Map<String, dynamic>>()
-        .map<TwitchChatBadge>(TwitchChatBadge.fromJson)
-        .toList();
+    return (data['data'] as Iterable).cast<Map<String, dynamic>>().map<TwitchChatBadge>(TwitchChatBadge.fromJson).toList();
   }
 
   /// Gets a list of chat badges that can be used in chat for any channel.
@@ -1064,10 +1089,7 @@ class TwitchClient {
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['chat', 'badges', 'global'],
     );
-    return (data['data'] as Iterable)
-        .cast<Map<String, dynamic>>()
-        .map<TwitchChatBadge>(TwitchChatBadge.fromJson)
-        .toList();
+    return (data['data'] as Iterable).cast<Map<String, dynamic>>().map<TwitchChatBadge>(TwitchChatBadge.fromJson).toList();
   }
 
   /// Gets the broadcaster’s chat settings.
@@ -1096,9 +1118,43 @@ class TwitchClient {
         if (moderatorId != null) 'moderator_id': moderatorId,
       },
     );
-    return (data['data'] as Iterable)
-        .cast<Map<String, dynamic>>()
-        .map<TwitchChatSettings>(TwitchChatSettings.fromJson)
-        .toList();
+    return (data['data'] as Iterable).cast<Map<String, dynamic>>().map<TwitchChatSettings>(TwitchChatSettings.fromJson).toList();
+  }
+
+  /// Get refresh token from the authorization code fetched with authorizeCodeUri method
+  ///
+  /// clientSecret must be passed to TwitchClient class
+  Future<TwitchTokenRefresh> getRefreshToken() async {
+    assert(clientSecret.isNotEmpty, "Client secret must be initialized in TwitchClient object");
+    assert(twitchHttpClient.twitchCode?.code.isNotEmpty ?? false, "Twitch authorization code must be initialized, look at authorizeCodeUri method");
+
+    final data = await twitchHttpClient.postCallRefreshToken<Map<String, dynamic>>(
+      [oauthPath, 'token'],
+      {
+        'client_id': clientId,
+        'client_secret': clientSecret,
+        'code': twitchHttpClient.twitchCode?.code,
+        'grant_type': 'authorization_code',
+        'redirect_uri': redirectUri,
+      },
+    );
+    return TwitchTokenRefresh.fromJson(data);
+  }
+
+  /// Refresh a token
+  ///
+  /// clientSecret must be passed to TwitchClient class
+  /// `refreshToken` required
+  ///
+  /// documentation : https://dev.twitch.tv/docs/authentication/refresh-tokens/
+  Future<TwitchTokenRefresh> refreshToken({required String refreshToken}) async {
+    assert(clientSecret.isNotEmpty, "Client secret must be initialized in TwitchClient object");
+    assert(refreshToken.isNotEmpty, "Refresh token can't be empty");
+
+    final data = await twitchHttpClient.postCallRefreshToken<Map<String, dynamic>>(
+      [oauthPath, 'token'],
+      {'client_id': clientId, 'client_secret': clientSecret, 'refresh_token': refreshToken, 'grant_type': 'refresh_token', "token_type": "bearer"},
+    );
+    return TwitchTokenRefresh.fromJson(data);
   }
 }

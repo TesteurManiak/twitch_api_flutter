@@ -12,7 +12,7 @@ part of 'twitch_cheermote_tier.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 CheermoteImageSet _$CheermoteImageSetFromJson(Map<String, dynamic> json) {
   return _CheermoteImageSet.fromJson(json);
@@ -71,11 +71,11 @@ class _$CheermoteImageSetCopyWithImpl<$Res, $Val extends CheermoteImageSet>
 }
 
 /// @nodoc
-abstract class _$$_CheermoteImageSetCopyWith<$Res>
+abstract class _$$CheermoteImageSetImplCopyWith<$Res>
     implements $CheermoteImageSetCopyWith<$Res> {
-  factory _$$_CheermoteImageSetCopyWith(_$_CheermoteImageSet value,
-          $Res Function(_$_CheermoteImageSet) then) =
-      __$$_CheermoteImageSetCopyWithImpl<$Res>;
+  factory _$$CheermoteImageSetImplCopyWith(_$CheermoteImageSetImpl value,
+          $Res Function(_$CheermoteImageSetImpl) then) =
+      __$$CheermoteImageSetImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -84,11 +84,11 @@ abstract class _$$_CheermoteImageSetCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CheermoteImageSetCopyWithImpl<$Res>
-    extends _$CheermoteImageSetCopyWithImpl<$Res, _$_CheermoteImageSet>
-    implements _$$_CheermoteImageSetCopyWith<$Res> {
-  __$$_CheermoteImageSetCopyWithImpl(
-      _$_CheermoteImageSet _value, $Res Function(_$_CheermoteImageSet) _then)
+class __$$CheermoteImageSetImplCopyWithImpl<$Res>
+    extends _$CheermoteImageSetCopyWithImpl<$Res, _$CheermoteImageSetImpl>
+    implements _$$CheermoteImageSetImplCopyWith<$Res> {
+  __$$CheermoteImageSetImplCopyWithImpl(_$CheermoteImageSetImpl _value,
+      $Res Function(_$CheermoteImageSetImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -97,7 +97,7 @@ class __$$_CheermoteImageSetCopyWithImpl<$Res>
     Object? animated = null,
     Object? staticImgs = null,
   }) {
-    return _then(_$_CheermoteImageSet(
+    return _then(_$CheermoteImageSetImpl(
       animated: null == animated
           ? _value._animated
           : animated // ignore: cast_nullable_to_non_nullable
@@ -112,15 +112,15 @@ class __$$_CheermoteImageSetCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CheermoteImageSet implements _CheermoteImageSet {
-  const _$_CheermoteImageSet(
+class _$CheermoteImageSetImpl implements _CheermoteImageSet {
+  const _$CheermoteImageSetImpl(
       {required final Map<String, String> animated,
       @JsonKey(name: 'static') required final Map<String, String> staticImgs})
       : _animated = animated,
         _staticImgs = staticImgs;
 
-  factory _$_CheermoteImageSet.fromJson(Map<String, dynamic> json) =>
-      _$$_CheermoteImageSetFromJson(json);
+  factory _$CheermoteImageSetImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CheermoteImageSetImplFromJson(json);
 
   final Map<String, String> _animated;
   @override
@@ -145,10 +145,10 @@ class _$_CheermoteImageSet implements _CheermoteImageSet {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CheermoteImageSet &&
+            other is _$CheermoteImageSetImpl &&
             const DeepCollectionEquality().equals(other._animated, _animated) &&
             const DeepCollectionEquality()
                 .equals(other._staticImgs, _staticImgs));
@@ -164,13 +164,13 @@ class _$_CheermoteImageSet implements _CheermoteImageSet {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CheermoteImageSetCopyWith<_$_CheermoteImageSet> get copyWith =>
-      __$$_CheermoteImageSetCopyWithImpl<_$_CheermoteImageSet>(
+  _$$CheermoteImageSetImplCopyWith<_$CheermoteImageSetImpl> get copyWith =>
+      __$$CheermoteImageSetImplCopyWithImpl<_$CheermoteImageSetImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CheermoteImageSetToJson(
+    return _$$CheermoteImageSetImplToJson(
       this,
     );
   }
@@ -178,13 +178,12 @@ class _$_CheermoteImageSet implements _CheermoteImageSet {
 
 abstract class _CheermoteImageSet implements CheermoteImageSet {
   const factory _CheermoteImageSet(
-          {required final Map<String, String> animated,
-          @JsonKey(name: 'static')
-              required final Map<String, String> staticImgs}) =
-      _$_CheermoteImageSet;
+      {required final Map<String, String> animated,
+      @JsonKey(name: 'static')
+      required final Map<String, String> staticImgs}) = _$CheermoteImageSetImpl;
 
   factory _CheermoteImageSet.fromJson(Map<String, dynamic> json) =
-      _$_CheermoteImageSet.fromJson;
+      _$CheermoteImageSetImpl.fromJson;
 
   @override
   Map<String, String> get animated;
@@ -193,7 +192,7 @@ abstract class _CheermoteImageSet implements CheermoteImageSet {
   Map<String, String> get staticImgs;
   @override
   @JsonKey(ignore: true)
-  _$$_CheermoteImageSetCopyWith<_$_CheermoteImageSet> get copyWith =>
+  _$$CheermoteImageSetImplCopyWith<_$CheermoteImageSetImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -270,11 +269,11 @@ class _$CheermoteImageCopyWithImpl<$Res, $Val extends CheermoteImage>
 }
 
 /// @nodoc
-abstract class _$$_CheermoteImageCopyWith<$Res>
+abstract class _$$CheermoteImageImplCopyWith<$Res>
     implements $CheermoteImageCopyWith<$Res> {
-  factory _$$_CheermoteImageCopyWith(
-          _$_CheermoteImage value, $Res Function(_$_CheermoteImage) then) =
-      __$$_CheermoteImageCopyWithImpl<$Res>;
+  factory _$$CheermoteImageImplCopyWith(_$CheermoteImageImpl value,
+          $Res Function(_$CheermoteImageImpl) then) =
+      __$$CheermoteImageImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({CheermoteImageSet light, CheermoteImageSet dark});
@@ -286,11 +285,11 @@ abstract class _$$_CheermoteImageCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CheermoteImageCopyWithImpl<$Res>
-    extends _$CheermoteImageCopyWithImpl<$Res, _$_CheermoteImage>
-    implements _$$_CheermoteImageCopyWith<$Res> {
-  __$$_CheermoteImageCopyWithImpl(
-      _$_CheermoteImage _value, $Res Function(_$_CheermoteImage) _then)
+class __$$CheermoteImageImplCopyWithImpl<$Res>
+    extends _$CheermoteImageCopyWithImpl<$Res, _$CheermoteImageImpl>
+    implements _$$CheermoteImageImplCopyWith<$Res> {
+  __$$CheermoteImageImplCopyWithImpl(
+      _$CheermoteImageImpl _value, $Res Function(_$CheermoteImageImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -299,7 +298,7 @@ class __$$_CheermoteImageCopyWithImpl<$Res>
     Object? light = null,
     Object? dark = null,
   }) {
-    return _then(_$_CheermoteImage(
+    return _then(_$CheermoteImageImpl(
       light: null == light
           ? _value.light
           : light // ignore: cast_nullable_to_non_nullable
@@ -314,11 +313,11 @@ class __$$_CheermoteImageCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CheermoteImage implements _CheermoteImage {
-  const _$_CheermoteImage({required this.light, required this.dark});
+class _$CheermoteImageImpl implements _CheermoteImage {
+  const _$CheermoteImageImpl({required this.light, required this.dark});
 
-  factory _$_CheermoteImage.fromJson(Map<String, dynamic> json) =>
-      _$$_CheermoteImageFromJson(json);
+  factory _$CheermoteImageImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CheermoteImageImplFromJson(json);
 
   @override
   final CheermoteImageSet light;
@@ -331,10 +330,10 @@ class _$_CheermoteImage implements _CheermoteImage {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CheermoteImage &&
+            other is _$CheermoteImageImpl &&
             (identical(other.light, light) || other.light == light) &&
             (identical(other.dark, dark) || other.dark == dark));
   }
@@ -346,12 +345,13 @@ class _$_CheermoteImage implements _CheermoteImage {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CheermoteImageCopyWith<_$_CheermoteImage> get copyWith =>
-      __$$_CheermoteImageCopyWithImpl<_$_CheermoteImage>(this, _$identity);
+  _$$CheermoteImageImplCopyWith<_$CheermoteImageImpl> get copyWith =>
+      __$$CheermoteImageImplCopyWithImpl<_$CheermoteImageImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CheermoteImageToJson(
+    return _$$CheermoteImageImplToJson(
       this,
     );
   }
@@ -360,10 +360,10 @@ class _$_CheermoteImage implements _CheermoteImage {
 abstract class _CheermoteImage implements CheermoteImage {
   const factory _CheermoteImage(
       {required final CheermoteImageSet light,
-      required final CheermoteImageSet dark}) = _$_CheermoteImage;
+      required final CheermoteImageSet dark}) = _$CheermoteImageImpl;
 
   factory _CheermoteImage.fromJson(Map<String, dynamic> json) =
-      _$_CheermoteImage.fromJson;
+      _$CheermoteImageImpl.fromJson;
 
   @override
   CheermoteImageSet get light;
@@ -371,7 +371,7 @@ abstract class _CheermoteImage implements CheermoteImage {
   CheermoteImageSet get dark;
   @override
   @JsonKey(ignore: true)
-  _$$_CheermoteImageCopyWith<_$_CheermoteImage> get copyWith =>
+  _$$CheermoteImageImplCopyWith<_$CheermoteImageImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -486,11 +486,11 @@ class _$TwitchCheermoteTierCopyWithImpl<$Res, $Val extends TwitchCheermoteTier>
 }
 
 /// @nodoc
-abstract class _$$_TwitchCheermoteTierCopyWith<$Res>
+abstract class _$$TwitchCheermoteTierImplCopyWith<$Res>
     implements $TwitchCheermoteTierCopyWith<$Res> {
-  factory _$$_TwitchCheermoteTierCopyWith(_$_TwitchCheermoteTier value,
-          $Res Function(_$_TwitchCheermoteTier) then) =
-      __$$_TwitchCheermoteTierCopyWithImpl<$Res>;
+  factory _$$TwitchCheermoteTierImplCopyWith(_$TwitchCheermoteTierImpl value,
+          $Res Function(_$TwitchCheermoteTierImpl) then) =
+      __$$TwitchCheermoteTierImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -506,11 +506,11 @@ abstract class _$$_TwitchCheermoteTierCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchCheermoteTierCopyWithImpl<$Res>
-    extends _$TwitchCheermoteTierCopyWithImpl<$Res, _$_TwitchCheermoteTier>
-    implements _$$_TwitchCheermoteTierCopyWith<$Res> {
-  __$$_TwitchCheermoteTierCopyWithImpl(_$_TwitchCheermoteTier _value,
-      $Res Function(_$_TwitchCheermoteTier) _then)
+class __$$TwitchCheermoteTierImplCopyWithImpl<$Res>
+    extends _$TwitchCheermoteTierCopyWithImpl<$Res, _$TwitchCheermoteTierImpl>
+    implements _$$TwitchCheermoteTierImplCopyWith<$Res> {
+  __$$TwitchCheermoteTierImplCopyWithImpl(_$TwitchCheermoteTierImpl _value,
+      $Res Function(_$TwitchCheermoteTierImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -523,7 +523,7 @@ class __$$_TwitchCheermoteTierCopyWithImpl<$Res>
     Object? canCheer = null,
     Object? showInBitsCard = null,
   }) {
-    return _then(_$_TwitchCheermoteTier(
+    return _then(_$TwitchCheermoteTierImpl(
       minBits: null == minBits
           ? _value.minBits
           : minBits // ignore: cast_nullable_to_non_nullable
@@ -554,8 +554,8 @@ class __$$_TwitchCheermoteTierCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchCheermoteTier implements _TwitchCheermoteTier {
-  const _$_TwitchCheermoteTier(
+class _$TwitchCheermoteTierImpl implements _TwitchCheermoteTier {
+  const _$TwitchCheermoteTierImpl(
       {@JsonKey(name: 'min_bits') required this.minBits,
       required this.id,
       required this.color,
@@ -563,8 +563,8 @@ class _$_TwitchCheermoteTier implements _TwitchCheermoteTier {
       @JsonKey(name: 'can_cheer') required this.canCheer,
       @JsonKey(name: 'show_in_bits_card') required this.showInBitsCard});
 
-  factory _$_TwitchCheermoteTier.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchCheermoteTierFromJson(json);
+  factory _$TwitchCheermoteTierImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchCheermoteTierImplFromJson(json);
 
   /// Minimum number of bits needed to be used to hit the given tier of emote.
   @override
@@ -602,10 +602,10 @@ class _$_TwitchCheermoteTier implements _TwitchCheermoteTier {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchCheermoteTier &&
+            other is _$TwitchCheermoteTierImpl &&
             (identical(other.minBits, minBits) || other.minBits == minBits) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.color, color) || other.color == color) &&
@@ -624,13 +624,13 @@ class _$_TwitchCheermoteTier implements _TwitchCheermoteTier {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchCheermoteTierCopyWith<_$_TwitchCheermoteTier> get copyWith =>
-      __$$_TwitchCheermoteTierCopyWithImpl<_$_TwitchCheermoteTier>(
+  _$$TwitchCheermoteTierImplCopyWith<_$TwitchCheermoteTierImpl> get copyWith =>
+      __$$TwitchCheermoteTierImplCopyWithImpl<_$TwitchCheermoteTierImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchCheermoteTierToJson(
+    return _$$TwitchCheermoteTierImplToJson(
       this,
     );
   }
@@ -638,18 +638,16 @@ class _$_TwitchCheermoteTier implements _TwitchCheermoteTier {
 
 abstract class _TwitchCheermoteTier implements TwitchCheermoteTier {
   const factory _TwitchCheermoteTier(
-      {@JsonKey(name: 'min_bits')
-          required final int minBits,
+      {@JsonKey(name: 'min_bits') required final int minBits,
       required final String id,
       required final String color,
       required final CheermoteImage images,
-      @JsonKey(name: 'can_cheer')
-          required final bool canCheer,
+      @JsonKey(name: 'can_cheer') required final bool canCheer,
       @JsonKey(name: 'show_in_bits_card')
-          required final bool showInBitsCard}) = _$_TwitchCheermoteTier;
+      required final bool showInBitsCard}) = _$TwitchCheermoteTierImpl;
 
   factory _TwitchCheermoteTier.fromJson(Map<String, dynamic> json) =
-      _$_TwitchCheermoteTier.fromJson;
+      _$TwitchCheermoteTierImpl.fromJson;
 
   @override
 
@@ -683,6 +681,6 @@ abstract class _TwitchCheermoteTier implements TwitchCheermoteTier {
   bool get showInBitsCard;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchCheermoteTierCopyWith<_$_TwitchCheermoteTier> get copyWith =>
+  _$$TwitchCheermoteTierImplCopyWith<_$TwitchCheermoteTierImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

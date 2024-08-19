@@ -12,7 +12,7 @@ part of 'twitch_response.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 StartCommercialResponse _$StartCommercialResponseFromJson(
     Map<String, dynamic> json) {
@@ -66,23 +66,25 @@ class _$StartCommercialResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_StartCommercialResponseCopyWith<$Res>
+abstract class _$$StartCommercialResponseImplCopyWith<$Res>
     implements $StartCommercialResponseCopyWith<$Res> {
-  factory _$$_StartCommercialResponseCopyWith(_$_StartCommercialResponse value,
-          $Res Function(_$_StartCommercialResponse) then) =
-      __$$_StartCommercialResponseCopyWithImpl<$Res>;
+  factory _$$StartCommercialResponseImplCopyWith(
+          _$StartCommercialResponseImpl value,
+          $Res Function(_$StartCommercialResponseImpl) then) =
+      __$$StartCommercialResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<TwitchStartCommercial> data});
 }
 
 /// @nodoc
-class __$$_StartCommercialResponseCopyWithImpl<$Res>
+class __$$StartCommercialResponseImplCopyWithImpl<$Res>
     extends _$StartCommercialResponseCopyWithImpl<$Res,
-        _$_StartCommercialResponse>
-    implements _$$_StartCommercialResponseCopyWith<$Res> {
-  __$$_StartCommercialResponseCopyWithImpl(_$_StartCommercialResponse _value,
-      $Res Function(_$_StartCommercialResponse) _then)
+        _$StartCommercialResponseImpl>
+    implements _$$StartCommercialResponseImplCopyWith<$Res> {
+  __$$StartCommercialResponseImplCopyWithImpl(
+      _$StartCommercialResponseImpl _value,
+      $Res Function(_$StartCommercialResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -90,7 +92,7 @@ class __$$_StartCommercialResponseCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$_StartCommercialResponse(
+    return _then(_$StartCommercialResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -101,13 +103,13 @@ class __$$_StartCommercialResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_StartCommercialResponse implements _StartCommercialResponse {
-  const _$_StartCommercialResponse(
+class _$StartCommercialResponseImpl implements _StartCommercialResponse {
+  const _$StartCommercialResponseImpl(
       {required final List<TwitchStartCommercial> data})
       : _data = data;
 
-  factory _$_StartCommercialResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_StartCommercialResponseFromJson(json);
+  factory _$StartCommercialResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StartCommercialResponseImplFromJson(json);
 
   /// {@template twitchResponse.data}
   /// List of data from the response parsed into an object.
@@ -130,10 +132,10 @@ class _$_StartCommercialResponse implements _StartCommercialResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_StartCommercialResponse &&
+            other is _$StartCommercialResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
@@ -145,19 +147,18 @@ class _$_StartCommercialResponse implements _StartCommercialResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_StartCommercialResponseCopyWith<_$_StartCommercialResponse>
-      get copyWith =>
-          __$$_StartCommercialResponseCopyWithImpl<_$_StartCommercialResponse>(
-              this, _$identity);
+  _$$StartCommercialResponseImplCopyWith<_$StartCommercialResponseImpl>
+      get copyWith => __$$StartCommercialResponseImplCopyWithImpl<
+          _$StartCommercialResponseImpl>(this, _$identity);
 }
 
 abstract class _StartCommercialResponse implements StartCommercialResponse {
   const factory _StartCommercialResponse(
           {required final List<TwitchStartCommercial> data}) =
-      _$_StartCommercialResponse;
+      _$StartCommercialResponseImpl;
 
   factory _StartCommercialResponse.fromJson(Map<String, dynamic> json) =
-      _$_StartCommercialResponse.fromJson;
+      _$StartCommercialResponseImpl.fromJson;
 
   @override
 
@@ -167,7 +168,7 @@ abstract class _StartCommercialResponse implements StartCommercialResponse {
   List<TwitchStartCommercial> get data;
   @override
   @JsonKey(ignore: true)
-  _$$_StartCommercialResponseCopyWith<_$_StartCommercialResponse>
+  _$$StartCommercialResponseImplCopyWith<_$StartCommercialResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -234,12 +235,12 @@ class _$ExtensionAnalyticsResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ExtensionAnalyticsResponseCopyWith<$Res>
+abstract class _$$ExtensionAnalyticsResponseImplCopyWith<$Res>
     implements $ExtensionAnalyticsResponseCopyWith<$Res> {
-  factory _$$_ExtensionAnalyticsResponseCopyWith(
-          _$_ExtensionAnalyticsResponse value,
-          $Res Function(_$_ExtensionAnalyticsResponse) then) =
-      __$$_ExtensionAnalyticsResponseCopyWithImpl<$Res>;
+  factory _$$ExtensionAnalyticsResponseImplCopyWith(
+          _$ExtensionAnalyticsResponseImpl value,
+          $Res Function(_$ExtensionAnalyticsResponseImpl) then) =
+      __$$ExtensionAnalyticsResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -247,13 +248,13 @@ abstract class _$$_ExtensionAnalyticsResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ExtensionAnalyticsResponseCopyWithImpl<$Res>
+class __$$ExtensionAnalyticsResponseImplCopyWithImpl<$Res>
     extends _$ExtensionAnalyticsResponseCopyWithImpl<$Res,
-        _$_ExtensionAnalyticsResponse>
-    implements _$$_ExtensionAnalyticsResponseCopyWith<$Res> {
-  __$$_ExtensionAnalyticsResponseCopyWithImpl(
-      _$_ExtensionAnalyticsResponse _value,
-      $Res Function(_$_ExtensionAnalyticsResponse) _then)
+        _$ExtensionAnalyticsResponseImpl>
+    implements _$$ExtensionAnalyticsResponseImplCopyWith<$Res> {
+  __$$ExtensionAnalyticsResponseImplCopyWithImpl(
+      _$ExtensionAnalyticsResponseImpl _value,
+      $Res Function(_$ExtensionAnalyticsResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -262,7 +263,7 @@ class __$$_ExtensionAnalyticsResponseCopyWithImpl<$Res>
     Object? data = null,
     Object? pagination = freezed,
   }) {
-    return _then(_$_ExtensionAnalyticsResponse(
+    return _then(_$ExtensionAnalyticsResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -277,15 +278,16 @@ class __$$_ExtensionAnalyticsResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_ExtensionAnalyticsResponse implements _ExtensionAnalyticsResponse {
-  const _$_ExtensionAnalyticsResponse(
+class _$ExtensionAnalyticsResponseImpl implements _ExtensionAnalyticsResponse {
+  const _$ExtensionAnalyticsResponseImpl(
       {required final List<TwitchExtensionAnalytic> data,
       required final Map<String, dynamic>? pagination})
       : _data = data,
         _pagination = pagination;
 
-  factory _$_ExtensionAnalyticsResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_ExtensionAnalyticsResponseFromJson(json);
+  factory _$ExtensionAnalyticsResponseImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$ExtensionAnalyticsResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
   final List<TwitchExtensionAnalytic> _data;
@@ -323,10 +325,10 @@ class _$_ExtensionAnalyticsResponse implements _ExtensionAnalyticsResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ExtensionAnalyticsResponse &&
+            other is _$ExtensionAnalyticsResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             const DeepCollectionEquality()
                 .equals(other._pagination, _pagination));
@@ -342,9 +344,9 @@ class _$_ExtensionAnalyticsResponse implements _ExtensionAnalyticsResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ExtensionAnalyticsResponseCopyWith<_$_ExtensionAnalyticsResponse>
-      get copyWith => __$$_ExtensionAnalyticsResponseCopyWithImpl<
-          _$_ExtensionAnalyticsResponse>(this, _$identity);
+  _$$ExtensionAnalyticsResponseImplCopyWith<_$ExtensionAnalyticsResponseImpl>
+      get copyWith => __$$ExtensionAnalyticsResponseImplCopyWithImpl<
+          _$ExtensionAnalyticsResponseImpl>(this, _$identity);
 }
 
 abstract class _ExtensionAnalyticsResponse
@@ -352,10 +354,10 @@ abstract class _ExtensionAnalyticsResponse
   const factory _ExtensionAnalyticsResponse(
           {required final List<TwitchExtensionAnalytic> data,
           required final Map<String, dynamic>? pagination}) =
-      _$_ExtensionAnalyticsResponse;
+      _$ExtensionAnalyticsResponseImpl;
 
   factory _ExtensionAnalyticsResponse.fromJson(Map<String, dynamic> json) =
-      _$_ExtensionAnalyticsResponse.fromJson;
+      _$ExtensionAnalyticsResponseImpl.fromJson;
 
   @override
 
@@ -370,7 +372,7 @@ abstract class _ExtensionAnalyticsResponse
   Map<String, dynamic>? get pagination;
   @override
   @JsonKey(ignore: true)
-  _$$_ExtensionAnalyticsResponseCopyWith<_$_ExtensionAnalyticsResponse>
+  _$$ExtensionAnalyticsResponseImplCopyWith<_$ExtensionAnalyticsResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -432,22 +434,24 @@ class _$GameAnalyticsResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_GameAnalyticsResponseCopyWith<$Res>
+abstract class _$$GameAnalyticsResponseImplCopyWith<$Res>
     implements $GameAnalyticsResponseCopyWith<$Res> {
-  factory _$$_GameAnalyticsResponseCopyWith(_$_GameAnalyticsResponse value,
-          $Res Function(_$_GameAnalyticsResponse) then) =
-      __$$_GameAnalyticsResponseCopyWithImpl<$Res>;
+  factory _$$GameAnalyticsResponseImplCopyWith(
+          _$GameAnalyticsResponseImpl value,
+          $Res Function(_$GameAnalyticsResponseImpl) then) =
+      __$$GameAnalyticsResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<TwitchGameAnalytic> data, Map<String, dynamic>? pagination});
 }
 
 /// @nodoc
-class __$$_GameAnalyticsResponseCopyWithImpl<$Res>
-    extends _$GameAnalyticsResponseCopyWithImpl<$Res, _$_GameAnalyticsResponse>
-    implements _$$_GameAnalyticsResponseCopyWith<$Res> {
-  __$$_GameAnalyticsResponseCopyWithImpl(_$_GameAnalyticsResponse _value,
-      $Res Function(_$_GameAnalyticsResponse) _then)
+class __$$GameAnalyticsResponseImplCopyWithImpl<$Res>
+    extends _$GameAnalyticsResponseCopyWithImpl<$Res,
+        _$GameAnalyticsResponseImpl>
+    implements _$$GameAnalyticsResponseImplCopyWith<$Res> {
+  __$$GameAnalyticsResponseImplCopyWithImpl(_$GameAnalyticsResponseImpl _value,
+      $Res Function(_$GameAnalyticsResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -456,7 +460,7 @@ class __$$_GameAnalyticsResponseCopyWithImpl<$Res>
     Object? data = null,
     Object? pagination = freezed,
   }) {
-    return _then(_$_GameAnalyticsResponse(
+    return _then(_$GameAnalyticsResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -471,15 +475,15 @@ class __$$_GameAnalyticsResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_GameAnalyticsResponse implements _GameAnalyticsResponse {
-  const _$_GameAnalyticsResponse(
+class _$GameAnalyticsResponseImpl implements _GameAnalyticsResponse {
+  const _$GameAnalyticsResponseImpl(
       {required final List<TwitchGameAnalytic> data,
       required final Map<String, dynamic>? pagination})
       : _data = data,
         _pagination = pagination;
 
-  factory _$_GameAnalyticsResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_GameAnalyticsResponseFromJson(json);
+  factory _$GameAnalyticsResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GameAnalyticsResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
   final List<TwitchGameAnalytic> _data;
@@ -511,10 +515,10 @@ class _$_GameAnalyticsResponse implements _GameAnalyticsResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GameAnalyticsResponse &&
+            other is _$GameAnalyticsResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             const DeepCollectionEquality()
                 .equals(other._pagination, _pagination));
@@ -530,19 +534,19 @@ class _$_GameAnalyticsResponse implements _GameAnalyticsResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GameAnalyticsResponseCopyWith<_$_GameAnalyticsResponse> get copyWith =>
-      __$$_GameAnalyticsResponseCopyWithImpl<_$_GameAnalyticsResponse>(
-          this, _$identity);
+  _$$GameAnalyticsResponseImplCopyWith<_$GameAnalyticsResponseImpl>
+      get copyWith => __$$GameAnalyticsResponseImplCopyWithImpl<
+          _$GameAnalyticsResponseImpl>(this, _$identity);
 }
 
 abstract class _GameAnalyticsResponse implements GameAnalyticsResponse {
   const factory _GameAnalyticsResponse(
           {required final List<TwitchGameAnalytic> data,
           required final Map<String, dynamic>? pagination}) =
-      _$_GameAnalyticsResponse;
+      _$GameAnalyticsResponseImpl;
 
   factory _GameAnalyticsResponse.fromJson(Map<String, dynamic> json) =
-      _$_GameAnalyticsResponse.fromJson;
+      _$GameAnalyticsResponseImpl.fromJson;
 
   @override
 
@@ -554,8 +558,8 @@ abstract class _GameAnalyticsResponse implements GameAnalyticsResponse {
   Map<String, dynamic>? get pagination;
   @override
   @JsonKey(ignore: true)
-  _$$_GameAnalyticsResponseCopyWith<_$_GameAnalyticsResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$GameAnalyticsResponseImplCopyWith<_$GameAnalyticsResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 BitsLeaderboardResponse _$BitsLeaderboardResponseFromJson(
@@ -640,11 +644,12 @@ class _$BitsLeaderboardResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_BitsLeaderboardResponseCopyWith<$Res>
+abstract class _$$BitsLeaderboardResponseImplCopyWith<$Res>
     implements $BitsLeaderboardResponseCopyWith<$Res> {
-  factory _$$_BitsLeaderboardResponseCopyWith(_$_BitsLeaderboardResponse value,
-          $Res Function(_$_BitsLeaderboardResponse) then) =
-      __$$_BitsLeaderboardResponseCopyWithImpl<$Res>;
+  factory _$$BitsLeaderboardResponseImplCopyWith(
+          _$BitsLeaderboardResponseImpl value,
+          $Res Function(_$BitsLeaderboardResponseImpl) then) =
+      __$$BitsLeaderboardResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -657,12 +662,13 @@ abstract class _$$_BitsLeaderboardResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_BitsLeaderboardResponseCopyWithImpl<$Res>
+class __$$BitsLeaderboardResponseImplCopyWithImpl<$Res>
     extends _$BitsLeaderboardResponseCopyWithImpl<$Res,
-        _$_BitsLeaderboardResponse>
-    implements _$$_BitsLeaderboardResponseCopyWith<$Res> {
-  __$$_BitsLeaderboardResponseCopyWithImpl(_$_BitsLeaderboardResponse _value,
-      $Res Function(_$_BitsLeaderboardResponse) _then)
+        _$BitsLeaderboardResponseImpl>
+    implements _$$BitsLeaderboardResponseImplCopyWith<$Res> {
+  __$$BitsLeaderboardResponseImplCopyWithImpl(
+      _$BitsLeaderboardResponseImpl _value,
+      $Res Function(_$BitsLeaderboardResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -672,7 +678,7 @@ class __$$_BitsLeaderboardResponseCopyWithImpl<$Res>
     Object? dateRange = null,
     Object? total = null,
   }) {
-    return _then(_$_BitsLeaderboardResponse(
+    return _then(_$BitsLeaderboardResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -691,15 +697,15 @@ class __$$_BitsLeaderboardResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_BitsLeaderboardResponse implements _BitsLeaderboardResponse {
-  const _$_BitsLeaderboardResponse(
+class _$BitsLeaderboardResponseImpl implements _BitsLeaderboardResponse {
+  const _$BitsLeaderboardResponseImpl(
       {required final List<TwitchBitsLeaderboard> data,
       @JsonKey(name: 'date_range') required this.dateRange,
       required this.total})
       : _data = data;
 
-  factory _$_BitsLeaderboardResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_BitsLeaderboardResponseFromJson(json);
+  factory _$BitsLeaderboardResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BitsLeaderboardResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
   final List<TwitchBitsLeaderboard> _data;
@@ -729,10 +735,10 @@ class _$_BitsLeaderboardResponse implements _BitsLeaderboardResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BitsLeaderboardResponse &&
+            other is _$BitsLeaderboardResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             (identical(other.dateRange, dateRange) ||
                 other.dateRange == dateRange) &&
@@ -747,20 +753,19 @@ class _$_BitsLeaderboardResponse implements _BitsLeaderboardResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BitsLeaderboardResponseCopyWith<_$_BitsLeaderboardResponse>
-      get copyWith =>
-          __$$_BitsLeaderboardResponseCopyWithImpl<_$_BitsLeaderboardResponse>(
-              this, _$identity);
+  _$$BitsLeaderboardResponseImplCopyWith<_$BitsLeaderboardResponseImpl>
+      get copyWith => __$$BitsLeaderboardResponseImplCopyWithImpl<
+          _$BitsLeaderboardResponseImpl>(this, _$identity);
 }
 
 abstract class _BitsLeaderboardResponse implements BitsLeaderboardResponse {
   const factory _BitsLeaderboardResponse(
       {required final List<TwitchBitsLeaderboard> data,
       @JsonKey(name: 'date_range') required final TwitchDateRange dateRange,
-      required final int total}) = _$_BitsLeaderboardResponse;
+      required final int total}) = _$BitsLeaderboardResponseImpl;
 
   factory _BitsLeaderboardResponse.fromJson(Map<String, dynamic> json) =
-      _$_BitsLeaderboardResponse.fromJson;
+      _$BitsLeaderboardResponseImpl.fromJson;
 
   @override
 
@@ -779,7 +784,7 @@ abstract class _BitsLeaderboardResponse implements BitsLeaderboardResponse {
   int get total;
   @override
   @JsonKey(ignore: true)
-  _$$_BitsLeaderboardResponseCopyWith<_$_BitsLeaderboardResponse>
+  _$$BitsLeaderboardResponseImplCopyWith<_$BitsLeaderboardResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -831,22 +836,22 @@ class _$UsersResponseCopyWithImpl<$Res, $Val extends UsersResponse>
 }
 
 /// @nodoc
-abstract class _$$_UsersResponseCopyWith<$Res>
+abstract class _$$UsersResponseImplCopyWith<$Res>
     implements $UsersResponseCopyWith<$Res> {
-  factory _$$_UsersResponseCopyWith(
-          _$_UsersResponse value, $Res Function(_$_UsersResponse) then) =
-      __$$_UsersResponseCopyWithImpl<$Res>;
+  factory _$$UsersResponseImplCopyWith(
+          _$UsersResponseImpl value, $Res Function(_$UsersResponseImpl) then) =
+      __$$UsersResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<TwitchUser> data});
 }
 
 /// @nodoc
-class __$$_UsersResponseCopyWithImpl<$Res>
-    extends _$UsersResponseCopyWithImpl<$Res, _$_UsersResponse>
-    implements _$$_UsersResponseCopyWith<$Res> {
-  __$$_UsersResponseCopyWithImpl(
-      _$_UsersResponse _value, $Res Function(_$_UsersResponse) _then)
+class __$$UsersResponseImplCopyWithImpl<$Res>
+    extends _$UsersResponseCopyWithImpl<$Res, _$UsersResponseImpl>
+    implements _$$UsersResponseImplCopyWith<$Res> {
+  __$$UsersResponseImplCopyWithImpl(
+      _$UsersResponseImpl _value, $Res Function(_$UsersResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -854,7 +859,7 @@ class __$$_UsersResponseCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$_UsersResponse(
+    return _then(_$UsersResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -865,11 +870,12 @@ class __$$_UsersResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_UsersResponse implements _UsersResponse {
-  const _$_UsersResponse({required final List<TwitchUser> data}) : _data = data;
+class _$UsersResponseImpl implements _UsersResponse {
+  const _$UsersResponseImpl({required final List<TwitchUser> data})
+      : _data = data;
 
-  factory _$_UsersResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_UsersResponseFromJson(json);
+  factory _$UsersResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UsersResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
   final List<TwitchUser> _data;
@@ -888,10 +894,10 @@ class _$_UsersResponse implements _UsersResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UsersResponse &&
+            other is _$UsersResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
@@ -903,16 +909,16 @@ class _$_UsersResponse implements _UsersResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UsersResponseCopyWith<_$_UsersResponse> get copyWith =>
-      __$$_UsersResponseCopyWithImpl<_$_UsersResponse>(this, _$identity);
+  _$$UsersResponseImplCopyWith<_$UsersResponseImpl> get copyWith =>
+      __$$UsersResponseImplCopyWithImpl<_$UsersResponseImpl>(this, _$identity);
 }
 
 abstract class _UsersResponse implements UsersResponse {
   const factory _UsersResponse({required final List<TwitchUser> data}) =
-      _$_UsersResponse;
+      _$UsersResponseImpl;
 
   factory _UsersResponse.fromJson(Map<String, dynamic> json) =
-      _$_UsersResponse.fromJson;
+      _$UsersResponseImpl.fromJson;
 
   @override
 
@@ -920,7 +926,7 @@ abstract class _UsersResponse implements UsersResponse {
   List<TwitchUser> get data;
   @override
   @JsonKey(ignore: true)
-  _$$_UsersResponseCopyWith<_$_UsersResponse> get copyWith =>
+  _$$UsersResponseImplCopyWith<_$UsersResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -992,11 +998,11 @@ class _$UsersFollowsResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_UsersFollowsResponseCopyWith<$Res>
+abstract class _$$UsersFollowsResponseImplCopyWith<$Res>
     implements $UsersFollowsResponseCopyWith<$Res> {
-  factory _$$_UsersFollowsResponseCopyWith(_$_UsersFollowsResponse value,
-          $Res Function(_$_UsersFollowsResponse) then) =
-      __$$_UsersFollowsResponseCopyWithImpl<$Res>;
+  factory _$$UsersFollowsResponseImplCopyWith(_$UsersFollowsResponseImpl value,
+          $Res Function(_$UsersFollowsResponseImpl) then) =
+      __$$UsersFollowsResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1006,11 +1012,11 @@ abstract class _$$_UsersFollowsResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_UsersFollowsResponseCopyWithImpl<$Res>
-    extends _$UsersFollowsResponseCopyWithImpl<$Res, _$_UsersFollowsResponse>
-    implements _$$_UsersFollowsResponseCopyWith<$Res> {
-  __$$_UsersFollowsResponseCopyWithImpl(_$_UsersFollowsResponse _value,
-      $Res Function(_$_UsersFollowsResponse) _then)
+class __$$UsersFollowsResponseImplCopyWithImpl<$Res>
+    extends _$UsersFollowsResponseCopyWithImpl<$Res, _$UsersFollowsResponseImpl>
+    implements _$$UsersFollowsResponseImplCopyWith<$Res> {
+  __$$UsersFollowsResponseImplCopyWithImpl(_$UsersFollowsResponseImpl _value,
+      $Res Function(_$UsersFollowsResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1020,7 +1026,7 @@ class __$$_UsersFollowsResponseCopyWithImpl<$Res>
     Object? pagination = freezed,
     Object? total = null,
   }) {
-    return _then(_$_UsersFollowsResponse(
+    return _then(_$UsersFollowsResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -1039,16 +1045,16 @@ class __$$_UsersFollowsResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_UsersFollowsResponse implements _UsersFollowsResponse {
-  const _$_UsersFollowsResponse(
+class _$UsersFollowsResponseImpl implements _UsersFollowsResponse {
+  const _$UsersFollowsResponseImpl(
       {required final List<TwitchUserFollow> data,
       required final Map<String, dynamic>? pagination,
       required this.total})
       : _data = data,
         _pagination = pagination;
 
-  factory _$_UsersFollowsResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_UsersFollowsResponseFromJson(json);
+  factory _$UsersFollowsResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UsersFollowsResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
   final List<TwitchUserFollow> _data;
@@ -1084,10 +1090,10 @@ class _$_UsersFollowsResponse implements _UsersFollowsResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UsersFollowsResponse &&
+            other is _$UsersFollowsResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             const DeepCollectionEquality()
                 .equals(other._pagination, _pagination) &&
@@ -1105,19 +1111,20 @@ class _$_UsersFollowsResponse implements _UsersFollowsResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UsersFollowsResponseCopyWith<_$_UsersFollowsResponse> get copyWith =>
-      __$$_UsersFollowsResponseCopyWithImpl<_$_UsersFollowsResponse>(
-          this, _$identity);
+  _$$UsersFollowsResponseImplCopyWith<_$UsersFollowsResponseImpl>
+      get copyWith =>
+          __$$UsersFollowsResponseImplCopyWithImpl<_$UsersFollowsResponseImpl>(
+              this, _$identity);
 }
 
 abstract class _UsersFollowsResponse implements UsersFollowsResponse {
   const factory _UsersFollowsResponse(
       {required final List<TwitchUserFollow> data,
       required final Map<String, dynamic>? pagination,
-      required final int total}) = _$_UsersFollowsResponse;
+      required final int total}) = _$UsersFollowsResponseImpl;
 
   factory _UsersFollowsResponse.fromJson(Map<String, dynamic> json) =
-      _$_UsersFollowsResponse.fromJson;
+      _$UsersFollowsResponseImpl.fromJson;
 
   @override
 
@@ -1133,8 +1140,8 @@ abstract class _UsersFollowsResponse implements UsersFollowsResponse {
   int get total;
   @override
   @JsonKey(ignore: true)
-  _$$_UsersFollowsResponseCopyWith<_$_UsersFollowsResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$UsersFollowsResponseImplCopyWith<_$UsersFollowsResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 TopGamesResponse _$TopGamesResponseFromJson(Map<String, dynamic> json) {
@@ -1193,22 +1200,22 @@ class _$TopGamesResponseCopyWithImpl<$Res, $Val extends TopGamesResponse>
 }
 
 /// @nodoc
-abstract class _$$_TopGamesResponseCopyWith<$Res>
+abstract class _$$TopGamesResponseImplCopyWith<$Res>
     implements $TopGamesResponseCopyWith<$Res> {
-  factory _$$_TopGamesResponseCopyWith(
-          _$_TopGamesResponse value, $Res Function(_$_TopGamesResponse) then) =
-      __$$_TopGamesResponseCopyWithImpl<$Res>;
+  factory _$$TopGamesResponseImplCopyWith(_$TopGamesResponseImpl value,
+          $Res Function(_$TopGamesResponseImpl) then) =
+      __$$TopGamesResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<TwitchGame> data, Map<String, dynamic>? pagination});
 }
 
 /// @nodoc
-class __$$_TopGamesResponseCopyWithImpl<$Res>
-    extends _$TopGamesResponseCopyWithImpl<$Res, _$_TopGamesResponse>
-    implements _$$_TopGamesResponseCopyWith<$Res> {
-  __$$_TopGamesResponseCopyWithImpl(
-      _$_TopGamesResponse _value, $Res Function(_$_TopGamesResponse) _then)
+class __$$TopGamesResponseImplCopyWithImpl<$Res>
+    extends _$TopGamesResponseCopyWithImpl<$Res, _$TopGamesResponseImpl>
+    implements _$$TopGamesResponseImplCopyWith<$Res> {
+  __$$TopGamesResponseImplCopyWithImpl(_$TopGamesResponseImpl _value,
+      $Res Function(_$TopGamesResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1217,7 +1224,7 @@ class __$$_TopGamesResponseCopyWithImpl<$Res>
     Object? data = null,
     Object? pagination = freezed,
   }) {
-    return _then(_$_TopGamesResponse(
+    return _then(_$TopGamesResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -1232,15 +1239,15 @@ class __$$_TopGamesResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_TopGamesResponse implements _TopGamesResponse {
-  const _$_TopGamesResponse(
+class _$TopGamesResponseImpl implements _TopGamesResponse {
+  const _$TopGamesResponseImpl(
       {required final List<TwitchGame> data,
       required final Map<String, dynamic>? pagination})
       : _data = data,
         _pagination = pagination;
 
-  factory _$_TopGamesResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_TopGamesResponseFromJson(json);
+  factory _$TopGamesResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TopGamesResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
   final List<TwitchGame> _data;
@@ -1272,10 +1279,10 @@ class _$_TopGamesResponse implements _TopGamesResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TopGamesResponse &&
+            other is _$TopGamesResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             const DeepCollectionEquality()
                 .equals(other._pagination, _pagination));
@@ -1291,17 +1298,19 @@ class _$_TopGamesResponse implements _TopGamesResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TopGamesResponseCopyWith<_$_TopGamesResponse> get copyWith =>
-      __$$_TopGamesResponseCopyWithImpl<_$_TopGamesResponse>(this, _$identity);
+  _$$TopGamesResponseImplCopyWith<_$TopGamesResponseImpl> get copyWith =>
+      __$$TopGamesResponseImplCopyWithImpl<_$TopGamesResponseImpl>(
+          this, _$identity);
 }
 
 abstract class _TopGamesResponse implements TopGamesResponse {
   const factory _TopGamesResponse(
-      {required final List<TwitchGame> data,
-      required final Map<String, dynamic>? pagination}) = _$_TopGamesResponse;
+          {required final List<TwitchGame> data,
+          required final Map<String, dynamic>? pagination}) =
+      _$TopGamesResponseImpl;
 
   factory _TopGamesResponse.fromJson(Map<String, dynamic> json) =
-      _$_TopGamesResponse.fromJson;
+      _$TopGamesResponseImpl.fromJson;
 
   @override
 
@@ -1313,7 +1322,7 @@ abstract class _TopGamesResponse implements TopGamesResponse {
   Map<String, dynamic>? get pagination;
   @override
   @JsonKey(ignore: true)
-  _$$_TopGamesResponseCopyWith<_$_TopGamesResponse> get copyWith =>
+  _$$TopGamesResponseImplCopyWith<_$TopGamesResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1365,22 +1374,22 @@ class _$GamesResponseCopyWithImpl<$Res, $Val extends GamesResponse>
 }
 
 /// @nodoc
-abstract class _$$_GamesResponseCopyWith<$Res>
+abstract class _$$GamesResponseImplCopyWith<$Res>
     implements $GamesResponseCopyWith<$Res> {
-  factory _$$_GamesResponseCopyWith(
-          _$_GamesResponse value, $Res Function(_$_GamesResponse) then) =
-      __$$_GamesResponseCopyWithImpl<$Res>;
+  factory _$$GamesResponseImplCopyWith(
+          _$GamesResponseImpl value, $Res Function(_$GamesResponseImpl) then) =
+      __$$GamesResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<TwitchGame> data});
 }
 
 /// @nodoc
-class __$$_GamesResponseCopyWithImpl<$Res>
-    extends _$GamesResponseCopyWithImpl<$Res, _$_GamesResponse>
-    implements _$$_GamesResponseCopyWith<$Res> {
-  __$$_GamesResponseCopyWithImpl(
-      _$_GamesResponse _value, $Res Function(_$_GamesResponse) _then)
+class __$$GamesResponseImplCopyWithImpl<$Res>
+    extends _$GamesResponseCopyWithImpl<$Res, _$GamesResponseImpl>
+    implements _$$GamesResponseImplCopyWith<$Res> {
+  __$$GamesResponseImplCopyWithImpl(
+      _$GamesResponseImpl _value, $Res Function(_$GamesResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1388,7 +1397,7 @@ class __$$_GamesResponseCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$_GamesResponse(
+    return _then(_$GamesResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -1399,11 +1408,12 @@ class __$$_GamesResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_GamesResponse implements _GamesResponse {
-  const _$_GamesResponse({required final List<TwitchGame> data}) : _data = data;
+class _$GamesResponseImpl implements _GamesResponse {
+  const _$GamesResponseImpl({required final List<TwitchGame> data})
+      : _data = data;
 
-  factory _$_GamesResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_GamesResponseFromJson(json);
+  factory _$GamesResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GamesResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
   final List<TwitchGame> _data;
@@ -1422,10 +1432,10 @@ class _$_GamesResponse implements _GamesResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GamesResponse &&
+            other is _$GamesResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
@@ -1437,16 +1447,16 @@ class _$_GamesResponse implements _GamesResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GamesResponseCopyWith<_$_GamesResponse> get copyWith =>
-      __$$_GamesResponseCopyWithImpl<_$_GamesResponse>(this, _$identity);
+  _$$GamesResponseImplCopyWith<_$GamesResponseImpl> get copyWith =>
+      __$$GamesResponseImplCopyWithImpl<_$GamesResponseImpl>(this, _$identity);
 }
 
 abstract class _GamesResponse implements GamesResponse {
   const factory _GamesResponse({required final List<TwitchGame> data}) =
-      _$_GamesResponse;
+      _$GamesResponseImpl;
 
   factory _GamesResponse.fromJson(Map<String, dynamic> json) =
-      _$_GamesResponse.fromJson;
+      _$GamesResponseImpl.fromJson;
 
   @override
 
@@ -1454,7 +1464,7 @@ abstract class _GamesResponse implements GamesResponse {
   List<TwitchGame> get data;
   @override
   @JsonKey(ignore: true)
-  _$$_GamesResponseCopyWith<_$_GamesResponse> get copyWith =>
+  _$$GamesResponseImplCopyWith<_$GamesResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1509,25 +1519,25 @@ class _$ChannelInformationResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ChannelInformationResponseCopyWith<$Res>
+abstract class _$$ChannelInformationResponseImplCopyWith<$Res>
     implements $ChannelInformationResponseCopyWith<$Res> {
-  factory _$$_ChannelInformationResponseCopyWith(
-          _$_ChannelInformationResponse value,
-          $Res Function(_$_ChannelInformationResponse) then) =
-      __$$_ChannelInformationResponseCopyWithImpl<$Res>;
+  factory _$$ChannelInformationResponseImplCopyWith(
+          _$ChannelInformationResponseImpl value,
+          $Res Function(_$ChannelInformationResponseImpl) then) =
+      __$$ChannelInformationResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<TwitchChannelInfo> data});
 }
 
 /// @nodoc
-class __$$_ChannelInformationResponseCopyWithImpl<$Res>
+class __$$ChannelInformationResponseImplCopyWithImpl<$Res>
     extends _$ChannelInformationResponseCopyWithImpl<$Res,
-        _$_ChannelInformationResponse>
-    implements _$$_ChannelInformationResponseCopyWith<$Res> {
-  __$$_ChannelInformationResponseCopyWithImpl(
-      _$_ChannelInformationResponse _value,
-      $Res Function(_$_ChannelInformationResponse) _then)
+        _$ChannelInformationResponseImpl>
+    implements _$$ChannelInformationResponseImplCopyWith<$Res> {
+  __$$ChannelInformationResponseImplCopyWithImpl(
+      _$ChannelInformationResponseImpl _value,
+      $Res Function(_$ChannelInformationResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1535,7 +1545,7 @@ class __$$_ChannelInformationResponseCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$_ChannelInformationResponse(
+    return _then(_$ChannelInformationResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -1546,13 +1556,14 @@ class __$$_ChannelInformationResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_ChannelInformationResponse implements _ChannelInformationResponse {
-  const _$_ChannelInformationResponse(
+class _$ChannelInformationResponseImpl implements _ChannelInformationResponse {
+  const _$ChannelInformationResponseImpl(
       {required final List<TwitchChannelInfo> data})
       : _data = data;
 
-  factory _$_ChannelInformationResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_ChannelInformationResponseFromJson(json);
+  factory _$ChannelInformationResponseImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$ChannelInformationResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
   final List<TwitchChannelInfo> _data;
@@ -1571,10 +1582,10 @@ class _$_ChannelInformationResponse implements _ChannelInformationResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChannelInformationResponse &&
+            other is _$ChannelInformationResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
@@ -1586,19 +1597,19 @@ class _$_ChannelInformationResponse implements _ChannelInformationResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChannelInformationResponseCopyWith<_$_ChannelInformationResponse>
-      get copyWith => __$$_ChannelInformationResponseCopyWithImpl<
-          _$_ChannelInformationResponse>(this, _$identity);
+  _$$ChannelInformationResponseImplCopyWith<_$ChannelInformationResponseImpl>
+      get copyWith => __$$ChannelInformationResponseImplCopyWithImpl<
+          _$ChannelInformationResponseImpl>(this, _$identity);
 }
 
 abstract class _ChannelInformationResponse
     implements ChannelInformationResponse {
   const factory _ChannelInformationResponse(
           {required final List<TwitchChannelInfo> data}) =
-      _$_ChannelInformationResponse;
+      _$ChannelInformationResponseImpl;
 
   factory _ChannelInformationResponse.fromJson(Map<String, dynamic> json) =
-      _$_ChannelInformationResponse.fromJson;
+      _$ChannelInformationResponseImpl.fromJson;
 
   @override
 
@@ -1606,7 +1617,7 @@ abstract class _ChannelInformationResponse
   List<TwitchChannelInfo> get data;
   @override
   @JsonKey(ignore: true)
-  _$$_ChannelInformationResponseCopyWith<_$_ChannelInformationResponse>
+  _$$ChannelInformationResponseImplCopyWith<_$ChannelInformationResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1660,24 +1671,25 @@ class _$SearchCategoriesResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_SearchCategoriesResponseCopyWith<$Res>
+abstract class _$$SearchCategoriesResponseImplCopyWith<$Res>
     implements $SearchCategoriesResponseCopyWith<$Res> {
-  factory _$$_SearchCategoriesResponseCopyWith(
-          _$_SearchCategoriesResponse value,
-          $Res Function(_$_SearchCategoriesResponse) then) =
-      __$$_SearchCategoriesResponseCopyWithImpl<$Res>;
+  factory _$$SearchCategoriesResponseImplCopyWith(
+          _$SearchCategoriesResponseImpl value,
+          $Res Function(_$SearchCategoriesResponseImpl) then) =
+      __$$SearchCategoriesResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<TwitchGame> data});
 }
 
 /// @nodoc
-class __$$_SearchCategoriesResponseCopyWithImpl<$Res>
+class __$$SearchCategoriesResponseImplCopyWithImpl<$Res>
     extends _$SearchCategoriesResponseCopyWithImpl<$Res,
-        _$_SearchCategoriesResponse>
-    implements _$$_SearchCategoriesResponseCopyWith<$Res> {
-  __$$_SearchCategoriesResponseCopyWithImpl(_$_SearchCategoriesResponse _value,
-      $Res Function(_$_SearchCategoriesResponse) _then)
+        _$SearchCategoriesResponseImpl>
+    implements _$$SearchCategoriesResponseImplCopyWith<$Res> {
+  __$$SearchCategoriesResponseImplCopyWithImpl(
+      _$SearchCategoriesResponseImpl _value,
+      $Res Function(_$SearchCategoriesResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1685,7 +1697,7 @@ class __$$_SearchCategoriesResponseCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$_SearchCategoriesResponse(
+    return _then(_$SearchCategoriesResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -1696,12 +1708,12 @@ class __$$_SearchCategoriesResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_SearchCategoriesResponse implements _SearchCategoriesResponse {
-  const _$_SearchCategoriesResponse({required final List<TwitchGame> data})
+class _$SearchCategoriesResponseImpl implements _SearchCategoriesResponse {
+  const _$SearchCategoriesResponseImpl({required final List<TwitchGame> data})
       : _data = data;
 
-  factory _$_SearchCategoriesResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_SearchCategoriesResponseFromJson(json);
+  factory _$SearchCategoriesResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SearchCategoriesResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
   final List<TwitchGame> _data;
@@ -1720,10 +1732,10 @@ class _$_SearchCategoriesResponse implements _SearchCategoriesResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SearchCategoriesResponse &&
+            other is _$SearchCategoriesResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
@@ -1735,17 +1747,17 @@ class _$_SearchCategoriesResponse implements _SearchCategoriesResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SearchCategoriesResponseCopyWith<_$_SearchCategoriesResponse>
-      get copyWith => __$$_SearchCategoriesResponseCopyWithImpl<
-          _$_SearchCategoriesResponse>(this, _$identity);
+  _$$SearchCategoriesResponseImplCopyWith<_$SearchCategoriesResponseImpl>
+      get copyWith => __$$SearchCategoriesResponseImplCopyWithImpl<
+          _$SearchCategoriesResponseImpl>(this, _$identity);
 }
 
 abstract class _SearchCategoriesResponse implements SearchCategoriesResponse {
   const factory _SearchCategoriesResponse(
-      {required final List<TwitchGame> data}) = _$_SearchCategoriesResponse;
+      {required final List<TwitchGame> data}) = _$SearchCategoriesResponseImpl;
 
   factory _SearchCategoriesResponse.fromJson(Map<String, dynamic> json) =
-      _$_SearchCategoriesResponse.fromJson;
+      _$SearchCategoriesResponseImpl.fromJson;
 
   @override
 
@@ -1753,7 +1765,7 @@ abstract class _SearchCategoriesResponse implements SearchCategoriesResponse {
   List<TwitchGame> get data;
   @override
   @JsonKey(ignore: true)
-  _$$_SearchCategoriesResponseCopyWith<_$_SearchCategoriesResponse>
+  _$$SearchCategoriesResponseImplCopyWith<_$SearchCategoriesResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1815,23 +1827,25 @@ class _$SearchChannelsResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_SearchChannelsResponseCopyWith<$Res>
+abstract class _$$SearchChannelsResponseImplCopyWith<$Res>
     implements $SearchChannelsResponseCopyWith<$Res> {
-  factory _$$_SearchChannelsResponseCopyWith(_$_SearchChannelsResponse value,
-          $Res Function(_$_SearchChannelsResponse) then) =
-      __$$_SearchChannelsResponseCopyWithImpl<$Res>;
+  factory _$$SearchChannelsResponseImplCopyWith(
+          _$SearchChannelsResponseImpl value,
+          $Res Function(_$SearchChannelsResponseImpl) then) =
+      __$$SearchChannelsResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<TwitchSearchChannel> data, Map<String, dynamic>? pagination});
 }
 
 /// @nodoc
-class __$$_SearchChannelsResponseCopyWithImpl<$Res>
+class __$$SearchChannelsResponseImplCopyWithImpl<$Res>
     extends _$SearchChannelsResponseCopyWithImpl<$Res,
-        _$_SearchChannelsResponse>
-    implements _$$_SearchChannelsResponseCopyWith<$Res> {
-  __$$_SearchChannelsResponseCopyWithImpl(_$_SearchChannelsResponse _value,
-      $Res Function(_$_SearchChannelsResponse) _then)
+        _$SearchChannelsResponseImpl>
+    implements _$$SearchChannelsResponseImplCopyWith<$Res> {
+  __$$SearchChannelsResponseImplCopyWithImpl(
+      _$SearchChannelsResponseImpl _value,
+      $Res Function(_$SearchChannelsResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1840,7 +1854,7 @@ class __$$_SearchChannelsResponseCopyWithImpl<$Res>
     Object? data = null,
     Object? pagination = freezed,
   }) {
-    return _then(_$_SearchChannelsResponse(
+    return _then(_$SearchChannelsResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -1855,15 +1869,15 @@ class __$$_SearchChannelsResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_SearchChannelsResponse implements _SearchChannelsResponse {
-  const _$_SearchChannelsResponse(
+class _$SearchChannelsResponseImpl implements _SearchChannelsResponse {
+  const _$SearchChannelsResponseImpl(
       {required final List<TwitchSearchChannel> data,
       required final Map<String, dynamic>? pagination})
       : _data = data,
         _pagination = pagination;
 
-  factory _$_SearchChannelsResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_SearchChannelsResponseFromJson(json);
+  factory _$SearchChannelsResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$SearchChannelsResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
   final List<TwitchSearchChannel> _data;
@@ -1895,10 +1909,10 @@ class _$_SearchChannelsResponse implements _SearchChannelsResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SearchChannelsResponse &&
+            other is _$SearchChannelsResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             const DeepCollectionEquality()
                 .equals(other._pagination, _pagination));
@@ -1914,19 +1928,19 @@ class _$_SearchChannelsResponse implements _SearchChannelsResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SearchChannelsResponseCopyWith<_$_SearchChannelsResponse> get copyWith =>
-      __$$_SearchChannelsResponseCopyWithImpl<_$_SearchChannelsResponse>(
-          this, _$identity);
+  _$$SearchChannelsResponseImplCopyWith<_$SearchChannelsResponseImpl>
+      get copyWith => __$$SearchChannelsResponseImplCopyWithImpl<
+          _$SearchChannelsResponseImpl>(this, _$identity);
 }
 
 abstract class _SearchChannelsResponse implements SearchChannelsResponse {
   const factory _SearchChannelsResponse(
           {required final List<TwitchSearchChannel> data,
           required final Map<String, dynamic>? pagination}) =
-      _$_SearchChannelsResponse;
+      _$SearchChannelsResponseImpl;
 
   factory _SearchChannelsResponse.fromJson(Map<String, dynamic> json) =
-      _$_SearchChannelsResponse.fromJson;
+      _$SearchChannelsResponseImpl.fromJson;
 
   @override
 
@@ -1938,8 +1952,8 @@ abstract class _SearchChannelsResponse implements SearchChannelsResponse {
   Map<String, dynamic>? get pagination;
   @override
   @JsonKey(ignore: true)
-  _$$_SearchChannelsResponseCopyWith<_$_SearchChannelsResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$SearchChannelsResponseImplCopyWith<_$SearchChannelsResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 StreamsResponse _$StreamsResponseFromJson(Map<String, dynamic> json) {
@@ -1998,22 +2012,22 @@ class _$StreamsResponseCopyWithImpl<$Res, $Val extends StreamsResponse>
 }
 
 /// @nodoc
-abstract class _$$_StreamsResponseCopyWith<$Res>
+abstract class _$$StreamsResponseImplCopyWith<$Res>
     implements $StreamsResponseCopyWith<$Res> {
-  factory _$$_StreamsResponseCopyWith(
-          _$_StreamsResponse value, $Res Function(_$_StreamsResponse) then) =
-      __$$_StreamsResponseCopyWithImpl<$Res>;
+  factory _$$StreamsResponseImplCopyWith(_$StreamsResponseImpl value,
+          $Res Function(_$StreamsResponseImpl) then) =
+      __$$StreamsResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<TwitchStreamInfo> data, Map<String, dynamic>? pagination});
 }
 
 /// @nodoc
-class __$$_StreamsResponseCopyWithImpl<$Res>
-    extends _$StreamsResponseCopyWithImpl<$Res, _$_StreamsResponse>
-    implements _$$_StreamsResponseCopyWith<$Res> {
-  __$$_StreamsResponseCopyWithImpl(
-      _$_StreamsResponse _value, $Res Function(_$_StreamsResponse) _then)
+class __$$StreamsResponseImplCopyWithImpl<$Res>
+    extends _$StreamsResponseCopyWithImpl<$Res, _$StreamsResponseImpl>
+    implements _$$StreamsResponseImplCopyWith<$Res> {
+  __$$StreamsResponseImplCopyWithImpl(
+      _$StreamsResponseImpl _value, $Res Function(_$StreamsResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2022,7 +2036,7 @@ class __$$_StreamsResponseCopyWithImpl<$Res>
     Object? data = null,
     Object? pagination = freezed,
   }) {
-    return _then(_$_StreamsResponse(
+    return _then(_$StreamsResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -2037,15 +2051,15 @@ class __$$_StreamsResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_StreamsResponse implements _StreamsResponse {
-  const _$_StreamsResponse(
+class _$StreamsResponseImpl implements _StreamsResponse {
+  const _$StreamsResponseImpl(
       {required final List<TwitchStreamInfo> data,
       required final Map<String, dynamic>? pagination})
       : _data = data,
         _pagination = pagination;
 
-  factory _$_StreamsResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_StreamsResponseFromJson(json);
+  factory _$StreamsResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$StreamsResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
   final List<TwitchStreamInfo> _data;
@@ -2077,10 +2091,10 @@ class _$_StreamsResponse implements _StreamsResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_StreamsResponse &&
+            other is _$StreamsResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             const DeepCollectionEquality()
                 .equals(other._pagination, _pagination));
@@ -2096,17 +2110,18 @@ class _$_StreamsResponse implements _StreamsResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_StreamsResponseCopyWith<_$_StreamsResponse> get copyWith =>
-      __$$_StreamsResponseCopyWithImpl<_$_StreamsResponse>(this, _$identity);
+  _$$StreamsResponseImplCopyWith<_$StreamsResponseImpl> get copyWith =>
+      __$$StreamsResponseImplCopyWithImpl<_$StreamsResponseImpl>(
+          this, _$identity);
 }
 
 abstract class _StreamsResponse implements StreamsResponse {
   const factory _StreamsResponse(
       {required final List<TwitchStreamInfo> data,
-      required final Map<String, dynamic>? pagination}) = _$_StreamsResponse;
+      required final Map<String, dynamic>? pagination}) = _$StreamsResponseImpl;
 
   factory _StreamsResponse.fromJson(Map<String, dynamic> json) =
-      _$_StreamsResponse.fromJson;
+      _$StreamsResponseImpl.fromJson;
 
   @override
 
@@ -2118,7 +2133,7 @@ abstract class _StreamsResponse implements StreamsResponse {
   Map<String, dynamic>? get pagination;
   @override
   @JsonKey(ignore: true)
-  _$$_StreamsResponseCopyWith<_$_StreamsResponse> get copyWith =>
+  _$$StreamsResponseImplCopyWith<_$StreamsResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2208,12 +2223,12 @@ class _$BroadcasterSubscriptionsResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_BroadcasterSubscriptionsResponseCopyWith<$Res>
+abstract class _$$BroadcasterSubscriptionsResponseImplCopyWith<$Res>
     implements $BroadcasterSubscriptionsResponseCopyWith<$Res> {
-  factory _$$_BroadcasterSubscriptionsResponseCopyWith(
-          _$_BroadcasterSubscriptionsResponse value,
-          $Res Function(_$_BroadcasterSubscriptionsResponse) then) =
-      __$$_BroadcasterSubscriptionsResponseCopyWithImpl<$Res>;
+  factory _$$BroadcasterSubscriptionsResponseImplCopyWith(
+          _$BroadcasterSubscriptionsResponseImpl value,
+          $Res Function(_$BroadcasterSubscriptionsResponseImpl) then) =
+      __$$BroadcasterSubscriptionsResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2224,13 +2239,13 @@ abstract class _$$_BroadcasterSubscriptionsResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_BroadcasterSubscriptionsResponseCopyWithImpl<$Res>
+class __$$BroadcasterSubscriptionsResponseImplCopyWithImpl<$Res>
     extends _$BroadcasterSubscriptionsResponseCopyWithImpl<$Res,
-        _$_BroadcasterSubscriptionsResponse>
-    implements _$$_BroadcasterSubscriptionsResponseCopyWith<$Res> {
-  __$$_BroadcasterSubscriptionsResponseCopyWithImpl(
-      _$_BroadcasterSubscriptionsResponse _value,
-      $Res Function(_$_BroadcasterSubscriptionsResponse) _then)
+        _$BroadcasterSubscriptionsResponseImpl>
+    implements _$$BroadcasterSubscriptionsResponseImplCopyWith<$Res> {
+  __$$BroadcasterSubscriptionsResponseImplCopyWithImpl(
+      _$BroadcasterSubscriptionsResponseImpl _value,
+      $Res Function(_$BroadcasterSubscriptionsResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2241,7 +2256,7 @@ class __$$_BroadcasterSubscriptionsResponseCopyWithImpl<$Res>
     Object? total = null,
     Object? points = null,
   }) {
-    return _then(_$_BroadcasterSubscriptionsResponse(
+    return _then(_$BroadcasterSubscriptionsResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -2264,9 +2279,9 @@ class __$$_BroadcasterSubscriptionsResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_BroadcasterSubscriptionsResponse
+class _$BroadcasterSubscriptionsResponseImpl
     implements _BroadcasterSubscriptionsResponse {
-  const _$_BroadcasterSubscriptionsResponse(
+  const _$BroadcasterSubscriptionsResponseImpl(
       {required final List<TwitchBroadcasterSubscription> data,
       required final Map<String, dynamic>? pagination,
       required this.total,
@@ -2274,9 +2289,9 @@ class _$_BroadcasterSubscriptionsResponse
       : _data = data,
         _pagination = pagination;
 
-  factory _$_BroadcasterSubscriptionsResponse.fromJson(
+  factory _$BroadcasterSubscriptionsResponseImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_BroadcasterSubscriptionsResponseFromJson(json);
+      _$$BroadcasterSubscriptionsResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
   final List<TwitchBroadcasterSubscription> _data;
@@ -2321,10 +2336,10 @@ class _$_BroadcasterSubscriptionsResponse
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BroadcasterSubscriptionsResponse &&
+            other is _$BroadcasterSubscriptionsResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             const DeepCollectionEquality()
                 .equals(other._pagination, _pagination) &&
@@ -2344,10 +2359,10 @@ class _$_BroadcasterSubscriptionsResponse
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BroadcasterSubscriptionsResponseCopyWith<
-          _$_BroadcasterSubscriptionsResponse>
-      get copyWith => __$$_BroadcasterSubscriptionsResponseCopyWithImpl<
-          _$_BroadcasterSubscriptionsResponse>(this, _$identity);
+  _$$BroadcasterSubscriptionsResponseImplCopyWith<
+          _$BroadcasterSubscriptionsResponseImpl>
+      get copyWith => __$$BroadcasterSubscriptionsResponseImplCopyWithImpl<
+          _$BroadcasterSubscriptionsResponseImpl>(this, _$identity);
 }
 
 abstract class _BroadcasterSubscriptionsResponse
@@ -2356,10 +2371,11 @@ abstract class _BroadcasterSubscriptionsResponse
       {required final List<TwitchBroadcasterSubscription> data,
       required final Map<String, dynamic>? pagination,
       required final int total,
-      required final int points}) = _$_BroadcasterSubscriptionsResponse;
+      required final int points}) = _$BroadcasterSubscriptionsResponseImpl;
 
   factory _BroadcasterSubscriptionsResponse.fromJson(
-      Map<String, dynamic> json) = _$_BroadcasterSubscriptionsResponse.fromJson;
+          Map<String, dynamic> json) =
+      _$BroadcasterSubscriptionsResponseImpl.fromJson;
 
   @override
 
@@ -2384,8 +2400,8 @@ abstract class _BroadcasterSubscriptionsResponse
   int get points;
   @override
   @JsonKey(ignore: true)
-  _$$_BroadcasterSubscriptionsResponseCopyWith<
-          _$_BroadcasterSubscriptionsResponse>
+  _$$BroadcasterSubscriptionsResponseImplCopyWith<
+          _$BroadcasterSubscriptionsResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -2437,22 +2453,22 @@ class _$CheermotesResponseCopyWithImpl<$Res, $Val extends CheermotesResponse>
 }
 
 /// @nodoc
-abstract class _$$_CheermotesResponseCopyWith<$Res>
+abstract class _$$CheermotesResponseImplCopyWith<$Res>
     implements $CheermotesResponseCopyWith<$Res> {
-  factory _$$_CheermotesResponseCopyWith(_$_CheermotesResponse value,
-          $Res Function(_$_CheermotesResponse) then) =
-      __$$_CheermotesResponseCopyWithImpl<$Res>;
+  factory _$$CheermotesResponseImplCopyWith(_$CheermotesResponseImpl value,
+          $Res Function(_$CheermotesResponseImpl) then) =
+      __$$CheermotesResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<TwitchCheermote> data});
 }
 
 /// @nodoc
-class __$$_CheermotesResponseCopyWithImpl<$Res>
-    extends _$CheermotesResponseCopyWithImpl<$Res, _$_CheermotesResponse>
-    implements _$$_CheermotesResponseCopyWith<$Res> {
-  __$$_CheermotesResponseCopyWithImpl(
-      _$_CheermotesResponse _value, $Res Function(_$_CheermotesResponse) _then)
+class __$$CheermotesResponseImplCopyWithImpl<$Res>
+    extends _$CheermotesResponseCopyWithImpl<$Res, _$CheermotesResponseImpl>
+    implements _$$CheermotesResponseImplCopyWith<$Res> {
+  __$$CheermotesResponseImplCopyWithImpl(_$CheermotesResponseImpl _value,
+      $Res Function(_$CheermotesResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2460,7 +2476,7 @@ class __$$_CheermotesResponseCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$_CheermotesResponse(
+    return _then(_$CheermotesResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -2471,12 +2487,12 @@ class __$$_CheermotesResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_CheermotesResponse implements _CheermotesResponse {
-  const _$_CheermotesResponse({required final List<TwitchCheermote> data})
+class _$CheermotesResponseImpl implements _CheermotesResponse {
+  const _$CheermotesResponseImpl({required final List<TwitchCheermote> data})
       : _data = data;
 
-  factory _$_CheermotesResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_CheermotesResponseFromJson(json);
+  factory _$CheermotesResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CheermotesResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
   final List<TwitchCheermote> _data;
@@ -2495,10 +2511,10 @@ class _$_CheermotesResponse implements _CheermotesResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CheermotesResponse &&
+            other is _$CheermotesResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
@@ -2510,17 +2526,17 @@ class _$_CheermotesResponse implements _CheermotesResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CheermotesResponseCopyWith<_$_CheermotesResponse> get copyWith =>
-      __$$_CheermotesResponseCopyWithImpl<_$_CheermotesResponse>(
+  _$$CheermotesResponseImplCopyWith<_$CheermotesResponseImpl> get copyWith =>
+      __$$CheermotesResponseImplCopyWithImpl<_$CheermotesResponseImpl>(
           this, _$identity);
 }
 
 abstract class _CheermotesResponse implements CheermotesResponse {
   const factory _CheermotesResponse(
-      {required final List<TwitchCheermote> data}) = _$_CheermotesResponse;
+      {required final List<TwitchCheermote> data}) = _$CheermotesResponseImpl;
 
   factory _CheermotesResponse.fromJson(Map<String, dynamic> json) =
-      _$_CheermotesResponse.fromJson;
+      _$CheermotesResponseImpl.fromJson;
 
   @override
 
@@ -2528,7 +2544,7 @@ abstract class _CheermotesResponse implements CheermotesResponse {
   List<TwitchCheermote> get data;
   @override
   @JsonKey(ignore: true)
-  _$$_CheermotesResponseCopyWith<_$_CheermotesResponse> get copyWith =>
+  _$$CheermotesResponseImplCopyWith<_$CheermotesResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2595,12 +2611,12 @@ class _$ExtensionTransactionsResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ExtensionTransactionsResponseCopyWith<$Res>
+abstract class _$$ExtensionTransactionsResponseImplCopyWith<$Res>
     implements $ExtensionTransactionsResponseCopyWith<$Res> {
-  factory _$$_ExtensionTransactionsResponseCopyWith(
-          _$_ExtensionTransactionsResponse value,
-          $Res Function(_$_ExtensionTransactionsResponse) then) =
-      __$$_ExtensionTransactionsResponseCopyWithImpl<$Res>;
+  factory _$$ExtensionTransactionsResponseImplCopyWith(
+          _$ExtensionTransactionsResponseImpl value,
+          $Res Function(_$ExtensionTransactionsResponseImpl) then) =
+      __$$ExtensionTransactionsResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2609,13 +2625,13 @@ abstract class _$$_ExtensionTransactionsResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ExtensionTransactionsResponseCopyWithImpl<$Res>
+class __$$ExtensionTransactionsResponseImplCopyWithImpl<$Res>
     extends _$ExtensionTransactionsResponseCopyWithImpl<$Res,
-        _$_ExtensionTransactionsResponse>
-    implements _$$_ExtensionTransactionsResponseCopyWith<$Res> {
-  __$$_ExtensionTransactionsResponseCopyWithImpl(
-      _$_ExtensionTransactionsResponse _value,
-      $Res Function(_$_ExtensionTransactionsResponse) _then)
+        _$ExtensionTransactionsResponseImpl>
+    implements _$$ExtensionTransactionsResponseImplCopyWith<$Res> {
+  __$$ExtensionTransactionsResponseImplCopyWithImpl(
+      _$ExtensionTransactionsResponseImpl _value,
+      $Res Function(_$ExtensionTransactionsResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2624,7 +2640,7 @@ class __$$_ExtensionTransactionsResponseCopyWithImpl<$Res>
     Object? data = null,
     Object? pagination = freezed,
   }) {
-    return _then(_$_ExtensionTransactionsResponse(
+    return _then(_$ExtensionTransactionsResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -2639,17 +2655,17 @@ class __$$_ExtensionTransactionsResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_ExtensionTransactionsResponse
+class _$ExtensionTransactionsResponseImpl
     implements _ExtensionTransactionsResponse {
-  const _$_ExtensionTransactionsResponse(
+  const _$ExtensionTransactionsResponseImpl(
       {required final List<TwitchExtensionTransaction> data,
       required final Map<String, dynamic>? pagination})
       : _data = data,
         _pagination = pagination;
 
-  factory _$_ExtensionTransactionsResponse.fromJson(
+  factory _$ExtensionTransactionsResponseImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_ExtensionTransactionsResponseFromJson(json);
+      _$$ExtensionTransactionsResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
   final List<TwitchExtensionTransaction> _data;
@@ -2681,10 +2697,10 @@ class _$_ExtensionTransactionsResponse
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ExtensionTransactionsResponse &&
+            other is _$ExtensionTransactionsResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             const DeepCollectionEquality()
                 .equals(other._pagination, _pagination));
@@ -2700,9 +2716,10 @@ class _$_ExtensionTransactionsResponse
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ExtensionTransactionsResponseCopyWith<_$_ExtensionTransactionsResponse>
-      get copyWith => __$$_ExtensionTransactionsResponseCopyWithImpl<
-          _$_ExtensionTransactionsResponse>(this, _$identity);
+  _$$ExtensionTransactionsResponseImplCopyWith<
+          _$ExtensionTransactionsResponseImpl>
+      get copyWith => __$$ExtensionTransactionsResponseImplCopyWithImpl<
+          _$ExtensionTransactionsResponseImpl>(this, _$identity);
 }
 
 abstract class _ExtensionTransactionsResponse
@@ -2710,10 +2727,10 @@ abstract class _ExtensionTransactionsResponse
   const factory _ExtensionTransactionsResponse(
           {required final List<TwitchExtensionTransaction> data,
           required final Map<String, dynamic>? pagination}) =
-      _$_ExtensionTransactionsResponse;
+      _$ExtensionTransactionsResponseImpl;
 
   factory _ExtensionTransactionsResponse.fromJson(Map<String, dynamic> json) =
-      _$_ExtensionTransactionsResponse.fromJson;
+      _$ExtensionTransactionsResponseImpl.fromJson;
 
   @override
 
@@ -2725,7 +2742,8 @@ abstract class _ExtensionTransactionsResponse
   Map<String, dynamic>? get pagination;
   @override
   @JsonKey(ignore: true)
-  _$$_ExtensionTransactionsResponseCopyWith<_$_ExtensionTransactionsResponse>
+  _$$ExtensionTransactionsResponseImplCopyWith<
+          _$ExtensionTransactionsResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -2793,22 +2811,24 @@ class _$ChannelEmotesResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ChannelEmotesResponseCopyWith<$Res>
+abstract class _$$ChannelEmotesResponseImplCopyWith<$Res>
     implements $ChannelEmotesResponseCopyWith<$Res> {
-  factory _$$_ChannelEmotesResponseCopyWith(_$_ChannelEmotesResponse value,
-          $Res Function(_$_ChannelEmotesResponse) then) =
-      __$$_ChannelEmotesResponseCopyWithImpl<$Res>;
+  factory _$$ChannelEmotesResponseImplCopyWith(
+          _$ChannelEmotesResponseImpl value,
+          $Res Function(_$ChannelEmotesResponseImpl) then) =
+      __$$ChannelEmotesResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<TwitchEmotes> data, String template});
 }
 
 /// @nodoc
-class __$$_ChannelEmotesResponseCopyWithImpl<$Res>
-    extends _$ChannelEmotesResponseCopyWithImpl<$Res, _$_ChannelEmotesResponse>
-    implements _$$_ChannelEmotesResponseCopyWith<$Res> {
-  __$$_ChannelEmotesResponseCopyWithImpl(_$_ChannelEmotesResponse _value,
-      $Res Function(_$_ChannelEmotesResponse) _then)
+class __$$ChannelEmotesResponseImplCopyWithImpl<$Res>
+    extends _$ChannelEmotesResponseCopyWithImpl<$Res,
+        _$ChannelEmotesResponseImpl>
+    implements _$$ChannelEmotesResponseImplCopyWith<$Res> {
+  __$$ChannelEmotesResponseImplCopyWithImpl(_$ChannelEmotesResponseImpl _value,
+      $Res Function(_$ChannelEmotesResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2817,7 +2837,7 @@ class __$$_ChannelEmotesResponseCopyWithImpl<$Res>
     Object? data = null,
     Object? template = null,
   }) {
-    return _then(_$_ChannelEmotesResponse(
+    return _then(_$ChannelEmotesResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -2832,13 +2852,13 @@ class __$$_ChannelEmotesResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_ChannelEmotesResponse implements _ChannelEmotesResponse {
-  const _$_ChannelEmotesResponse(
+class _$ChannelEmotesResponseImpl implements _ChannelEmotesResponse {
+  const _$ChannelEmotesResponseImpl(
       {required final List<TwitchEmotes> data, required this.template})
       : _data = data;
 
-  factory _$_ChannelEmotesResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_ChannelEmotesResponseFromJson(json);
+  factory _$ChannelEmotesResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChannelEmotesResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
   final List<TwitchEmotes> _data;
@@ -2867,10 +2887,10 @@ class _$_ChannelEmotesResponse implements _ChannelEmotesResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChannelEmotesResponse &&
+            other is _$ChannelEmotesResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             (identical(other.template, template) ||
                 other.template == template));
@@ -2884,18 +2904,18 @@ class _$_ChannelEmotesResponse implements _ChannelEmotesResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChannelEmotesResponseCopyWith<_$_ChannelEmotesResponse> get copyWith =>
-      __$$_ChannelEmotesResponseCopyWithImpl<_$_ChannelEmotesResponse>(
-          this, _$identity);
+  _$$ChannelEmotesResponseImplCopyWith<_$ChannelEmotesResponseImpl>
+      get copyWith => __$$ChannelEmotesResponseImplCopyWithImpl<
+          _$ChannelEmotesResponseImpl>(this, _$identity);
 }
 
 abstract class _ChannelEmotesResponse implements ChannelEmotesResponse {
   const factory _ChannelEmotesResponse(
       {required final List<TwitchEmotes> data,
-      required final String template}) = _$_ChannelEmotesResponse;
+      required final String template}) = _$ChannelEmotesResponseImpl;
 
   factory _ChannelEmotesResponse.fromJson(Map<String, dynamic> json) =
-      _$_ChannelEmotesResponse.fromJson;
+      _$ChannelEmotesResponseImpl.fromJson;
 
   @override
 
@@ -2913,8 +2933,8 @@ abstract class _ChannelEmotesResponse implements ChannelEmotesResponse {
   String get template;
   @override
   @JsonKey(ignore: true)
-  _$$_ChannelEmotesResponseCopyWith<_$_ChannelEmotesResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ChannelEmotesResponseImplCopyWith<_$ChannelEmotesResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 ChannelGlobalEmotesResponse _$ChannelGlobalEmotesResponseFromJson(
@@ -2977,25 +2997,25 @@ class _$ChannelGlobalEmotesResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ChannelGlobalEmotesResponseCopyWith<$Res>
+abstract class _$$ChannelGlobalEmotesResponseImplCopyWith<$Res>
     implements $ChannelGlobalEmotesResponseCopyWith<$Res> {
-  factory _$$_ChannelGlobalEmotesResponseCopyWith(
-          _$_ChannelGlobalEmotesResponse value,
-          $Res Function(_$_ChannelGlobalEmotesResponse) then) =
-      __$$_ChannelGlobalEmotesResponseCopyWithImpl<$Res>;
+  factory _$$ChannelGlobalEmotesResponseImplCopyWith(
+          _$ChannelGlobalEmotesResponseImpl value,
+          $Res Function(_$ChannelGlobalEmotesResponseImpl) then) =
+      __$$ChannelGlobalEmotesResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<TwitchGlobalEmotes> data, String template});
 }
 
 /// @nodoc
-class __$$_ChannelGlobalEmotesResponseCopyWithImpl<$Res>
+class __$$ChannelGlobalEmotesResponseImplCopyWithImpl<$Res>
     extends _$ChannelGlobalEmotesResponseCopyWithImpl<$Res,
-        _$_ChannelGlobalEmotesResponse>
-    implements _$$_ChannelGlobalEmotesResponseCopyWith<$Res> {
-  __$$_ChannelGlobalEmotesResponseCopyWithImpl(
-      _$_ChannelGlobalEmotesResponse _value,
-      $Res Function(_$_ChannelGlobalEmotesResponse) _then)
+        _$ChannelGlobalEmotesResponseImpl>
+    implements _$$ChannelGlobalEmotesResponseImplCopyWith<$Res> {
+  __$$ChannelGlobalEmotesResponseImplCopyWithImpl(
+      _$ChannelGlobalEmotesResponseImpl _value,
+      $Res Function(_$ChannelGlobalEmotesResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3004,7 +3024,7 @@ class __$$_ChannelGlobalEmotesResponseCopyWithImpl<$Res>
     Object? data = null,
     Object? template = null,
   }) {
-    return _then(_$_ChannelGlobalEmotesResponse(
+    return _then(_$ChannelGlobalEmotesResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -3019,13 +3039,15 @@ class __$$_ChannelGlobalEmotesResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_ChannelGlobalEmotesResponse implements _ChannelGlobalEmotesResponse {
-  const _$_ChannelGlobalEmotesResponse(
+class _$ChannelGlobalEmotesResponseImpl
+    implements _ChannelGlobalEmotesResponse {
+  const _$ChannelGlobalEmotesResponseImpl(
       {required final List<TwitchGlobalEmotes> data, required this.template})
       : _data = data;
 
-  factory _$_ChannelGlobalEmotesResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_ChannelGlobalEmotesResponseFromJson(json);
+  factory _$ChannelGlobalEmotesResponseImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$ChannelGlobalEmotesResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
   final List<TwitchGlobalEmotes> _data;
@@ -3048,10 +3070,10 @@ class _$_ChannelGlobalEmotesResponse implements _ChannelGlobalEmotesResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChannelGlobalEmotesResponse &&
+            other is _$ChannelGlobalEmotesResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             (identical(other.template, template) ||
                 other.template == template));
@@ -3065,19 +3087,19 @@ class _$_ChannelGlobalEmotesResponse implements _ChannelGlobalEmotesResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChannelGlobalEmotesResponseCopyWith<_$_ChannelGlobalEmotesResponse>
-      get copyWith => __$$_ChannelGlobalEmotesResponseCopyWithImpl<
-          _$_ChannelGlobalEmotesResponse>(this, _$identity);
+  _$$ChannelGlobalEmotesResponseImplCopyWith<_$ChannelGlobalEmotesResponseImpl>
+      get copyWith => __$$ChannelGlobalEmotesResponseImplCopyWithImpl<
+          _$ChannelGlobalEmotesResponseImpl>(this, _$identity);
 }
 
 abstract class _ChannelGlobalEmotesResponse
     implements ChannelGlobalEmotesResponse {
   const factory _ChannelGlobalEmotesResponse(
       {required final List<TwitchGlobalEmotes> data,
-      required final String template}) = _$_ChannelGlobalEmotesResponse;
+      required final String template}) = _$ChannelGlobalEmotesResponseImpl;
 
   factory _ChannelGlobalEmotesResponse.fromJson(Map<String, dynamic> json) =
-      _$_ChannelGlobalEmotesResponse.fromJson;
+      _$ChannelGlobalEmotesResponseImpl.fromJson;
 
   @override
 
@@ -3089,7 +3111,7 @@ abstract class _ChannelGlobalEmotesResponse
   String get template;
   @override
   @JsonKey(ignore: true)
-  _$$_ChannelGlobalEmotesResponseCopyWith<_$_ChannelGlobalEmotesResponse>
+  _$$ChannelGlobalEmotesResponseImplCopyWith<_$ChannelGlobalEmotesResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -3149,22 +3171,22 @@ class _$EmoteSetsResponseCopyWithImpl<$Res, $Val extends EmoteSetsResponse>
 }
 
 /// @nodoc
-abstract class _$$_EmoteSetsResponseCopyWith<$Res>
+abstract class _$$EmoteSetsResponseImplCopyWith<$Res>
     implements $EmoteSetsResponseCopyWith<$Res> {
-  factory _$$_EmoteSetsResponseCopyWith(_$_EmoteSetsResponse value,
-          $Res Function(_$_EmoteSetsResponse) then) =
-      __$$_EmoteSetsResponseCopyWithImpl<$Res>;
+  factory _$$EmoteSetsResponseImplCopyWith(_$EmoteSetsResponseImpl value,
+          $Res Function(_$EmoteSetsResponseImpl) then) =
+      __$$EmoteSetsResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<TwitchEmoteSets> data, String template});
 }
 
 /// @nodoc
-class __$$_EmoteSetsResponseCopyWithImpl<$Res>
-    extends _$EmoteSetsResponseCopyWithImpl<$Res, _$_EmoteSetsResponse>
-    implements _$$_EmoteSetsResponseCopyWith<$Res> {
-  __$$_EmoteSetsResponseCopyWithImpl(
-      _$_EmoteSetsResponse _value, $Res Function(_$_EmoteSetsResponse) _then)
+class __$$EmoteSetsResponseImplCopyWithImpl<$Res>
+    extends _$EmoteSetsResponseCopyWithImpl<$Res, _$EmoteSetsResponseImpl>
+    implements _$$EmoteSetsResponseImplCopyWith<$Res> {
+  __$$EmoteSetsResponseImplCopyWithImpl(_$EmoteSetsResponseImpl _value,
+      $Res Function(_$EmoteSetsResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3173,7 +3195,7 @@ class __$$_EmoteSetsResponseCopyWithImpl<$Res>
     Object? data = null,
     Object? template = null,
   }) {
-    return _then(_$_EmoteSetsResponse(
+    return _then(_$EmoteSetsResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -3188,13 +3210,13 @@ class __$$_EmoteSetsResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_EmoteSetsResponse implements _EmoteSetsResponse {
-  const _$_EmoteSetsResponse(
+class _$EmoteSetsResponseImpl implements _EmoteSetsResponse {
+  const _$EmoteSetsResponseImpl(
       {required final List<TwitchEmoteSets> data, required this.template})
       : _data = data;
 
-  factory _$_EmoteSetsResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_EmoteSetsResponseFromJson(json);
+  factory _$EmoteSetsResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EmoteSetsResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
   final List<TwitchEmoteSets> _data;
@@ -3217,10 +3239,10 @@ class _$_EmoteSetsResponse implements _EmoteSetsResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_EmoteSetsResponse &&
+            other is _$EmoteSetsResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             (identical(other.template, template) ||
                 other.template == template));
@@ -3234,18 +3256,18 @@ class _$_EmoteSetsResponse implements _EmoteSetsResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_EmoteSetsResponseCopyWith<_$_EmoteSetsResponse> get copyWith =>
-      __$$_EmoteSetsResponseCopyWithImpl<_$_EmoteSetsResponse>(
+  _$$EmoteSetsResponseImplCopyWith<_$EmoteSetsResponseImpl> get copyWith =>
+      __$$EmoteSetsResponseImplCopyWithImpl<_$EmoteSetsResponseImpl>(
           this, _$identity);
 }
 
 abstract class _EmoteSetsResponse implements EmoteSetsResponse {
   const factory _EmoteSetsResponse(
       {required final List<TwitchEmoteSets> data,
-      required final String template}) = _$_EmoteSetsResponse;
+      required final String template}) = _$EmoteSetsResponseImpl;
 
   factory _EmoteSetsResponse.fromJson(Map<String, dynamic> json) =
-      _$_EmoteSetsResponse.fromJson;
+      _$EmoteSetsResponseImpl.fromJson;
 
   @override
 
@@ -3257,7 +3279,7 @@ abstract class _EmoteSetsResponse implements EmoteSetsResponse {
   String get template;
   @override
   @JsonKey(ignore: true)
-  _$$_EmoteSetsResponseCopyWith<_$_EmoteSetsResponse> get copyWith =>
+  _$$EmoteSetsResponseImplCopyWith<_$EmoteSetsResponseImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -3311,23 +3333,25 @@ class _$ChannelEditorsResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ChannelEditorsResponseCopyWith<$Res>
+abstract class _$$ChannelEditorsResponseImplCopyWith<$Res>
     implements $ChannelEditorsResponseCopyWith<$Res> {
-  factory _$$_ChannelEditorsResponseCopyWith(_$_ChannelEditorsResponse value,
-          $Res Function(_$_ChannelEditorsResponse) then) =
-      __$$_ChannelEditorsResponseCopyWithImpl<$Res>;
+  factory _$$ChannelEditorsResponseImplCopyWith(
+          _$ChannelEditorsResponseImpl value,
+          $Res Function(_$ChannelEditorsResponseImpl) then) =
+      __$$ChannelEditorsResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<TwitchChannelEditor> data});
 }
 
 /// @nodoc
-class __$$_ChannelEditorsResponseCopyWithImpl<$Res>
+class __$$ChannelEditorsResponseImplCopyWithImpl<$Res>
     extends _$ChannelEditorsResponseCopyWithImpl<$Res,
-        _$_ChannelEditorsResponse>
-    implements _$$_ChannelEditorsResponseCopyWith<$Res> {
-  __$$_ChannelEditorsResponseCopyWithImpl(_$_ChannelEditorsResponse _value,
-      $Res Function(_$_ChannelEditorsResponse) _then)
+        _$ChannelEditorsResponseImpl>
+    implements _$$ChannelEditorsResponseImplCopyWith<$Res> {
+  __$$ChannelEditorsResponseImplCopyWithImpl(
+      _$ChannelEditorsResponseImpl _value,
+      $Res Function(_$ChannelEditorsResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3335,7 +3359,7 @@ class __$$_ChannelEditorsResponseCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$_ChannelEditorsResponse(
+    return _then(_$ChannelEditorsResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -3346,13 +3370,13 @@ class __$$_ChannelEditorsResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_ChannelEditorsResponse implements _ChannelEditorsResponse {
-  const _$_ChannelEditorsResponse(
+class _$ChannelEditorsResponseImpl implements _ChannelEditorsResponse {
+  const _$ChannelEditorsResponseImpl(
       {required final List<TwitchChannelEditor> data})
       : _data = data;
 
-  factory _$_ChannelEditorsResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_ChannelEditorsResponseFromJson(json);
+  factory _$ChannelEditorsResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ChannelEditorsResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
   final List<TwitchChannelEditor> _data;
@@ -3371,10 +3395,10 @@ class _$_ChannelEditorsResponse implements _ChannelEditorsResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ChannelEditorsResponse &&
+            other is _$ChannelEditorsResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
@@ -3386,18 +3410,18 @@ class _$_ChannelEditorsResponse implements _ChannelEditorsResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ChannelEditorsResponseCopyWith<_$_ChannelEditorsResponse> get copyWith =>
-      __$$_ChannelEditorsResponseCopyWithImpl<_$_ChannelEditorsResponse>(
-          this, _$identity);
+  _$$ChannelEditorsResponseImplCopyWith<_$ChannelEditorsResponseImpl>
+      get copyWith => __$$ChannelEditorsResponseImplCopyWithImpl<
+          _$ChannelEditorsResponseImpl>(this, _$identity);
 }
 
 abstract class _ChannelEditorsResponse implements ChannelEditorsResponse {
   const factory _ChannelEditorsResponse(
           {required final List<TwitchChannelEditor> data}) =
-      _$_ChannelEditorsResponse;
+      _$ChannelEditorsResponseImpl;
 
   factory _ChannelEditorsResponse.fromJson(Map<String, dynamic> json) =
-      _$_ChannelEditorsResponse.fromJson;
+      _$ChannelEditorsResponseImpl.fromJson;
 
   @override
 
@@ -3405,8 +3429,8 @@ abstract class _ChannelEditorsResponse implements ChannelEditorsResponse {
   List<TwitchChannelEditor> get data;
   @override
   @JsonKey(ignore: true)
-  _$$_ChannelEditorsResponseCopyWith<_$_ChannelEditorsResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ChannelEditorsResponseImplCopyWith<_$ChannelEditorsResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 CustomRewardResponse _$CustomRewardResponseFromJson(Map<String, dynamic> json) {
@@ -3458,22 +3482,22 @@ class _$CustomRewardResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_CustomRewardResponseCopyWith<$Res>
+abstract class _$$CustomRewardResponseImplCopyWith<$Res>
     implements $CustomRewardResponseCopyWith<$Res> {
-  factory _$$_CustomRewardResponseCopyWith(_$_CustomRewardResponse value,
-          $Res Function(_$_CustomRewardResponse) then) =
-      __$$_CustomRewardResponseCopyWithImpl<$Res>;
+  factory _$$CustomRewardResponseImplCopyWith(_$CustomRewardResponseImpl value,
+          $Res Function(_$CustomRewardResponseImpl) then) =
+      __$$CustomRewardResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<TwitchCustomReward> data});
 }
 
 /// @nodoc
-class __$$_CustomRewardResponseCopyWithImpl<$Res>
-    extends _$CustomRewardResponseCopyWithImpl<$Res, _$_CustomRewardResponse>
-    implements _$$_CustomRewardResponseCopyWith<$Res> {
-  __$$_CustomRewardResponseCopyWithImpl(_$_CustomRewardResponse _value,
-      $Res Function(_$_CustomRewardResponse) _then)
+class __$$CustomRewardResponseImplCopyWithImpl<$Res>
+    extends _$CustomRewardResponseCopyWithImpl<$Res, _$CustomRewardResponseImpl>
+    implements _$$CustomRewardResponseImplCopyWith<$Res> {
+  __$$CustomRewardResponseImplCopyWithImpl(_$CustomRewardResponseImpl _value,
+      $Res Function(_$CustomRewardResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3481,7 +3505,7 @@ class __$$_CustomRewardResponseCopyWithImpl<$Res>
   $Res call({
     Object? data = null,
   }) {
-    return _then(_$_CustomRewardResponse(
+    return _then(_$CustomRewardResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -3492,12 +3516,13 @@ class __$$_CustomRewardResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_CustomRewardResponse implements _CustomRewardResponse {
-  const _$_CustomRewardResponse({required final List<TwitchCustomReward> data})
+class _$CustomRewardResponseImpl implements _CustomRewardResponse {
+  const _$CustomRewardResponseImpl(
+      {required final List<TwitchCustomReward> data})
       : _data = data;
 
-  factory _$_CustomRewardResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_CustomRewardResponseFromJson(json);
+  factory _$CustomRewardResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CustomRewardResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
   final List<TwitchCustomReward> _data;
@@ -3516,10 +3541,10 @@ class _$_CustomRewardResponse implements _CustomRewardResponse {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CustomRewardResponse &&
+            other is _$CustomRewardResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data));
   }
 
@@ -3531,17 +3556,19 @@ class _$_CustomRewardResponse implements _CustomRewardResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CustomRewardResponseCopyWith<_$_CustomRewardResponse> get copyWith =>
-      __$$_CustomRewardResponseCopyWithImpl<_$_CustomRewardResponse>(
-          this, _$identity);
+  _$$CustomRewardResponseImplCopyWith<_$CustomRewardResponseImpl>
+      get copyWith =>
+          __$$CustomRewardResponseImplCopyWithImpl<_$CustomRewardResponseImpl>(
+              this, _$identity);
 }
 
 abstract class _CustomRewardResponse implements CustomRewardResponse {
   const factory _CustomRewardResponse(
-      {required final List<TwitchCustomReward> data}) = _$_CustomRewardResponse;
+          {required final List<TwitchCustomReward> data}) =
+      _$CustomRewardResponseImpl;
 
   factory _CustomRewardResponse.fromJson(Map<String, dynamic> json) =
-      _$_CustomRewardResponse.fromJson;
+      _$CustomRewardResponseImpl.fromJson;
 
   @override
 
@@ -3549,8 +3576,8 @@ abstract class _CustomRewardResponse implements CustomRewardResponse {
   List<TwitchCustomReward> get data;
   @override
   @JsonKey(ignore: true)
-  _$$_CustomRewardResponseCopyWith<_$_CustomRewardResponse> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$CustomRewardResponseImplCopyWith<_$CustomRewardResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 CustomRewardRedemptionResponse _$CustomRewardRedemptionResponseFromJson(
@@ -3616,12 +3643,12 @@ class _$CustomRewardRedemptionResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_CustomRewardRedemptionResponseCopyWith<$Res>
+abstract class _$$CustomRewardRedemptionResponseImplCopyWith<$Res>
     implements $CustomRewardRedemptionResponseCopyWith<$Res> {
-  factory _$$_CustomRewardRedemptionResponseCopyWith(
-          _$_CustomRewardRedemptionResponse value,
-          $Res Function(_$_CustomRewardRedemptionResponse) then) =
-      __$$_CustomRewardRedemptionResponseCopyWithImpl<$Res>;
+  factory _$$CustomRewardRedemptionResponseImplCopyWith(
+          _$CustomRewardRedemptionResponseImpl value,
+          $Res Function(_$CustomRewardRedemptionResponseImpl) then) =
+      __$$CustomRewardRedemptionResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -3630,13 +3657,13 @@ abstract class _$$_CustomRewardRedemptionResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CustomRewardRedemptionResponseCopyWithImpl<$Res>
+class __$$CustomRewardRedemptionResponseImplCopyWithImpl<$Res>
     extends _$CustomRewardRedemptionResponseCopyWithImpl<$Res,
-        _$_CustomRewardRedemptionResponse>
-    implements _$$_CustomRewardRedemptionResponseCopyWith<$Res> {
-  __$$_CustomRewardRedemptionResponseCopyWithImpl(
-      _$_CustomRewardRedemptionResponse _value,
-      $Res Function(_$_CustomRewardRedemptionResponse) _then)
+        _$CustomRewardRedemptionResponseImpl>
+    implements _$$CustomRewardRedemptionResponseImplCopyWith<$Res> {
+  __$$CustomRewardRedemptionResponseImplCopyWithImpl(
+      _$CustomRewardRedemptionResponseImpl _value,
+      $Res Function(_$CustomRewardRedemptionResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3645,7 +3672,7 @@ class __$$_CustomRewardRedemptionResponseCopyWithImpl<$Res>
     Object? data = null,
     Object? pagination = freezed,
   }) {
-    return _then(_$_CustomRewardRedemptionResponse(
+    return _then(_$CustomRewardRedemptionResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
@@ -3660,17 +3687,17 @@ class __$$_CustomRewardRedemptionResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$_CustomRewardRedemptionResponse
+class _$CustomRewardRedemptionResponseImpl
     implements _CustomRewardRedemptionResponse {
-  const _$_CustomRewardRedemptionResponse(
+  const _$CustomRewardRedemptionResponseImpl(
       {required final List<TwitchCustomRewardRedemption> data,
       required final Map<String, dynamic>? pagination})
       : _data = data,
         _pagination = pagination;
 
-  factory _$_CustomRewardRedemptionResponse.fromJson(
+  factory _$CustomRewardRedemptionResponseImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_CustomRewardRedemptionResponseFromJson(json);
+      _$$CustomRewardRedemptionResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
   final List<TwitchCustomRewardRedemption> _data;
@@ -3702,10 +3729,10 @@ class _$_CustomRewardRedemptionResponse
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CustomRewardRedemptionResponse &&
+            other is _$CustomRewardRedemptionResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             const DeepCollectionEquality()
                 .equals(other._pagination, _pagination));
@@ -3721,9 +3748,10 @@ class _$_CustomRewardRedemptionResponse
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CustomRewardRedemptionResponseCopyWith<_$_CustomRewardRedemptionResponse>
-      get copyWith => __$$_CustomRewardRedemptionResponseCopyWithImpl<
-          _$_CustomRewardRedemptionResponse>(this, _$identity);
+  _$$CustomRewardRedemptionResponseImplCopyWith<
+          _$CustomRewardRedemptionResponseImpl>
+      get copyWith => __$$CustomRewardRedemptionResponseImplCopyWithImpl<
+          _$CustomRewardRedemptionResponseImpl>(this, _$identity);
 }
 
 abstract class _CustomRewardRedemptionResponse
@@ -3731,10 +3759,10 @@ abstract class _CustomRewardRedemptionResponse
   const factory _CustomRewardRedemptionResponse(
           {required final List<TwitchCustomRewardRedemption> data,
           required final Map<String, dynamic>? pagination}) =
-      _$_CustomRewardRedemptionResponse;
+      _$CustomRewardRedemptionResponseImpl;
 
   factory _CustomRewardRedemptionResponse.fromJson(Map<String, dynamic> json) =
-      _$_CustomRewardRedemptionResponse.fromJson;
+      _$CustomRewardRedemptionResponseImpl.fromJson;
 
   @override
 
@@ -3746,6 +3774,197 @@ abstract class _CustomRewardRedemptionResponse
   Map<String, dynamic>? get pagination;
   @override
   @JsonKey(ignore: true)
-  _$$_CustomRewardRedemptionResponseCopyWith<_$_CustomRewardRedemptionResponse>
+  _$$CustomRewardRedemptionResponseImplCopyWith<
+          _$CustomRewardRedemptionResponseImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+TwitchTokenRefreshResponse _$TwitchTokenRefreshResponseFromJson(
+    Map<String, dynamic> json) {
+  return _TwitchTokenRefreshResponse.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TwitchTokenRefreshResponse {
+  /// {@macro twitchResponse.data}
+  List<TwitchTokenRefresh> get data => throw _privateConstructorUsedError;
+
+  /// {@macro twitchResponse.pagination}
+  Map<String, dynamic>? get pagination => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $TwitchTokenRefreshResponseCopyWith<TwitchTokenRefreshResponse>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TwitchTokenRefreshResponseCopyWith<$Res> {
+  factory $TwitchTokenRefreshResponseCopyWith(TwitchTokenRefreshResponse value,
+          $Res Function(TwitchTokenRefreshResponse) then) =
+      _$TwitchTokenRefreshResponseCopyWithImpl<$Res,
+          TwitchTokenRefreshResponse>;
+  @useResult
+  $Res call({List<TwitchTokenRefresh> data, Map<String, dynamic>? pagination});
+}
+
+/// @nodoc
+class _$TwitchTokenRefreshResponseCopyWithImpl<$Res,
+        $Val extends TwitchTokenRefreshResponse>
+    implements $TwitchTokenRefreshResponseCopyWith<$Res> {
+  _$TwitchTokenRefreshResponseCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? pagination = freezed,
+  }) {
+    return _then(_value.copyWith(
+      data: null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchTokenRefresh>,
+      pagination: freezed == pagination
+          ? _value.pagination
+          : pagination // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$TwitchTokenRefreshResponseImplCopyWith<$Res>
+    implements $TwitchTokenRefreshResponseCopyWith<$Res> {
+  factory _$$TwitchTokenRefreshResponseImplCopyWith(
+          _$TwitchTokenRefreshResponseImpl value,
+          $Res Function(_$TwitchTokenRefreshResponseImpl) then) =
+      __$$TwitchTokenRefreshResponseImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<TwitchTokenRefresh> data, Map<String, dynamic>? pagination});
+}
+
+/// @nodoc
+class __$$TwitchTokenRefreshResponseImplCopyWithImpl<$Res>
+    extends _$TwitchTokenRefreshResponseCopyWithImpl<$Res,
+        _$TwitchTokenRefreshResponseImpl>
+    implements _$$TwitchTokenRefreshResponseImplCopyWith<$Res> {
+  __$$TwitchTokenRefreshResponseImplCopyWithImpl(
+      _$TwitchTokenRefreshResponseImpl _value,
+      $Res Function(_$TwitchTokenRefreshResponseImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+    Object? pagination = freezed,
+  }) {
+    return _then(_$TwitchTokenRefreshResponseImpl(
+      data: null == data
+          ? _value._data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<TwitchTokenRefresh>,
+      pagination: freezed == pagination
+          ? _value._pagination
+          : pagination // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable(createToJson: false)
+class _$TwitchTokenRefreshResponseImpl implements _TwitchTokenRefreshResponse {
+  const _$TwitchTokenRefreshResponseImpl(
+      {required final List<TwitchTokenRefresh> data,
+      required final Map<String, dynamic>? pagination})
+      : _data = data,
+        _pagination = pagination;
+
+  factory _$TwitchTokenRefreshResponseImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$TwitchTokenRefreshResponseImplFromJson(json);
+
+  /// {@macro twitchResponse.data}
+  final List<TwitchTokenRefresh> _data;
+
+  /// {@macro twitchResponse.data}
+  @override
+  List<TwitchTokenRefresh> get data {
+    if (_data is EqualUnmodifiableListView) return _data;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_data);
+  }
+
+  /// {@macro twitchResponse.pagination}
+  final Map<String, dynamic>? _pagination;
+
+  /// {@macro twitchResponse.pagination}
+  @override
+  Map<String, dynamic>? get pagination {
+    final value = _pagination;
+    if (value == null) return null;
+    if (_pagination is EqualUnmodifiableMapView) return _pagination;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
+  @override
+  String toString() {
+    return 'TwitchTokenRefreshResponse(data: $data, pagination: $pagination)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$TwitchTokenRefreshResponseImpl &&
+            const DeepCollectionEquality().equals(other._data, _data) &&
+            const DeepCollectionEquality()
+                .equals(other._pagination, _pagination));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_data),
+      const DeepCollectionEquality().hash(_pagination));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$TwitchTokenRefreshResponseImplCopyWith<_$TwitchTokenRefreshResponseImpl>
+      get copyWith => __$$TwitchTokenRefreshResponseImplCopyWithImpl<
+          _$TwitchTokenRefreshResponseImpl>(this, _$identity);
+}
+
+abstract class _TwitchTokenRefreshResponse
+    implements TwitchTokenRefreshResponse {
+  const factory _TwitchTokenRefreshResponse(
+          {required final List<TwitchTokenRefresh> data,
+          required final Map<String, dynamic>? pagination}) =
+      _$TwitchTokenRefreshResponseImpl;
+
+  factory _TwitchTokenRefreshResponse.fromJson(Map<String, dynamic> json) =
+      _$TwitchTokenRefreshResponseImpl.fromJson;
+
+  @override
+
+  /// {@macro twitchResponse.data}
+  List<TwitchTokenRefresh> get data;
+  @override
+
+  /// {@macro twitchResponse.pagination}
+  Map<String, dynamic>? get pagination;
+  @override
+  @JsonKey(ignore: true)
+  _$$TwitchTokenRefreshResponseImplCopyWith<_$TwitchTokenRefreshResponseImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

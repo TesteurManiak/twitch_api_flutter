@@ -6,18 +6,18 @@ part of 'twitch_bits_leaderboard.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TwitchBitsLeaderboard _$$_TwitchBitsLeaderboardFromJson(
+_$TwitchBitsLeaderboardImpl _$$TwitchBitsLeaderboardImplFromJson(
         Map<String, dynamic> json) =>
-    _$_TwitchBitsLeaderboard(
+    _$TwitchBitsLeaderboardImpl(
       userId: json['user_id'] as String,
       userLogin: json['user_login'] as String,
       userName: json['user_name'] as String,
-      rank: json['rank'] as int,
-      score: json['score'] as int,
+      rank: (json['rank'] as num).toInt(),
+      score: (json['score'] as num).toInt(),
     );
 
-Map<String, dynamic> _$$_TwitchBitsLeaderboardToJson(
-        _$_TwitchBitsLeaderboard instance) =>
+Map<String, dynamic> _$$TwitchBitsLeaderboardImplToJson(
+        _$TwitchBitsLeaderboardImpl instance) =>
     <String, dynamic>{
       'user_id': instance.userId,
       'user_login': instance.userLogin,

@@ -6,8 +6,9 @@ part of 'twitch_user_follow.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TwitchUserFollow _$$_TwitchUserFollowFromJson(Map<String, dynamic> json) =>
-    _$_TwitchUserFollow(
+_$TwitchUserFollowImpl _$$TwitchUserFollowImplFromJson(
+        Map<String, dynamic> json) =>
+    _$TwitchUserFollowImpl(
       followedAt: DateTime.parse(json['followed_at'] as String),
       fromId: json['from_id'] as String,
       fromLogin: json['from_login'] as String,
@@ -17,7 +18,8 @@ _$_TwitchUserFollow _$$_TwitchUserFollowFromJson(Map<String, dynamic> json) =>
       toName: json['to_name'] as String,
     );
 
-Map<String, dynamic> _$$_TwitchUserFollowToJson(_$_TwitchUserFollow instance) =>
+Map<String, dynamic> _$$TwitchUserFollowImplToJson(
+        _$TwitchUserFollowImpl instance) =>
     <String, dynamic>{
       'followed_at': instance.followedAt.toIso8601String(),
       'from_id': instance.fromId,

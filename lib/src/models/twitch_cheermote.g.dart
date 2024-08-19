@@ -6,19 +6,21 @@ part of 'twitch_cheermote.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_TwitchCheermote _$$_TwitchCheermoteFromJson(Map<String, dynamic> json) =>
-    _$_TwitchCheermote(
+_$TwitchCheermoteImpl _$$TwitchCheermoteImplFromJson(
+        Map<String, dynamic> json) =>
+    _$TwitchCheermoteImpl(
       prefix: json['prefix'] as String,
       tiers: (json['tiers'] as List<dynamic>)
           .map((e) => TwitchCheermoteTier.fromJson(e as Map<String, dynamic>))
           .toList(),
       type: $enumDecode(_$TwitchCheermoteTypeEnumMap, json['type']),
-      order: json['order'] as int,
+      order: (json['order'] as num).toInt(),
       lastUpdated: DateTime.parse(json['last_updated'] as String),
       isCharitable: json['is_charitable'] as bool,
     );
 
-Map<String, dynamic> _$$_TwitchCheermoteToJson(_$_TwitchCheermote instance) =>
+Map<String, dynamic> _$$TwitchCheermoteImplToJson(
+        _$TwitchCheermoteImpl instance) =>
     <String, dynamic>{
       'prefix': instance.prefix,
       'tiers': instance.tiers,

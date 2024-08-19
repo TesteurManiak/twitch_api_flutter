@@ -31,15 +31,9 @@ class TwitchToken with _$TwitchToken {
     final content = url.split('#').last;
     final datas = content.split('&');
     return TwitchToken(
-      token: datas
-          .firstWhere((e) => e.startsWith(_accessTokenKey))
-          .substring(_accessTokenKey.length),
-      tokenType: datas
-          .firstWhere((e) => e.startsWith(_tokenTypeKey))
-          .substring(_tokenTypeKey.length),
-      scope: datas
-          .firstWhere((e) => e.startsWith(_scopeKey))
-          .substring(_scopeKey.length),
+      token: datas.firstWhere((e) => e.startsWith(_accessTokenKey)).substring(_accessTokenKey.length),
+      tokenType: datas.firstWhere((e) => e.startsWith(_tokenTypeKey)).substring(_tokenTypeKey.length),
+      scope: datas.firstWhere((e) => e.startsWith(_scopeKey)).substring(_scopeKey.length),
     );
   }
 

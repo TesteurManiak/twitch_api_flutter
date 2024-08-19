@@ -12,7 +12,7 @@ part of 'twitch_token.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$TwitchToken {
@@ -107,11 +107,11 @@ class _$TwitchTokenCopyWithImpl<$Res, $Val extends TwitchToken>
 }
 
 /// @nodoc
-abstract class _$$_TwitchTokenCopyWith<$Res>
+abstract class _$$TwitchTokenImplCopyWith<$Res>
     implements $TwitchTokenCopyWith<$Res> {
-  factory _$$_TwitchTokenCopyWith(
-          _$_TwitchToken value, $Res Function(_$_TwitchToken) then) =
-      __$$_TwitchTokenCopyWithImpl<$Res>;
+  factory _$$TwitchTokenImplCopyWith(
+          _$TwitchTokenImpl value, $Res Function(_$TwitchTokenImpl) then) =
+      __$$TwitchTokenImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -126,11 +126,11 @@ abstract class _$$_TwitchTokenCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchTokenCopyWithImpl<$Res>
-    extends _$TwitchTokenCopyWithImpl<$Res, _$_TwitchToken>
-    implements _$$_TwitchTokenCopyWith<$Res> {
-  __$$_TwitchTokenCopyWithImpl(
-      _$_TwitchToken _value, $Res Function(_$_TwitchToken) _then)
+class __$$TwitchTokenImplCopyWithImpl<$Res>
+    extends _$TwitchTokenCopyWithImpl<$Res, _$TwitchTokenImpl>
+    implements _$$TwitchTokenImplCopyWith<$Res> {
+  __$$TwitchTokenImplCopyWithImpl(
+      _$TwitchTokenImpl _value, $Res Function(_$TwitchTokenImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -145,7 +145,7 @@ class __$$_TwitchTokenCopyWithImpl<$Res>
     Object? userId = freezed,
     Object? expiresIn = null,
   }) {
-    return _then(_$_TwitchToken(
+    return _then(_$TwitchTokenImpl(
       token: null == token
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
@@ -184,8 +184,8 @@ class __$$_TwitchTokenCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_TwitchToken extends _TwitchToken {
-  const _$_TwitchToken(
+class _$TwitchTokenImpl extends _TwitchToken {
+  const _$TwitchTokenImpl(
       {required this.token,
       required this.scope,
       required this.tokenType,
@@ -229,10 +229,10 @@ class _$_TwitchToken extends _TwitchToken {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchToken &&
+            other is _$TwitchTokenImpl &&
             (identical(other.token, token) || other.token == token) &&
             (identical(other.scope, scope) || other.scope == scope) &&
             (identical(other.tokenType, tokenType) ||
@@ -261,8 +261,8 @@ class _$_TwitchToken extends _TwitchToken {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchTokenCopyWith<_$_TwitchToken> get copyWith =>
-      __$$_TwitchTokenCopyWithImpl<_$_TwitchToken>(this, _$identity);
+  _$$TwitchTokenImplCopyWith<_$TwitchTokenImpl> get copyWith =>
+      __$$TwitchTokenImplCopyWithImpl<_$TwitchTokenImpl>(this, _$identity);
 }
 
 abstract class _TwitchToken extends TwitchToken {
@@ -274,7 +274,7 @@ abstract class _TwitchToken extends TwitchToken {
       final String? login,
       final List<String>? scopes,
       final String? userId,
-      final int expiresIn}) = _$_TwitchToken;
+      final int expiresIn}) = _$TwitchTokenImpl;
   const _TwitchToken._() : super._();
 
   @override
@@ -295,6 +295,6 @@ abstract class _TwitchToken extends TwitchToken {
   int get expiresIn;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchTokenCopyWith<_$_TwitchToken> get copyWith =>
+  _$$TwitchTokenImplCopyWith<_$TwitchTokenImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

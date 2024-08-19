@@ -12,7 +12,7 @@ part of 'twitch_start_commercial.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 TwitchStartCommercial _$TwitchStartCommercialFromJson(
     Map<String, dynamic> json) {
@@ -85,11 +85,12 @@ class _$TwitchStartCommercialCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TwitchStartCommercialCopyWith<$Res>
+abstract class _$$TwitchStartCommercialImplCopyWith<$Res>
     implements $TwitchStartCommercialCopyWith<$Res> {
-  factory _$$_TwitchStartCommercialCopyWith(_$_TwitchStartCommercial value,
-          $Res Function(_$_TwitchStartCommercial) then) =
-      __$$_TwitchStartCommercialCopyWithImpl<$Res>;
+  factory _$$TwitchStartCommercialImplCopyWith(
+          _$TwitchStartCommercialImpl value,
+          $Res Function(_$TwitchStartCommercialImpl) then) =
+      __$$TwitchStartCommercialImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -99,11 +100,12 @@ abstract class _$$_TwitchStartCommercialCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TwitchStartCommercialCopyWithImpl<$Res>
-    extends _$TwitchStartCommercialCopyWithImpl<$Res, _$_TwitchStartCommercial>
-    implements _$$_TwitchStartCommercialCopyWith<$Res> {
-  __$$_TwitchStartCommercialCopyWithImpl(_$_TwitchStartCommercial _value,
-      $Res Function(_$_TwitchStartCommercial) _then)
+class __$$TwitchStartCommercialImplCopyWithImpl<$Res>
+    extends _$TwitchStartCommercialCopyWithImpl<$Res,
+        _$TwitchStartCommercialImpl>
+    implements _$$TwitchStartCommercialImplCopyWith<$Res> {
+  __$$TwitchStartCommercialImplCopyWithImpl(_$TwitchStartCommercialImpl _value,
+      $Res Function(_$TwitchStartCommercialImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -113,7 +115,7 @@ class __$$_TwitchStartCommercialCopyWithImpl<$Res>
     Object? message = null,
     Object? retryAfter = null,
   }) {
-    return _then(_$_TwitchStartCommercial(
+    return _then(_$TwitchStartCommercialImpl(
       length: null == length
           ? _value.length
           : length // ignore: cast_nullable_to_non_nullable
@@ -132,14 +134,14 @@ class __$$_TwitchStartCommercialCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TwitchStartCommercial implements _TwitchStartCommercial {
-  const _$_TwitchStartCommercial(
+class _$TwitchStartCommercialImpl implements _TwitchStartCommercial {
+  const _$TwitchStartCommercialImpl(
       {required this.length,
       required this.message,
       @JsonKey(name: 'retry_after') required this.retryAfter});
 
-  factory _$_TwitchStartCommercial.fromJson(Map<String, dynamic> json) =>
-      _$$_TwitchStartCommercialFromJson(json);
+  factory _$TwitchStartCommercialImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchStartCommercialImplFromJson(json);
 
   /// Length of the triggered commercial.
   @override
@@ -160,10 +162,10 @@ class _$_TwitchStartCommercial implements _TwitchStartCommercial {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TwitchStartCommercial &&
+            other is _$TwitchStartCommercialImpl &&
             (identical(other.length, length) || other.length == length) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.retryAfter, retryAfter) ||
@@ -177,13 +179,13 @@ class _$_TwitchStartCommercial implements _TwitchStartCommercial {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TwitchStartCommercialCopyWith<_$_TwitchStartCommercial> get copyWith =>
-      __$$_TwitchStartCommercialCopyWithImpl<_$_TwitchStartCommercial>(
-          this, _$identity);
+  _$$TwitchStartCommercialImplCopyWith<_$TwitchStartCommercialImpl>
+      get copyWith => __$$TwitchStartCommercialImplCopyWithImpl<
+          _$TwitchStartCommercialImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TwitchStartCommercialToJson(
+    return _$$TwitchStartCommercialImplToJson(
       this,
     );
   }
@@ -194,10 +196,10 @@ abstract class _TwitchStartCommercial implements TwitchStartCommercial {
           {required final int length,
           required final String message,
           @JsonKey(name: 'retry_after') required final int retryAfter}) =
-      _$_TwitchStartCommercial;
+      _$TwitchStartCommercialImpl;
 
   factory _TwitchStartCommercial.fromJson(Map<String, dynamic> json) =
-      _$_TwitchStartCommercial.fromJson;
+      _$TwitchStartCommercialImpl.fromJson;
 
   @override
 
@@ -214,6 +216,6 @@ abstract class _TwitchStartCommercial implements TwitchStartCommercial {
   int get retryAfter;
   @override
   @JsonKey(ignore: true)
-  _$$_TwitchStartCommercialCopyWith<_$_TwitchStartCommercial> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$TwitchStartCommercialImplCopyWith<_$TwitchStartCommercialImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
