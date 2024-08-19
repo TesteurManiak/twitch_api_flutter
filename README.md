@@ -244,13 +244,6 @@ Now you are ready to use the methods implemented in [Supported Endpoints](#suppo
         </a>
     </td>
     <td align="center">
-        <a href="https://github.com/matteo0158">
-            <img src="https://avatars.githubusercontent.com/u/59055473?v=4" width="100;" alt="matteo0158"/>
-            <br />
-            <sub><b>LaCremeDoree</b></sub>
-        </a>
-    </td>
-    <td align="center">
         <a href="https://github.com/LewisHolliday">
             <img src="https://avatars.githubusercontent.com/u/83846295?v=4" width="100;" alt="LewisHolliday"/>
             <br />
