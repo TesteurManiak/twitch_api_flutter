@@ -10,7 +10,7 @@ _$TwitchCreateClipImpl _$$TwitchCreateClipImplFromJson(
         Map<String, dynamic> json) =>
     _$TwitchCreateClipImpl(
       editUrl: json['edit_url'] as String,
-      id: (json['id'] as num).toInt(),
+      id: json['id'] as String,
     );
 
 Map<String, dynamic> _$$TwitchCreateClipImplToJson(

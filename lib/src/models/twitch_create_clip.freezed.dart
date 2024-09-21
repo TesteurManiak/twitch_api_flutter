@@ -23,7 +23,7 @@ mixin _$TwitchCreateClip {
   @JsonKey(name: 'edit_url')
   String get editUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'id')
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,7 +38,8 @@ abstract class $TwitchCreateClipCopyWith<$Res> {
       _$TwitchCreateClipCopyWithImpl<$Res, TwitchCreateClip>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'edit_url') String editUrl, @JsonKey(name: 'id') int id});
+      {@JsonKey(name: 'edit_url') String editUrl,
+      @JsonKey(name: 'id') String id});
 }
 
 /// @nodoc
@@ -65,7 +66,7 @@ class _$TwitchCreateClipCopyWithImpl<$Res, $Val extends TwitchCreateClip>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
     ) as $Val);
   }
 }
@@ -79,7 +80,8 @@ abstract class _$$TwitchCreateClipImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'edit_url') String editUrl, @JsonKey(name: 'id') int id});
+      {@JsonKey(name: 'edit_url') String editUrl,
+      @JsonKey(name: 'id') String id});
 }
 
 /// @nodoc
@@ -104,7 +106,7 @@ class __$$TwitchCreateClipImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
     ));
   }
 }
@@ -124,7 +126,7 @@ class _$TwitchCreateClipImpl implements _TwitchCreateClip {
   final String editUrl;
   @override
   @JsonKey(name: 'id')
-  final int id;
+  final String id;
 
   @override
   String toString() {
@@ -162,7 +164,7 @@ class _$TwitchCreateClipImpl implements _TwitchCreateClip {
 abstract class _TwitchCreateClip implements TwitchCreateClip {
   const factory _TwitchCreateClip(
       {@JsonKey(name: 'edit_url') required final String editUrl,
-      @JsonKey(name: 'id') required final int id}) = _$TwitchCreateClipImpl;
+      @JsonKey(name: 'id') required final String id}) = _$TwitchCreateClipImpl;
 
   factory _TwitchCreateClip.fromJson(Map<String, dynamic> json) =
       _$TwitchCreateClipImpl.fromJson;
@@ -172,7 +174,7 @@ abstract class _TwitchCreateClip implements TwitchCreateClip {
   String get editUrl;
   @override
   @JsonKey(name: 'id')
-  int get id;
+  String get id;
   @override
   @JsonKey(ignore: true)
   _$$TwitchCreateClipImplCopyWith<_$TwitchCreateClipImpl> get copyWith =>

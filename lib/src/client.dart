@@ -5,8 +5,6 @@ import 'package:twitch_api/src/models/twitch_chat_settings.dart';
 import 'package:twitch_api/src/providers/twitch_dio_client.dart';
 import 'package:twitch_api/twitch_api.dart';
 
-import 'models/twitch_create_clip.dart';
-
 class TwitchClient {
   /// By default the `twitchHttpClient` will be a [TwitchDioClient].
   TwitchClient({
@@ -1166,13 +1164,13 @@ class TwitchClient {
   /// `hasDelay` required
   ///
   /// documentation : https://dev.twitch.tv/docs/api/reference/#create-clip
-  Future<TwitchCreateClip> createClip({required String broadcasterId, required bool hasDelay}) async {
+  Future<TwitchCreateClipResponse> createClip({required String broadcasterId, required bool hasDelay}) async {
     final data = await twitchHttpClient.postCall<Map<String, dynamic>>(
       ['clips'],
-      Object(),
+      <String, Object>{},
       queryParameters: {'broadcaster_id': broadcasterId, 'has_delay': hasDelay},
     );
-    return TwitchCreateClip.fromJson(data);
+    return TwitchCreateClipResponse.fromJson(data);
   }
 
   /// Get a clip
@@ -1222,12 +1220,12 @@ class TwitchClient {
       ['clips'],
       queryParameters: {
         exclusiveParameter: exclusiveParameterValue,
-        'first': first,
+        'first': first.toString(),
         if (startedAt != null) 'started_at': startedAt,
         if (endedAt != null) 'ended_at': endedAt,
         if (before != null) 'before': before,
         if (after != null) 'after': after,
-        if (isFeatured != null) 'is_featured': isFeatured,
+        if (isFeatured != null) 'is_featured': isFeatured.toString(),
       },
     );
     return TwitchClipResponse.fromJson(data);

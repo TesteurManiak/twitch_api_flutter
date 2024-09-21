@@ -8,7 +8,7 @@ part of 'twitch_clip.dart';
 
 _$TwitchClipImpl _$$TwitchClipImplFromJson(Map<String, dynamic> json) =>
     _$TwitchClipImpl(
-      id: (json['id'] as num).toInt(),
+      id: json['id'] as String,
       url: json['url'] as String,
       embedUrl: json['embed_url'] as String,
       broadcasterId: json['broadcaster_id'] as String,

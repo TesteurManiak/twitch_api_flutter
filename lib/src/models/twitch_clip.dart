@@ -6,7 +6,7 @@ part 'twitch_clip.g.dart';
 @freezed
 class TwitchClip with _$TwitchClip {
   const factory TwitchClip({
-    @JsonKey(name: 'id') required int id,
+    @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'url') required String url,
     @JsonKey(name: 'embed_url') required String embedUrl,
     @JsonKey(name: 'broadcaster_id') required String broadcasterId,

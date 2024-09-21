@@ -195,6 +195,14 @@ _$CustomRewardRedemptionResponseImpl
           pagination: json['pagination'] as Map<String, dynamic>?,
         );
 
+_$TwitchCreateClipResponseImpl _$$TwitchCreateClipResponseImplFromJson(
+        Map<String, dynamic> json) =>
+    _$TwitchCreateClipResponseImpl(
+      data: (json['data'] as List<dynamic>)
+          .map((e) => TwitchCreateClip.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
 _$TwitchClipResponseImpl _$$TwitchClipResponseImplFromJson(
         Map<String, dynamic> json) =>
     _$TwitchClipResponseImpl(

@@ -21,7 +21,7 @@ TwitchClip _$TwitchClipFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TwitchClip {
   @JsonKey(name: 'id')
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   @JsonKey(name: 'url')
   String get url => throw _privateConstructorUsedError;
   @JsonKey(name: 'embed_url')
@@ -68,7 +68,7 @@ abstract class $TwitchClipCopyWith<$Res> {
       _$TwitchClipCopyWithImpl<$Res, TwitchClip>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'url') String url,
       @JsonKey(name: 'embed_url') String embedUrl,
       @JsonKey(name: 'broadcaster_id') String broadcasterId,
@@ -122,7 +122,7 @@ class _$TwitchClipCopyWithImpl<$Res, $Val extends TwitchClip>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -200,7 +200,7 @@ abstract class _$$TwitchClipImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') int id,
+      {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'url') String url,
       @JsonKey(name: 'embed_url') String embedUrl,
       @JsonKey(name: 'broadcaster_id') String broadcasterId,
@@ -252,7 +252,7 @@ class __$$TwitchClipImplCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -348,7 +348,7 @@ class _$TwitchClipImpl implements _TwitchClip {
 
   @override
   @JsonKey(name: 'id')
-  final int id;
+  final String id;
   @override
   @JsonKey(name: 'url')
   final String url;
@@ -477,7 +477,7 @@ class _$TwitchClipImpl implements _TwitchClip {
 
 abstract class _TwitchClip implements TwitchClip {
   const factory _TwitchClip(
-      {@JsonKey(name: 'id') required final int id,
+      {@JsonKey(name: 'id') required final String id,
       @JsonKey(name: 'url') required final String url,
       @JsonKey(name: 'embed_url') required final String embedUrl,
       @JsonKey(name: 'broadcaster_id') required final String broadcasterId,
@@ -501,7 +501,7 @@ abstract class _TwitchClip implements TwitchClip {
 
   @override
   @JsonKey(name: 'id')
-  int get id;
+  String get id;
   @override
   @JsonKey(name: 'url')
   String get url;

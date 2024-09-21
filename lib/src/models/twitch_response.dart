@@ -1,7 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:twitch_api/src/models/twitch_channel_editor.dart';
-import 'package:twitch_api/src/models/twitch_clip.dart';
-import 'package:twitch_api/src/models/twitch_create_clip.dart';
 import 'package:twitch_api/src/models/twitch_emotes.dart';
 import 'package:twitch_api/src/models/twitch_game_analytic.dart';
 import 'package:twitch_api/src/models/twitch_start_commercial.dart';
@@ -306,6 +304,16 @@ class CustomRewardRedemptionResponse with _$CustomRewardRedemptionResponse {
   }) = _CustomRewardRedemptionResponse;
 
   factory CustomRewardRedemptionResponse.fromJson(Map<String, dynamic> json) => _$CustomRewardRedemptionResponseFromJson(json);
+}
+
+@Freezed(toJson: false)
+class TwitchCreateClipResponse with _$TwitchCreateClipResponse {
+  const factory TwitchCreateClipResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchCreateClip> data,
+  }) = _TwitchCreateClipResponse;
+
+  factory TwitchCreateClipResponse.fromJson(Map<String, dynamic> json) => _$TwitchCreateClipResponseFromJson(json);
 }
 
 @Freezed(toJson: false)
