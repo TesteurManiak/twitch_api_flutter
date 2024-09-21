@@ -117,8 +117,8 @@ Now you are ready to use the methods implemented in [Supported Endpoints](#suppo
 
 ### Clips
 
-* [ ] Create Clip
-* [ ] Get Clips
+* [x] Create Clip
+* [x] Get Clips
 
 ### Entitlements
 
