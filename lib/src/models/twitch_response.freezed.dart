@@ -3779,39 +3779,36 @@ abstract class _CustomRewardRedemptionResponse
       get copyWith => throw _privateConstructorUsedError;
 }
 
-TwitchTokenRefreshResponse _$TwitchTokenRefreshResponseFromJson(
-    Map<String, dynamic> json) {
-  return _TwitchTokenRefreshResponse.fromJson(json);
+TwitchClipResponse _$TwitchClipResponseFromJson(Map<String, dynamic> json) {
+  return _TwitchClipResponse.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TwitchTokenRefreshResponse {
+mixin _$TwitchClipResponse {
   /// {@macro twitchResponse.data}
-  List<TwitchTokenRefresh> get data => throw _privateConstructorUsedError;
+  List<TwitchClip> get data => throw _privateConstructorUsedError;
 
   /// {@macro twitchResponse.pagination}
   Map<String, dynamic>? get pagination => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $TwitchTokenRefreshResponseCopyWith<TwitchTokenRefreshResponse>
-      get copyWith => throw _privateConstructorUsedError;
+  $TwitchClipResponseCopyWith<TwitchClipResponse> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TwitchTokenRefreshResponseCopyWith<$Res> {
-  factory $TwitchTokenRefreshResponseCopyWith(TwitchTokenRefreshResponse value,
-          $Res Function(TwitchTokenRefreshResponse) then) =
-      _$TwitchTokenRefreshResponseCopyWithImpl<$Res,
-          TwitchTokenRefreshResponse>;
+abstract class $TwitchClipResponseCopyWith<$Res> {
+  factory $TwitchClipResponseCopyWith(
+          TwitchClipResponse value, $Res Function(TwitchClipResponse) then) =
+      _$TwitchClipResponseCopyWithImpl<$Res, TwitchClipResponse>;
   @useResult
-  $Res call({List<TwitchTokenRefresh> data, Map<String, dynamic>? pagination});
+  $Res call({List<TwitchClip> data, Map<String, dynamic>? pagination});
 }
 
 /// @nodoc
-class _$TwitchTokenRefreshResponseCopyWithImpl<$Res,
-        $Val extends TwitchTokenRefreshResponse>
-    implements $TwitchTokenRefreshResponseCopyWith<$Res> {
-  _$TwitchTokenRefreshResponseCopyWithImpl(this._value, this._then);
+class _$TwitchClipResponseCopyWithImpl<$Res, $Val extends TwitchClipResponse>
+    implements $TwitchClipResponseCopyWith<$Res> {
+  _$TwitchClipResponseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -3828,7 +3825,7 @@ class _$TwitchTokenRefreshResponseCopyWithImpl<$Res,
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<TwitchTokenRefresh>,
+              as List<TwitchClip>,
       pagination: freezed == pagination
           ? _value.pagination
           : pagination // ignore: cast_nullable_to_non_nullable
@@ -3838,25 +3835,22 @@ class _$TwitchTokenRefreshResponseCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$TwitchTokenRefreshResponseImplCopyWith<$Res>
-    implements $TwitchTokenRefreshResponseCopyWith<$Res> {
-  factory _$$TwitchTokenRefreshResponseImplCopyWith(
-          _$TwitchTokenRefreshResponseImpl value,
-          $Res Function(_$TwitchTokenRefreshResponseImpl) then) =
-      __$$TwitchTokenRefreshResponseImplCopyWithImpl<$Res>;
+abstract class _$$TwitchClipResponseImplCopyWith<$Res>
+    implements $TwitchClipResponseCopyWith<$Res> {
+  factory _$$TwitchClipResponseImplCopyWith(_$TwitchClipResponseImpl value,
+          $Res Function(_$TwitchClipResponseImpl) then) =
+      __$$TwitchClipResponseImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<TwitchTokenRefresh> data, Map<String, dynamic>? pagination});
+  $Res call({List<TwitchClip> data, Map<String, dynamic>? pagination});
 }
 
 /// @nodoc
-class __$$TwitchTokenRefreshResponseImplCopyWithImpl<$Res>
-    extends _$TwitchTokenRefreshResponseCopyWithImpl<$Res,
-        _$TwitchTokenRefreshResponseImpl>
-    implements _$$TwitchTokenRefreshResponseImplCopyWith<$Res> {
-  __$$TwitchTokenRefreshResponseImplCopyWithImpl(
-      _$TwitchTokenRefreshResponseImpl _value,
-      $Res Function(_$TwitchTokenRefreshResponseImpl) _then)
+class __$$TwitchClipResponseImplCopyWithImpl<$Res>
+    extends _$TwitchClipResponseCopyWithImpl<$Res, _$TwitchClipResponseImpl>
+    implements _$$TwitchClipResponseImplCopyWith<$Res> {
+  __$$TwitchClipResponseImplCopyWithImpl(_$TwitchClipResponseImpl _value,
+      $Res Function(_$TwitchClipResponseImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3865,11 +3859,11 @@ class __$$TwitchTokenRefreshResponseImplCopyWithImpl<$Res>
     Object? data = null,
     Object? pagination = freezed,
   }) {
-    return _then(_$TwitchTokenRefreshResponseImpl(
+    return _then(_$TwitchClipResponseImpl(
       data: null == data
           ? _value._data
           : data // ignore: cast_nullable_to_non_nullable
-              as List<TwitchTokenRefresh>,
+              as List<TwitchClip>,
       pagination: freezed == pagination
           ? _value._pagination
           : pagination // ignore: cast_nullable_to_non_nullable
@@ -3880,23 +3874,22 @@ class __$$TwitchTokenRefreshResponseImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable(createToJson: false)
-class _$TwitchTokenRefreshResponseImpl implements _TwitchTokenRefreshResponse {
-  const _$TwitchTokenRefreshResponseImpl(
-      {required final List<TwitchTokenRefresh> data,
+class _$TwitchClipResponseImpl implements _TwitchClipResponse {
+  const _$TwitchClipResponseImpl(
+      {required final List<TwitchClip> data,
       required final Map<String, dynamic>? pagination})
       : _data = data,
         _pagination = pagination;
 
-  factory _$TwitchTokenRefreshResponseImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$TwitchTokenRefreshResponseImplFromJson(json);
+  factory _$TwitchClipResponseImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TwitchClipResponseImplFromJson(json);
 
   /// {@macro twitchResponse.data}
-  final List<TwitchTokenRefresh> _data;
+  final List<TwitchClip> _data;
 
   /// {@macro twitchResponse.data}
   @override
-  List<TwitchTokenRefresh> get data {
+  List<TwitchClip> get data {
     if (_data is EqualUnmodifiableListView) return _data;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_data);
@@ -3917,14 +3910,14 @@ class _$TwitchTokenRefreshResponseImpl implements _TwitchTokenRefreshResponse {
 
   @override
   String toString() {
-    return 'TwitchTokenRefreshResponse(data: $data, pagination: $pagination)';
+    return 'TwitchClipResponse(data: $data, pagination: $pagination)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TwitchTokenRefreshResponseImpl &&
+            other is _$TwitchClipResponseImpl &&
             const DeepCollectionEquality().equals(other._data, _data) &&
             const DeepCollectionEquality()
                 .equals(other._pagination, _pagination));
@@ -3940,31 +3933,30 @@ class _$TwitchTokenRefreshResponseImpl implements _TwitchTokenRefreshResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TwitchTokenRefreshResponseImplCopyWith<_$TwitchTokenRefreshResponseImpl>
-      get copyWith => __$$TwitchTokenRefreshResponseImplCopyWithImpl<
-          _$TwitchTokenRefreshResponseImpl>(this, _$identity);
+  _$$TwitchClipResponseImplCopyWith<_$TwitchClipResponseImpl> get copyWith =>
+      __$$TwitchClipResponseImplCopyWithImpl<_$TwitchClipResponseImpl>(
+          this, _$identity);
 }
 
-abstract class _TwitchTokenRefreshResponse
-    implements TwitchTokenRefreshResponse {
-  const factory _TwitchTokenRefreshResponse(
-          {required final List<TwitchTokenRefresh> data,
+abstract class _TwitchClipResponse implements TwitchClipResponse {
+  const factory _TwitchClipResponse(
+          {required final List<TwitchClip> data,
           required final Map<String, dynamic>? pagination}) =
-      _$TwitchTokenRefreshResponseImpl;
+      _$TwitchClipResponseImpl;
 
-  factory _TwitchTokenRefreshResponse.fromJson(Map<String, dynamic> json) =
-      _$TwitchTokenRefreshResponseImpl.fromJson;
+  factory _TwitchClipResponse.fromJson(Map<String, dynamic> json) =
+      _$TwitchClipResponseImpl.fromJson;
 
   @override
 
   /// {@macro twitchResponse.data}
-  List<TwitchTokenRefresh> get data;
+  List<TwitchClip> get data;
   @override
 
   /// {@macro twitchResponse.pagination}
   Map<String, dynamic>? get pagination;
   @override
   @JsonKey(ignore: true)
-  _$$TwitchTokenRefreshResponseImplCopyWith<_$TwitchTokenRefreshResponseImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$TwitchClipResponseImplCopyWith<_$TwitchClipResponseImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

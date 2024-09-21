@@ -195,11 +195,11 @@ _$CustomRewardRedemptionResponseImpl
           pagination: json['pagination'] as Map<String, dynamic>?,
         );
 
-_$TwitchTokenRefreshResponseImpl _$$TwitchTokenRefreshResponseImplFromJson(
+_$TwitchClipResponseImpl _$$TwitchClipResponseImplFromJson(
         Map<String, dynamic> json) =>
-    _$TwitchTokenRefreshResponseImpl(
+    _$TwitchClipResponseImpl(
       data: (json['data'] as List<dynamic>)
-          .map((e) => TwitchTokenRefresh.fromJson(e as Map<String, dynamic>))
+          .map((e) => TwitchClip.fromJson(e as Map<String, dynamic>))
           .toList(),
       pagination: json['pagination'] as Map<String, dynamic>?,
     );
