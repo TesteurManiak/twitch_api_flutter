@@ -1206,24 +1206,20 @@ class TwitchClient {
     if (ids != null) {
       assert(ids.length < 101);
     }
-    String exclusiveParameter = "";
-    String exclusiveParameterValue = "";
 
+    late MapEntry<String, String> exclusiveParameter;
     if (broadcasterId?.isNotEmpty ?? false) {
-      exclusiveParameter = 'broadcaster_id';
-      exclusiveParameterValue = broadcasterId!;
+      exclusiveParameter = MapEntry('broadcaster_id', broadcasterId!);
     } else if (gameId?.isNotEmpty ?? false) {
-      exclusiveParameter = 'game_id';
-      exclusiveParameterValue = gameId!;
+      exclusiveParameter = MapEntry('game_id', gameId!);
     } else if (ids?.isNotEmpty ?? false) {
-      exclusiveParameter = 'id';
-      exclusiveParameterValue = ids!.join(',');
+      exclusiveParameter = MapEntry('id', ids!.join(','));
     }
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['clips'],
       queryParameters: {
-        exclusiveParameter: exclusiveParameterValue,
+        exclusiveParameter.key: exclusiveParameter.value,
         'first': first.toString(),
         if (startedAt != null) 'started_at': startedAt,
         if (endedAt != null) 'ended_at': endedAt,
