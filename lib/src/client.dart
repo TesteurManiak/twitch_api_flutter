@@ -1187,9 +1187,9 @@ class TwitchClient {
   ///
   /// documentation : https://dev.twitch.tv/docs/api/reference/#get-clips
   Future<TwitchClipResponse> getClips({
-    required String broadcasterId,
-    required String gameId,
-    required List<String> ids,
+    String? broadcasterId,
+    String? gameId,
+    List<String>? ids,
     String? startedAt,
     String? endedAt,
     int first = 20,
@@ -1197,23 +1197,23 @@ class TwitchClient {
     String? after,
     bool? isFeatured,
   }) async {
-    assert(broadcasterId.isNotEmpty && gameId.isNotEmpty && ids.isNotEmpty, "One of required parameter must have a value");
+    assert(broadcasterId != null && gameId != null && ids != null, "One of exclusive parameter must have a value");
     assert(first > 0 && first < 101);
-    if (ids.isNotEmpty) {
+    if (ids != null) {
       assert(ids.length < 101);
     }
     String exclusiveParameter = "";
     String exclusiveParameterValue = "";
 
-    if (broadcasterId.isNotEmpty) {
+    if (broadcasterId?.isNotEmpty ?? false) {
       exclusiveParameter = 'broadcaster_id';
-      exclusiveParameterValue = broadcasterId;
-    } else if (gameId.isNotEmpty) {
+      exclusiveParameterValue = broadcasterId!;
+    } else if (gameId?.isNotEmpty ?? false) {
       exclusiveParameter = 'game_id';
-      exclusiveParameterValue = gameId;
-    } else if (ids.isNotEmpty) {
+      exclusiveParameterValue = gameId!;
+    } else if (ids?.isNotEmpty ?? false) {
       exclusiveParameter = 'id';
-      exclusiveParameterValue = ids.join(',');
+      exclusiveParameterValue = ids!.join(',');
     }
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
