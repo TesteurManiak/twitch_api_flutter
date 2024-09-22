@@ -1197,7 +1197,15 @@ class TwitchClient {
     String? after,
     bool? isFeatured,
   }) async {
-    assert(broadcasterId != null && gameId != null && ids != null, "One of exclusive parameter must have a value");
+    assert(
+      switch ((broadcasterId, gameId, ids)) {
+        (String(), null, null) => true,
+        (null, String(), null) => true,
+        (null, null, final ids?) when ids.isNotEmpty => true,
+        _ => false,
+      },
+      'One of exclusive parameter must have a value',
+    );
     assert(first > 0 && first < 101);
     if (ids != null) {
       assert(ids.length < 101);
