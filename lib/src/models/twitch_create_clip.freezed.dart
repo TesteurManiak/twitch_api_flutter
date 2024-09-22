@@ -22,7 +22,6 @@ TwitchCreateClip _$TwitchCreateClipFromJson(Map<String, dynamic> json) {
 mixin _$TwitchCreateClip {
   @JsonKey(name: 'edit_url')
   String get editUrl => throw _privateConstructorUsedError;
-  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,9 +36,7 @@ abstract class $TwitchCreateClipCopyWith<$Res> {
           TwitchCreateClip value, $Res Function(TwitchCreateClip) then) =
       _$TwitchCreateClipCopyWithImpl<$Res, TwitchCreateClip>;
   @useResult
-  $Res call(
-      {@JsonKey(name: 'edit_url') String editUrl,
-      @JsonKey(name: 'id') String id});
+  $Res call({@JsonKey(name: 'edit_url') String editUrl, String id});
 }
 
 /// @nodoc
@@ -79,9 +76,7 @@ abstract class _$$TwitchCreateClipImplCopyWith<$Res>
       __$$TwitchCreateClipImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(name: 'edit_url') String editUrl,
-      @JsonKey(name: 'id') String id});
+  $Res call({@JsonKey(name: 'edit_url') String editUrl, String id});
 }
 
 /// @nodoc
@@ -115,8 +110,7 @@ class __$$TwitchCreateClipImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TwitchCreateClipImpl implements _TwitchCreateClip {
   const _$TwitchCreateClipImpl(
-      {@JsonKey(name: 'edit_url') required this.editUrl,
-      @JsonKey(name: 'id') required this.id});
+      {@JsonKey(name: 'edit_url') required this.editUrl, required this.id});
 
   factory _$TwitchCreateClipImpl.fromJson(Map<String, dynamic> json) =>
       _$$TwitchCreateClipImplFromJson(json);
@@ -125,7 +119,6 @@ class _$TwitchCreateClipImpl implements _TwitchCreateClip {
   @JsonKey(name: 'edit_url')
   final String editUrl;
   @override
-  @JsonKey(name: 'id')
   final String id;
 
   @override
@@ -164,7 +157,7 @@ class _$TwitchCreateClipImpl implements _TwitchCreateClip {
 abstract class _TwitchCreateClip implements TwitchCreateClip {
   const factory _TwitchCreateClip(
       {@JsonKey(name: 'edit_url') required final String editUrl,
-      @JsonKey(name: 'id') required final String id}) = _$TwitchCreateClipImpl;
+      required final String id}) = _$TwitchCreateClipImpl;
 
   factory _TwitchCreateClip.fromJson(Map<String, dynamic> json) =
       _$TwitchCreateClipImpl.fromJson;
@@ -173,7 +166,6 @@ abstract class _TwitchCreateClip implements TwitchCreateClip {
   @JsonKey(name: 'edit_url')
   String get editUrl;
   @override
-  @JsonKey(name: 'id')
   String get id;
   @override
   @JsonKey(ignore: true)

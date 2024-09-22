@@ -20,9 +20,7 @@ TwitchClip _$TwitchClipFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TwitchClip {
-  @JsonKey(name: 'id')
   String get id => throw _privateConstructorUsedError;
-  @JsonKey(name: 'url')
   String get url => throw _privateConstructorUsedError;
   @JsonKey(name: 'embed_url')
   String get embedUrl => throw _privateConstructorUsedError;
@@ -31,16 +29,14 @@ mixin _$TwitchClip {
   @JsonKey(name: 'broadcaster_name')
   String get broadcasterName => throw _privateConstructorUsedError;
   @JsonKey(name: 'creator_id')
-  String get creatorUd => throw _privateConstructorUsedError;
+  String get creatorId => throw _privateConstructorUsedError;
   @JsonKey(name: 'creator_name')
   String get creatorName => throw _privateConstructorUsedError;
   @JsonKey(name: 'video_id')
-  String get videoUd => throw _privateConstructorUsedError;
+  String get videoId => throw _privateConstructorUsedError;
   @JsonKey(name: 'game_id')
-  String get gameUd => throw _privateConstructorUsedError;
-  @JsonKey(name: 'language')
+  String get gameId => throw _privateConstructorUsedError;
   String get language => throw _privateConstructorUsedError;
-  @JsonKey(name: 'title')
   String get title => throw _privateConstructorUsedError;
   @JsonKey(name: 'view_count')
   String get viewCount => throw _privateConstructorUsedError;
@@ -48,7 +44,6 @@ mixin _$TwitchClip {
   String get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'thumbnail_url')
   String get thumbnailUrl => throw _privateConstructorUsedError;
-  @JsonKey(name: 'duration')
   double get duration => throw _privateConstructorUsedError;
   @JsonKey(name: 'vod_offset')
   String get vodOffset => throw _privateConstructorUsedError;
@@ -68,21 +63,21 @@ abstract class $TwitchClipCopyWith<$Res> {
       _$TwitchClipCopyWithImpl<$Res, TwitchClip>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'url') String url,
+      {String id,
+      String url,
       @JsonKey(name: 'embed_url') String embedUrl,
       @JsonKey(name: 'broadcaster_id') String broadcasterId,
       @JsonKey(name: 'broadcaster_name') String broadcasterName,
-      @JsonKey(name: 'creator_id') String creatorUd,
+      @JsonKey(name: 'creator_id') String creatorId,
       @JsonKey(name: 'creator_name') String creatorName,
-      @JsonKey(name: 'video_id') String videoUd,
-      @JsonKey(name: 'game_id') String gameUd,
-      @JsonKey(name: 'language') String language,
-      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'video_id') String videoId,
+      @JsonKey(name: 'game_id') String gameId,
+      String language,
+      String title,
       @JsonKey(name: 'view_count') String viewCount,
       @JsonKey(name: 'created_at') String createdAt,
       @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
-      @JsonKey(name: 'duration') double duration,
+      double duration,
       @JsonKey(name: 'vod_offset') String vodOffset,
       @JsonKey(name: 'is_featured') bool isFeatured});
 }
@@ -105,10 +100,10 @@ class _$TwitchClipCopyWithImpl<$Res, $Val extends TwitchClip>
     Object? embedUrl = null,
     Object? broadcasterId = null,
     Object? broadcasterName = null,
-    Object? creatorUd = null,
+    Object? creatorId = null,
     Object? creatorName = null,
-    Object? videoUd = null,
-    Object? gameUd = null,
+    Object? videoId = null,
+    Object? gameId = null,
     Object? language = null,
     Object? title = null,
     Object? viewCount = null,
@@ -139,21 +134,21 @@ class _$TwitchClipCopyWithImpl<$Res, $Val extends TwitchClip>
           ? _value.broadcasterName
           : broadcasterName // ignore: cast_nullable_to_non_nullable
               as String,
-      creatorUd: null == creatorUd
-          ? _value.creatorUd
-          : creatorUd // ignore: cast_nullable_to_non_nullable
+      creatorId: null == creatorId
+          ? _value.creatorId
+          : creatorId // ignore: cast_nullable_to_non_nullable
               as String,
       creatorName: null == creatorName
           ? _value.creatorName
           : creatorName // ignore: cast_nullable_to_non_nullable
               as String,
-      videoUd: null == videoUd
-          ? _value.videoUd
-          : videoUd // ignore: cast_nullable_to_non_nullable
+      videoId: null == videoId
+          ? _value.videoId
+          : videoId // ignore: cast_nullable_to_non_nullable
               as String,
-      gameUd: null == gameUd
-          ? _value.gameUd
-          : gameUd // ignore: cast_nullable_to_non_nullable
+      gameId: null == gameId
+          ? _value.gameId
+          : gameId // ignore: cast_nullable_to_non_nullable
               as String,
       language: null == language
           ? _value.language
@@ -200,21 +195,21 @@ abstract class _$$TwitchClipImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'id') String id,
-      @JsonKey(name: 'url') String url,
+      {String id,
+      String url,
       @JsonKey(name: 'embed_url') String embedUrl,
       @JsonKey(name: 'broadcaster_id') String broadcasterId,
       @JsonKey(name: 'broadcaster_name') String broadcasterName,
-      @JsonKey(name: 'creator_id') String creatorUd,
+      @JsonKey(name: 'creator_id') String creatorId,
       @JsonKey(name: 'creator_name') String creatorName,
-      @JsonKey(name: 'video_id') String videoUd,
-      @JsonKey(name: 'game_id') String gameUd,
-      @JsonKey(name: 'language') String language,
-      @JsonKey(name: 'title') String title,
+      @JsonKey(name: 'video_id') String videoId,
+      @JsonKey(name: 'game_id') String gameId,
+      String language,
+      String title,
       @JsonKey(name: 'view_count') String viewCount,
       @JsonKey(name: 'created_at') String createdAt,
       @JsonKey(name: 'thumbnail_url') String thumbnailUrl,
-      @JsonKey(name: 'duration') double duration,
+      double duration,
       @JsonKey(name: 'vod_offset') String vodOffset,
       @JsonKey(name: 'is_featured') bool isFeatured});
 }
@@ -235,10 +230,10 @@ class __$$TwitchClipImplCopyWithImpl<$Res>
     Object? embedUrl = null,
     Object? broadcasterId = null,
     Object? broadcasterName = null,
-    Object? creatorUd = null,
+    Object? creatorId = null,
     Object? creatorName = null,
-    Object? videoUd = null,
-    Object? gameUd = null,
+    Object? videoId = null,
+    Object? gameId = null,
     Object? language = null,
     Object? title = null,
     Object? viewCount = null,
@@ -269,21 +264,21 @@ class __$$TwitchClipImplCopyWithImpl<$Res>
           ? _value.broadcasterName
           : broadcasterName // ignore: cast_nullable_to_non_nullable
               as String,
-      creatorUd: null == creatorUd
-          ? _value.creatorUd
-          : creatorUd // ignore: cast_nullable_to_non_nullable
+      creatorId: null == creatorId
+          ? _value.creatorId
+          : creatorId // ignore: cast_nullable_to_non_nullable
               as String,
       creatorName: null == creatorName
           ? _value.creatorName
           : creatorName // ignore: cast_nullable_to_non_nullable
               as String,
-      videoUd: null == videoUd
-          ? _value.videoUd
-          : videoUd // ignore: cast_nullable_to_non_nullable
+      videoId: null == videoId
+          ? _value.videoId
+          : videoId // ignore: cast_nullable_to_non_nullable
               as String,
-      gameUd: null == gameUd
-          ? _value.gameUd
-          : gameUd // ignore: cast_nullable_to_non_nullable
+      gameId: null == gameId
+          ? _value.gameId
+          : gameId // ignore: cast_nullable_to_non_nullable
               as String,
       language: null == language
           ? _value.language
@@ -325,21 +320,21 @@ class __$$TwitchClipImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TwitchClipImpl implements _TwitchClip {
   const _$TwitchClipImpl(
-      {@JsonKey(name: 'id') required this.id,
-      @JsonKey(name: 'url') required this.url,
+      {required this.id,
+      required this.url,
       @JsonKey(name: 'embed_url') required this.embedUrl,
       @JsonKey(name: 'broadcaster_id') required this.broadcasterId,
       @JsonKey(name: 'broadcaster_name') required this.broadcasterName,
-      @JsonKey(name: 'creator_id') required this.creatorUd,
+      @JsonKey(name: 'creator_id') required this.creatorId,
       @JsonKey(name: 'creator_name') required this.creatorName,
-      @JsonKey(name: 'video_id') required this.videoUd,
-      @JsonKey(name: 'game_id') required this.gameUd,
-      @JsonKey(name: 'language') required this.language,
-      @JsonKey(name: 'title') required this.title,
+      @JsonKey(name: 'video_id') required this.videoId,
+      @JsonKey(name: 'game_id') required this.gameId,
+      required this.language,
+      required this.title,
       @JsonKey(name: 'view_count') required this.viewCount,
       @JsonKey(name: 'created_at') required this.createdAt,
       @JsonKey(name: 'thumbnail_url') required this.thumbnailUrl,
-      @JsonKey(name: 'duration') required this.duration,
+      required this.duration,
       @JsonKey(name: 'vod_offset') required this.vodOffset,
       @JsonKey(name: 'is_featured') required this.isFeatured});
 
@@ -347,10 +342,8 @@ class _$TwitchClipImpl implements _TwitchClip {
       _$$TwitchClipImplFromJson(json);
 
   @override
-  @JsonKey(name: 'id')
   final String id;
   @override
-  @JsonKey(name: 'url')
   final String url;
   @override
   @JsonKey(name: 'embed_url')
@@ -363,21 +356,19 @@ class _$TwitchClipImpl implements _TwitchClip {
   final String broadcasterName;
   @override
   @JsonKey(name: 'creator_id')
-  final String creatorUd;
+  final String creatorId;
   @override
   @JsonKey(name: 'creator_name')
   final String creatorName;
   @override
   @JsonKey(name: 'video_id')
-  final String videoUd;
+  final String videoId;
   @override
   @JsonKey(name: 'game_id')
-  final String gameUd;
+  final String gameId;
   @override
-  @JsonKey(name: 'language')
   final String language;
   @override
-  @JsonKey(name: 'title')
   final String title;
   @override
   @JsonKey(name: 'view_count')
@@ -389,7 +380,6 @@ class _$TwitchClipImpl implements _TwitchClip {
   @JsonKey(name: 'thumbnail_url')
   final String thumbnailUrl;
   @override
-  @JsonKey(name: 'duration')
   final double duration;
   @override
   @JsonKey(name: 'vod_offset')
@@ -400,7 +390,7 @@ class _$TwitchClipImpl implements _TwitchClip {
 
   @override
   String toString() {
-    return 'TwitchClip(id: $id, url: $url, embedUrl: $embedUrl, broadcasterId: $broadcasterId, broadcasterName: $broadcasterName, creatorUd: $creatorUd, creatorName: $creatorName, videoUd: $videoUd, gameUd: $gameUd, language: $language, title: $title, viewCount: $viewCount, createdAt: $createdAt, thumbnailUrl: $thumbnailUrl, duration: $duration, vodOffset: $vodOffset, isFeatured: $isFeatured)';
+    return 'TwitchClip(id: $id, url: $url, embedUrl: $embedUrl, broadcasterId: $broadcasterId, broadcasterName: $broadcasterName, creatorId: $creatorId, creatorName: $creatorName, videoId: $videoId, gameId: $gameId, language: $language, title: $title, viewCount: $viewCount, createdAt: $createdAt, thumbnailUrl: $thumbnailUrl, duration: $duration, vodOffset: $vodOffset, isFeatured: $isFeatured)';
   }
 
   @override
@@ -416,12 +406,12 @@ class _$TwitchClipImpl implements _TwitchClip {
                 other.broadcasterId == broadcasterId) &&
             (identical(other.broadcasterName, broadcasterName) ||
                 other.broadcasterName == broadcasterName) &&
-            (identical(other.creatorUd, creatorUd) ||
-                other.creatorUd == creatorUd) &&
+            (identical(other.creatorId, creatorId) ||
+                other.creatorId == creatorId) &&
             (identical(other.creatorName, creatorName) ||
                 other.creatorName == creatorName) &&
-            (identical(other.videoUd, videoUd) || other.videoUd == videoUd) &&
-            (identical(other.gameUd, gameUd) || other.gameUd == gameUd) &&
+            (identical(other.videoId, videoId) || other.videoId == videoId) &&
+            (identical(other.gameId, gameId) || other.gameId == gameId) &&
             (identical(other.language, language) ||
                 other.language == language) &&
             (identical(other.title, title) || other.title == title) &&
@@ -448,10 +438,10 @@ class _$TwitchClipImpl implements _TwitchClip {
       embedUrl,
       broadcasterId,
       broadcasterName,
-      creatorUd,
+      creatorId,
       creatorName,
-      videoUd,
-      gameUd,
+      videoId,
+      gameId,
       language,
       title,
       viewCount,
@@ -477,21 +467,21 @@ class _$TwitchClipImpl implements _TwitchClip {
 
 abstract class _TwitchClip implements TwitchClip {
   const factory _TwitchClip(
-      {@JsonKey(name: 'id') required final String id,
-      @JsonKey(name: 'url') required final String url,
+      {required final String id,
+      required final String url,
       @JsonKey(name: 'embed_url') required final String embedUrl,
       @JsonKey(name: 'broadcaster_id') required final String broadcasterId,
       @JsonKey(name: 'broadcaster_name') required final String broadcasterName,
-      @JsonKey(name: 'creator_id') required final String creatorUd,
+      @JsonKey(name: 'creator_id') required final String creatorId,
       @JsonKey(name: 'creator_name') required final String creatorName,
-      @JsonKey(name: 'video_id') required final String videoUd,
-      @JsonKey(name: 'game_id') required final String gameUd,
-      @JsonKey(name: 'language') required final String language,
-      @JsonKey(name: 'title') required final String title,
+      @JsonKey(name: 'video_id') required final String videoId,
+      @JsonKey(name: 'game_id') required final String gameId,
+      required final String language,
+      required final String title,
       @JsonKey(name: 'view_count') required final String viewCount,
       @JsonKey(name: 'created_at') required final String createdAt,
       @JsonKey(name: 'thumbnail_url') required final String thumbnailUrl,
-      @JsonKey(name: 'duration') required final double duration,
+      required final double duration,
       @JsonKey(name: 'vod_offset') required final String vodOffset,
       @JsonKey(name: 'is_featured')
       required final bool isFeatured}) = _$TwitchClipImpl;
@@ -500,10 +490,8 @@ abstract class _TwitchClip implements TwitchClip {
       _$TwitchClipImpl.fromJson;
 
   @override
-  @JsonKey(name: 'id')
   String get id;
   @override
-  @JsonKey(name: 'url')
   String get url;
   @override
   @JsonKey(name: 'embed_url')
@@ -516,21 +504,19 @@ abstract class _TwitchClip implements TwitchClip {
   String get broadcasterName;
   @override
   @JsonKey(name: 'creator_id')
-  String get creatorUd;
+  String get creatorId;
   @override
   @JsonKey(name: 'creator_name')
   String get creatorName;
   @override
   @JsonKey(name: 'video_id')
-  String get videoUd;
+  String get videoId;
   @override
   @JsonKey(name: 'game_id')
-  String get gameUd;
+  String get gameId;
   @override
-  @JsonKey(name: 'language')
   String get language;
   @override
-  @JsonKey(name: 'title')
   String get title;
   @override
   @JsonKey(name: 'view_count')
@@ -542,7 +528,6 @@ abstract class _TwitchClip implements TwitchClip {
   @JsonKey(name: 'thumbnail_url')
   String get thumbnailUrl;
   @override
-  @JsonKey(name: 'duration')
   double get duration;
   @override
   @JsonKey(name: 'vod_offset')
