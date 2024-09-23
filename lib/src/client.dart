@@ -1197,29 +1197,31 @@ class TwitchClient {
     String? after,
     bool? isFeatured,
   }) async {
-    final bool bIdNullOrEmpty = broadcasterId == null || broadcasterId.isEmpty;
-    final bool gIdNullOrEmpty = gameId == null || gameId.isEmpty;
-    final bool cIdsNullOrEmpty = ids == null || ids.isEmpty;
-
-    assert(bIdNullOrEmpty && gIdNullOrEmpty && cIdsNullOrEmpty, "One of exclusive parameter must have a value");
+    assert(
+      switch ((broadcasterId, gameId, ids)) {
+        (String(), null, null) => true,
+        (null, String(), null) => true,
+        (null, null, final ids?) when ids.isNotEmpty => true,
+        _ => false,
+      },
+      'One of exclusive parameter must have a value',
+    );
     assert(first > 0 && first < 101);
     if (ids != null) {
       assert(ids.length < 101);
     }
 
-    late MapEntry<String, String> exclusiveParameter;
-    if (broadcasterId?.isNotEmpty ?? false) {
-      exclusiveParameter = MapEntry('broadcaster_id', broadcasterId!);
-    } else if (gameId?.isNotEmpty ?? false) {
-      exclusiveParameter = MapEntry('game_id', gameId!);
-    } else if (ids?.isNotEmpty ?? false) {
-      exclusiveParameter = MapEntry('id', ids!.join(','));
-    }
+    final exclusiveParameter = switch ((broadcasterId, gameId, ids)) {
+      (final broadcasterId?, null, null) when broadcasterId.isNotEmpty => MapEntry('broadcaster_id', broadcasterId),
+      (null, final gameId?, null) when gameId.isNotEmpty => MapEntry('game_id', gameId),
+      (null, null, final ids?) when ids.isNotEmpty => MapEntry('id', ids.join(',')),
+      _ => null,
+    };
 
     final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
       ['clips'],
       queryParameters: {
-        exclusiveParameter.key: exclusiveParameter.value,
+        if (exclusiveParameter != null) exclusiveParameter.key: exclusiveParameter.value,
         'first': first.toString(),
         if (startedAt != null) 'started_at': startedAt,
         if (endedAt != null) 'ended_at': endedAt,
