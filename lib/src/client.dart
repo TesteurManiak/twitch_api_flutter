@@ -1168,7 +1168,7 @@ class TwitchClient {
     final data = await twitchHttpClient.postCall<Map<String, dynamic>>(
       ['clips'],
       <String, Object>{},
-      queryParameters: {'broadcaster_id': broadcasterId, 'has_delay': hasDelay},
+      queryParameters: {'broadcaster_id': broadcasterId, 'has_delay': hasDelay.toString()},
     );
     return TwitchCreateClipResponse.fromJson(data);
   }
