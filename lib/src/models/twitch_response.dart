@@ -307,14 +307,24 @@ class CustomRewardRedemptionResponse with _$CustomRewardRedemptionResponse {
 }
 
 @Freezed(toJson: false)
-class TwitchTokenRefreshResponse with _$TwitchTokenRefreshResponse {
-  const factory TwitchTokenRefreshResponse({
+class TwitchCreateClipResponse with _$TwitchCreateClipResponse {
+  const factory TwitchCreateClipResponse({
     /// {@macro twitchResponse.data}
-    required List<TwitchTokenRefresh> data,
+    required List<TwitchCreateClip> data,
+  }) = _TwitchCreateClipResponse;
+
+  factory TwitchCreateClipResponse.fromJson(Map<String, dynamic> json) => _$TwitchCreateClipResponseFromJson(json);
+}
+
+@Freezed(toJson: false)
+class TwitchClipResponse with _$TwitchClipResponse {
+  const factory TwitchClipResponse({
+    /// {@macro twitchResponse.data}
+    required List<TwitchClip> data,
 
     /// {@macro twitchResponse.pagination}
     required Map<String, dynamic>? pagination,
-  }) = _TwitchTokenRefreshResponse;
+  }) = _TwitchClipResponse;
 
-  factory TwitchTokenRefreshResponse.fromJson(Map<String, dynamic> json) => _$TwitchTokenRefreshResponseFromJson(json);
+  factory TwitchClipResponse.fromJson(Map<String, dynamic> json) => _$TwitchClipResponseFromJson(json);
 }

@@ -1157,4 +1157,79 @@ class TwitchClient {
     );
     return TwitchTokenRefresh.fromJson(data);
   }
+
+  /// Create a clip
+  ///
+  /// `broadcasterId` required
+  /// `hasDelay` required
+  ///
+  /// documentation : https://dev.twitch.tv/docs/api/reference/#create-clip
+  Future<TwitchCreateClipResponse> createClip({required String broadcasterId, required bool hasDelay}) async {
+    final data = await twitchHttpClient.postCall<Map<String, dynamic>>(
+      ['clips'],
+      <String, Object>{},
+      queryParameters: {'broadcaster_id': broadcasterId, 'has_delay': hasDelay},
+    );
+    return TwitchCreateClipResponse.fromJson(data);
+  }
+
+  /// Get a clip
+  ///
+  /// `broadcasterId` exclusive Required An ID that identifies the broadcaster
+  /// `gameId` exclusive Required An ID that identifies the game whose clips you want to get
+  /// `ids` exclusive Required An ID that identifies the clip to get
+  /// `startedAt` format RFC3339
+  /// `endedAt`   format RFC3339
+  /// `first` The maximum number of clips to return per page in the response.
+  /// `before` The cursor used to get the previous page of results
+  /// `after` The cursor used to get the next page of results
+  /// `isFeatured`
+  ///
+  /// documentation : https://dev.twitch.tv/docs/api/reference/#get-clips
+  Future<TwitchClipResponse> getClips({
+    String? broadcasterId,
+    String? gameId,
+    List<String>? ids,
+    String? startedAt,
+    String? endedAt,
+    int first = 20,
+    String? before,
+    String? after,
+    bool? isFeatured,
+  }) async {
+    assert(
+      switch ((broadcasterId, gameId, ids)) {
+        (String(), null, null) => true,
+        (null, String(), null) => true,
+        (null, null, final ids?) when ids.isNotEmpty => true,
+        _ => false,
+      },
+      'One of exclusive parameter must have a value',
+    );
+    assert(first > 0 && first < 101);
+    if (ids != null) {
+      assert(ids.length < 101);
+    }
+
+    final exclusiveParameter = switch ((broadcasterId, gameId, ids)) {
+      (final broadcasterId?, null, null) when broadcasterId.isNotEmpty => MapEntry('broadcaster_id', broadcasterId),
+      (null, final gameId?, null) when gameId.isNotEmpty => MapEntry('game_id', gameId),
+      (null, null, final ids?) when ids.isNotEmpty => MapEntry('id', ids.join(',')),
+      _ => null,
+    };
+
+    final data = await twitchHttpClient.getCall<Map<String, dynamic>>(
+      ['clips'],
+      queryParameters: {
+        if (exclusiveParameter != null) exclusiveParameter.key: exclusiveParameter.value,
+        'first': first.toString(),
+        if (startedAt != null) 'started_at': startedAt,
+        if (endedAt != null) 'ended_at': endedAt,
+        if (before != null) 'before': before,
+        if (after != null) 'after': after,
+        if (isFeatured != null) 'is_featured': isFeatured.toString(),
+      },
+    );
+    return TwitchClipResponse.fromJson(data);
+  }
 }

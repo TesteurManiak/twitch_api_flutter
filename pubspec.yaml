@@ -6,7 +6,7 @@ repository: https://github.com/TesteurManiak/twitch_api_flutter
 issue_tracker: https://github.com/TesteurManiak/twitch_api_flutter/issues
 
 environment:
-  sdk: ">=2.18.0 <4.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   dio: ^5.1.2
