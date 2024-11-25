@@ -210,10 +210,10 @@ packages:
     dependency: transitive
     description:
       name: dart_style
-      sha256: "1efa911ca7086affd35f463ca2fc1799584fb6aa89883cf0af8e3664d6a02d55"
+      sha256: "7856d364b589d1f08986e140938578ed36ed948581fbc3bc9aef1805039ac5ab"
       url: "https://pub.dev"
     source: hosted
-    version: "2.3.2"
+    version: "2.3.7"
   dio:
     dependency: "direct main"
     description:
@@ -258,10 +258,10 @@ packages:
     dependency: "direct dev"
     description:
       name: freezed
-      sha256: a434911f643466d78462625df76fd9eb13e57348ff43fe1f77bbe909522c67a1
+      sha256: "44c19278dd9d89292cf46e97dc0c1e52ce03275f40a97c5a348e802a924bf40e"
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.2"
+    version: "2.5.7"
   freezed_annotation:
     dependency: "direct main"
     description:
