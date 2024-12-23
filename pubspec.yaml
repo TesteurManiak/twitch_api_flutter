@@ -17,7 +17,7 @@ dev_dependencies:
   build_runner: ^2.4.2
   coverage: ^1.6.3
   fd_lints: ">=1.0.2 <3.0.0"
-  freezed: ^2.3.3
+  freezed: ">=2.3.3 <4.0.0"
   http_mock_adapter: ">=0.4.4 <0.7.0"
   json_serializable: ^6.6.2
   mocktail: ">=0.3.0 <2.0.0"
