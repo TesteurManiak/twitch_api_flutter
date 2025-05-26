@@ -613,26 +613,26 @@ packages:
     dependency: "direct dev"
     description:
       name: test
-      sha256: f1665eeffe3b6b193548b5f515e8d1b54ccd9a6e0e7721a417e134e7ed7f06a1
+      sha256: "65e29d831719be0591f7b3b1a32a3cda258ec98c58c7b25f7b84241bc31215bb"
       url: "https://pub.dev"
     source: hosted
-    version: "1.26.0"
+    version: "1.26.2"
   test_api:
     dependency: transitive
     description:
       name: test_api
-      sha256: "6c7653816b1c938e121b69ff63a33c9dc68102b65a5fb0a5c0f9786256ed33e6"
+      sha256: "522f00f556e73044315fa4585ec3270f1808a4b186c936e612cab0b565ff1e00"
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.5"
+    version: "0.7.6"
   test_core:
     dependency: transitive
     description:
       name: test_core
-      sha256: "3caa7c3956b366643b2dedecff764cc32030317b2a15252aed845570df6bcc0f"
+      sha256: "80bf5a02b60af04b09e14f6fe68b921aad119493e26e490deaca5993fef1b05a"
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.9"
+    version: "0.6.11"
   timing:
     dependency: transitive
     description:
